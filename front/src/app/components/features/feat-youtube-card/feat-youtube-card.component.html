@@ -5,5 +5,12 @@
     <li id="resume">{{ cardChild.resume }}</li>
     <li>{{ cardChild.userList }}</li>
   </ul>
+  <div class="container-btn">
+    <button (click)="openEditDialogue()">{{ isCardEditFormToggle ? 'Fermer' : 'Modifier'}}</button>
+  </div>
 </div>
+
+<app-feat-edit-card-form 
+*ngIf="isCardEditFormToggle"
+></app-feat-edit-card-form>
 

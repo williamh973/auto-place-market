@@ -12,6 +12,8 @@ import { FeatFooterComponent } from './components/features/feat-footer/feat-foot
 import { FeatSearchComponent } from './components/features/feat-search/feat-search.component';
 import { FeatYoutubeCardComponent } from './components/features/feat-youtube-card/feat-youtube-card.component';
 import { FeatCardListComponent } from './components/features/feat-card-list/feat-card-list.component';
+import { FeatEditCardFormComponent } from './components/features/feat-edit-card-form/feat-edit-card-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,12 +26,14 @@ import { FeatCardListComponent } from './components/features/feat-card-list/feat
     FeatSearchComponent,
     FeatYoutubeCardComponent,
     FeatCardListComponent,
+    FeatEditCardFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

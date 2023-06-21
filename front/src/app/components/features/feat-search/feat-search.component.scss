@@ -3,7 +3,7 @@
     border: 1px solid #ccc;
     font-size: 0.9vw;
     color: #3b3b3b;
-    border: 1px solid black;
+
   }
 
  input {
@@ -11,15 +11,22 @@
     height: 30px;
     outline: none;
     font-size: 1vw;
-    border: 1px solid black;
+   border: none;
+    border-radius: 20px;
+    padding: 5px;
   }
 
-  button{
-    width: 32px;
-    height: 32px;
+  svg {
+    position: relative;
+    right: 45px;
+    top: 10px;
+    cursor: pointer;
   }
   
-
+  svg:hover {
+ scale: 1.1;
+  }
+  
  
   
 

@@ -12,10 +12,10 @@ export class FeatYoutubeCardComponent implements OnInit {
 
   @Input() cardChild!: Card;
 
+  isCardEditFormToggle: boolean = false;
 
-
-onClick(): void {
-  
+  openEditDialogue() {
+    this.isCardEditFormToggle = !this.isCardEditFormToggle;
   }
 
 ngOnInit() {
