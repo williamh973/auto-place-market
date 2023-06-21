@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
 import { User } from 'src/app/models/user.model';
 import { YoutubeService } from 'src/app/shared/services/youtube.service';
@@ -16,10 +16,18 @@ export class FeatCardListComponent {
   cardList: Card[] = [];
   filteredCardList: Card[] = [];
 
+  isFormCreateCard: boolean = false;
+
+  isCardEditFormToggle: boolean = false;
+
+  
   constructor(private youtubeService: YoutubeService) { }
   
-
-   
+  
+  toggleCardCreateForm(value: boolean) {
+    this.isFormCreateCard = value;
+  }
+  
   ngOnInit(): void {
 
     this.youtubeService.getCardList().subscribe((cardListFromDatabase: Card[]) => {
@@ -30,8 +38,10 @@ export class FeatCardListComponent {
     this.youtubeService.getFilteredCardList$().subscribe((newFileteredCardList: Card[]) => {
       this.filteredCardList = newFileteredCardList;
     });
-    
-   
-    
   }
+
+  createCard() {
+    this.isFormCreateCard = !this.isFormCreateCard
+  }
+
 }

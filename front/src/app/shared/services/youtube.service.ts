@@ -10,10 +10,10 @@ import { Card } from 'src/app/models/card.model';
 })
 export class YoutubeService {
 
-  filteredCardListSubject$: BehaviorSubject<Card[]> = new BehaviorSubject<Card[]>([]);
   
   cardList: Card[] = [];
- 
+  
+  filteredCardListSubject$: BehaviorSubject<Card[]> = new BehaviorSubject<Card[]>([]);
 
   private readonly _BASE_URL_USER: string = "http://localhost:8080/users";
   private readonly _BASE_URL_CARD: string = "http://localhost:8080/cards";
@@ -24,17 +24,28 @@ export class YoutubeService {
 
 
   getCardList(): Observable<Card[]> {
-    return this.http.get<Card[]>(`${this._BASE_URL_CARD}/all`)
+    return this.http.get<Card[]>(`${this._BASE_URL_CARD}/all`);
   }
 
+  createCard(card: Card): Observable<Card> {
+    return this.http.post<Card>(`${this._BASE_URL_CARD}/add`, card);
+  }
+
+  update(card: Card): Observable<Card> {
+    return this.http.put<Card>(`${this._BASE_URL_CARD}/update/${card.id}`, card);
+  }
+
+  delete(cardId: number): Observable<void> {
+    return this.http.delete<void>(`${this._BASE_URL_CARD}/delete/${cardId}`);
+  }
 
   postFilterCardList(filteredCardList: Card[],) {
     this.filteredCardListSubject$.next([...filteredCardList]);
   }
-
+  
   getFilteredCardList$(): Observable<Card[]> {
     return this.filteredCardListSubject$.asObservable();
   }
-
+  
 
 }
