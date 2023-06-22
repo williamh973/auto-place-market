@@ -6,7 +6,8 @@ export class Card {
         public image: string,
         public title: string,
         public resume: string,
-        public userList: User[],
+        public price: number,
+        public user: User,
         public id?: number
     ) { }
 }

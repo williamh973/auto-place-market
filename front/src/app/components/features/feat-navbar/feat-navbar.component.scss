@@ -1,16 +1,33 @@
-div {
+.full-navbar {
     width: 100vw;
     height: 100px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.241);
+    background-color: rgba(0, 0, 0, 0.404);
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.433);
 }
 
-img {
-    width: 10hw;
-    height: 10vh;
+.container-title {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+    background-color: transparent;
+}
+
+span {
+    color: black;
+}
+
+h1 {
+    width: 200px;
+    font-size: 30px;
+    font-family: cursive, arial;
+    font-style: italic;
+    border-radius: 20px;
+    color: whitesmoke;
 }
 
 button {

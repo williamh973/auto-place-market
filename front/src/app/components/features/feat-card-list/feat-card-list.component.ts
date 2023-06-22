@@ -32,6 +32,7 @@ export class FeatCardListComponent {
 
     this.youtubeService.getCardList().subscribe((cardListFromDatabase: Card[]) => {
     this.cardList = cardListFromDatabase;
+    
       }) 
 
  

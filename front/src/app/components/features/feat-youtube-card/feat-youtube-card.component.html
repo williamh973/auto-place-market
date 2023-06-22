@@ -11,7 +11,8 @@
     <li><img [src]="cardChild.image" alt="Image"></li>
     <li id="title">{{ cardChild.title }}</li>
     <li id="resume">{{ cardChild.resume }}</li>
-    <li>{{ cardChild.userList }}</li>
+    <li id="user">Mise en ligne par : {{ cardChild.user }}</li>
+    <li id="price">Prix : {{ cardChild.price }} €</li>
   </ul>
   <div class="container-btn">
     <button (click)="openEditDialogue()">{{ isCardEditFormToggle ? 'Fermer' : 'Modifier'}}</button>

@@ -36,7 +36,9 @@ public class CardService {
         foundCard.setImage(card.getImage());
         foundCard.setTitle(card.getTitle());
         foundCard.setResume(card.getResume());
-
+        foundCard.setPrice(card.getPrice());
+        foundCard.setUser(card.getUser());
+        
         return cardRepository.save(foundCard);
 
     }

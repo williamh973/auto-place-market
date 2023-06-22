@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
+import { User } from 'src/app/models/user.model';
 import { YoutubeService } from 'src/app/shared/services/youtube.service';
 
 @Component({
@@ -11,13 +12,14 @@ export class FeatEditCardFormComponent {
 
 
 @Input()
- card: Card = new Card(0, "", "", "", [])
+ card: Card = new Card(0, "", "", "", 0 ,  new User("", []))
 
 @Input() 
 createMode: boolean = false;
 
 @Output() 
 isCardEditFormToggle: EventEmitter<boolean> = new EventEmitter<boolean>();
+
 @Output() 
 isFormCreateCard: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -33,11 +35,14 @@ isFormCreateCard: EventEmitter<boolean> = new EventEmitter<boolean>();
     if (this.createMode) {
       this.youtubeService.createCard(this.card).subscribe((createCardFromDatabase: Card) => {
         console.log(createCardFromDatabase);
+        this.isFormCreateCard.emit(false);
         window.location.reload();
       });
     } else {
       this.youtubeService.update(this.card).subscribe((updateCardFromDatabase: Card) => {
         console.log(updateCardFromDatabase);
+        this.isCardEditFormToggle.emit(false);
+        window.location.reload();
       }) 
     }
 

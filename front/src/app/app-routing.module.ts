@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'home', component: HomePageComponent},
   { path: 'card-detail/:id', component: DetailsPageComponent },
   { path: '**', component: ErrorPageComponent },
+ 
 
 ];
 

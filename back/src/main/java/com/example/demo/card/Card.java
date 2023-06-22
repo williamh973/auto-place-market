@@ -1,6 +1,7 @@
 package com.example.demo.card;
 
 import com.example.demo.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,8 +23,10 @@ public class Card {
     private String image;
     private String title;
     private String resume;
+    private Number price;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JsonIgnoreProperties("cards")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JsonIgnoreProperties("cardList")
     private User user;
 }

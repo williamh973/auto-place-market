@@ -32,6 +32,22 @@
     id="resume" 
     [(ngModel)]="card.resume"
     >
+
+    <label for="price">Prix</label>
+    <input 
+    type="number" 
+    name="price" 
+    id="price" 
+    [(ngModel)]="card.price"
+    >
+
+    <label for="user">Mis en ligne par : </label>
+    <input 
+    type="string" 
+    name="user" 
+    id="user" 
+    [(ngModel)]="card.user"
+    >
      <div class="container-btn-submit">
          <button type="submit">Soumettre</button>
      </div>

@@ -15,7 +15,7 @@ export class YoutubeService {
   
   filteredCardListSubject$: BehaviorSubject<Card[]> = new BehaviorSubject<Card[]>([]);
 
-  private readonly _BASE_URL_USER: string = "http://localhost:8080/users";
+  // private readonly _BASE_URL_USER: string = "http://localhost:8080/users";
   private readonly _BASE_URL_CARD: string = "http://localhost:8080/cards";
 
 
@@ -38,6 +38,8 @@ export class YoutubeService {
   delete(cardId: number): Observable<void> {
     return this.http.delete<void>(`${this._BASE_URL_CARD}/delete/${cardId}`);
   }
+
+
 
   postFilterCardList(filteredCardList: Card[],) {
     this.filteredCardListSubject$.next([...filteredCardList]);

@@ -1,6 +1,7 @@
 .card {
     width: 300px;
     box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.284);
+    border-radius: 5px;
   }
 
   .container-btn-delete {
@@ -16,6 +17,7 @@ svg {
 }
 svg:hover {
     scale: 1.1;
+    color: red;
  }
 
   img {
@@ -32,6 +34,14 @@ svg:hover {
   padding: 5px;
 }
 #resume {
+  font-size: 15px;
+  padding: 5px;
+}
+#price {
+  font-size: 15px;
+  padding: 5px;
+}
+#user {
   font-size: 15px;
   padding: 5px;
 }
