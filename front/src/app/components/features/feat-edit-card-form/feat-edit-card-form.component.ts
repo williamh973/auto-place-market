@@ -12,17 +12,17 @@ export class FeatEditCardFormComponent {
 
 
 @Input()
- card: Card = new Card(0, "", "", "", 0 ,  new User("", []))
+ card: Card = new Card(0, "", "", "", 0 ,  new User("", "", "", "", [], "ROLE_USER"))
 
 @Input() 
 createMode: boolean = false;
 
 @Output() 
 isCardEditFormToggle: EventEmitter<boolean> = new EventEmitter<boolean>();
-
+ 
 @Output() 
 isFormCreateCard: EventEmitter<boolean> = new EventEmitter<boolean>();
-
+ 
 
   constructor(private youtubeService: YoutubeService) {}
   

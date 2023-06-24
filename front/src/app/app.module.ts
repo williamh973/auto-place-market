@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -10,10 +10,15 @@ import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { FeatNavbarComponent } from './components/features/feat-navbar/feat-navbar.component';
 import { FeatFooterComponent } from './components/features/feat-footer/feat-footer.component';
 import { FeatSearchComponent } from './components/features/feat-search/feat-search.component';
-import { FeatYoutubeCardComponent } from './components/features/feat-youtube-card/feat-youtube-card.component';
+import { FeatCardComponent } from './components/features/feat-card/feat-card.component';
 import { FeatCardListComponent } from './components/features/feat-card-list/feat-card-list.component';
 import { FeatEditCardFormComponent } from './components/features/feat-edit-card-form/feat-edit-card-form.component';
 import { FormsModule } from '@angular/forms';
+import { FeatRegisterFormComponent } from './components/features/feat-register-form/feat-register-form.component';
+import { FeatSignUpComponent } from './components/features/feat-sign-up/feat-sign-up.component';
+import { TokenInterceptorInterceptor } from './components/features/core/token-interceptor.interceptor';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { FeatHeaderComponent } from './components/features/feat-header/feat-header.component';
 
 @NgModule({
   declarations: [
@@ -24,9 +29,13 @@ import { FormsModule } from '@angular/forms';
     FeatNavbarComponent,
     FeatFooterComponent,
     FeatSearchComponent,
-    FeatYoutubeCardComponent,
+    FeatCardComponent,
     FeatCardListComponent,
-    FeatEditCardFormComponent
+    FeatEditCardFormComponent,
+    FeatRegisterFormComponent,
+    FeatSignUpComponent,
+    AdminPageComponent,
+    FeatHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +44,13 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -25,7 +25,7 @@
     [(ngModel)]="card.title"
     >
 
-    <label for="resume">Resume</label>
+    <label for="resume">Description</label>
     <input 
     type="text" 
     name="resume" 
@@ -46,11 +46,12 @@
     type="string" 
     name="user" 
     id="user" 
-    [(ngModel)]="card.user"
+    [(ngModel)]="card.user.pseudo"
     >
      <div class="container-btn-submit">
          <button type="submit">Soumettre</button>
      </div>
 
 </form>
+
 </div>

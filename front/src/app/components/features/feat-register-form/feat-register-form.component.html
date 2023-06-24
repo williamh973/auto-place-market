@@ -1,0 +1,30 @@
+<form>
+
+
+    
+    <div>
+        <h3 name="inscription">Inscription</h3>
+
+        <label for="user-firstname">Prénom</label>
+        <input type="text" name="user-firstname" id="user-firstname" [(ngModel)]="userRegister.firstname">
+        
+        <label for="user-lastname">Nom</label>
+        <input type="text" name="user-lastname" id="user-lastname" [(ngModel)]="userRegister.lastname">
+       
+        <label for="user-register-email">Email</label>
+        <input type="email" name="user-register-email" id="user-register-email" [(ngModel)]="userRegister.email">
+    
+        <label for="user-register-password">Mot de passe</label>
+        <input type="password" name="user-register-password" id="user-register-password" autocomplete="on"  [(ngModel)]="userRegister.password">    
+        
+        <fieldset>
+            <input type="radio" name="user-role" id="user-role-user" value="ROLE_USER" [(ngModel)]="userRegister.requiredRole">
+            <label for="user-role-user">User</label>
+            <input type="radio" name="user-role" id="user-role-admin"value="ROLE_ADMIN" [(ngModel)]="userRegister.requiredRole">
+            <label for="user-role-admin">Admin</label>
+        </fieldset>
+    </div>
+    <button type="submit" (click)="onSubmitRegister()">Inscription</button>
+
+
+</form>

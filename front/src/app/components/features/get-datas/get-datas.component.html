@@ -1,0 +1,40 @@
+<section>
+
+    <form (ngSubmit)="onSubmit()">
+        <h3>Rechercher un profil utilisateur </h3>
+        <label for="user-email-to-get">Email :</label>
+        <input type="text" id="user-email-to-get" name="user-email-to-get" [(ngModel)]="userEmailToGet">
+    
+        <button type="submit">Lancer la recherche</button>
+    
+        <button name="admin" (click)="getAllUsers()">[ADMIN] - Rechercher tous</button>
+    
+    </form>
+    
+    <div>
+        
+        <div *ngIf="userFechted$ | async as userFechted">
+            <p>Détail de l'utilisateur recherché : </p>
+            <ul>
+                <li> {{userFechted.email}} </li>
+                <li> {{userFechted.firstname}} </li>
+                <li> {{userFechted.lastname}} </li>
+                <li> {{userFechted.role}} </li>
+            </ul>
+        </div>
+        
+        
+        <div *ngIf="allUsersFetched$ | async as allUsersFetched">
+            <p>Tous les utilisateurs </p>
+
+            <ul *ngFor="let user of allUsersFetched">
+                <li> {{user.email}} </li>
+                <li> {{user.firstname}} </li>
+                <li> {{user.lastname}} </li>
+                <li> {{user.role}} </li>
+            </ul>
+        </div>
+
+    </div>
+    
+</section>

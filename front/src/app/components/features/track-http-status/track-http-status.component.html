@@ -1,0 +1,12 @@
+<h3>Suivi des requêtes HTTP : </h3>
+<ng-container *ngIf="httpError$ | async as httpError">
+    <div *ngIf="httpError.error">
+        <p>Erreur {{httpError.status}} ❌ 👉 {{httpError.error.error_message}}</p>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="httpSuccess$ | async as httpSuccess">
+    <div *ngIf="httpSuccess.body">
+        <p>Succès {{httpSuccess.status}} ✅ {{httpSuccess.body.message}} </p>
+    </div>
+</ng-container>

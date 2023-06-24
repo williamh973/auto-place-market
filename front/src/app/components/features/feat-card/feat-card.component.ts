@@ -6,10 +6,10 @@ import { YoutubeService } from 'src/app/shared/services/youtube.service';
 
 @Component({
   selector: 'app-feat-youtube-card',
-  templateUrl: './feat-youtube-card.component.html',
-  styleUrls: ['./feat-youtube-card.component.scss']
+  templateUrl: './feat-card.component.html',
+  styleUrls: ['./feat-card.component.scss']
 })
-export class FeatYoutubeCardComponent implements OnInit {
+export class FeatCardComponent implements OnInit {
 
   @Input() cardChild!: Card;
 

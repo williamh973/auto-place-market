@@ -12,7 +12,7 @@
     <li id="title">{{ cardChild.title }}</li>
     <li id="resume">{{ cardChild.resume }}</li>
     <li id="user">Mise en ligne par : {{ cardChild.user }}</li>
-    <li id="price">Prix : {{ cardChild.price }} €</li>
+    <li id="price">{{ cardChild.price }} €</li>
   </ul>
   <div class="container-btn">
     <button (click)="openEditDialogue()">{{ isCardEditFormToggle ? 'Fermer' : 'Modifier'}}</button>

@@ -1,37 +1,90 @@
 .full-navbar {
-    width: 100vw;
-    height: 100px;
+    width: 100%;
+    height: 500px;
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.404);
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.433);
+    justify-content: space-around;
+    background-image: url("../../../../assets/img/image_entete.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    gap: 30vw;
 }
 
+.full-navbar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 500px;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  
 .container-title {
-    width: 200px;
+    width: 20vw;
+    height: 50px;
     display: flex;
     justify-content: center;
-    padding: 10px;
-    margin: 10px;
+    align-items: center;
     background-color: transparent;
-}
-
-span {
-    color: black;
-}
-
-h1 {
-    width: 200px;
-    font-size: 30px;
-    font-family: cursive, arial;
-    font-style: italic;
-    border-radius: 20px;
+    z-index: 1;
+  }
+  
+  .c, .m {
     color: whitesmoke;
+    font-size: 5vw;
+  }
+  
+  h1 {
+    width: 35vw;
+    height: 90px;
+    font-size: 35px;
+    font-family: cursive, sans-serif;
+    letter-spacing: 2px;
+    font-style: italic;
+    color: whitesmoke;
+    align-items: baseline;
+  }
+
+  .container-button-shoppong-and-account {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+  }
+
+  .container-button {
+    width: 130px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:  rgba(0, 0, 0, 0.733);
+    color: whitesmoke;
+    font-size: 20px;
+    font-family: sans-serif;
+    z-index: 1;
+}
+.container-button:hover {
+  border: none;
 }
 
 button {
-    width: 80px;
-    height: 30px;
-    border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:  rgba(0, 0, 0, 0.733);
+  border: 1px solid rgb(241, 241, 241);
+  color: whitesmoke;
+  font-size: 20px;
+  font-family: sans-serif;
+  cursor: pointer;
+}
+button:hover {
+  transition: all 100ms;
+  background-color: rgba(0, 0, 0, 0.733);
+  color: whitesmoke;
+  border: 2px solid rgb(210, 0, 207);
 }

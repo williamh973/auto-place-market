@@ -1,7 +1,32 @@
 <div class="full-navbar">
+
     <div class="container-title">
-        <h1><span>C</span>ar <span>M</span>arket</h1>
-    </div>
-<app-feat-search></app-feat-search>
-<button>Connexion</button>
+        <h1><span class="c">C</span>ar <span class="m">M</span>arket</h1>
+      </div>
+
+<div class="container-button-shoppong-and-account">
+   <div class="container-button">
+     <button 
+     >Mon panier
+     </button>
+   </div>
+    
+   <div class="container-button">
+      <button 
+      (click)="OpenRegisterForm()"
+      >Mon compte
+      </button>
+   </div>
 </div>
+    
+</div>
+
+
+<div class="container-search-bar">
+  <app-feat-search></app-feat-search>
+</div>
+
+
+<app-feat-register-form 
+*ngIf="isRegisterFormOpen"
+></app-feat-register-form>

@@ -1,0 +1,15 @@
+<form>
+
+<div>
+    <h3 name="connexion">Connexion</h3>
+
+    <label for="user-email">Email</label>
+    <input type="email" name="user-email" id="user-email" [(ngModel)]="userAuth.email">
+
+    <label for="user-password">Mot de passe</label>
+    <input type="password" name="user-password" id="user-password"  autocomplete="on" [(ngModel)]="userAuth.password">    
+
+</div>
+<button type="submit" (click)="onSubmitAuth()">Connexion</button>
+
+</form>

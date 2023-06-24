@@ -1,16 +1,91 @@
+<div class="full-container">
+
+
 <div class="filter">
   
   <div>
     <input
       type="text"
-      name="search"
-      id="search"
-      placeholder="Que recherchez-vous" 
-      (keyup.enter)="filterCards()"  
+      name="input-search"
+      id="input-search"
+      placeholder="Rechercher par titre" 
+      [(ngModel)]="titleValueInSearchInput"
+      title="Rechercher par titre"
       />
-  </div>
-    <svg (click)="filterCards()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-      <path fill="none" d="M0 0h24v24H0z"/>
-      <path d="M15.5 14h-.79l-.28-.27a6.47 6.47 0 1 0-.7.7l.27.28v.79L19 19.01l1.49-1.49L15.5 14zm-4 0A4.5 4.5 0 1 1 11 9.5 4.51 4.51 0 0 1 11.5 14zm-4 0h2v-.79l.27-.28a4.5 4.5 0 1 1 .7-.7l-.28.27H7.5v.8a2.5 2.5 0 1 0 0 5v1h2v-1a4.5 4.5 0 1 1-4.5-4.5zm9-8a1 1 0 0 1-1 1 1 1 0 0 1-1-1 6 6 0 1 1 6 6 1 1 0 0 1-1 1 1 1 0 0 1-1-1 4 4 0 1 0-4-4z"/>
+
+      <svg (click)="filterCardsByTitle()"
+       xmlns="http://www.w3.org/2000/svg"
+        width="24"
+         height="24"
+          viewBox="0 0 24 24"
+          >
+        <path d="M12 2C6.48 2 2 6.48 
+        2 12c0 2.68 1.05 5.2 2.93 7.07s4.39 
+        2.93 7.07 2.93 5.2-1.05 7.07-2.93S22
+         14.68 22 12c0-5.52-4.48-10-10-10zm8
+          10c0 4.41-3.59 8-8 8s-8-3.59-8-8
+           3.59-8 8-8 8 3.59 8 8zm-7.5-1.5h-1l-2-2v1.5l2
+            2h1v-1zm2.5 0h-1v1h1v-1zm1.5 3a4.5 4.5 0 1
+             1 0-9 4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1
+              0 0 5 2.5 2.5 0 0 0 0-5z" fill="#bdbdbd"/>
+      </svg>
+    </div>
+
+    <div>
+      <input
+      type="number"
+      name="input-price"
+      id="input-price"
+      placeholder="Par prix" 
+      [(ngModel)]="valueInPriceInput"
+      />
+
+
+    <svg (click)="filterCardsByPrice()"
+     xmlns="http://www.w3.org/2000/svg"
+      width="24" 
+      height="24" 
+      viewBox="0 0 24 24"
+      >
+      <path d="M12 2C6.48 2 2 6.48 
+      2 12c0 2.68 1.05 5.2 2.93 7.07s4.39 
+      2.93 7.07 2.93 5.2-1.05 7.07-2.93S22
+       14.68 22 12c0-5.52-4.48-10-10-10zm8
+        10c0 4.41-3.59 8-8 8s-8-3.59-8-8
+         3.59-8 8-8 8 3.59 8 8zm-7.5-1.5h-1l-2-2v1.5l2
+          2h1v-1zm2.5 0h-1v1h1v-1zm1.5 3a4.5 4.5 0 1
+           1 0-9 4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1
+            0 0 5 2.5 2.5 0 0 0 0-5z" fill="#bdbdbd"/>
     </svg>
+  </div>
+
+  <div>
+    <input
+    type="number"
+    name="input-kilometric"
+    id="input-kilometric"
+    placeholder="Kilomètrage" 
+    [(ngModel)]="valueInKilometricInput"
+    />
+
+
+  <svg (click)="filterCardsByKilometric()"
+   xmlns="http://www.w3.org/2000/svg" 
+   width="24" 
+   height="24" 
+   viewBox="0 0 24 24"
+   >
+    <path d="M12 2C6.48 2 2 6.48 
+    2 12c0 2.68 1.05 5.2 2.93 7.07s4.39 
+    2.93 7.07 2.93 5.2-1.05 7.07-2.93S22
+     14.68 22 12c0-5.52-4.48-10-10-10zm8
+      10c0 4.41-3.59 8-8 8s-8-3.59-8-8
+       3.59-8 8-8 8 3.59 8 8zm-7.5-1.5h-1l-2-2v1.5l2
+        2h1v-1zm2.5 0h-1v1h1v-1zm1.5 3a4.5 4.5 0 1
+         1 0-9 4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1
+          0 0 5 2.5 2.5 0 0 0 0-5z" fill="#bdbdbd"/>
+  </svg>
 </div>
+
+</div>
+

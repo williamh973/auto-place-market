@@ -1,34 +1,84 @@
+.full-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  bottom: 100px;
+}
+
+
+
 .filter {
     display: flex;
-    border: 1px solid #ccc;
     font-size: 0.9vw;
-    color: #3b3b3b;
-
+    color: #f0f0f0;
+    border: none;
   }
 
- input {
-    width: 30vw;
-    height: 30px;
+#input-search {
+    width: 25vw;
+    height: 40px;
     outline: none;
-    font-size: 1vw;
-   border: none;
-    border-radius: 20px;
-    padding: 5px;
+    font-size: 1.3vw;
+    font-family: sans-serif;
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+    padding: 5px 5px;
+    background-color: rgba(0, 0, 0, 0.733);
+    color: #e3e3e3;
+    caret-color: none;
+  }
+  #input-search::placeholder {
+    display: none;
+  }
+
+
+
+  #input-price {
+    width: 9vw;
+    height: 40px;
+    outline: none;
+    font-size: 1.3vw;
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+    padding: 5px 5px;
+    background-color: rgba(0, 0, 0, 0.733);
+    color: #e3e3e3;
+  }
+  #input-price::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  #input-kilometric {
+    width: 9.5vw;
+    height: 40px;
+    outline: none;
+    font-size: 1.3vw;
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+    padding: 5px 5px;
+    background-color: rgba(0, 0, 0, 0.733);
+    color: #e3e3e3;
+  }
+  #input-kilometric::-webkit-inner-spin-button {
+    -webkit-appearance: none;
   }
 
   svg {
     position: relative;
-    right: 45px;
-    top: 10px;
+    right: 35px;
+    top: 5px;
     cursor: pointer;
   }
   
   svg:hover {
- scale: 1.1;
+    transition: all 200ms;
+    scale: 1.2;
   }
   
- 
-  
+  svg:active {
+    transition: all 200ms;
+    scale: 1.0;
+  }
 
-  
   
