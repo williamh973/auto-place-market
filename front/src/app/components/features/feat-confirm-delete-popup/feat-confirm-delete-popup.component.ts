@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
-import { YoutubeService } from 'src/app/shared/services/youtube.service';
+import { CardService } from 'src/app/shared/services/card.service';
 
 @Component({
   selector: 'app-feat-confirm-delete-popup',
@@ -17,7 +17,7 @@ export class FeatConfirmDeletePopupComponent {
   
   isCardEditFormToggle: boolean = false;
 
-  constructor(private youtubeService: YoutubeService) {}
+  constructor(private cardService: CardService) {}
   
 
   onCloseConfirmeDeletePopup() {
@@ -25,7 +25,7 @@ export class FeatConfirmDeletePopupComponent {
   } 
 
   deleteCard() {
-    this.youtubeService.delete(this.cardChild.id as number).subscribe();
+    this.cardService.delete(this.cardChild.id as number).subscribe();
     window.location.reload();
   }
 

@@ -8,14 +8,13 @@ import { Card } from 'src/app/models/card.model';
 @Injectable({
   providedIn: 'root'
 })
-export class YoutubeService {
+export class CardService {
 
   
   cardList: Card[] = [];
   
   filteredCardListSubject$: BehaviorSubject<Card[]> = new BehaviorSubject<Card[]>([]);
 
-  // private readonly _BASE_URL_USER: string = "http://localhost:8080/users";
   private readonly _BASE_URL_CARD: string = "http://localhost:8080/cards";
 
 

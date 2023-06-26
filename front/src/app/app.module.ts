@@ -18,9 +18,9 @@ import { FeatRegisterFormComponent } from './components/features/feat-register-f
 import { FeatSignUpComponent } from './components/features/feat-sign-up/feat-sign-up.component';
 import { TokenInterceptorInterceptor } from './components/features/core/token-interceptor.interceptor';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
-import { FeatHeaderComponent } from './components/features/feat-header/feat-header.component';
 import { FeatAccountPopupComponent } from './components/features/feat-account-popup/feat-account-popup.component';
 import { FeatConfirmDeletePopupComponent } from './components/features/feat-confirm-delete-popup/feat-confirm-delete-popup.component';
+import { FeatNoCardsFoundComponent } from './components/features/feat-no-cards-found-popup/feat-no-cards-found-popup.component';
 
 @NgModule({
   declarations: [
@@ -37,9 +37,9 @@ import { FeatConfirmDeletePopupComponent } from './components/features/feat-conf
     FeatRegisterFormComponent,
     FeatSignUpComponent,
     AdminPageComponent,
-    FeatHeaderComponent,
     FeatAccountPopupComponent,
-    FeatConfirmDeletePopupComponent
+    FeatConfirmDeletePopupComponent,
+    FeatNoCardsFoundComponent
   ],
   imports: [
     BrowserModule,

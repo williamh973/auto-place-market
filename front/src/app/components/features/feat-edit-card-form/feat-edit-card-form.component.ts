@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
 import { User } from 'src/app/models/user.model';
-import { YoutubeService } from 'src/app/shared/services/youtube.service';
+import { CardService } from 'src/app/shared/services/card.service';
 
 @Component({
   selector: 'app-feat-edit-card-form',
@@ -39,7 +39,7 @@ isCardEditFormToggle: EventEmitter<boolean> = new EventEmitter<boolean>();
 isFormCreateCard: EventEmitter<boolean> = new EventEmitter<boolean>();
  
 
-  constructor(private youtubeService: YoutubeService) {}
+  constructor(private cardService: CardService) {}
   
  cancelPopup() {
   this.isCardEditFormToggle.emit(false);
@@ -48,13 +48,13 @@ isFormCreateCard: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   onSubmit() {
     if (this.createMode) {
-      this.youtubeService.createCard(this.card).subscribe((createCardFromDatabase: Card) => {
+      this.cardService.createCard(this.card).subscribe((createCardFromDatabase: Card) => {
         console.log(createCardFromDatabase);
         this.isFormCreateCard.emit(false);
         window.location.reload();
       });
     } else {
-      this.youtubeService.update(this.card).subscribe((updateCardFromDatabase: Card) => {
+      this.cardService.update(this.card).subscribe((updateCardFromDatabase: Card) => {
         console.log(updateCardFromDatabase);
         this.isCardEditFormToggle.emit(false);
         window.location.reload();

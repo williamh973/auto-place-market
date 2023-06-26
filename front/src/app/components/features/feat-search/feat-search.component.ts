@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { Card } from 'src/app/models/card.model';
-import { YoutubeService } from 'src/app/shared/services/youtube.service';
+import { CardService } from 'src/app/shared/services/card.service';
 
 @Component({
   selector: 'app-feat-search',
@@ -10,7 +9,9 @@ import { YoutubeService } from 'src/app/shared/services/youtube.service';
 })
 export class FeatSearchComponent {
 
-
+  notFoundMessage: string = '';
+  isNoCardFoundPopupDisplay: boolean = false;
+  
   cardList: Card[] = [];
   filteredCardList: Card[] = [];
   
@@ -22,12 +23,12 @@ export class FeatSearchComponent {
 
 
   constructor(
-    private youtubeService: YoutubeService
+    private cardService: CardService
     ) { }
 
 
   ngOnInit(): void {
-    this.youtubeService.getCardList().subscribe(
+    this.cardService.getCardList().subscribe(
       (cards: Card[]) => {
       this.cardList = [];
       this.cardList = cards;
@@ -45,10 +46,16 @@ export class FeatSearchComponent {
             this.titleValueInSearchInput.toLowerCase()
             ) && this.titleValueInSearchInput.length >= 1
       ));
+      this.isNoCardFoundPopupDisplay = false;
+
+      if (this.filteredCardList.length === 0) {
+        this.notFoundMessage = "Aucune carte correspondante n'a été trouvée.";
+        this.isNoCardFoundPopupDisplay = true;
+      }
     } else {
       this.filteredCardList = [...this.cardList];
     }
-    this.youtubeService.postFilterCardList(
+    this.cardService.postFilterCardList(
       this.filteredCardList,
     ); 
   }
@@ -59,21 +66,34 @@ export class FeatSearchComponent {
       this.filteredCardList = this.cardList.filter(
         (card: Card) => card.price === this.valueInPriceInput
       );
+      this.isNoCardFoundPopupDisplay = false;
+
+      if (this.filteredCardList.length === 0) {
+        this.notFoundMessage = "Aucune carte correspondante n'a été trouvée.";
+        this.isNoCardFoundPopupDisplay = true;
+      }
     } else {
       this.filteredCardList = [...this.cardList];
     }
-    this.youtubeService.postFilterCardList(this.filteredCardList);
+    this.cardService.postFilterCardList(this.filteredCardList);
   }
+
 
   filterCardsByKilometric() {
     if (this.valueInKilometricInput) {
       this.filteredCardList = this.cardList.filter(
         (card: Card) => card.kilometer === this.valueInKilometricInput
       );
+      this.isNoCardFoundPopupDisplay = false;
+
+      if (this.filteredCardList.length === 0) {
+        this.notFoundMessage = "Aucune carte correspondante n'a été trouvée.";
+        this.isNoCardFoundPopupDisplay = true;
+      }
     } else {
       this.filteredCardList = [...this.cardList];
     }
-    this.youtubeService.postFilterCardList(this.filteredCardList);
+    this.cardService.postFilterCardList(this.filteredCardList);
   }
   
 

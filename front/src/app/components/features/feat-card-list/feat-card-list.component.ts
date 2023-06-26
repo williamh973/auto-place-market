@@ -1,7 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
-import { User } from 'src/app/models/user.model';
-import { YoutubeService } from 'src/app/shared/services/youtube.service';
+import { CardService } from 'src/app/shared/services/card.service';
 
 
 
@@ -12,22 +11,21 @@ import { YoutubeService } from 'src/app/shared/services/youtube.service';
 })
 export class FeatCardListComponent {
 
-
   cardList: Card[] = [];
   filteredCardList: Card[] = [];
 
   
-  constructor(private youtubeService: YoutubeService) { }
+  constructor(private cardService: CardService) { }
   
 
   ngOnInit(): void {
 
-    this.youtubeService.getCardList().subscribe((cardListFromDatabase: Card[]) => {
+    this.cardService.getCardList().subscribe((cardListFromDatabase: Card[]) => {
     this.cardList = cardListFromDatabase;
     }) 
 
  
-    this.youtubeService.getFilteredCardList$().subscribe((newFileteredCardList: Card[]) => {
+    this.cardService.getFilteredCardList$().subscribe((newFileteredCardList: Card[]) => {
       this.filteredCardList = newFileteredCardList;
     });
   }

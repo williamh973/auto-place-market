@@ -1,4 +1,5 @@
 <div class="card-list">
+
   <div *ngFor="let card of (filteredCardList.length > 0 ? filteredCardList : cardList); let i = index">
     <app-feat-card
        [cardChild]="card"

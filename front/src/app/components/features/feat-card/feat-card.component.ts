@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
-import { YoutubeService } from 'src/app/shared/services/youtube.service';
+import { CardService } from 'src/app/shared/services/card.service';
 
 
 
@@ -18,7 +18,7 @@ export class FeatCardComponent implements OnInit {
   isConfirmDeletePopup: boolean = false;
 
 
-  constructor(private youtubeService: YoutubeService) {}
+  constructor(private cardService: CardService) {}
 
   toggleCardEditForm(value: boolean) {
     this.isCardEditFormToggle = value;
