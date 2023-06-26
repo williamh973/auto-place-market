@@ -1,3 +1,11 @@
+<app-feat-confirm-delete-popup
+*ngIf="isConfirmDeletePopup"
+(onisConfirmDeletePopupEmit)="onRecevedMethodForCloseConfirmDeletePopup($event)"
+[cardChild]="cardChild"
+>
+</app-feat-confirm-delete-popup>
+
+
 <div class="card">
 
   <div class="container-delete-and-favorite">
@@ -20,7 +28,7 @@
     </svg>
 
     <svg 
-    (click)="deleteCard()" 
+    (click)="openConfirmDeletePopup()" 
     xmlns="http://www.w3.org/2000/svg" 
     width="20" 
     height="20" 

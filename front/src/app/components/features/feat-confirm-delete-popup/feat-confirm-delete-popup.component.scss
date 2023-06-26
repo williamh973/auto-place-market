@@ -1,0 +1,20 @@
+.full-popup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 15px;
+    position: absolute;
+    background-color: rgb(245, 245, 245);
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.284);
+    z-index: 1;
+}
+.container-span {
+    display: flex;
+    justify-content: space-evenly;
+}
+span {
+    padding: 10px;
+    border: 1px solid rgb(53, 53, 53);
+    cursor: pointer;
+}

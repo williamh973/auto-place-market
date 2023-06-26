@@ -5,7 +5,7 @@ import { YoutubeService } from 'src/app/shared/services/youtube.service';
 
 
 @Component({
-  selector: 'app-feat-youtube-card',
+  selector: 'app-feat-card',
   templateUrl: './feat-card.component.html',
   styleUrls: ['./feat-card.component.scss']
 })
@@ -15,6 +15,7 @@ export class FeatCardComponent implements OnInit {
 
   isCardEditFormToggle: boolean = false;
   isFavorite: boolean = false;
+  isConfirmDeletePopup: boolean = false;
 
 
   constructor(private youtubeService: YoutubeService) {}
@@ -31,13 +32,17 @@ ngOnInit() {
   
 }
 
-deleteCard() {
-  this.youtubeService.delete(this.cardChild.id as number).subscribe();
-  window.location.reload();
+openConfirmDeletePopup() {
+  this.isConfirmDeletePopup = true;
 }
+
 
 toggleFavorite() {
   this.isFavorite = !this.isFavorite;
+}
+
+onRecevedMethodForCloseConfirmDeletePopup(isConfirmDeletePopup: boolean) {
+  this.isConfirmDeletePopup = isConfirmDeletePopup;
 }
 
 }
