@@ -1,15 +1,15 @@
-<div class="full-container">
+<div class="full-form">
 
  <form (ngSubmit)="onSubmit()">
 
-    <div class="container-btn-cancel">
+    <div>
+
         <svg (click)="cancelPopup()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path fill="none" d="M0 0h24v24H0z"/>
             <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-    </div>
 
-    <h3>Créer une carte</h3>
+    <h3>{{ createMode ? 'Créer une carte' : 'Modifier la carte' }}</h3>
 
     <label for="image">Image</label>
     <input 
@@ -58,9 +58,10 @@
     id="user" 
     [(ngModel)]="card.user.pseudo"
     >
-     <div class="container-btn-submit">
-         <button type="submit">Soumettre</button>
-     </div>
+    
+    <button type="submit">Soumettre</button>
+
+</div>
 
 </form>
 

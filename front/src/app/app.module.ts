@@ -20,6 +20,7 @@ import { TokenInterceptorInterceptor } from './components/features/core/token-in
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { FeatHeaderComponent } from './components/features/feat-header/feat-header.component';
 import { FeatAccountPopupComponent } from './components/features/feat-account-popup/feat-account-popup.component';
+import { FeatConfirmDeletePopupComponent } from './components/features/feat-confirm-delete-popup/feat-confirm-delete-popup.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FeatAccountPopupComponent } from './components/features/feat-account-po
     FeatSignUpComponent,
     AdminPageComponent,
     FeatHeaderComponent,
-    FeatAccountPopupComponent
+    FeatAccountPopupComponent,
+    FeatConfirmDeletePopupComponent
   ],
   imports: [
     BrowserModule,

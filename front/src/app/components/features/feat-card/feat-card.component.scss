@@ -1,5 +1,5 @@
 * {
-  font-family: sans-serif, serif;
+  font-family: Helvetica, sans-serif;
 }
 
 .cardChild-elements {
@@ -8,14 +8,13 @@
 
 .card {
     width: 350px;
-    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.284);
     border-radius: 5px;
     background-color: whitesmoke;
   }
 .card:hover {
     cursor: pointer;
-    border: 1px solid rgba(0, 0, 0, 0.501);
-    transition: 300ms;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.284);
+    transition: 100ms;
 }
 
   .container-delete-and-favorite {
@@ -52,10 +51,12 @@
 #title {
   font-size: 20px;
   padding: 10px 10px;
+  color: rgb(64, 64, 64);
 }
 #resume {
   font-size: 16px;
   padding: 10px 10px;
+  color: rgb(64, 64, 64);
 }
 .container-kilometer-price {
   display: flex;
@@ -66,10 +67,11 @@
 #kilometer {
   font-size: 18px;
   font-family: 'sans-serif';
+  color: rgb(64, 64, 64);
 }
 span {
   font-size: 16px;
-  color: black;
+  color: rgb(64, 64, 64);
 }
 #price {
   font-size: 23px;
@@ -79,6 +81,7 @@ span {
 #user {
   font-size: 15px;
   padding: 0 10px;
+  color: rgb(64, 64, 64);
 }
 .container-btn {
   display: flex;
