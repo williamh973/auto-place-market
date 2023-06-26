@@ -15,7 +15,7 @@ export class FeatSearchComponent {
   filteredCardList: Card[] = [];
   
   titleValueInSearchInput: string = '';
-  valueInPriceInput: number | undefined = undefined;
+  valueInPriceInput: number = 0;
   valueInKilometricInput: number | undefined = undefined;
 
   showFilteredCards: boolean = false;
@@ -53,12 +53,27 @@ export class FeatSearchComponent {
     ); 
   }
 
-  filterCardsByPrice() {
 
+  filterCardsByPrice() {
+    if (this.valueInPriceInput) {
+      this.filteredCardList = this.cardList.filter(
+        (card: Card) => card.price === this.valueInPriceInput
+      );
+    } else {
+      this.filteredCardList = [...this.cardList];
+    }
+    this.youtubeService.postFilterCardList(this.filteredCardList);
   }
 
   filterCardsByKilometric() {
-
+    if (this.valueInKilometricInput) {
+      this.filteredCardList = this.cardList.filter(
+        (card: Card) => card.kilometer === this.valueInKilometricInput
+      );
+    } else {
+      this.filteredCardList = [...this.cardList];
+    }
+    this.youtubeService.postFilterCardList(this.filteredCardList);
   }
   
 

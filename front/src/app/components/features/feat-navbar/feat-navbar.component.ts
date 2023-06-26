@@ -7,12 +7,20 @@ import { Component } from '@angular/core';
 })
 export class FeatNavbarComponent {
 
-  isRegisterFormOpen: boolean = false;
+  isAccountPopupOpen: boolean = false;
+  isFormCreateCard: boolean = false;
 
 
-  OpenRegisterForm() {
-    this.isRegisterFormOpen = true;
+  OpenAccountPopup() {
+    this.isAccountPopupOpen = !this.isAccountPopupOpen;
+  }
+  
+  createCard() {
+    this.isFormCreateCard = !this.isFormCreateCard
   }
 
+  toggleCardCreateForm(value: boolean) {
+    this.isFormCreateCard = value;
+  }
 
 }

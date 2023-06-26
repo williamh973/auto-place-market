@@ -1,32 +1,53 @@
 <div class="full-navbar">
 
     <div class="container-title">
-        <h1><span class="c">C</span>ar <span class="m">M</span>arket</h1>
+        <h1><span class="c">C</span>ar <span class="c">C</span>ollection <span class="m">M</span>arket</h1>
       </div>
 
+     
+       
+     
+
 <div class="container-button-shoppong-and-account">
-   <div class="container-button">
-     <button 
-     >Mon panier
-     </button>
-   </div>
-    
-   <div class="container-button">
-      <button 
-      (click)="OpenRegisterForm()"
-      >Mon compte
-      </button>
-   </div>
+
+  <div class="container-button">
+    <button (click)="createCard()" 
+      >Créer ma carte
+    </button>
+  </div>
+
+  <div class="container-button">
+    <button 
+      >Mon panier
+    </button>
+  </div>
+
+  <div class="container-button">
+    <button 
+    (click)="OpenAccountPopup()"
+    >{{ isAccountPopupOpen ? 'Fermer' : 'Mon compte'}}
+    </button>
+ </div>
+  
 </div>
     
+<div class="container-account-popup">
+   <app-feat-account-popup 
+   *ngIf="isAccountPopupOpen"
+   ></app-feat-account-popup>
+   <!-- (isAccountPopupOpenEmit)="onRecevedMethodForCloseAccountPopup($event)" -->
 </div>
 
+<app-feat-edit-card-form 
+    *ngIf="isFormCreateCard"
+    (isFormCreateCard)="toggleCardCreateForm($event)"
+    [createMode]="true"
+></app-feat-edit-card-form>
+
+</div>
 
 <div class="container-search-bar">
   <app-feat-search></app-feat-search>
 </div>
 
 
-<app-feat-register-form 
-*ngIf="isRegisterFormOpen"
-></app-feat-register-form>

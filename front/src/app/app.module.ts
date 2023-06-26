@@ -19,6 +19,7 @@ import { FeatSignUpComponent } from './components/features/feat-sign-up/feat-sig
 import { TokenInterceptorInterceptor } from './components/features/core/token-interceptor.interceptor';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { FeatHeaderComponent } from './components/features/feat-header/feat-header.component';
+import { FeatAccountPopupComponent } from './components/features/feat-account-popup/feat-account-popup.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { FeatHeaderComponent } from './components/features/feat-header/feat-head
     FeatRegisterFormComponent,
     FeatSignUpComponent,
     AdminPageComponent,
-    FeatHeaderComponent
+    FeatHeaderComponent,
+    FeatAccountPopupComponent
   ],
   imports: [
     BrowserModule,

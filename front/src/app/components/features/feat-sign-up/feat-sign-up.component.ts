@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { UserAuth } from 'src/app/models/user-auth.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
@@ -9,15 +9,41 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
   styleUrls: ['./feat-sign-up.component.scss']
 })
 export class FeatSignUpComponent {
+  
+  @Output() onSignUpFormOpenEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
+  
+  isSignUpFormOpen: boolean = false;
+  isRegisterFormOpen: boolean = false;
 
-  userAuth: UserAuth = new UserAuth("", "");
+  userAuth: UserAuth = new UserAuth("", "");  
+
+
 
   constructor(
     private httpS: AuthService,
-    private LsService: LocalStorageService) { }
+    private LsService: LocalStorageService
+    ) { }
+
+
+
+  onCancelSignUpForm() {
+  this.onSignUpFormOpenEmit.emit(this.isSignUpFormOpen);
+  }
+
+  onOpenRegisterForm() {
+    this.isRegisterFormOpen = true;
+  }
+    
   
   onSubmitAuth(): void {
     this.LsService.clearToken();
     this.httpS.signIn(this.userAuth);
   } 
+
+
+  onRecevedMethodForCloseRegisterForm(isRegisterFormOpen: boolean) {
+    this.isRegisterFormOpen = isRegisterFormOpen;
+  }
+
+
 }

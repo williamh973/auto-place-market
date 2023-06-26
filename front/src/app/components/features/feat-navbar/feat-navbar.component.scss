@@ -1,4 +1,5 @@
 .full-navbar {
+    position: relative;
     width: 100%;
     height: 500px;
     display: flex;
@@ -7,7 +8,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    gap: 30vw;
+    
 }
 
 .full-navbar::before {
@@ -22,10 +23,10 @@
 
   
 .container-title {
-    width: 20vw;
-    height: 50px;
+    width: 30vw;
+    height: 80px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background-color: transparent;
     z-index: 1;
@@ -37,18 +38,22 @@
   }
   
   h1 {
-    width: 35vw;
+    width: 70vw;
     height: 90px;
-    font-size: 35px;
+    font-size: 30px;
     font-family: cursive, sans-serif;
     letter-spacing: 2px;
     font-style: italic;
     color: whitesmoke;
     align-items: baseline;
+    flex-wrap: wrap;
   }
 
   .container-button-shoppong-and-account {
+    width: 800px;
+    height: 50px;
     display: flex;
+    justify-content: flex-end;
     gap: 20px;
     padding: 20px 0;
   }
@@ -64,10 +69,11 @@
     font-size: 20px;
     font-family: sans-serif;
     z-index: 1;
+    border-radius: 10px;
 }
-.container-button:hover {
-  border: none;
-}
+  .container-button:hover {
+    border: none;
+  }
 
 button {
   width: 100%;
@@ -77,8 +83,9 @@ button {
   align-items: center;
   background-color:  rgba(0, 0, 0, 0.733);
   border: 1px solid rgb(241, 241, 241);
+  border-radius: 10px;
   color: whitesmoke;
-  font-size: 20px;
+  font-size: 16px;
   font-family: sans-serif;
   cursor: pointer;
 }
@@ -86,5 +93,5 @@ button:hover {
   transition: all 100ms;
   background-color: rgba(0, 0, 0, 0.733);
   color: whitesmoke;
-  border: 2px solid rgb(210, 0, 207);
+  border: 3px solid rgb(0, 177, 0);
 }

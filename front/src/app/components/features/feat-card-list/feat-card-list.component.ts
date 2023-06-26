@@ -16,18 +16,10 @@ export class FeatCardListComponent {
   cardList: Card[] = [];
   filteredCardList: Card[] = [];
 
-  isFormCreateCard: boolean = false;
-
-  isCardEditFormToggle: boolean = false;
-
   
   constructor(private youtubeService: YoutubeService) { }
   
-  
-  toggleCardCreateForm(value: boolean) {
-    this.isFormCreateCard = value;
-  }
-  
+
   ngOnInit(): void {
 
     this.youtubeService.getCardList().subscribe((cardListFromDatabase: Card[]) => {
@@ -38,10 +30,6 @@ export class FeatCardListComponent {
     this.youtubeService.getFilteredCardList$().subscribe((newFileteredCardList: Card[]) => {
       this.filteredCardList = newFileteredCardList;
     });
-  }
-
-  createCard() {
-    this.isFormCreateCard = !this.isFormCreateCard
   }
 
 }

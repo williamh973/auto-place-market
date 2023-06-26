@@ -9,6 +9,8 @@
         </svg>
     </div>
 
+    <h3>Créer une carte</h3>
+
     <label for="image">Image</label>
     <input 
     type="text" 
@@ -39,6 +41,14 @@
     name="price" 
     id="price" 
     [(ngModel)]="card.price"
+    >
+
+    <label for="price">Kilomètrage</label>
+    <input 
+    type="number" 
+    name="kilometer" 
+    id="kilometer" 
+    [(ngModel)]="card.kilometer"
     >
 
     <label for="user">Mis en ligne par : </label>

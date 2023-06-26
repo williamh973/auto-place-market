@@ -1,0 +1,122 @@
+* {
+    font-family: sans-serif;
+  }
+  
+  .full-form {
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      z-index: 1;
+    }
+  
+    svg {
+      margin-left: auto;
+      padding: 2px;
+      color: whitesmoke;
+    }
+    svg:hover {
+      transition: 300ms;
+      color: rgb(255, 0, 0);
+      scale: 1.1;
+    }
+  
+    form {
+      position: relative;
+      width: 20vw;
+      display: flex;
+      flex-direction: column;
+      padding: 60px;
+      background-color: rgba(0, 0, 0, 0.755);
+      border-radius: 5px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.275);
+    }
+    
+    h2 {
+      text-align: center;
+      padding: 20px;
+      color: rgba(245, 245, 245, 0.803);
+      letter-spacing: 1.5px;
+    }
+
+    p {
+      text-align: center;
+      color: rgba(245, 245, 245, 0.803);
+      padding: 20px 2px;
+      font-size: 13px;
+    }
+    
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    label {
+      color: rgba(245, 245, 245, 0.803);
+      font-size: large;
+      letter-spacing: 1.5px;
+    }
+    #label-password {
+      color: rgba(245, 245, 245, 0.803);
+    }
+  
+    input {
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    background-color: rgba(245, 245, 245, 0.901);
+    color: rgb(0, 0, 0);
+    padding: 5px;
+    outline: none;
+    margin-bottom: 30px;
+    }
+
+    fieldset {
+      margin: 5px;
+      padding: 10px 10px 0px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.462);
+      border-radius: 10px;
+    }
+
+    .container-user-role {
+      width: 130px;
+      height: 40px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0;
+    }
+  
+    .input-role {
+      width: 15px;
+    }
+    .label-role {
+      font-size: 13px;
+    }
+
+    button {
+      width: 150px;
+      padding: 10px;
+      margin: auto;
+      margin-bottom: 20px;
+      border: 2px solid whitesmoke;
+      border-radius: 10px;
+      background-color:  rgba(0, 0, 0, 0.866);
+      color: whitesmoke;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    button:hover {
+      border: 2px solid rgb(0, 177, 0);
+      transition: all 200ms;
+     }

@@ -1,13 +1,3 @@
-<div class="container-create-card">
-  <button class="create-card" (click)="createCard()">Créer une carte</button>
-</div>
-
-<app-feat-edit-card-form 
-    *ngIf="isFormCreateCard"
-    (isFormCreateCard)="toggleCardCreateForm($event)"
-    [createMode]="true"
-></app-feat-edit-card-form>
-
 <div class="card-list">
   <div *ngFor="let card of (filteredCardList.length > 0 ? filteredCardList : cardList); let i = index">
     <app-feat-youtube-card

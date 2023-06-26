@@ -14,6 +14,7 @@ export class FeatCardComponent implements OnInit {
   @Input() cardChild!: Card;
 
   isCardEditFormToggle: boolean = false;
+  isFavorite: boolean = false;
 
 
   constructor(private youtubeService: YoutubeService) {}
@@ -35,5 +36,8 @@ deleteCard() {
   window.location.reload();
 }
 
+toggleFavorite() {
+  this.isFavorite = !this.isFavorite;
+}
 
 }

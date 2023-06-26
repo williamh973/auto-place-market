@@ -24,6 +24,7 @@ public class Card {
     private String title;
     private String resume;
     private Number price;
+    private Number kilometer;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "user_id", referencedColumnName = "id")

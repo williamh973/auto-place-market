@@ -1,34 +1,48 @@
+* {
+  font-family: sans-serif, serif;
+}
+
+.cardChild-elements {
+  padding: 5px;
+}
+
 .card {
-    width: 325px;
+    width: 350px;
     box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.284);
     border-radius: 5px;
+    background-color: whitesmoke;
   }
-
-  .card:hover {
-    scale: 1.05;
-    transition: all 300ms;
+.card:hover {
     cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.501);
+    transition: 300ms;
 }
 
-  .container-btn-delete {
+  .container-delete-and-favorite {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
+    align-items: center;
     padding: 5px;
+    gap: 180px;
 }
 
-svg {
+.svg-delete {
    color: rgb(38, 38, 38);
    padding: 5px 10px;
 }
-svg:hover {
+.svg-delete:hover {
     scale: 1.1;
     color: red;
  }
 
+ .svg-favorite {
+  stroke: red;
+ }
+
   img {
-    width: 325px;
-    height: 230px;
+    width: 100%;
+    height: 240px;
   }
 
   li {
@@ -37,23 +51,36 @@ svg:hover {
 
 #title {
   font-size: 20px;
-  padding: 5px;
+  padding: 10px 10px;
 }
 #resume {
-  font-size: 15px;
-  padding: 5px;
+  font-size: 16px;
+  padding: 10px 10px;
+}
+.container-kilometer-price {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+}
+#kilometer {
+  font-size: 18px;
+  font-family: 'sans-serif';
+}
+span {
+  font-size: 16px;
+  color: black;
 }
 #price {
-  font-size: 15px;
-  padding: 5px;
+  font-size: 23px;
+  color: rgb(0, 145, 198);
+  font-family: 'sans-serif';
 }
 #user {
   font-size: 15px;
-  padding: 5px;
+  padding: 0 10px;
 }
-
 .container-btn {
   display: flex;
   justify-content: center;
-  
 }

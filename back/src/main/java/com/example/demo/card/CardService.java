@@ -37,6 +37,7 @@ public class CardService {
         foundCard.setTitle(card.getTitle());
         foundCard.setResume(card.getResume());
         foundCard.setPrice(card.getPrice());
+        foundCard.setKilometer(card.getKilometer());
         foundCard.setUser(card.getUser());
 
         return cardRepository.save(foundCard);

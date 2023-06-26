@@ -37,7 +37,8 @@
       name="input-price"
       id="input-price"
       placeholder="Par prix" 
-      [(ngModel)]="valueInPriceInput"
+      [ngModel]="valueInPriceInput !== 0 ? valueInPriceInput : null"
+      (ngModelChange)="valueInPriceInput = $event"
       />
 
 
@@ -65,7 +66,8 @@
     name="input-kilometric"
     id="input-kilometric"
     placeholder="Kilomètrage" 
-    [(ngModel)]="valueInKilometricInput"
+    [ngModel]="valueInKilometricInput !== 0 ? valueInKilometricInput : null"
+    (ngModelChange)="valueInKilometricInput = $event"
     />
 
 

@@ -1,30 +1,46 @@
+<div class="full-form">
+
 <form>
 
+    <div>
 
+    <svg (click)="onCancelRegisterForm()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 22 22">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
     
     <div>
-        <h3 name="inscription">Inscription</h3>
+        <h2 name="inscription">Inscription</h2>
+
+        <p>Les champs suivis d'un astérisque ( * ) sont obligatoire.</p>
 
         <label for="user-firstname">Prénom</label>
-        <input type="text" name="user-firstname" id="user-firstname" [(ngModel)]="userRegister.firstname">
+        <input type="text" name="user-firstname" id="user-firstname" [(ngModel)]="userRegister.firstname" placeholder="Taper votre nom*">
         
         <label for="user-lastname">Nom</label>
-        <input type="text" name="user-lastname" id="user-lastname" [(ngModel)]="userRegister.lastname">
+        <input type="text" name="user-lastname" id="user-lastname" [(ngModel)]="userRegister.lastname" placeholder="Taper votre prénom*">
        
         <label for="user-register-email">Email</label>
-        <input type="email" name="user-register-email" id="user-register-email" [(ngModel)]="userRegister.email">
+        <input type="email" name="user-register-email" id="user-register-email" [(ngModel)]="userRegister.email" placeholder="Taper votre email*">
     
-        <label for="user-register-password">Mot de passe</label>
-        <input type="password" name="user-register-password" id="user-register-password" autocomplete="on"  [(ngModel)]="userRegister.password">    
+        <label id="label-password" for="user-register-password">Mot de passe</label>
+        <input type="password" name="user-register-password" id="user-register-password" autocomplete="on"  [(ngModel)]="userRegister.password" placeholder="Taper votre mot de passe*">    
         
         <fieldset>
-            <input type="radio" name="user-role" id="user-role-user" value="ROLE_USER" [(ngModel)]="userRegister.requiredRole">
-            <label for="user-role-user">User</label>
-            <input type="radio" name="user-role" id="user-role-admin"value="ROLE_ADMIN" [(ngModel)]="userRegister.requiredRole">
-            <label for="user-role-admin">Admin</label>
+          <div class="container-user-role">
+            <input type="radio" name="user-role" class="input-role" id="user-role-user" value="ROLE_USER" [(ngModel)]="userRegister.requiredRole">
+            <label for="user-role-user" class="label-role">User</label>
+          </div>
+          <div class="container-user-role">
+            <input type="radio" name="user-role" class="input-role" id="user-role-admin"value="ROLE_ADMIN" [(ngModel)]="userRegister.requiredRole">
+            <label for="user-role-admin" class="label-role">Admin</label>
+          </div>
         </fieldset>
     </div>
-    <button type="submit" (click)="onSubmitRegister()">Inscription</button>
+    <button type="submit" (click)="onSubmitRegister()">Je m'inscris</button>
 
+</div>
 
 </form>
+
+</div>

@@ -1,25 +1,91 @@
 <div class="card">
 
-  <div class="container-btn-delete">
-    <svg (click)="deleteCard()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-        <path fill="none" d="M0 0h24v24H0z"/>
-        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+  <div class="container-delete-and-favorite">
+
+    <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width="20" 
+    height="20" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    stroke-width="2" 
+    stroke-linecap="round" 
+    stroke-linejoin="round"
+    [ngClass]="{ 'svg-favorite': isFavorite }"
+    (click)="toggleFavorite()"
+    >
+      <path 
+      d="M12 2L9 9H2l6 4.5L5 21l7-5 7 5-3.5-7L22 9h-7l-3-7z" />
+    </svg>
+
+    <svg 
+    (click)="deleteCard()" 
+    xmlns="http://www.w3.org/2000/svg" 
+    width="20" 
+    height="20" 
+    viewBox="0 0 24 24"
+    class="svg-delete"
+    >
+        <path 
+        fill="none" 
+        d="M0 0h24v24H0z"
+        />
+        <path 
+        d="M18 6L6 18M6 6l12 12" 
+        stroke="currentColor" 
+        stroke-width="1" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        />
     </svg>
   </div>
 
   <ul>
-    <li><img [src]="cardChild.image" alt="Image"></li>
-    <li id="title">{{ cardChild.title }}</li>
-    <li id="resume">{{ cardChild.resume }}</li>
-    <li id="user">Mise en ligne par : {{ cardChild.user }}</li>
-    <li id="price">{{ cardChild.price }} €</li>
-  </ul>
-  <div class="container-btn">
-    <button (click)="openEditDialogue()">{{ isCardEditFormToggle ? 'Fermer' : 'Modifier'}}</button>
-  </div>
+    <li><img 
+      [src]="cardChild.image" 
+      alt="Image"
+      ></li>
+    <li 
+    id="title"
+    class="cardChild-elements"
+    >{{ cardChild.title }}
+    </li>
+    <li 
+    id="resume"
+    class="cardChild-elements"
+    >{{ cardChild.resume }}
+    </li>
+    <li 
+    id="user"
+    class="cardChild-elements"
+    >Mise en ligne par : {{ cardChild.user }}
+    </li>
+ <div class="container-kilometer-price">
+    <li 
+    id="kilometer"
+    class="cardChild-elements"
+    >{{ cardChild.kilometer }} 
+    <span>km</span>
+    </li>
+    <li 
+    id="price"
+    class="cardChild-elements"
+    >{{ cardChild.price }}
+    <span>€</span>
+  </li>
 </div>
 
+  </ul>
 
+  <div class="container-btn">
+    <button 
+    (click)="openEditDialogue()"
+    >{{ isCardEditFormToggle ? 'Fermer' : 'Modifier'}}
+   </button>
+  </div>
+
+</div>
 
 <app-feat-edit-card-form 
 *ngIf="isCardEditFormToggle"

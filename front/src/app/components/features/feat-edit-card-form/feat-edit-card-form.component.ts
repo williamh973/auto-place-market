@@ -12,7 +12,22 @@ export class FeatEditCardFormComponent {
 
 
 @Input()
- card: Card = new Card(0, "", "", "", 0 ,  new User("", "", "", "", [], "ROLE_USER"))
+ card: Card = new Card(
+  0, 
+  "", 
+  "", 
+  "", 
+  0 , 
+  0 ,  
+  new User(
+    "", 
+    "", 
+    "", 
+    "", 
+    [], 
+    "ROLE_USER"
+    )
+  )
 
 @Input() 
 createMode: boolean = false;

@@ -1,0 +1,20 @@
+<div class="full-popup">
+    
+    <span>Es-tu déjà inscris ?</span>
+    <button type="submit" (click)="onOpenSignUpForm()">Connexion</button>
+
+    <span>Sinon, c'est par ici :</span>
+    <button type="submit" (click)="onOpenRegisterForm()">Inscription</button>
+         
+</div>
+
+<app-feat-sign-up
+*ngIf="isSignUpFormOpen"
+(onSignUpFormOpenEmit)="onRecevedMethodForCloseSignUpForm($event)"
+>
+</app-feat-sign-up>
+
+<app-feat-register-form
+*ngIf="isRegisterFormOpen"
+(onRegisterFormOpenEmit)="onRecevedMethodForCloseRegisterForm($event)"
+></app-feat-register-form> 
