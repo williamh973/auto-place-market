@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { UserRegister } from 'src/app/models/user-register.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+
 
 @Component({
   selector: 'app-feat-register-form',
@@ -19,8 +19,7 @@ export class FeatRegisterFormComponent {
 
 
   constructor(
-    private httpS: AuthService,
-    private LsService: LocalStorageService
+    private httpS: AuthService
     ) { }
 
 
@@ -30,6 +29,7 @@ export class FeatRegisterFormComponent {
 
     onSubmitRegister(): void {
       this.httpS.signUp(this.userRegister);
+      this.isRegisterFormOpen = false;
     }
 
 }

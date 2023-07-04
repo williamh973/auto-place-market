@@ -25,7 +25,7 @@ export class FeatConfirmDeletePopupComponent {
   } 
 
   deleteCard() {
-    this.cardService.delete(this.cardChild.id as number).subscribe();
+    this.cardService.deleteCard(this.cardChild.id as number).subscribe();
     window.location.reload();
   }
 

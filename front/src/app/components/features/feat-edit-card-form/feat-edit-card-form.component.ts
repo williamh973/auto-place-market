@@ -18,7 +18,8 @@ export class FeatEditCardFormComponent {
   "", 
   "", 
   0 , 
-  0 ,  
+  0 , 
+  0 , 
   new User(
     "", 
     "", 
@@ -27,7 +28,7 @@ export class FeatEditCardFormComponent {
     [], 
     "ROLE_USER"
     )
-  )
+  ) 
 
 @Input() 
 createMode: boolean = false;
@@ -54,7 +55,7 @@ isFormCreateCard: EventEmitter<boolean> = new EventEmitter<boolean>();
         window.location.reload();
       });
     } else {
-      this.cardService.update(this.card).subscribe((updateCardFromDatabase: Card) => {
+      this.cardService.updateCard(this.card).subscribe((updateCardFromDatabase: Card) => {
         console.log(updateCardFromDatabase);
         this.isCardEditFormToggle.emit(false);
         window.location.reload();

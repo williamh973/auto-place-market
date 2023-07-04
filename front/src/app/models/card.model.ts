@@ -8,6 +8,7 @@ export class Card {
         public resume: string,
         public price: number,
         public kilometer: number,
+        public door: number,
         public user: User,
         public id?: number
     ) { }

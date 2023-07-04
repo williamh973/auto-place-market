@@ -38,6 +38,7 @@ export class FeatSignUpComponent {
   onSubmitAuth(): void {
     this.LsService.clearToken();
     this.httpS.signIn(this.userAuth);
+    this.isSignUpFormOpen = false;
   } 
 
 

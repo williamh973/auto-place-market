@@ -27,15 +27,12 @@
         <input type="password" name="user-register-password" id="user-register-password" autocomplete="on"  [(ngModel)]="userRegister.password" placeholder="Taper votre mot de passe*">    
         
         <fieldset>
-          <div class="container-user-role">
-            <input type="radio" name="user-role" class="input-role" id="user-role-user" value="ROLE_USER" [(ngModel)]="userRegister.requiredRole">
-            <label for="user-role-user" class="label-role">User</label>
-          </div>
-          <div class="container-user-role">
-            <input type="radio" name="user-role" class="input-role" id="user-role-admin"value="ROLE_ADMIN" [(ngModel)]="userRegister.requiredRole">
-            <label for="user-role-admin" class="label-role">Admin</label>
-          </div>
-        </fieldset>
+          <input type="radio" name="user-role" id="user-role-user" value="ROLE_USER" [(ngModel)]="userRegister.requiredRole">
+          <label for="user-role-user">User</label>
+          <input type="radio" name="user-role" id="user-role-admin"value="ROLE_ADMIN" [(ngModel)]="userRegister.requiredRole">
+          <label for="user-role-admin">Admin</label>
+      </fieldset>
+      
     </div>
     <button type="submit" (click)="onSubmitRegister()">Je m'inscris</button>
 
@@ -44,3 +41,4 @@
 </form>
 
 </div>
+

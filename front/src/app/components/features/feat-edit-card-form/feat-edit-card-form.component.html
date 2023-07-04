@@ -2,14 +2,18 @@
 
  <form (ngSubmit)="onSubmit()">
 
-    <div>
-
-        <svg (click)="cancelPopup()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path fill="none" d="M0 0h24v24H0z"/>
-            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+     
+     <svg (click)="cancelPopup()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+         <path fill="none" d="M0 0h24v24H0z"/>
+         <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
+        
+        <h3>{{ createMode ? 'Créer une carte' : 'Modifier la carte' }}</h3>
+        
 
-    <h3>{{ createMode ? 'Créer une carte' : 'Modifier la carte' }}</h3>
+<div class="all-elements">
+
+<div class="first-part">
 
     <label for="image">Image</label>
     <input 
@@ -25,6 +29,7 @@
     name="title" 
     id="title" 
     [(ngModel)]="card.title"
+    maxlength="33"
     >
 
     <label for="resume">Description</label>
@@ -43,12 +48,24 @@
     [(ngModel)]="card.price"
     >
 
+</div>
+
+
+<div class="second-part">
     <label for="price">Kilomètrage</label>
     <input 
     type="number" 
     name="kilometer" 
     id="kilometer" 
     [(ngModel)]="card.kilometer"
+    >
+
+    <label for="price">Portes</label>
+    <input 
+    type="number" 
+    name="door" 
+    id="door" 
+    [(ngModel)]="card.door"
     >
 
     <label for="user">Mis en ligne par : </label>
@@ -58,6 +75,7 @@
     id="user" 
     [(ngModel)]="card.user.pseudo"
     >
+</div>
     
     <button type="submit">Soumettre</button>
 

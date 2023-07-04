@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LocalStorageService } from 'src/app/shared/local-storage.service';
-import { TokenService } from 'src/app/shared/token.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { TokenService } from 'src/app/shared/services/token.service';
 
 @Component({
   selector: 'app-track-token-state',
