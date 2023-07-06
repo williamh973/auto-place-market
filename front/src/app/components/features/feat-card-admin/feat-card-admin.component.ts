@@ -2,20 +2,19 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
 
 
-
 @Component({
-  selector: 'app-feat-card',
-  templateUrl: './feat-card.component.html',
-  styleUrls: ['./feat-card.component.scss']
+  selector: 'app-feat-card-admin',
+  templateUrl: './feat-card-admin.component.html',
+  styleUrls: ['./feat-card-admin.component.scss']
 })
-export class FeatCardComponent implements OnInit {
+export class FeatCardAdminComponent implements OnInit {
 
   @Input() cardChild!: Card;
-
 
   isCardEditFormToggle: boolean = false;
   isFavorite: boolean = false;
   isConfirmDeletePopup: boolean = false;
+
 
 
 
@@ -34,7 +33,7 @@ ngOnInit() {
 openConfirmDeletePopup() {
   this.isConfirmDeletePopup = true;
 }
-
+ 
 
 toggleFavorite() {
   this.isFavorite = !this.isFavorite;

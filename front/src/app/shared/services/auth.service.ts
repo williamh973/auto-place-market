@@ -5,6 +5,7 @@ import { UserAuth } from '../../models/user-auth.model';
 import { TokenService } from './token.service';
 import { TokenResponse } from '../../models/token.model';
 import { UserRegister } from '../../models/user-register.model';
+
  
 @Injectable({
   providedIn: 'root'
@@ -56,5 +57,9 @@ export class AuthService {
     // On ajoute l'erreur au SuccessSubject
     this._httpSuccessSubject$.next(success);
   }
+
+
+
+
 
 }

@@ -6,9 +6,11 @@ export class Card {
         public image: string,
         public title: string,
         public resume: string,
-        public price: number,
+        public fuel: string,
         public kilometer: number,
         public door: number,
+        public price: number,
+        public transmission: string,
         public user: User,
         public id?: number
     ) { }

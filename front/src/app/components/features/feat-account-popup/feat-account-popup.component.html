@@ -1,12 +1,11 @@
-<div class="full-popup">
-    
-    <span>Es-tu déjà inscris ?</span>
-    <button type="submit" (click)="onOpenSignUpForm()">Connexion</button>
-
-    <span>Sinon, c'est par ici :</span>
-    <button type="submit" (click)="onOpenRegisterForm()">Inscription</button>
+  <div class="popup">    
+      <span>Es-tu déjà inscris ?</span>
+      <button type="submit" (click)="onOpenSignUpForm()">Connexion</button>
+  
+      <span>Sinon, c'est par ici :</span>
+      <button type="submit" (click)="onOpenRegisterForm()">Inscription</button>
+  </div>
          
-</div>
 
 <app-feat-sign-up
 *ngIf="isSignUpFormOpen"

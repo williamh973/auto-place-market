@@ -26,6 +26,7 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { FeatAccountPopupComponent } from './components/features/feat-account-popup/feat-account-popup.component';
 import { FeatConfirmDeletePopupComponent } from './components/features/feat-confirm-delete-popup/feat-confirm-delete-popup.component';
 import { FeatNoCardsFoundComponent } from './components/features/feat-no-cards-found-popup/feat-no-cards-found-popup.component';
+import { FeatCardAdminComponent } from './components/features/feat-card-admin/feat-card-admin.component';
 
 
 
@@ -49,7 +50,8 @@ import { FeatNoCardsFoundComponent } from './components/features/feat-no-cards-f
     FeatNoCardsFoundComponent,
     TrackTokenStateComponent,
     TrackHttpStatusComponent,
-    GetDatasComponent
+    GetDatasComponent,
+    FeatCardAdminComponent
   ],
   imports: [
     BrowserModule,

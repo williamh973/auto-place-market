@@ -14,7 +14,6 @@
 <div class="all-elements">
 
 <div class="first-part">
-
     <label for="image">Image</label>
     <input 
     type="text" 
@@ -22,7 +21,6 @@
     id="image" 
     [(ngModel)]="card.image"
     >
-
     <label for="title">Titre</label>
     <input 
     type="text" 
@@ -31,23 +29,22 @@
     [(ngModel)]="card.title"
     maxlength="33"
     >
-
     <label for="resume">Description</label>
     <input 
     type="text" 
     name="resume" 
     id="resume" 
     [(ngModel)]="card.resume"
+    maxlength="60"
     >
 
-    <label for="price">Prix</label>
-    <input 
-    type="number" 
-    name="price" 
-    id="price" 
-    [(ngModel)]="card.price"
-    >
-
+    <div>
+        <label for="fuel">Carburant</label>
+       <select name="fuel" id="fuel" [(ngModel)]="card.fuel">
+         <option value="Essence">Essence</option>
+         <option value="Diesel">Diesel</option>
+       </select>
+    </div>
 </div>
 
 
@@ -59,7 +56,6 @@
     id="kilometer" 
     [(ngModel)]="card.kilometer"
     >
-
     <label for="price">Portes</label>
     <input 
     type="number" 
@@ -67,19 +63,25 @@
     id="door" 
     [(ngModel)]="card.door"
     >
-
-    <label for="user">Mis en ligne par : </label>
+    <label for="price">Prix</label>
     <input 
-    type="string" 
-    name="user" 
-    id="user" 
-    [(ngModel)]="card.user.pseudo"
+    type="number" 
+    name="price" 
+    id="price" 
+    [(ngModel)]="card.price"
     >
+
+    <div>
+        <label for="transmission">Transmission</label>
+       <select name="transmission" id="transmission" [(ngModel)]="card.transmission">
+         <option value="Automatique">Automatique</option>
+         <option value="Manuelle">Manuelle</option>
+       </select>
+    </div>
 </div>
     
-    <button type="submit">Soumettre</button>
-
 </div>
+<button type="submit">Soumettre</button>
 
 </form>
 

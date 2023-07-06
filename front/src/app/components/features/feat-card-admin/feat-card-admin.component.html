@@ -1,3 +1,11 @@
+<app-feat-confirm-delete-popup
+*ngIf="isConfirmDeletePopup"
+(onisConfirmDeletePopupEmit)="onRecevedMethodForCloseConfirmDeletePopup($event)"
+[cardChild]="cardChild"
+>
+</app-feat-confirm-delete-popup>
+
+
 <div class="card">
 
   <div class="container-delete-and-favorite">
@@ -19,6 +27,26 @@
       d="M12 2L9 9H2l6 4.5L5 21l7-5 7 5-3.5-7L22 9h-7l-3-7z" />
     </svg>
 
+    <svg 
+    (click)="openConfirmDeletePopup()" 
+    xmlns="http://www.w3.org/2000/svg" 
+    width="20" 
+    height="20" 
+    viewBox="0 0 24 24"
+    class="svg-delete"
+    >
+        <path 
+        fill="none" 
+        d="M0 0h24v24H0z"
+        />
+        <path 
+        d="M18 6L6 18M6 6l12 12" 
+        stroke="currentColor" 
+        stroke-width="1" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        />
+    </svg>
   </div>
 
 
@@ -62,18 +90,29 @@
       class="cardChild-elements"
       >{{ cardChild.kilometer }} 
       <span>km</span>
-    </div>
+      </div>
+ 
     <div
-     id="price"
-     class="cardChild-elements"
-     >{{ cardChild.price }}
-     <span>€</span>
-    </div>
+    id="price"
+    class="cardChild-elements"
+    >{{ cardChild.price }}
+    <span>€</span>
+</div>
 </div>
 
   <div class="container-btn">
-    <a [routerLink]="['/car-detail', cardChild.id]">Cette voiture m'interresse</a>
+    <button 
+    (click)="openEditDialogue()"
+    >{{ isCardEditFormToggle ? 'Fermer' : 'Modifier'}}
+   </button>
   </div>
+
 </div>
+
+<app-feat-edit-card-form 
+*ngIf="isCardEditFormToggle"
+(isCardEditFormToggle)="toggleCardEditForm($event)"
+[card]="cardChild"
+></app-feat-edit-card-form>
 
 

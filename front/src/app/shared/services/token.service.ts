@@ -70,4 +70,12 @@ export class TokenService {
   _getTokenDetailsSubject$(): Observable<any> {
     return this._tokenDetailsSubject$.asObservable();
   }
+
+
+
+  checkToken(): boolean {
+    // Vérifiez la présence du token dans le LocalStorage
+    const token = this.lsService.getToken();
+    return !!token; // Renvoie true si le token existe, sinon false
+  }
 }

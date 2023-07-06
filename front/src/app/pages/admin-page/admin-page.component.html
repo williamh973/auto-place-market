@@ -1,3 +1,14 @@
 <p>admin-page works!</p>
 
 <app-get-datas></app-get-datas> 
+
+
+<div class="card-list">
+
+    <div *ngFor="let card of (filteredCardList.length > 0 ? filteredCardList : cardList); let i = index">
+      <app-feat-card-admin
+         [cardChild]="card"
+     ></app-feat-card-admin>
+    </div>
+  </div>
+  

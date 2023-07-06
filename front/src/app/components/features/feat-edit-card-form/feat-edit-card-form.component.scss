@@ -29,7 +29,7 @@ svg:hover {
  
  form {
      position: relative;
-     width: 27vw;
+     width: 32vw;
      display: flex;
      flex-direction: column;
      padding: 15px 25px;
@@ -40,6 +40,15 @@ svg:hover {
 
 .all-elements {
     display: flex;
+    gap: 20px;
+}
+.first-part {
+    display: flex;
+    flex-direction: column;
+}
+.second-part {
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -50,17 +59,13 @@ svg:hover {
         letter-spacing: 1.5px;
     }
 
-    // div {
-    //     display: flex;
-    //     flex-direction: column;
-    //   }
-
     label {
         color: rgba(245, 245, 245, 0.803);
         font-size: large;
         letter-spacing: 1.5px;
     }
     input {
+        width: 200px;
         height: 30px;
         border-radius: 10px;
         border: none;
@@ -83,5 +88,27 @@ svg:hover {
         background-color: rgba(0, 0, 0, 0.755);
         color: whitesmoke;
         font-size: 15px;
+        cursor: pointer;
+    }
+
+    #transmission {
+        width: 210px;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.755);
+        color: whitesmoke;
+        border: 1px solid  rgb(255, 255, 255);
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    #fuel{
+        width: 210px;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.755);
+        color: whitesmoke;
+        border: 1px solid  rgb(255, 255, 255);
+        border-radius: 10px;
+        font-size: 16px;
         cursor: pointer;
     }

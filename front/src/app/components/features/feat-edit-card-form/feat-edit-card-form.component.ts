@@ -13,13 +13,15 @@ export class FeatEditCardFormComponent {
 
 @Input()
  card: Card = new Card(
-  0, 
+  0,
+  "", 
   "", 
   "", 
   "", 
   0 , 
   0 , 
   0 , 
+  "",
   new User(
     "", 
     "", 

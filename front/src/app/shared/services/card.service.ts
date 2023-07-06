@@ -26,6 +26,11 @@ export class CardService {
     return this.http.get<Card[]>(this._BASE_URL_CARD);
   }
 
+  getCardById(id: number): Observable<Card> {
+    const url = `${this._BASE_URL_CARD}/${id}`;
+    return this.http.get<Card>(url);
+  }
+
   createCard(card: Card): Observable<Card> {
     return this.http.post<Card>(`${this._BASE_URL_CARD}/add`, card);
   }

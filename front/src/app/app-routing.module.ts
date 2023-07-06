@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', redirectTo:'/home', pathMatch: 'full' },
   { path: 'admin', component: AdminPageComponent, canActivate: [AdminGuard]},
   { path: 'home', component: HomePageComponent},
-  // { path: 'card-detail/:id', component: DetailsPageComponent },
+  { path: 'car-detail/:id', component: DetailsPageComponent },
   { path: '**', component: ErrorPageComponent },
 ];
 
