@@ -2,14 +2,12 @@ package poecbdx23.livecodingjwt.user;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -52,5 +50,17 @@ public class UserController {
 
 
 
+    @DeleteMapping("/delete/{userId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUser(@PathVariable Long userId, HttpServletRequest request) throws AccessDeniedException {
+        String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+
+        if (role.equals("[ROLE_ADMIN]")) {
+            userRepository.deleteById(userId);
+        } else {
+            request.setAttribute("access_denied", "You do not have sufficient rights to access this resource");
+            throw new AccessDeniedException("User does not have the correct rights to access this resource");
+        }
+    }
 
 }

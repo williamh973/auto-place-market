@@ -3,10 +3,14 @@ package poecbdx23.livecodingjwt.card;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
+import poecbdx23.livecodingjwt.user.User;
+import poecbdx23.livecodingjwt.user.UserRepository;
+import org.springframework.security.core.Authentication;
 
 import java.util.List;
+import java.util.Optional;
 
 
 
@@ -16,15 +20,31 @@ public class CardService {
 
 
     private final CardRepository cardRepository;
-
+    private final UserRepository userRepository;
 
     public List<Card> getAllCards() {
         return cardRepository.findAll();
     }
 
+
     public Card addCard(Card card) {
+        User user = getCurrentUser();
+        card.setUser(user);
         return cardRepository.save(card);
     }
+
+    private User getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        if (userOptional.isPresent()) {
+            return userOptional.get();
+        } else {
+            throw new RuntimeException("Current user not found");
+        }
+    }
+    
 
     public Card getCardById(Long id) {
         return cardRepository.findById(id)

@@ -77,6 +77,15 @@
     </div>
 </div>
 
+<div 
+class="container-user"
+>Mis en ligne par 
+<span id="user">
+  {{ cardChild.user.firstname }}
+</span> 
+
+</div>
+
   <div class="container-btn" title="Voir en détail ?">
     <a [routerLink]="['/car-detail', cardChild.id]">Cette voiture m'interresse</a>
   </div>

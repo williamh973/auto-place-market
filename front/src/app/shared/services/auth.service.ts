@@ -1,11 +1,11 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, of, tap } from 'rxjs';
 import { UserAuth } from '../../models/user-auth.model';
 import { TokenService } from './token.service';
 import { TokenResponse } from '../../models/token.model';
 import { UserRegister } from '../../models/user-register.model';
-
+import { LocalStorageService } from './local-storage.service';
  
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private lsService: LocalStorageService 
   ) { }
 
   // Je m'inscris : j'envoie mon objet UserRegister et je m'abonne à la réponse de mon serveur
@@ -60,6 +61,20 @@ export class AuthService {
 
 
 
-
+  // getUserFirstname(): Observable<string> {
+  //   const tokenInLocalStorage = this.lsService.getToken();
+  //   console.log(tokenInLocalStorage);
+  //   if (!tokenInLocalStorage) {
+  //     return of('');
+  //   }
+  
+  //   const headers = new HttpHeaders().set('Authorization', `Bearer ${tokenInLocalStorage}`);
+  //   console.log(headers);
+  
+  //   return this.http.get<any>(`${this._BASE_URL}`, { headers }).pipe(
+  //     map((user: any) => user.firstname),
+  //     catchError(() => of(''))
+  //   );
+  // }
 
 }

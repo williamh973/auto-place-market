@@ -27,6 +27,7 @@ import { FeatAccountPopupComponent } from './components/features/feat-account-po
 import { FeatConfirmDeletePopupComponent } from './components/features/feat-confirm-delete-popup/feat-confirm-delete-popup.component';
 import { FeatNoCardsFoundComponent } from './components/features/feat-no-cards-found-popup/feat-no-cards-found-popup.component';
 import { FeatCardAdminComponent } from './components/features/feat-card-admin/feat-card-admin.component';
+import { UserPageComponent } from './pages/user-page/user-page.component';
 
 
 
@@ -51,7 +52,8 @@ import { FeatCardAdminComponent } from './components/features/feat-card-admin/fe
     TrackTokenStateComponent,
     TrackHttpStatusComponent,
     GetDatasComponent,
-    FeatCardAdminComponent
+    FeatCardAdminComponent,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,

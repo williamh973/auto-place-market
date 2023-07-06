@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { User } from '../../models/user.model';
 import { HttpClient } from '@angular/common/http';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,4 +20,6 @@ export class DbUserService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this._BASE_URL}/all`);
   }
+
+
 }
