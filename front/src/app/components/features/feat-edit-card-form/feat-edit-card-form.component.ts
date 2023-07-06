@@ -22,6 +22,7 @@ export class FeatEditCardFormComponent {
   0 , 
   0 , 
   "",
+  0 ,
   new User(
     "", 
     "", 
@@ -52,13 +53,11 @@ isFormCreateCard: EventEmitter<boolean> = new EventEmitter<boolean>();
   onSubmit() {
     if (this.createMode) {
       this.cardService.createCard(this.card).subscribe((createCardFromDatabase: Card) => {
-        console.log(createCardFromDatabase);
         this.isFormCreateCard.emit(false);
         window.location.reload();
       });
     } else {
       this.cardService.updateCard(this.card).subscribe((updateCardFromDatabase: Card) => {
-        console.log(updateCardFromDatabase);
         this.isCardEditFormToggle.emit(false);
         window.location.reload();
       }) 

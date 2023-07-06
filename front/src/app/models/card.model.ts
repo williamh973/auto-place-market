@@ -11,6 +11,7 @@ export class Card {
         public door: number,
         public price: number,
         public transmission: string,
+        public year: number,
         public user: User,
         public id?: number
     ) { }

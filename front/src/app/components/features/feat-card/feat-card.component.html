@@ -1,7 +1,9 @@
 <div class="card">
 
-  <div class="container-delete-and-favorite">
-
+  <div 
+  class="container-favorite" 
+  title="Mettre en favoris ?"
+  >
     <svg 
     xmlns="http://www.w3.org/2000/svg" 
     width="22" 
@@ -15,8 +17,7 @@
     [ngClass]="{ 'svg-favorite': isFavorite }"
     (click)="toggleFavorite()"
     >
-      <path 
-      d="M12 2L9 9H2l6 4.5L5 21l7-5 7 5-3.5-7L22 9h-7l-3-7z" />
+      <path d="M12 2L9 9H2l6 4.5L5 21l7-5 7 5-3.5-7L22 9h-7l-3-7z" />
     </svg>
 
   </div>
@@ -54,6 +55,11 @@
     class="cardChild-elements"
     >{{ cardChild.transmission }}
   </li>
+  <li 
+  id="year"
+  class="cardChild-elements"
+  >{{ cardChild.year }}
+</li>
 </div>
 
  <div class="container-kilometer-price">
@@ -71,7 +77,7 @@
     </div>
 </div>
 
-  <div class="container-btn">
+  <div class="container-btn" title="Voir en détail ?">
     <a [routerLink]="['/car-detail', cardChild.id]">Cette voiture m'interresse</a>
   </div>
 </div>

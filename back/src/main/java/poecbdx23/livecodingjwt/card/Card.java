@@ -27,6 +27,9 @@ public class Card {
     private Number price;
     private Number kilometer;
     private Number door;
+    private String transmission;
+    private String fuel;
+    private Number year;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "user_id", referencedColumnName = "id")

@@ -16,23 +16,26 @@
     transition: 100ms;
 }
 
-  .container-delete-and-favorite {
-    width: 100%;
+  .container-favorite {
+    width: 20px;
+    margin-right: auto;
     display: flex;
     // justify-content: space-around;
     justify-content: flex-start;
     align-items: center;
-    padding: 10px;
+    padding: 10px 10px;
 }
 
-.svg-delete {
-   color: rgb(38, 38, 38);
-   padding: 5px 10px;
+svg:hover {
+   cursor: pointer;
+   scale: 1.1;
+   transition: all 100ms;
 }
-.svg-delete:hover {
-    scale: 1.1;
-    color: red;
- }
+svg:active {
+  cursor: pointer;
+  scale: 0.9;
+  transition: all 100ms;
+}
 
  .svg-favorite {
   stroke: red;
@@ -40,7 +43,7 @@
 
   img {
     width: 100%;
-    height: 240px;
+    height: 270px;
   }
 
 #title {
@@ -97,19 +100,25 @@ span {
 
 #fuel {
   font-size: 15px;
-  padding: 0 10px;
+  padding: 0 5px;
   color: rgb(53, 53, 53);
 }
 
 #transmission {
   font-size: 15px;
-  padding: 0 10px;
+  padding: 0 5px;
   color: rgb(53, 53, 53);
 }
 
 #door {
   font-size: 15px;
-  padding: 0 10px;
+  padding: 0 5px;
+  color: rgb(53, 53, 53);
+}
+
+#year {
+  font-size: 15px;
+  padding: 0 5px;
   color: rgb(53, 53, 53);
 }
 
@@ -117,6 +126,7 @@ span {
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 }
 
 a {
