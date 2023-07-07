@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { AccountPopupService } from '../../../shared/services/account-popup.service';
 
 @Component({
   selector: 'app-feat-account-popup',
@@ -7,23 +8,26 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class FeatAccountPopupComponent {
 
-  @Output() isAccountPopupOpenEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
  
   isAccountPopupOpen: boolean = false;
   isSignUpFormOpen: boolean = false;
   isRegisterFormOpen: boolean = false;
 
+
+  constructor(public accountPopupService: AccountPopupService) { }
+
+
   onCancelPopupAccount() {
-    this.isAccountPopupOpenEmit.emit(this.isAccountPopupOpen);
+    this.accountPopupService.closePopup();
   }
 
   onOpenSignUpForm() {
      this.isSignUpFormOpen = true;
   }
 
-onOpenRegisterForm() {
-  this.isRegisterFormOpen = true;
-}
+  onOpenRegisterForm() {
+     this.isRegisterFormOpen = true;
+  }
 
 onRecevedMethodForCloseSignUpForm(isSignUpFormOpen: boolean) {
   this.isSignUpFormOpen = isSignUpFormOpen;
@@ -32,5 +36,6 @@ onRecevedMethodForCloseSignUpForm(isSignUpFormOpen: boolean) {
 onRecevedMethodForCloseRegisterForm(isRegisterFormOpen: boolean) {
   this.isRegisterFormOpen = isRegisterFormOpen;
 }
+
 
 }

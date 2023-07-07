@@ -45,10 +45,20 @@ export class CardService {
 
 
 
+
+  postFilterCardList(filteredCardList: Card[],) {
+    this.filteredCardListSubject$.next([...filteredCardList]);
+  }
+  
+  getFilteredCardList$(): Observable<Card[]> {
+    return this.filteredCardListSubject$.asObservable();
+  }
   
 
 
 
+
+  
 
   // getCardList(): Observable<Card[]> {
   //   return this.http.get<Card[]>(`${this._BASE_URL_CARD}/all`)
@@ -75,22 +85,5 @@ export class CardService {
   // }
 
 
-
-
-
-
-
-
-
-
-
-  postFilterCardList(filteredCardList: Card[],) {
-    this.filteredCardListSubject$.next([...filteredCardList]);
-  }
-  
-  getFilteredCardList$(): Observable<Card[]> {
-    return this.filteredCardListSubject$.asObservable();
-  }
-  
 
 }

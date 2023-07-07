@@ -1,4 +1,24 @@
   <div class="popup">    
+      <svg 
+        (click)="onCancelPopupAccount()"
+        xmlns="http://www.w3.org/2000/svg" 
+        width="15" 
+        height="15" 
+        viewBox="0 0 24 24"
+        >
+        <path 
+        fill="none" 
+        d="M0 0h24v24H0z"
+        />
+        <path 
+        d="M18 6L6 18M6 6l12 12" 
+        stroke="currentColor" 
+        stroke-width="2" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        />
+      </svg>
+
       <span>Es-tu déjà inscris ?</span>
       <button type="submit" (click)="onOpenSignUpForm()">Connexion</button>
   
@@ -6,7 +26,7 @@
       <button type="submit" (click)="onOpenRegisterForm()">Inscription</button>
   </div>
          
-
+ 
 <app-feat-sign-up
 *ngIf="isSignUpFormOpen"
 (onSignUpFormOpenEmit)="onRecevedMethodForCloseSignUpForm($event)"

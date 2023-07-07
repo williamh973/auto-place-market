@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable, map } from 'rxjs';
 import { TokenService } from '../shared/services/token.service';
 import { TokenResponse } from '../models/token.model';
+import { AccountPopupService } from '../shared/services/account-popup.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class AdminGuard implements CanActivate {
 
   constructor(
     private router: Router,
-    private tokenS: TokenService) {
+    private tokenS: TokenService,
+    public accountPopupService: AccountPopupService) {
     // Lorsque se construit ma classe (1 seule fois), je récupère mon JWT (opération asynchrone donc je dois la lancer le plus tôt possible)
     // Ma méthode canActivate() se déclenchera plus tard
     this.tokenS._getTokenDetailsSubject$()
@@ -31,7 +33,8 @@ export class AdminGuard implements CanActivate {
 
     if (this.role === "ROLE_ADMIN") {
       return true;
-    } else { // Je suis dans le cas d'un USER_ROLE
+    } else { 
+      this.accountPopupService.openPopup();
       this.router.navigate([""]);
       return false;
     }

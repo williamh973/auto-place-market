@@ -42,13 +42,11 @@
 <div class="full-popup-account">
   <app-feat-account-popup 
     class="popup-account"
-    *ngIf="isAccountPopupOpen"
-  ></app-feat-account-popup>
-</div>
-<!-- (isAccountPopupOpenEmit)="onRecevedMethodForCloseAccountPopup($event)" -->
-
+    *ngIf="accountPopupService.isAccountPopupOpen$ | async"
+    ></app-feat-account-popup>
 </div>
 
+</div>
 
 <div class="container-search-bar">
   <app-feat-search></app-feat-search>

@@ -74,7 +74,6 @@ export class TokenService {
 
 
   checkToken(): boolean {
-    // Vérifiez la présence du token dans le LocalStorage
     const token = this.lsService.getToken();
     return !!token; // Renvoie true si le token existe, sinon false
   }

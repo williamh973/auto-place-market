@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AccountPopupService } from 'src/app/shared/services/account-popup.service';
 import { TokenService } from 'src/app/shared/services/token.service';
 
 @Component({
@@ -9,32 +10,31 @@ import { TokenService } from 'src/app/shared/services/token.service';
 export class FeatNavbarComponent {
 
 
-  constructor(private tokenService: TokenService) {}
+  constructor(
+    private tokenService: TokenService,
+    public accountPopupService: AccountPopupService
+    ) {}
 
 
   isAccountPopupOpen: boolean = false;
   isFormCreateCard: boolean = false;
 
 
-  
-  
-  OpenAccountPopup() {
-    this.isAccountPopupOpen = !this.isAccountPopupOpen;
-  }
-  
+
   
   checkToken(): boolean {
     return this.tokenService.checkToken();
   }
+
   createCard() {
     if (this.checkToken()) {
       this.isFormCreateCard = !this.isFormCreateCard
-      this.isAccountPopupOpen = false;
+      this.accountPopupService.closePopup();
     } else {
-      this.isAccountPopupOpen = !this.isAccountPopupOpen;
+      this.accountPopupService.openPopup();
     }
   }
-
+ 
   toggleCardCreateForm(value: boolean) {
     this.isFormCreateCard = value;
   }
