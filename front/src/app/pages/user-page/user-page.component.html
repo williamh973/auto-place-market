@@ -1,4 +1,8 @@
-<!-- <div>
-  <h1>Bienvenue dans ton espace, {{ firstname }}</h1>
-  <span>{{  }}</span>
-</div> -->
+<div class="container-title" *ngIf="firstname">
+  <h1>Bienvenue dans ton espace </h1>
+    <div class="lastname-firstname">
+      <span>{{ lastname }}</span>
+      <span>{{ firstname }}</span>
+    </div>
+</div>
+

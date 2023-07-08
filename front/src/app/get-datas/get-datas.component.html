@@ -3,12 +3,12 @@
     <form (ngSubmit)="onSubmit()">
         <h3>Rechercher un profil utilisateur </h3>
         
-        <label for="user-email-to-get">Email :</label>
+        <label for="user-email-to-get">Email</label>
         <input type="text" id="user-email-to-get" name="user-email-to-get" [(ngModel)]="userEmailToGet">
     
         <button type="submit">Lancer la recherche</button>
     
-        <button name="admin" (click)="getAllUsers()">[ADMIN] - Rechercher tous</button>
+        <button name="admin" (click)="getAllUsers()">Rechercher tous</button>
     
     </form>
     
@@ -26,7 +26,7 @@
         
         
         <div *ngIf="allUsersFetched$ | async as allUsersFetched">
-            <p>Tous les utilisateurs </p>
+            <p>Tous les utilisateurs :</p>
 
             <ul *ngFor="let user of allUsersFetched">
                 <li> {{user.email}} </li>

@@ -4,11 +4,11 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Component({
-  selector: 'app-feat-sign-up',
-  templateUrl: './feat-sign-up.component.html',
-  styleUrls: ['./feat-sign-up.component.scss']
+  selector: 'app-feat-sign-in-form',
+  templateUrl: './feat-sign-in-form.component.html',
+  styleUrls: ['./feat-sign-in-form.component.scss']
 })
-export class FeatSignUpComponent {
+export class FeatSignInFormComponent {
   
   @Output() onSignUpFormOpenEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
   

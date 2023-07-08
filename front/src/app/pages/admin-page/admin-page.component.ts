@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
 import { CardService } from 'src/app/shared/services/card.service';
+import { DbUserService } from 'src/app/shared/services/db-user.service';
 
 
 @Component({
@@ -13,10 +14,26 @@ export class AdminPageComponent {
   cardList: Card[] = [];
   filteredCardList: Card[] = [];
 
-  constructor(private cardService: CardService) { }
+  firstname!: String
+
+  constructor(
+    private cardService: CardService,
+    private dbUser: DbUserService) { }
 
   ngOnInit(): void {
 
+    this.dbUser.getUserFirstnameForUserPage().subscribe(
+      (firstname: string) => {
+        this.firstname = firstname;
+      },
+      (error: any) => {
+        console.log('Error occurred:', error);
+        console.log('Error message:', error.message);
+        console.log('Error response:', error.error);
+      }
+    );
+
+      
     this.cardService.getCardList().subscribe((cardListFromDatabase: Card[]) => {
     this.cardList = cardListFromDatabase;
     }) 
@@ -26,5 +43,6 @@ export class AdminPageComponent {
       this.filteredCardList = newFileteredCardList;
     });
   }
+
 
 }

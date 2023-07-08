@@ -21,7 +21,7 @@ import { FeatSearchComponent } from './components/features/feat-search/feat-sear
 import { FeatCardComponent } from './components/features/feat-card/feat-card.component';
 import { FeatCardListComponent } from './components/features/feat-card-list/feat-card-list.component';
 import { FeatEditCardFormComponent } from './components/features/feat-edit-card-form/feat-edit-card-form.component';
-import { FeatSignUpComponent } from './components/features/feat-sign-up/feat-sign-up.component';
+import { FeatSignInFormComponent } from './components/features/feat-sign-in-form/feat-sign-in-form.component';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { FeatAccountPopupComponent } from './components/features/feat-account-popup/feat-account-popup.component';
 import { FeatConfirmDeletePopupComponent } from './components/features/feat-confirm-delete-popup/feat-confirm-delete-popup.component';
@@ -44,7 +44,7 @@ import { UserPageComponent } from './pages/user-page/user-page.component';
     FeatCardListComponent,
     FeatEditCardFormComponent,
     FeatRegisterFormComponent,
-    FeatSignUpComponent,
+    FeatSignInFormComponent,
     AdminPageComponent,
     FeatAccountPopupComponent,
     FeatConfirmDeletePopupComponent,

@@ -32,8 +32,6 @@ public class UserController {
             throw new AccessDeniedException("User does not have the correct rights to access to this resource");
         }
 
-
-
     }
 
     @GetMapping("/all")
@@ -46,6 +44,23 @@ public class UserController {
             throw new AccessDeniedException("User does not have the correct rights to access to this resource");
 
         }
+    }
+
+
+    @GetMapping("/firstname")
+    public ResponseEntity<String> getUserFirstname() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByEmail(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return ResponseEntity.ok(user.getFirstname());
+    }
+
+    @GetMapping("/lastname")
+    public ResponseEntity<String> getUserLastname() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByEmail(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return ResponseEntity.ok(user.getLastname());
     }
 
 

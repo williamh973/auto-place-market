@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FeatSignUpComponent } from './feat-sign-up.component';
+import { FeatSignInFormComponent } from './feat-sign-in-form.component';
 
 describe('FeatSignUpComponent', () => {
-  let component: FeatSignUpComponent;
-  let fixture: ComponentFixture<FeatSignUpComponent>;
+  let component: FeatSignInFormComponent;
+  let fixture: ComponentFixture<FeatSignInFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FeatSignUpComponent ]
+      declarations: [ FeatSignInFormComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FeatSignUpComponent);
+    fixture = TestBed.createComponent(FeatSignInFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

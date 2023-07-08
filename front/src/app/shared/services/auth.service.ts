@@ -1,6 +1,6 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, map, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { UserAuth } from '../../models/user-auth.model';
 import { TokenService } from './token.service';
 import { TokenResponse } from '../../models/token.model';
@@ -59,22 +59,5 @@ export class AuthService {
     this._httpSuccessSubject$.next(success);
   }
 
-
-
-  // getUserFirstname(): Observable<string> {
-  //   const tokenInLocalStorage = this.lsService.getToken();
-  //   console.log(tokenInLocalStorage);
-  //   if (!tokenInLocalStorage) {
-  //     return of('');
-  //   }
-  
-  //   const headers = new HttpHeaders().set('Authorization', `Bearer ${tokenInLocalStorage}`);
-  //   console.log(headers);
-  
-  //   return this.http.get<any>(`${this._BASE_URL}`, { headers }).pipe(
-  //     map((user: any) => user.firstname),
-  //     catchError(() => of(''))
-  //   );
-  // }
 
 }

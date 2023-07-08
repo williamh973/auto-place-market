@@ -26,12 +26,12 @@
       <button type="submit" (click)="onOpenRegisterForm()">Inscription</button>
   </div>
          
- 
-<app-feat-sign-up
+
+<app-feat-sign-in-form
 *ngIf="isSignUpFormOpen"
 (onSignUpFormOpenEmit)="onRecevedMethodForCloseSignUpForm($event)"
 >
-</app-feat-sign-up>
+</app-feat-sign-in-form>
 
 <app-feat-register-form
 *ngIf="isRegisterFormOpen"
