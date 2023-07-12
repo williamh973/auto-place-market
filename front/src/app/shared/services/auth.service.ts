@@ -5,7 +5,8 @@ import { UserAuth } from '../../models/user-auth.model';
 import { TokenService } from './token.service';
 import { TokenResponse } from '../../models/token.model';
 import { UserRegister } from '../../models/user-register.model';
-import { LocalStorageService } from './local-storage.service';
+import { Router } from '@angular/router';
+
  
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,9 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private tokenService: TokenService,
-    private lsService: LocalStorageService 
+    private router: Router
   ) { }
+
 
   // Je m'inscris : j'envoie mon objet UserRegister et je m'abonne à la réponse de mon serveur
   signUp(userRegister: UserRegister): void {

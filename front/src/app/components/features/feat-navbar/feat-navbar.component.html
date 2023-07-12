@@ -48,8 +48,16 @@
 
 </div>
 
-<div class="container-search-bar">
-  <app-feat-search></app-feat-search>
+<div 
+class="container-search-bar"
+>
+
+<div class="search-bar"
+[ngStyle]="{ 'animation-delay': delaySecondsForAnimationSearchBar + 's' }">
+  <app-feat-search 
+  ></app-feat-search>
+</div>
+
 </div>
 
 

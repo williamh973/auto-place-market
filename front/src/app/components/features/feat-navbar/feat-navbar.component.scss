@@ -8,9 +8,9 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    
+    opacity: 0; 
+    animation: fadeIn 3s forwards;
 }
-
 .full-navbar::before {
     content: "";
     position: absolute;
@@ -24,11 +24,13 @@
   
 .container-title {
     width: 30vw;
+    min-width: 30vw;
     height: 80px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     background-color: transparent;
+    cursor:default;
     z-index: 1;
   }
   
@@ -103,4 +105,32 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.container-search-bar {
+  position: relative;
+  bottom: 100px;
+  overflow: hidden;
+}
+.search-bar {
+  transform: translateX(100%);
+  animation: slide-from-right 1s forwards;
+}
+
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+@keyframes slide-from-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
 }

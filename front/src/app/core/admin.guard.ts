@@ -31,13 +31,15 @@ export class AdminGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    if (this.role === "ROLE_ADMIN") {
+    if (this.role === "ROLE_ADMIN") { 
       return true;
     } else { 
-      this.accountPopupService.openPopup();
+      this.accountPopupService.openPopup(); // pour ouvrir le popup d'inscription ou connexion
       this.router.navigate([""]);
       return false;
     }
+
   }
+
 
 }

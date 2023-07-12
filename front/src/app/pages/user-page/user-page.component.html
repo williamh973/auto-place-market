@@ -5,4 +5,14 @@
       <span>{{ firstname }}</span>
     </div>
 </div>
+<button (click)="clearToken()">Déconnexion</button>
 
+
+<div class="card-list">
+
+  <div *ngFor="let card of (filteredCardListCreatedByUser.length > 0 ? filteredCardListCreatedByUser : cardListCreatedByUser); let i = index">
+    <app-feat-card-user
+       [cardChild]="card"
+   ></app-feat-card-user>
+  </div>
+</div>

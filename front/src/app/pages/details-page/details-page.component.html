@@ -1,8 +1,11 @@
 <div class="full-page" *ngIf="cardChild">
 
+
 <div class="container-title-and-resume">
     <h2>{{ cardChild.title }}</h2>
 </div>
+
+
 
 <div class="container-main">
 
@@ -16,6 +19,15 @@
     </div>
     
     <div class="container-right">
+
+      <div 
+      class="container-user"
+      >Mis en ligne par 
+      <span id="user">
+        {{ cardChild.user.firstname }}
+      </span> 
+      
+      </div>
 
      <div class="container-svg-and-matche-element">
         <svg 

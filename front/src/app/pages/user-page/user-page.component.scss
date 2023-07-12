@@ -24,3 +24,27 @@ span {
     color: black;
     font-size: 35px;
 }
+
+.card-list {
+  gap: 50px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 50px;
+  padding: 20px 0;
+}
+
+button {
+  padding: 10px 20px;
+  border: 2px solid whitesmoke;
+    border-radius: 10px;
+    background-color:  rgba(0, 0, 0, 0.866);
+    color: whitesmoke;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+      border: 2px solid rgb(0, 177, 0);
+      transition: all 200ms;
+}

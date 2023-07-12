@@ -1,7 +1,7 @@
 <div class="container-title" *ngIf="firstname">
   <h1>Mon Espace administrateur {{ firstname }}</h1>
 </div>
-
+<button (click)="clearToken()">Déconnexion</button>
 
 
 <app-get-datas></app-get-datas> 

@@ -10,7 +10,7 @@ export class FeatAccountPopupComponent {
 
  
   isAccountPopupOpen: boolean = false;
-  isSignUpFormOpen: boolean = false;
+  isSignInFormOpen: boolean = false;
   isRegisterFormOpen: boolean = false;
 
 
@@ -21,16 +21,16 @@ export class FeatAccountPopupComponent {
     this.accountPopupService.closePopup();
   }
 
-  onOpenSignUpForm() {
-     this.isSignUpFormOpen = true;
+  onOpenSignInForm() {
+     this.isSignInFormOpen = true;
   }
 
   onOpenRegisterForm() {
      this.isRegisterFormOpen = true;
   }
 
-onRecevedMethodForCloseSignUpForm(isSignUpFormOpen: boolean) {
-  this.isSignUpFormOpen = isSignUpFormOpen;
+onRecevedMethodForCloseSignInForm(isSignInFormOpen: boolean) {
+  this.isSignInFormOpen = isSignInFormOpen;
 }
 
 onRecevedMethodForCloseRegisterForm(isRegisterFormOpen: boolean) {

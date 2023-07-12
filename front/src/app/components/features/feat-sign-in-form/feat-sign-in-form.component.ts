@@ -3,6 +3,7 @@ import { UserAuth } from 'src/app/models/user-auth.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
+
 @Component({
   selector: 'app-feat-sign-in-form',
   templateUrl: './feat-sign-in-form.component.html',
@@ -10,41 +11,38 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 })
 export class FeatSignInFormComponent {
   
-  @Output() onSignUpFormOpenEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() onSignInFormOpenEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
   
-  isSignUpFormOpen: boolean = false;
+  isSignInFormOpen: boolean = false;
   isRegisterFormOpen: boolean = false;
 
   userAuth: UserAuth = new UserAuth("", "");  
 
 
-
   constructor(
     private httpS: AuthService,
-    private LsService: LocalStorageService
+    private LsService: LocalStorageService,
     ) { }
 
 
-
-  onCancelSignUpForm() {
-  this.onSignUpFormOpenEmit.emit(this.isSignUpFormOpen);
+  onCancelSignInForm() {
+  this.onSignInFormOpenEmit.emit(this.isSignInFormOpen);
   }
 
   onOpenRegisterForm() {
     this.isRegisterFormOpen = true;
   }
     
-  
   onSubmitAuth(): void {
     this.LsService.clearToken();
     this.httpS.signIn(this.userAuth);
-    this.isSignUpFormOpen = false;
+      setTimeout(() => {
+       window.location.reload();
+      }, 1000);
   } 
-
 
   onRecevedMethodForCloseRegisterForm(isRegisterFormOpen: boolean) {
     this.isRegisterFormOpen = isRegisterFormOpen;
   }
-
 
 }

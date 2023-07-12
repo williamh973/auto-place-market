@@ -1,7 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Card } from 'src/app/models/card.model';
-import { User } from 'src/app/models/user.model';
+import { CardService } from 'src/app/shared/services/card.service';
 import { DbUserService } from 'src/app/shared/services/db-user.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { TokenService } from 'src/app/shared/services/token.service';
 
 
 @Component({
@@ -11,12 +14,20 @@ import { DbUserService } from 'src/app/shared/services/db-user.service';
 })
 export class UserPageComponent {
 
+ 
+  cardListCreatedByUser: Card[] = [];
+  filteredCardListCreatedByUser: Card[] = [];
+
   firstname!: String;
   lastname!: String;
  
 
   constructor( 
-    private dbUser: DbUserService ) {}
+    private dbUser: DbUserService,
+    private cardService: CardService,
+    private tokenS: TokenService,
+    private lsService: LocalStorageService,
+    private router: Router ) {}
 
 
 
@@ -42,10 +53,27 @@ export class UserPageComponent {
           console.log('Error response:', error.error);
         }
       );
+
+
+
+      this.cardService.getCardList().subscribe((cardListFromDatabase: Card[]) => {
+        this.cardListCreatedByUser = cardListFromDatabase;
+        }) 
+    
+     
+        this.cardService.getFilteredCardList$().subscribe((newFileteredCardList: Card[]) => {
+          this.filteredCardListCreatedByUser = newFileteredCardList;
+        });
+
     }
 
 
-
+    clearToken(): void {
+      this.lsService.clearToken();
+      this.tokenS.resetToken();
+      this.router.navigate(["/home"]);
+    }
+  
 
 
 }

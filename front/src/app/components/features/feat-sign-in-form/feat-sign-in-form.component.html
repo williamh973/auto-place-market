@@ -1,9 +1,15 @@
+
+
+ 
+
+
+
 <div class="full-form">
 
 <form>
 
 <div>
-    <svg (click)="onCancelSignUpForm()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 22 22">
+    <svg (click)="onCancelSignInForm()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 22 22">
         <path fill="none" d="M0 0h24v24H0z"/>
         <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
@@ -24,12 +30,5 @@
 
 </div>
 
-<div class="container-status">
-    <div class="track-states-container">
-      <app-track-http-status class="track-item"></app-track-http-status>
-      <app-track-token-state class="track-item"></app-track-token-state>
-    </div>
-
-</div>
-
-
+<app-feat-sign-in-status
+></app-feat-sign-in-status>

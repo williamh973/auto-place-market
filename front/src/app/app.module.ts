@@ -28,7 +28,9 @@ import { FeatConfirmDeletePopupComponent } from './components/features/feat-conf
 import { FeatNoCardsFoundComponent } from './components/features/feat-no-cards-found-popup/feat-no-cards-found-popup.component';
 import { FeatCardAdminComponent } from './components/features/feat-card-admin/feat-card-admin.component';
 import { UserPageComponent } from './pages/user-page/user-page.component';
-
+import { FeatSignInStatusComponent } from './components/features/feat-sign-in-status/feat-sign-in-status.component';
+import { FeatCardUserComponent } from './components/features/feat-card-user/feat-card-user.component';
+import { FeatSloganComponent } from './components/features/feat-slogan/feat-slogan.component';
 
 
 @NgModule({
@@ -53,7 +55,10 @@ import { UserPageComponent } from './pages/user-page/user-page.component';
     TrackHttpStatusComponent,
     GetDatasComponent,
     FeatCardAdminComponent,
-    UserPageComponent
+    UserPageComponent,
+    FeatSignInStatusComponent,
+    FeatCardUserComponent,
+    FeatSloganComponent
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,12 @@
 <div class="card">
 
+  <div class="container-favoris-and-user">
+
   <div 
   class="container-favorite" 
   title="Mettre en favoris ?"
   >
+
     <svg 
     xmlns="http://www.w3.org/2000/svg" 
     width="22" 
@@ -22,6 +25,15 @@
 
   </div>
 
+  <div 
+class="container-user"
+>Mis en ligne par 
+ <span id="user">
+   {{ cardChild.user.firstname }}
+ </span> 
+</div>
+
+</div>
 
     <div>
       <img 
@@ -33,17 +45,13 @@
     class="cardChild-elements"
     >{{ cardChild.title }}
   </div>
-    <div
-    id="resume"
-    class="cardChild-elements"
-    >{{ cardChild.resume }}
-  </div>
-
-  <div class="container-door-fuel-transmission">
+  <div 
+  class="container-door-fuel-transmission-year"
+  >
   <li
     id="door"
     class="cardChild-elements"
-    >{{ cardChild.door }} portes
+    >{{ cardChild.door }} Portes
   </li>
   <li 
     id="fuel"
@@ -67,7 +75,7 @@
       id="kilometer"
       class="cardChild-elements"
       >{{ cardChild.kilometer }} 
-      <span>km</span>
+      <span>Km</span>
     </div>
     <div
      id="price"
@@ -75,15 +83,6 @@
      >{{ cardChild.price }}
      <span>€</span>
     </div>
-</div>
-
-<div 
-class="container-user"
->Mis en ligne par 
-<span id="user">
-  {{ cardChild.user.firstname }}
-</span> 
-
 </div>
 
   <div class="container-btn" title="Voir en détail ?">

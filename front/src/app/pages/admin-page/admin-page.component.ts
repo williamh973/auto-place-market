@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Card } from 'src/app/models/card.model';
 import { CardService } from 'src/app/shared/services/card.service';
 import { DbUserService } from 'src/app/shared/services/db-user.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { TokenService } from 'src/app/shared/services/token.service';
 
 
 @Component({
@@ -18,7 +21,10 @@ export class AdminPageComponent {
 
   constructor(
     private cardService: CardService,
-    private dbUser: DbUserService) { }
+    private dbUser: DbUserService,
+    private tokenS: TokenService,
+    private lsService: LocalStorageService,
+    private router: Router) { }
 
   ngOnInit(): void {
 
@@ -42,6 +48,12 @@ export class AdminPageComponent {
     this.cardService.getFilteredCardList$().subscribe((newFileteredCardList: Card[]) => {
       this.filteredCardList = newFileteredCardList;
     });
+  }
+
+  clearToken(): void {
+    this.lsService.clearToken();
+    this.tokenS.resetToken();
+    this.router.navigate(["/home"]);
   }
 
 

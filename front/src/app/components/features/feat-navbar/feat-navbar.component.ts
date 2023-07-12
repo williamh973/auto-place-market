@@ -18,8 +18,8 @@ export class FeatNavbarComponent {
 
   isAccountPopupOpen: boolean = false;
   isFormCreateCard: boolean = false;
-
-
+ 
+  delaySecondsForAnimationSearchBar: number = 2;
 
   
   checkToken(): boolean {

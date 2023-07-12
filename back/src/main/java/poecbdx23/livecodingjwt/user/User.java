@@ -2,6 +2,8 @@ package poecbdx23.livecodingjwt.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+//import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+//import poecbdx23.livecodingjwt.user.CustomAuthority;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,15 +14,14 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import poecbdx23.livecodingjwt.card.Card;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
+import java.util.*;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+//@JsonDeserialize(using = UserDeserializer.class)
 @Entity
 public class User implements UserDetails {
 
@@ -47,6 +48,18 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role));
     }
+
+//    @Transient
+//    private Set<CustomAuthority> authorities = new HashSet<>();
+//
+//    public Set<CustomAuthority> getAuthorities() {
+//        return authorities;
+//    }
+//
+//    public void setAuthorities(Set<CustomAuthority> authorities) {
+//        this.authorities = authorities;
+//    }
+
 
     @Override
     public String getUsername() {

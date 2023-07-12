@@ -17,10 +17,10 @@ export class FeatEditCardFormComponent {
   "", 
   "", 
   "", 
-  "", 
   0 , 
   0 , 
   0 , 
+  "" , 
   "",
   0 ,
   new User(
@@ -32,7 +32,7 @@ export class FeatEditCardFormComponent {
     "ROLE_USER"
     )
   ) 
-
+     
 @Input() 
 createMode: boolean = false;
 

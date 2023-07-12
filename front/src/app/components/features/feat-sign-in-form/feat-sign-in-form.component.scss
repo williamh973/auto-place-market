@@ -24,6 +24,7 @@
     transition: 300ms;
     color: rgb(255, 0, 0);
     scale: 1.1;
+    cursor: pointer;
   }
 
   form {
@@ -87,10 +88,3 @@
    transition: all 200ms;
   }
 
-  .container-status {
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: whitesmoke;
-    z-index: 1;
-   }
