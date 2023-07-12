@@ -10,15 +10,15 @@
     </svg>
     
     <div>
-        <h2 name="inscription">Inscription</h2>
+        <h2 name="inscription">Inscription</h2> 
 
         <p>Les champs suivis d'un astérisque ( * ) sont obligatoire.</p>
 
         <label for="user-firstname">Prénom</label>
-        <input type="text" name="user-firstname" id="user-firstname" [(ngModel)]="userRegister.firstname" placeholder="Taper votre nom*">
+        <input type="text" name="user-firstname" id="user-firstname" [(ngModel)]="userRegister.firstname" placeholder="Taper votre prénom*">
         
         <label for="user-lastname">Nom</label>
-        <input type="text" name="user-lastname" id="user-lastname" [(ngModel)]="userRegister.lastname" placeholder="Taper votre prénom*">
+        <input type="text" name="user-lastname" id="user-lastname" [(ngModel)]="userRegister.lastname" placeholder="Taper votre nom*">
        
         <label for="user-register-email">Email</label>
         <input type="email" name="user-register-email" id="user-register-email" [(ngModel)]="userRegister.email" placeholder="Taper votre email*">
@@ -27,10 +27,14 @@
         <input type="password" name="user-register-password" id="user-register-password" autocomplete="on"  [(ngModel)]="userRegister.password" placeholder="Taper votre mot de passe*">    
         
         <fieldset>
-          <input type="radio" name="user-role" id="user-role-user" value="ROLE_USER" [(ngModel)]="userRegister.requiredRole">
-          <label for="user-role-user">User</label>
-          <input type="radio" name="user-role" id="user-role-admin"value="ROLE_ADMIN" [(ngModel)]="userRegister.requiredRole">
-          <label for="user-role-admin">Admin</label>
+            <div class="container-role">
+               <input type="radio" name="user-role" id="user-role-user" value="ROLE_USER" [(ngModel)]="userRegister.requiredRole">
+               <label for="user-role-user">User</label>
+            </div>
+            <div class="container-role">
+               <input type="radio" name="user-role" id="user-role-admin"value="ROLE_ADMIN" [(ngModel)]="userRegister.requiredRole">
+               <label for="user-role-admin">Admin</label>
+            </div>
       </fieldset>
       
     </div>

@@ -28,13 +28,13 @@
   
     form {
       position: relative;
-      width: 20vw;
+      width: 23vw;
       display: flex;
       flex-direction: column;
       padding: 60px;
       background-color: rgba(0, 0, 0, 0.755);
       border-radius: 5px;
-      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.275);
+      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.275);
     }
     
     h2 {
@@ -78,13 +78,28 @@
     }
 
     fieldset {
-      margin: 5px;
-      padding: 10px 10px 0px 10px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.462);
-      border-radius: 10px;
+      border: none;
+    }
+
+    .container-role {
+      width: 150px;
+      height: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    #user-role-user {
+      width: 15px;
+      height: 15px;
+      margin: 0 5px;
+    }
+    #user-role-admin {
+      width: 15px;
+      height: 15px;
+      margin: 0 5px;
     }
 
     .container-user-role {
@@ -108,7 +123,7 @@
       width: 150px;
       padding: 10px;
       margin: auto;
-      margin-bottom: 20px;
+      margin-top: 25px;
       border: 2px solid whitesmoke;
       border-radius: 10px;
       background-color:  rgba(0, 0, 0, 0.866);

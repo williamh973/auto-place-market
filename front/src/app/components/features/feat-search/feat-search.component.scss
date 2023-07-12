@@ -3,15 +3,17 @@
   display: flex;
   justify-content: space-around;
   background-color: transparent; 
+  z-index: 1;
 }
 
 
-
+ 
 .filter {
     display: flex;
     font-size: 0.9vw;
     color: #f0f0f0;
     border: none;
+    z-index: 1;
   }
 
 #input-search {
@@ -26,9 +28,11 @@
     background-color: rgba(0, 0, 0, 0.733);
     color: #e3e3e3;
     caret-color: none;
+    background:  rgba(0, 0, 0, 0.733);
   }
-  #input-search::placeholder {
-    display: none;
+  #input-search:focus {
+    border-color: rgb(0, 177, 0); 
+    transition: all 200ms;
   }
 
 
@@ -47,6 +51,10 @@
   #input-price::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
+  #input-price:focus {
+    border-color: rgb(0, 177, 0); 
+    transition: all 200ms;
+  }
 
   #input-kilometric {
     width: 9.5vw;
@@ -61,6 +69,10 @@
   }
   #input-kilometric::-webkit-inner-spin-button {
     -webkit-appearance: none;
+  }
+  #input-kilometric:focus {
+    border-color: rgb(0, 177, 0); 
+    transition: all 200ms;
   }
 
   svg {
@@ -83,9 +95,11 @@
   
   .full-no-cards-found-popup {
     position: absolute;
-    top: 525px;
-    left: auto;
-    width: 40%;
+    top: 130px;
+    left: 0;
+    width: 100%;
+    height: 30px;
     background-color: transparent;
     padding: 20px;
+    z-index: 1;
   }

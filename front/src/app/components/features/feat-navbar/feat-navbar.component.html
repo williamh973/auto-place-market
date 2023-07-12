@@ -33,19 +33,24 @@
     
 
 
+
+
+</div>
+
 <app-feat-edit-card-form 
+class="edit-card-form"
 *ngIf="isFormCreateCard"
 (isFormCreateCard)="toggleCardCreateForm($event)"
 [createMode]="true"
 ></app-feat-edit-card-form>
+
+
 
 <div class="full-popup-account">
   <app-feat-account-popup 
     class="popup-account"
     *ngIf="accountPopupService.isAccountPopupOpen$ | async"
     ></app-feat-account-popup>
-</div>
-
 </div>
 
 <div 
