@@ -2,8 +2,7 @@ package poecbdx23.livecodingjwt.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-//import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-//import poecbdx23.livecodingjwt.user.CustomAuthority;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +12,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import poecbdx23.livecodingjwt.card.Card;
-
+import java.util.Collection;
 
 import java.util.*;
 
@@ -21,7 +20,6 @@ import java.util.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-//@JsonDeserialize(using = UserDeserializer.class)
 @Entity
 public class User implements UserDetails {
 
@@ -44,21 +42,22 @@ public class User implements UserDetails {
 
 
 
+
+///////////////////////// -- A GARDER -- ////////////////////////////////
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return List.of(new SimpleGrantedAuthority(role));
+//    }
+
+    @JsonDeserialize(using = CustomGrantedAuthorityDeserializer.class)
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role));
-    }
+    List<GrantedAuthority> authorities = new ArrayList<>();
+    authorities.add(new SimpleGrantedAuthority(role));
+    return authorities;
+}
 
-//    @Transient
-//    private Set<CustomAuthority> authorities = new HashSet<>();
-//
-//    public Set<CustomAuthority> getAuthorities() {
-//        return authorities;
-//    }
-//
-//    public void setAuthorities(Set<CustomAuthority> authorities) {
-//        this.authorities = authorities;
-//    }
+
 
 
     @Override

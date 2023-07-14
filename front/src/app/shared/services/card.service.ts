@@ -41,10 +41,6 @@ export class CardService {
   updateCard(card: Card): Observable<Card> {
     return this.http.put<Card>(`${this._BASE_URL_CARD}/update/${card.id}`, card);
   }
-  
-  // updateCard(card: Card): Observable<Card> {
-  //   return this.http.put<Card>(`${this._BASE_URL_CARD}/update/${card.id}`, card);
-  // }
 
   deleteCard(cardId: number): Observable<void> {
     return this.http.delete<void>(`${this._BASE_URL_CARD}/delete/${cardId}`);

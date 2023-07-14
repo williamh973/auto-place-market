@@ -42,7 +42,7 @@ public class AuthenticationEntryPoint implements org.springframework.security.we
             error.put("error_message", "Email already taken.");
         } else if (request.getAttribute("bad_credentials") != null) {
             error.put("bad_credentials", "true");
-            error.put("error_message", "Account does not exist OR you used an incorrect pair of email/mdp.");
+            error.put("error_message", "Compte inexistant ou email/mot de passe incorrect.");
         } else if (request.getAttribute("no_jwt_provided") != null) {
             error.put("no_jwt_provided", "true");
             error.put("error_message", "No JWT provided.");

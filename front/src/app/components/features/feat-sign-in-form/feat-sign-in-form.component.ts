@@ -2,6 +2,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { UserAuth } from 'src/app/models/user-auth.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { TokenService } from 'src/app/shared/services/token.service';
+import { TokenResponse } from '../../../models/token.model';
 
 
 @Component({
@@ -22,6 +24,7 @@ export class FeatSignInFormComponent {
   constructor(
     private httpS: AuthService,
     private LsService: LocalStorageService,
+    private tokenS: TokenService
     ) { }
 
 
@@ -36,9 +39,11 @@ export class FeatSignInFormComponent {
   onSubmitAuth(): void {
     this.LsService.clearToken();
     this.httpS.signIn(this.userAuth);
+  
       setTimeout(() => {
-       window.location.reload();
-      }, 1000);
+         window.location.reload();
+      }, 2000);
+
   } 
 
   onRecevedMethodForCloseRegisterForm(isRegisterFormOpen: boolean) {

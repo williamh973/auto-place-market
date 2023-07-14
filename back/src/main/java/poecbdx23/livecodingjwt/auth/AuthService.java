@@ -77,7 +77,7 @@ public class AuthService {
             String jwtToken = jwtService.generateToken(new HashMap<>(extraClaims), user);
             return AuthResponse.builder()
                     .token(jwtToken)
-                    .message("Logged In")
+                    .message("Connexion réussie")
                     .build();
 
         } catch (BadCredentialsException ex) {

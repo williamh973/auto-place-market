@@ -13,7 +13,6 @@ export class FeatEditCardFormComponent {
 
 @Input()
  card: Card = new Card(
-  0,
   "", 
   "", 
   "", 
@@ -43,8 +42,18 @@ isCardEditFormToggle: EventEmitter<boolean> = new EventEmitter<boolean>();
 isFormCreateCard: EventEmitter<boolean> = new EventEmitter<boolean>();
  
 
-  constructor(private cardService: CardService) {}
-  
+  constructor(
+    private cardService: CardService,
+   
+    ) {}
+
+   
+
+
+
+
+
+
  cancelPopup() {
   this.isCardEditFormToggle.emit(false);
   this.isFormCreateCard.emit(false);
@@ -62,6 +71,5 @@ isFormCreateCard: EventEmitter<boolean> = new EventEmitter<boolean>();
         window.location.reload();
       }) 
     }
-
   }
 }
