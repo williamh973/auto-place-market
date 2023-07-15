@@ -34,7 +34,7 @@
     z-index: 1;
   }
   
-  .c, .m {
+  .c, .p, .m {
     color: whitesmoke;
     font-size: 5vw;
   }
@@ -125,6 +125,7 @@ button:hover {
   animation: slide-from-right 1s forwards;
   z-index: 1;
 }
+
 
 @keyframes fadeIn {
   from {

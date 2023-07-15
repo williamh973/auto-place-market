@@ -1,7 +1,9 @@
+import { RentPictures } from "./rent-pictures.model";
 import { User } from "./user.model";
 
 export class Card {
     constructor(
+        // public pictures: RentPictures[],
         public image: string,
         public title: string,
         public resume: string,

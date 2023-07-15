@@ -4,22 +4,24 @@
 }
 
 body {
-    // background-color: rgb(10, 10, 10);
-    background-color: rgb(203, 203, 203);
+  width: 100%;
+    // background-color: rgb(203, 203, 203);
+    background-color: rgb(255, 255, 255);
     overflow-x: hidden;
 }
+
 
 ::-webkit-scrollbar {
     width: 15px;
   }
 
 ::-webkit-scrollbar-track {
-    background-color: rgba(18, 18, 18, 0.899); /* Couleur de fond de la piste de défilement */
+    background-color: rgb(0, 0, 0); /* Couleur de fond de la piste de défilement */
   }
    
 ::-webkit-scrollbar-thumb {
   background-color: rgb(111, 111, 111); 
-  border-radius: 10px; /* Couleur de la poignée de défilement */
+  border-radius: 1px; /* Couleur de la poignée de défilement */
   }
   
 ::-webkit-scrollbar-thumb:hover {
@@ -31,5 +33,5 @@ body {
 }
 
 ::-webkit-scrollbar-button {
-    background-color: rgb(0, 0, 0); 
+  background-color: rgb(111, 111, 111); 
 }

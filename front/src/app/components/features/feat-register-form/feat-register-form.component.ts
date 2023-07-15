@@ -29,7 +29,11 @@ export class FeatRegisterFormComponent {
 
     onSubmitRegister(): void {
       this.httpS.signUp(this.userRegister);
-      this.onRegisterFormOpenEmit.emit(this.isRegisterFormOpen);
+
+      setTimeout(() => {
+        this.onRegisterFormOpenEmit.emit(this.isRegisterFormOpen);
+     }, 1000);
+  
     }
 
 }

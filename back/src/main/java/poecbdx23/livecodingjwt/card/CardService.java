@@ -63,7 +63,6 @@ public class CardService {
         foundCard.setTransmission(card.getTransmission());
         foundCard.setFuel(card.getFuel());
         foundCard.setYear(card.getYear());
-//        foundCard.setUser(card.getUser());
 
         return cardRepository.save(foundCard);
 

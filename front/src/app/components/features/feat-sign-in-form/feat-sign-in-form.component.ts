@@ -42,7 +42,7 @@ export class FeatSignInFormComponent {
   
       setTimeout(() => {
          window.location.reload();
-      }, 2000);
+      }, 1000);
 
   } 
 

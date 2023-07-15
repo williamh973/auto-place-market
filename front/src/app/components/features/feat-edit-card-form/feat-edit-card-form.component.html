@@ -2,29 +2,48 @@
 
  <form (ngSubmit)="onSubmit()">
 
-     
-     <svg (click)="cancelPopup()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+     <svg (click)="cancelPopup()" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
          <path fill="none" d="M0 0h24v24H0z"/>
          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         
-        <h3>{{ createMode ? 'Créer une carte' : 'Modifier la carte' }}</h3>
+        <h3>{{ createMode ? 'Mettre mon véhicule en ligne' : 'Modifier mon véhicule' }}</h3>
         
-
 <div class="all-elements">
 
 <div class="first-part">
-    <label for="image">Image</label>
+    
+  <label for="image">Image</label>
     <input 
     type="text" 
     name="image" 
     id="image" 
     [(ngModel)]="card.image"
+    placeholder="Une belle photo * "
+    required
     >
-    <!-- <input 
-    type="file" 
-    (change)="handleImageInput($event)"
-    > -->
+   
+      <!-- <ngx-dropzone 
+      class="ngx-dropzone"
+      [accept]="'image/*'" 
+      (change)="onSelect($event)"
+     >
+      <ngx-dropzone-label>
+        <div>
+          <h3>Glissez la photo de votre véhicule ici *</h3>
+        </div>
+      </ngx-dropzone-label>
+
+      <ngx-dropzone-image-preview 
+        ngProjectAs="ngx-dropzone-preview" 
+        *ngFor="let photo of photos" 
+        [file]="photo" 
+        [removable]="true" 
+        (removed)="onRemove(photo)"
+        [(ngModel)]="card.image"
+      ></ngx-dropzone-image-preview>
+      </ngx-dropzone> -->
+
     
     <label for="title">Titre</label>
     <input 
@@ -33,6 +52,8 @@
     id="title" 
     [(ngModel)]="card.title"
     maxlength="33"
+    placeholder="Le model du véhicule *"
+    required
     >
     <label for="resume">Description</label>
     <input 
@@ -41,15 +62,9 @@
     id="resume" 
     [(ngModel)]="card.resume"
     maxlength="60"
+    placeholder="Descriptif détaillé * "
+    required
     >
-
-    <div>
-        <label for="fuel">Carburant</label>
-       <select name="fuel" id="fuel" [(ngModel)]="card.fuel">
-         <option value="Essence">Essence</option>
-         <option value="Diesel">Diesel</option>
-       </select>
-    </div>
 </div>
 
 
@@ -60,6 +75,8 @@
     name="kilometer" 
     id="kilometer" 
     [(ngModel)]="card.kilometer"
+    placeholder="Kilomètres parcourus * "
+    required
     >
     <label for="price">Portes</label>
     <input 
@@ -67,6 +84,8 @@
     name="door" 
     id="door" 
     [(ngModel)]="card.door"
+    placeholder="Nombre de portes * "
+    required
     >
     <label for="price">Prix</label>
     <input 
@@ -74,15 +93,9 @@
     name="price" 
     id="price" 
     [(ngModel)]="card.price"
+    placeholder="Prix d\'achat souhaité *"
+    required
     >
-
-    <div>
-        <label for="transmission">Transmission</label>
-       <select name="transmission" id="transmission" [(ngModel)]="card.transmission">
-         <option value="Automatique">Automatique</option>
-         <option value="Manuelle">Manuelle</option>
-       </select>
-    </div>
 
     <label for="year">Année</label>
     <input 
@@ -90,12 +103,33 @@
     name="year" 
     id="year" 
     [(ngModel)]="card.year"
+    placeholder="Année de fabrication* "
+    required
     >
+
+    <div class="container-transmission">
+        <label for="transmission">Transmission</label>
+       <select name="transmission" id="transmission" [(ngModel)]="card.transmission" required>
+         <option value="" disabled selected hidden class="select-your-choise">Saisissez votre choix</option>
+         <option value="Automatique">Automatique</option>
+         <option value="Manuelle">Manuelle</option>
+       </select>
+    </div>
+
+    <div class="container-fuel">
+      <label for="fuel">Carburant</label>
+     <select name="fuel" id="fuel" [(ngModel)]="card.fuel" required>
+       <option value="" disabled selected hidden>Saisissez votre choix</option>
+       <option value="Essence">Essence</option>
+       <option value="Diesel">Diesel</option>
+     </select>
+  </div>
 
 </div>
     
 </div>
-<button type="submit">Soumettre</button>
+
+<button type="submit">Je valide</button>
 
 </form>
 

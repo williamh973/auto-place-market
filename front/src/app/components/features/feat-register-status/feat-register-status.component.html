@@ -1,0 +1,16 @@
+<div class="container-status">
+    <ng-container *ngIf="httpError$ | async as httpError">
+        <div *ngIf="httpError.error">
+            <p *ngIf="showErrorMessage" id="errorMessage">{{httpError.error.error_message}}</p>
+        </div>
+    </ng-container>
+    
+    <ng-container *ngIf="httpSuccess$ | async as httpSuccess">
+        <div *ngIf="httpSuccess.body">
+            <p *ngIf="showSuccessMessage" id="succesMessage">{{httpSuccess.body.message}}</p>
+        </div>
+    </ng-container>
+  </div>
+  
+
+

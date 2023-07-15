@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from '../environments/environment';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -35,6 +36,7 @@ import { UserPageComponent } from './pages/user-page/user-page.component';
 import { FeatSignInStatusComponent } from './components/features/feat-sign-in-status/feat-sign-in-status.component';
 import { FeatCardUserComponent } from './components/features/feat-card-user/feat-card-user.component';
 import { FeatSloganComponent } from './components/features/feat-slogan/feat-slogan.component';
+import { FeatRegisterStatusComponent } from './components/features/feat-register-status/feat-register-status.component';
 
 
 @NgModule({
@@ -62,7 +64,8 @@ import { FeatSloganComponent } from './components/features/feat-slogan/feat-slog
     UserPageComponent,
     FeatSignInStatusComponent,
     FeatCardUserComponent,
-    FeatSloganComponent
+    FeatSloganComponent,
+    FeatRegisterStatusComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +75,7 @@ import { FeatSloganComponent } from './components/features/feat-slogan/feat-slog
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
+    NgxDropzoneModule
   ],
   providers: [
     {
