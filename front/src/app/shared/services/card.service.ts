@@ -16,11 +16,10 @@ export class CardService {
   
   cardListCreatedByUser: Card[] = [];
   filteredCardListCreatedByUserSubject$: BehaviorSubject<Card[]> = new BehaviorSubject<Card[]>([]);
-  
 
+  
   private readonly _BASE_URL_CARD: string = "http://localhost:8080/cards";
  
-
 
   constructor(private http: HttpClient) { }
 
@@ -46,8 +45,7 @@ export class CardService {
     return this.http.delete<void>(`${this._BASE_URL_CARD}/delete/${cardId}`);
   }
 
-
-
+ 
 
   postFilterCardList(filteredCardList: Card[],) {
     this.filteredCardListSubject$.next([...filteredCardList]);

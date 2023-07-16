@@ -1,65 +1,59 @@
-* {
-    font-family: Helvetica, sans-serif;
-  }
+.card {
+  width: 354px;
+  background-color: rgb(10, 10, 10);
+  border-radius: 10px;
+  border: 5px solid rgba(0, 0, 0, 0.214);
+}
   
   .cardChild-elements {
     padding: 5px;
+    font-family: Helvetica, sans-serif;
+    color: rgb(208, 208, 208);
+  }
+
+  .container-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
-  .card {
-      width: 350px;
-      border-radius: 5px;
-      background-color: whitesmoke;
-    }
-  .card:hover {
-      cursor: pointer;
-      box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.284);
-      transition: 100ms;
+  .btn {
+    width: 200px;
+  padding: 10px;
+  margin: auto;
+  margin-bottom: 20px;
+  border: 2px solid whitesmoke;
+  border-radius: 10px;
+  background-color: rgb(10, 10, 10);
+  color: whitesmoke;
+  font-size: 17px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
   }
-  
-    .container-delete-and-favorite {
-      width: 100%;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      padding: 10px;
-  }
-  
-  .svg-delete {
-     color: rgb(38, 38, 38);
-     padding: 5px 10px;
-  }
-  .svg-delete:hover {
-      scale: 1.1;
-      color: red;
+  .btn:hover {
+    cursor: pointer;
+    border: 2px solid red;
+    transition: all 200ms;
    }
-  
-   .svg-favorite {
-    stroke: red;
-   }
-  
-    img {
-      width: 100%;
-      height: 240px;
-    }
+
+  img {
+    width: 100%;
+    height: 270px;
+  }
   
   #title {
     font-size: 20px;
-    padding: 10px 10px;
-    color: rgb(53, 53, 53);
-    font-weight: bold;
+  padding: 10px 10px;
+  font-weight: bold;
   }
-  #resume {
-    font-size: 16px;
-    padding: 10px 10px;
-    color: rgb(53, 53, 53);
-  }
-  
-  .container-door-fuel-transmission {
+
+  .container-door-fuel-transmission-year {
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
-    padding: 0px;
+    justify-content: space-around;
+    padding: 10px 0;
   }
   
   .container-kilometer-price {
@@ -69,52 +63,45 @@
     padding: 10px 0;
   }
   #kilometer {
-    font-size: 18px;
+    font-size: 21px;
     font-family: 'sans-serif';
-    color: rgb(53, 53, 53);
+    align-items: center;
   }
   span {
-    font-size: 16px;
-    color: rgb(53, 53, 53);
+    font-size: 19px;
   }
   #price {
     display: flex;
     align-items: center;
     font-size: 23px;
-    color: rgb(0, 145, 198);
     font-family: 'sans-serif';
     gap: 5px;
-  }
-  #user {
-    font-size: 15px;
-    padding: 0 10px;
-    color: rgb(53, 53, 53);
-  }
-  .container-btn {
-    display: flex;
-    justify-content: center;
+    font-weight: bold;
   }
   
   #fuel {
     font-size: 15px;
-    padding: 0 10px;
-    color: rgb(53, 53, 53);
+    padding: 0 5px;
   }
   
   #transmission {
     font-size: 15px;
-    padding: 0 10px;
-    color: rgb(53, 53, 53);
+    padding: 0 5px;
   }
   
   #door {
     font-size: 15px;
-    padding: 0 10px;
-    color: rgb(53, 53, 53);
+    padding: 0 5px;
   }
 
   #year {
     font-size: 15px;
     padding: 0 5px;
-    color: rgb(53, 53, 53);
+  }
+
+  .container-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
   }

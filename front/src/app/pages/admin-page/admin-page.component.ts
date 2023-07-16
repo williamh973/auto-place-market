@@ -18,6 +18,9 @@ export class AdminPageComponent {
   filteredCardList: Card[] = [];
 
   firstname!: String
+  lastname!: String
+
+  isCardListOpen: boolean = true;
 
   constructor(
     private cardService: CardService,
@@ -31,6 +34,17 @@ export class AdminPageComponent {
     this.dbUser.getUserFirstnameForUserPage().subscribe(
       (firstname: string) => {
         this.firstname = firstname;
+      },
+      (error: any) => {
+        console.log('Error occurred:', error);
+        console.log('Error message:', error.message);
+        console.log('Error response:', error.error);
+      }
+    );
+
+    this.dbUser.getUserLastnameForUserPage().subscribe(
+      (lastname: string) => {
+        this.lastname = lastname;
       },
       (error: any) => {
         console.log('Error occurred:', error);
@@ -56,5 +70,8 @@ export class AdminPageComponent {
     this.router.navigate(["/home"]);
   }
 
+  showCardList() {
+    this.isCardListOpen = !this.isCardListOpen
+  }
 
 }

@@ -16,7 +16,7 @@ export class FeatEditCardFormComponent {
 
 @Input()
  card: Card = new Card(
-  // [],
+  [],
   "", 
   "", 
   "", 
@@ -53,7 +53,7 @@ isFormCreateCard: EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor(
     private cardService: CardService,
     private photoService: PhotoService,
-    // private storage: AngularFireStorage
+    private storage: AngularFireStorage
     ) {}
 
     ngOnInit(): void {
@@ -80,37 +80,37 @@ isFormCreateCard: EventEmitter<boolean> = new EventEmitter<boolean>();
     }
   }
 
-  onSelect(event: any) {}
+  // onSelect(event: any) {}
 
-  // onSelect(event: any) {
-  //   this.isPhotoInTheBox = true;
-  //   this.photoService.photos.push(...event.addedFiles);
-  //   for (let file of event.addedFiles) {
-  //     const filePath = `car/${new Date().getTime()}_${file.name}`;
-  //     const fileRef = this.storage.ref(filePath);
-  //     this.storage.upload(filePath, file)
-  //       .snapshotChanges()
-  //       .pipe(
-  //         finalize(() => {
-  //           fileRef.getDownloadURL().subscribe(url => {
-  //             this.photosURL.push(url);
-  //             this.card.pictures.push({ src: url });
-  //           });
-  //         })
-  //       )
-  //       .subscribe();
-  //   }
-  // }
+  onSelect(event: any) {
+    this.isPhotoInTheBox = true;
+    this.photoService.photos.push(...event.addedFiles);
+    for (let file of event.addedFiles) {
+      const filePath = `car/${new Date().getTime()}_${file.name}`;
+      const fileRef = this.storage.ref(filePath);
+      this.storage.upload(filePath, file)
+        .snapshotChanges()
+        .pipe(
+          finalize(() => {
+            fileRef.getDownloadURL().subscribe(url => {
+              this.photosURL.push(url);
+              this.card.pictures.push({ src: url });
+            });
+          })
+        )
+        .subscribe();
+    }
+  }
 
-  onRemove(event: any) {}
+  // onRemove(event: any) {}
   
-  // onRemove(event: any) {
-  //   const removedIndex = this.photos.indexOf(event);
-  //   if (removedIndex > -1) {
-  //     this.photos.splice(removedIndex, 1);
-  //     this.photoService.photos.splice(removedIndex, 1);
-  //     this.photosURL.splice(removedIndex, 1);
-  //     this.card.pictures.splice(removedIndex, 1);
-  //   }
-  // }
+  onRemove(event: any) {
+    const removedIndex = this.photos.indexOf(event);
+    if (removedIndex > -1) {
+      this.photos.splice(removedIndex, 1);
+      this.photoService.photos.splice(removedIndex, 1);
+      this.photosURL.splice(removedIndex, 1);
+      this.card.pictures.splice(removedIndex, 1);
+    }
+  }
 }

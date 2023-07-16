@@ -5,11 +5,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import poecbdx23.livecodingjwt.card.Card;
 
+import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -62,6 +64,20 @@ public class UserController {
                 .orElseThrow(() -> new RuntimeException("User not found"));
         return ResponseEntity.ok(user.getLastname());
     }
+
+
+
+
+    @GetMapping("/cardList")
+    public ResponseEntity<Set<Card>> getUserCards(Principal principal, HttpServletRequest request) throws AccessDeniedException {
+        User user = userRepository.findByEmail(principal.getName())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        Set<Card> cardList = user.getCardList();
+
+        return ResponseEntity.ok(cardList);
+    }
+
 
 
 

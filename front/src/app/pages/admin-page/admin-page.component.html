@@ -1,18 +1,40 @@
-<div class="container-title" *ngIf="firstname">
-  <h1>Mon Espace administrateur {{ firstname }}</h1>
+<div class="container-main">
+
+  <div class="container-title">
+    <h1>Espace Administrateur</h1>
+      <div class="container-firstname-lastname">
+        <h2>{{ firstname }}</h2>
+        <h2>{{ lastname }}</h2>
+      </div>
+  </div>
+    <div class="container-btn">
+      <button (click)="clearToken()">Déconnexion</button>
+    </div>
+
 </div>
-<button (click)="clearToken()">Déconnexion</button>
 
+<div class="container-get-data">
+    <app-get-datas></app-get-datas> 
+</div>
 
-<app-get-datas></app-get-datas> 
+<div class="container-card-list">
 
+  <div id="container-btn-show-all-cards">
+    <button 
+    id="btn-show-all-cards"
+    (click)="showCardList()">{{ isCardListOpen ? 'Fermer la liste' : 'Voir toutes les cartes' }}</button>
+  </div>
 
-<div class="card-list">
+  <div class="search-bar" *ngIf="isCardListOpen">
+  <app-feat-search 
+  ></app-feat-search>
+</div>
 
-    <div *ngFor="let card of (filteredCardList.length > 0 ? filteredCardList : cardList); let i = index">
-      <app-feat-card-admin
-         [cardChild]="card"
-     ></app-feat-card-admin>
+  <div class="card-list" *ngIf="isCardListOpen">
+      <div *ngFor="let card of (filteredCardList.length > 0 ? filteredCardList : cardList); let i = index">
+        <app-feat-card-admin
+           [cardChild]="card"
+       ></app-feat-card-admin>
+      </div>
     </div>
   </div>
-  

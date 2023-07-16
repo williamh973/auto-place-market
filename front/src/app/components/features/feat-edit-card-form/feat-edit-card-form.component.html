@@ -14,16 +14,16 @@
 <div class="first-part">
     
   <label for="image">Image</label>
-    <input 
+    <!-- <input 
     type="text" 
     name="image" 
     id="image" 
     [(ngModel)]="card.image"
     placeholder="Une belle photo * "
     required
-    >
+    > -->
    
-      <!-- <ngx-dropzone 
+      <ngx-dropzone 
       class="ngx-dropzone"
       [accept]="'image/*'" 
       (change)="onSelect($event)"
@@ -40,9 +40,8 @@
         [file]="photo" 
         [removable]="true" 
         (removed)="onRemove(photo)"
-        [(ngModel)]="card.image"
       ></ngx-dropzone-image-preview>
-      </ngx-dropzone> -->
+      </ngx-dropzone>
 
     
     <label for="title">Titre</label>

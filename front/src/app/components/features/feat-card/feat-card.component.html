@@ -9,9 +9,9 @@
 
     <svg 
     xmlns="http://www.w3.org/2000/svg" 
-    width="22" 
-    height="22" 
-    viewBox="0 0 24 24" 
+    width="20" 
+    height="20" 
+    viewBox="0 0 22 22" 
     fill="none" 
     stroke="currentColor" 
     stroke-width="2" 
@@ -81,18 +81,19 @@ class="container-user"
       id="kilometer"
       class="cardChild-elements"
       >{{ cardChild.kilometer }} 
-      <span>Km</span>
+      <span id="km">Km</span>
     </div>
     <div
      id="price"
      class="cardChild-elements"
      >{{ cardChild.price }}
      <span>€</span>
+     <span id="ttc">TTC</span>
     </div>
 </div>
 
   <div class="container-btn" title="Voir en détail ?">
-    <a [routerLink]="['/car-detail', cardChild.id]">Cette voiture m'interresse</a>
+    <a [routerLink]="['/car-detail', cardChild.id]">En savoir plus</a>
   </div>
 </div>
 

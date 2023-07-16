@@ -56,14 +56,18 @@ export class UserPageComponent {
 
 
 
-      this.cardService.getCardList().subscribe((cardListFromDatabase: Card[]) => {
+      // this.cardService.getCardList().subscribe((cardListFromDatabase: Card[]) => {
+      //   this.cardListCreatedByUser = cardListFromDatabase;
+      //   }) 
+
+      this.dbUser.getUserCards().subscribe((cardListFromDatabase: Card[]) => {
         this.cardListCreatedByUser = cardListFromDatabase;
         }) 
-    
      
-        this.cardService.getFilteredCardList$().subscribe((newFileteredCardList: Card[]) => {
-          this.filteredCardListCreatedByUser = newFileteredCardList;
-        });
+     
+        // this.cardService.getFilteredCardList$().subscribe((newFileteredCardList: Card[]) => {
+        //   this.filteredCardListCreatedByUser = newFileteredCardList;
+        // });
 
     }
 

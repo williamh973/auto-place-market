@@ -1,5 +1,40 @@
+.container-main {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.884);
+}
+
+.container-title {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-firstname-lastname {
+    display: flex;
+}
+
 h1 {
-    padding: 20px;
+    font-size: 45px;
+    color: rgba(245, 245, 245, 0.945);
+    cursor: default;
+    padding: 10px 20px;
+}
+
+h2 {
+    font-style: italic;
+    font-size: 45px;
+    color: rgba(245, 245, 245, 0.945);
+    cursor: default;
+    padding: 10px 20px;
+}
+
+.container-get-data {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 220px;
 }
 
 .container-create-card {
@@ -8,11 +43,20 @@ h1 {
     justify-content: center;
 }
 
+.container-btn {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 20px;
+}
+
 button {
-    padding: 10px 20px;
-    border: 2px solid whitesmoke;
+      width: 150px;
+      height: 50px;
+      border: 2px solid whitesmoke;
       border-radius: 10px;
-      background-color:  rgba(0, 0, 0, 0.866);
+      background-color: transparent;
       color: whitesmoke;
       font-size: 15px;
       cursor: pointer;
@@ -23,14 +67,46 @@ button:hover {
         transition: all 200ms;
 }
 
+#container-btn-show-all-cards {
+    width: 100%;
+    margin-bottom: 200px;
+}
+
+.container-card-list {
+    margin-top: 100px;
+}
+
+#btn-show-all-cards {
+    width: 350px;
+    height: 45px;
+    text-align: center;
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    font-family: Helvetica, sans-serif;
+    font-style: italic;
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 25px;
+    margin: 0 50px;
+    color: black;
+}
+#btn-show-all-cards:hover {
+    width: 350px;
+    text-align: center;
+    padding: 10px;
+    background-color: rgb(224, 224, 224);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 100ms;
+}
 
 .card-list {
     gap: 50px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 50px;
+    margin: auto;
     padding: 20px 0;
 }
-
 

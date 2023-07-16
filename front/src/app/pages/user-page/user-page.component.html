@@ -1,12 +1,16 @@
-<div class="container-title" *ngIf="firstname">
-  <h1>Bienvenue dans ton espace </h1>
-    <div class="lastname-firstname">
-      <span>{{ lastname }}</span>
-      <span>{{ firstname }}</span>
-    </div>
-</div>
-<button (click)="clearToken()">Déconnexion</button>
+<div class="container-head">
 
+  <button class="btn-Logout" (click)="clearToken()">Déconnexion</button>
+
+  <div class="container-title">
+    <h1>Bienvenue dans ton espace</h1>
+      <div class="lastname-firstname">
+        <span>{{ lastname }}</span>
+        <span>{{ firstname }}</span>
+      </div>
+  </div>
+
+</div>
 
 <div class="card-list">
 
@@ -15,4 +19,5 @@
        [cardChild]="card"
    ></app-feat-card-user>
   </div>
+
 </div>

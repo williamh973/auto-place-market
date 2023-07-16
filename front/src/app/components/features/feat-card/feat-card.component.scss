@@ -28,6 +28,7 @@
 
 svg {
   color: whitesmoke;
+  background-color: transparent;
 }
 svg:hover {
    cursor: pointer;
@@ -63,6 +64,7 @@ svg:active {
   font-size: 20px;
   padding: 10px 10px;
   font-weight: bold;
+  text-align: center;
 }
 
 .container-door-fuel-transmission-year {
@@ -83,8 +85,13 @@ svg:active {
   font-family: 'sans-serif';
   align-items: center;
 }
-span {
+
+#km {
   font-size: 19px;
+}
+#ttc {
+  font-size: 16px;
+  margin-left: 10px;
 }
 #price {
   display: flex;

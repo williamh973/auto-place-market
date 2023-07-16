@@ -8,5 +8,5 @@ export class User {
         public email: string,
         public cardList: Card[],
         public role: "ROLE_USER" | "ROLE_ADMIN"
-    ) {} 
-}
+    ) {}  
+} 
