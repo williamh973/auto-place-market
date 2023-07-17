@@ -5,6 +5,7 @@ import { CardService } from 'src/app/shared/services/card.service';
 import { PhotoService } from 'src/app/shared/services/photo-service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs/operators';
+import { RentPictures } from 'src/app/models/rent-pictures.model';
 
 @Component({
   selector: 'app-feat-edit-card-form',
@@ -15,26 +16,27 @@ export class FeatEditCardFormComponent {
 
 
 @Input()
- card: Card = new Card(
+ card:  Card = new Card(
   [],
-  "", 
-  "", 
-  "", 
+  '', 
+  '', 
+  '', 
   0, 
-  0 , 
-  0 , 
-  "" , 
-  "",
-  0 ,
+  0, 
+  0, 
+  '', 
+  '',
+  0,
   new User(
-    "", 
-    "", 
-    "", 
-    "", 
+    '', 
+    '', 
+    '', 
+    '', 
     [], 
-    "ROLE_USER"
+    'ROLE_USER'
     )
-  ) 
+);
+
 
 @Input() 
 createMode: boolean = false;
@@ -45,9 +47,9 @@ isCardEditFormToggle: EventEmitter<boolean> = new EventEmitter<boolean>();
 @Output() 
 isFormCreateCard: EventEmitter<boolean> = new EventEmitter<boolean>();
  
+  isPhotoInTheBox: boolean = false;
   photos: File[] = [];
   photosURL: string[] = [];
-  isPhotoInTheBox: boolean = false;
 
 
   constructor(
@@ -80,29 +82,26 @@ isFormCreateCard: EventEmitter<boolean> = new EventEmitter<boolean>();
     }
   }
 
-  // onSelect(event: any) {}
 
   onSelect(event: any) {
     this.isPhotoInTheBox = true;
     this.photoService.photos.push(...event.addedFiles);
+
     for (let file of event.addedFiles) {
-      const filePath = `car/${new Date().getTime()}_${file.name}`;
+      const filePath = `car/${new Date().getTime()}_${file.name}.png`;
       const fileRef = this.storage.ref(filePath);
       this.storage.upload(filePath, file)
         .snapshotChanges()
         .pipe(
           finalize(() => {
             fileRef.getDownloadURL().subscribe(url => {
-              this.photosURL.push(url);
-              this.card.pictures.push({ src: url });
+              this.card.image = url;
             });
           })
         )
         .subscribe();
     }
   }
-
-  // onRemove(event: any) {}
   
   onRemove(event: any) {
     const removedIndex = this.photos.indexOf(event);

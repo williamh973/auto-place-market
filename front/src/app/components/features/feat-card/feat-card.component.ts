@@ -10,7 +10,7 @@ import { Card } from 'src/app/models/card.model';
 })
 export class FeatCardComponent implements OnInit {
 
-  @Input() cardChild!: Card;
+  @Input() card!: Card;
 
 
   isCardEditFormToggle: boolean = false;

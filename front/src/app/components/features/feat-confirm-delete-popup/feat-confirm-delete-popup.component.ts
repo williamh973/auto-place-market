@@ -9,7 +9,7 @@ import { CardService } from 'src/app/shared/services/card.service';
 })
 export class FeatConfirmDeletePopupComponent {
   
-  @Input() cardChild!: Card;
+  @Input() card!: Card;
 
   @Output() onisConfirmDeletePopupEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -25,7 +25,7 @@ export class FeatConfirmDeletePopupComponent {
   } 
 
   deleteCard() {
-    this.cardService.deleteCard(this.cardChild.id as number).subscribe();
+    this.cardService.deleteCard(this.card.id as number).subscribe();
     window.location.reload();
   }
 

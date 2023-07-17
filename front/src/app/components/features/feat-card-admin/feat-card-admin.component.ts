@@ -9,7 +9,7 @@ import { Card } from 'src/app/models/card.model';
 })
 export class FeatCardAdminComponent implements OnInit {
 
-  @Input() cardChild!: Card;
+  @Input() card!: Card;
 
   isCardEditFormToggle: boolean = false;
   isFavorite: boolean = false;

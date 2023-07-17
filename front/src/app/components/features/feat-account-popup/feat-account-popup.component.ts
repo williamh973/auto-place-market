@@ -24,7 +24,7 @@ export class FeatAccountPopupComponent {
   onOpenSignInForm() {
      this.isSignInFormOpen = true;
   }
-
+ 
   onOpenRegisterForm() {
      this.isRegisterFormOpen = true;
   }

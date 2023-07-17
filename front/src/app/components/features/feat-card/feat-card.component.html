@@ -29,27 +29,23 @@
 class="container-user"
 >Mis en ligne par 
  <span id="user">
-   {{ cardChild.user.firstname }}
+   {{ card.user.firstname }}
  </span> 
 </div>
 
 </div>
-    <!-- <div>
-      <img 
-      [src]="cardChild.image" 
-      alt="Image"
-      >
-    </div> -->
+
     <div>
       <img 
-      [src]="cardChild.image" 
+      [src]="card.image" 
       alt="Image"
       >
     </div>
+    
     <div
     id="title"
-    class="cardChild-elements"
-    >{{ cardChild.title }}
+    class="cardChild-elements" 
+    >{{ card.title }}
   </div>
   <div 
   class="container-door-fuel-transmission-year"
@@ -57,22 +53,22 @@ class="container-user"
   <li
     id="door"
     class="cardChild-elements"
-    >{{ cardChild.door }} Portes
+    >{{ card.door }} Portes
   </li>
   <li 
     id="fuel"
     class="cardChild-elements"
-    >{{ cardChild.fuel }}
+    >{{ card.fuel }}
   </li>
   <li 
     id="transmission"
     class="cardChild-elements"
-    >{{ cardChild.transmission }}
+    >{{ card.transmission }}
   </li>
   <li 
   id="year"
   class="cardChild-elements"
-  >{{ cardChild.year }}
+  >{{ card.year }}
 </li>
 </div>
 
@@ -80,20 +76,20 @@ class="container-user"
     <div
       id="kilometer"
       class="cardChild-elements"
-      >{{ cardChild.kilometer }} 
+      >{{ card.kilometer }} 
       <span id="km">Km</span>
     </div>
     <div
      id="price"
      class="cardChild-elements"
-     >{{ cardChild.price }}
+     >{{ card.price }}
      <span>€</span>
      <span id="ttc">TTC</span>
     </div>
 </div>
 
   <div class="container-btn" title="Voir en détail ?">
-    <a [routerLink]="['/car-detail', cardChild.id]">En savoir plus</a>
+    <a [routerLink]="['/car-detail', card.id]">En savoir plus</a>
   </div>
 </div>
 

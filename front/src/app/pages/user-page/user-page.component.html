@@ -16,7 +16,7 @@
 
   <div *ngFor="let card of (filteredCardListCreatedByUser.length > 0 ? filteredCardListCreatedByUser : cardListCreatedByUser); let i = index">
     <app-feat-card-user
-       [cardChild]="card"
+       [card]="card"
    ></app-feat-card-user>
   </div>
 

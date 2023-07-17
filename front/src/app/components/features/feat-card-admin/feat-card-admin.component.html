@@ -1,7 +1,7 @@
 <app-feat-confirm-delete-popup
 *ngIf="isConfirmDeletePopup"
 (onisConfirmDeletePopupEmit)="onRecevedMethodForCloseConfirmDeletePopup($event)"
-[cardChild]="cardChild"
+[card]="card"
 >
 </app-feat-confirm-delete-popup>
 
@@ -18,35 +18,35 @@
 
     <div>
       <img 
-      [src]="cardChild.image" 
+      [src]="card.image" 
       alt="Image"
       ></div>
     <div
     id="title"
     class="cardChild-elements"
-    >{{ cardChild.title }}
+    >{{ card.title }}
   </div>
 
   <div class="container-door-fuel-transmission-year">
     <li
     id="door"
     class="cardChild-elements"
-    >{{ cardChild.door }} Portes
+    >{{ card.door }} Portes
   </li>
   <li 
     id="fuel"
     class="cardChild-elements"
-    >{{ cardChild.fuel }}
+    >{{ card.fuel }}
   </li>
   <li 
     id="transmission"
     class="cardChild-elements"
-    >{{ cardChild.transmission }}
+    >{{ card.transmission }}
   </li>
   <li 
   id="year"
   class="cardChild-elements"
-  >{{ cardChild.year }}
+  >{{ card.year }}
 </li>
 </div>
 
@@ -54,13 +54,13 @@
   <div
     id="kilometer"
     class="cardChild-elements"
-    >{{ cardChild.kilometer }} 
+    >{{ card.kilometer }} 
     <span>Km</span>
   </div>
   <div
    id="price"
    class="cardChild-elements"
-   >{{ cardChild.price }}
+   >{{ card.price }}
    <span>€</span>
   </div>
 </div>
@@ -80,7 +80,7 @@
 <app-feat-edit-card-form 
 *ngIf="isCardEditFormToggle"
 (isCardEditFormToggle)="toggleCardEditForm($event)"
-[card]="cardChild"
+[card]="card"
 ></app-feat-edit-card-form>
 
 
