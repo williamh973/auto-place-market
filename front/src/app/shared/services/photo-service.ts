@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class PhotoService {
 
-  photos: File[] = [];
+  photosList: File[] = [];
 
   constructor() { }
 }

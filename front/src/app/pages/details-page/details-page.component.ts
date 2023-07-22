@@ -10,7 +10,7 @@ import { Card } from '../../models/card.model';
 })
 export class DetailsPageComponent implements OnInit {
 
-  cardChild!: Card;
+  card!: Card;
 
   constructor(
     private route: ActivatedRoute,
@@ -18,12 +18,14 @@ export class DetailsPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
+
     this.route.paramMap.subscribe((params: Params) => {
       const cardId = +params['get']('id');
       
       this.cardService.getCardById(cardId).subscribe(
         (card: Card) => {
-          this.cardChild = card;
+          this.card = card;
         },
         (error) => {
           console.log('Erreur lors de la récupération des détails de la carte :', error);
@@ -31,6 +33,5 @@ export class DetailsPageComponent implements OnInit {
       );
     });
   }
-
 
 }

@@ -35,18 +35,17 @@ class="container-user"
 
 </div>
 
-    <div>
-      <img 
-      [src]="card.image" 
-      alt="Image"
-      >
-    </div>
-    
+
+<div>
+  <img [src]="card.image" alt="Image">
+</div>
+
+
     <div
     id="title"
     class="cardChild-elements" 
     >{{ card.title }}
-  </div>
+  </div> 
   <div 
   class="container-door-fuel-transmission-year"
   >
@@ -92,5 +91,7 @@ class="container-user"
     <a [routerLink]="['/car-detail', card.id]">En savoir plus</a>
   </div>
 </div>
+
+
 
 

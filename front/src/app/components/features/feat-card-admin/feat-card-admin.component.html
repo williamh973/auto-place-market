@@ -16,11 +16,10 @@
     </button>
   </div>
 
-    <div>
-      <img 
-      [src]="card.image" 
-      alt="Image"
-      ></div>
+  <div>
+    <img [src]="card.image" alt="Image">
+  </div>
+
     <div
     id="title"
     class="cardChild-elements"
@@ -71,16 +70,16 @@
     <button 
     class="btn"
     (click)="openEditDialogue()"
-    >{{ isCardEditFormToggle ? 'Fermer' : 'Modifier'}}
+    >{{ isEditCardFormOpen ? 'Fermer' : 'Modifier'}}
    </button>
   </div>
 
 </div>
 
 <app-feat-edit-card-form 
-*ngIf="isCardEditFormToggle"
-(isCardEditFormToggle)="toggleCardEditForm($event)"
+*ngIf="isEditCardFormOpen"
 [card]="card"
+(onCloseEditCardFormEmit)="onRecevedMethodForCloseEditCardForm($event)"
 ></app-feat-edit-card-form>
 
 

@@ -17,7 +17,7 @@
 
 h1 {
     font-size: 45px;
-    color: rgba(245, 245, 245, 0.945);
+    color: rgb(208, 208, 208);
     cursor: default;
     padding: 10px 20px;
 }
@@ -25,7 +25,7 @@ h1 {
 h2 {
     font-style: italic;
     font-size: 45px;
-    color: rgba(245, 245, 245, 0.945);
+    color: rgb(208, 208, 208);
     cursor: default;
     padding: 10px 20px;
 }
@@ -35,13 +35,14 @@ h2 {
     height: 100%;
     position: absolute;
     top: 220px;
+    color: rgb(208, 208, 208);
 }
 
-.container-create-card {
-    width: 150px;
-    display: flex;
-    justify-content: center;
-}
+// .container-create-card {
+//     width: 150px;
+//     display: flex;
+//     justify-content: center;
+// }
 
 .container-btn {
     width: 100%;
@@ -49,6 +50,7 @@ h2 {
     justify-content: flex-end;
     align-items: center;
     margin-right: 20px;
+    color: rgb(208, 208, 208);
 }
 
 button {
@@ -57,7 +59,7 @@ button {
       border: 2px solid whitesmoke;
       border-radius: 10px;
       background-color: transparent;
-      color: whitesmoke;
+      color: rgb(208, 208, 208);
       font-size: 15px;
       cursor: pointer;
 }
@@ -88,17 +90,17 @@ button:hover {
     border: 1px solid rgb(190, 190, 190);
     border-radius: 25px;
     margin: 0 50px;
-    color: black;
+    color: rgb(208, 208, 208);
 }
 #btn-show-all-cards:hover {
     width: 350px;
     text-align: center;
     padding: 10px;
-    background-color: rgb(224, 224, 224);
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    transition: all 100ms;
+    border: 2px solid rgb(0, 177, 0);
+    transition: all 200ms;
 }
 
 .card-list {

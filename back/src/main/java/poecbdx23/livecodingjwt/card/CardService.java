@@ -25,6 +25,9 @@ public class CardService {
     public List<Card> getAllCards() {
         return cardRepository.findAll();
     }
+    public List<Card> getAll() {
+        return cardRepository.findAll();
+    }
 
 
     public Card addCard(Card card) {
@@ -33,7 +36,7 @@ public class CardService {
         return cardRepository.save(card);
     }
 
-    private User getCurrentUser() {
+        private User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
 
@@ -73,7 +76,5 @@ public class CardService {
         cardRepository.deleteById(id);
     }
 
-    public List<Card> getAll() {
-        return cardRepository.findAll();
-    }
+
 }

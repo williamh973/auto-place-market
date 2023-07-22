@@ -11,6 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(10px);
 }
 
 svg {
@@ -49,42 +50,32 @@ svg:hover {
     flex-direction: column;
 }
 
-.second-part {
-    display: flex;
-    flex-direction: column;
-}
-
  .ngx-dropzone {
     border: 2px dashed grey;
     border-radius: 10px;
     background-color: transparent;
     width: 354px;
-    height: 170px;
-    margin-bottom: 38px;
+    height: 200px;
+    
 }
 
- h3 {
+ h2, h3 {
      text-align: center;
      padding: 20px;
      color: rgba(245, 245, 245, 0.803);
-     letter-spacing: 1.5px;
+     letter-spacing: 1px;
  }
  label {
      color: rgba(245, 245, 245, 0.803);
      font-size: large;
      letter-spacing: 1.5px;
  }
- input {
-     width: 354px;
-     height: 30px;
-     border: 1px solid  rgb(255, 255, 255);
-     border-radius: 10px;
-     font-size: 16px;
-     background-color: rgba(0, 0, 0, 0.755);
-     color: rgb(211, 211, 211);
-     padding: 5px;
-    //  outline: none;
-     margin-bottom: 20px;
+
+ .container-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
  }
     
  button {
@@ -103,37 +94,4 @@ svg:hover {
      border: 2px solid rgb(0, 177, 0);
      transition: all 200ms;
  } 
- .container-transmission {
-     display: flex;
-     flex-direction: column;
- } 
- #transmission {
-     width: 364px;
-     padding: 10px;
-     background-color: rgba(0, 0, 0, 0.755);
-     color: whitesmoke;
-     border: 1px solid  rgb(255, 255, 255);
-     border-radius: 10px;
-     font-size: 16px;
-     cursor: pointer;
-     margin-bottom: 20px;
- } 
- .container-fuel{
-     display: flex;
-     flex-direction: column;
- } 
- #fuel{
-     width: 364px;
-     padding: 10px;
-     background-color: rgba(0, 0, 0, 0.755);
-     color: whitesmoke;
-     border: 1px solid  rgb(255, 255, 255);
-     border-radius: 10px;
-     font-size: 16px;
-     cursor: pointer;
-     margin-bottom: 20px;
- }
-
- .select-your-choise {
-     color: grey;
- } 
+ 

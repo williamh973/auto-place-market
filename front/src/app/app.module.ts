@@ -37,6 +37,8 @@ import { FeatSignInStatusComponent } from './components/features/feat-sign-in-st
 import { FeatCardUserComponent } from './components/features/feat-card-user/feat-card-user.component';
 import { FeatSloganComponent } from './components/features/feat-slogan/feat-slogan.component';
 import { FeatRegisterStatusComponent } from './components/features/feat-register-status/feat-register-status.component';
+import { Step1Component } from './components/features/feat-edit-card-form/step1/step1.component';
+import { Step2Component } from './components/features/feat-edit-card-form/step2/step2.component';
 
 
 @NgModule({
@@ -65,7 +67,9 @@ import { FeatRegisterStatusComponent } from './components/features/feat-register
     FeatSignInStatusComponent,
     FeatCardUserComponent,
     FeatSloganComponent,
-    FeatRegisterStatusComponent
+    FeatRegisterStatusComponent,
+    Step1Component,
+    Step2Component
   ],
   imports: [
     BrowserModule,

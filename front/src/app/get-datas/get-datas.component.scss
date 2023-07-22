@@ -15,6 +15,7 @@
     border: 1px solid rgb(190, 190, 190);
     border-radius: 25px;
     margin: 0 50px;
+    color: rgb(208, 208, 208);
 }
 #btn-search-profil:hover {
     width: 350px;
@@ -25,6 +26,7 @@
     border-radius: 25px;
     cursor: pointer;
     transition: all 100ms;
+    color: rgb(0, 0, 0);
 }
 
 form {
@@ -41,6 +43,7 @@ label {
     font-weight: bold;
     margin-left: 20px;
     margin-bottom: 5px;
+    color: rgb(208, 208, 208);
 }
 
 .container-search-profil {
@@ -68,6 +71,7 @@ label {
     border: 1px solid rgb(190, 190, 190);
     border-radius: 25px;
     margin-top: 20px;
+    color: rgb(208, 208, 208);
 }
 #btn-submit-profil-user:hover, #btn-submit-all-user:hover {
     width: 200px;
@@ -79,6 +83,7 @@ label {
     cursor: pointer;
     scale: 1.05;
     transition: all 100ms;
+    color: rgb(0, 0, 0);
 }
 
 #btn-submit-profil-user:active, #btn-submit-all-user:active {
@@ -96,6 +101,7 @@ transition: all 100ms;
     border-radius: 25px;
     margin-left: 50px;
     margin-top: 70px;
+    color: rgb(208, 208, 208);
 }
 .main-container-user::-webkit-scrollbar {
     width: 10px;
@@ -128,6 +134,7 @@ transition: all 100ms;
     padding-left: 15px;
     font-size: 20px;
     background-color: rgb(231, 231, 231);
+    color: rgb(0, 0, 0);
 }
 
 ul {

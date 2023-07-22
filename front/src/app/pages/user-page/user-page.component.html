@@ -1,6 +1,8 @@
 <div class="container-head">
 
+
   <button class="btn-Logout" (click)="clearToken()">Déconnexion</button>
+
 
   <div class="container-title">
     <h1>Bienvenue dans ton espace</h1>
@@ -16,8 +18,8 @@
 
   <div *ngFor="let card of (filteredCardListCreatedByUser.length > 0 ? filteredCardListCreatedByUser : cardListCreatedByUser); let i = index">
     <app-feat-card-user
-       [card]="card"
-   ></app-feat-card-user>
+    [card]="card"
+    ></app-feat-card-user>
   </div>
 
 </div>

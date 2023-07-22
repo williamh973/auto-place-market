@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
+import { User } from 'src/app/models/user.model';
 
 
 @Component({
@@ -11,19 +12,17 @@ export class FeatCardUserComponent {
 
   @Input() card!: Card;
 
-  isCardEditFormToggle: boolean = false;
+  @Input() 
+  createMode: boolean = false;
+
+  isEditCardFormOpen: boolean = false;
   isFavorite: boolean = false;
   isConfirmDeletePopup: boolean = false;
 
 
 
-
-  toggleCardEditForm(value: boolean) {
-    this.isCardEditFormToggle = value;
-  }
-
-  openEditDialogue() {
-    this.isCardEditFormToggle = !this.isCardEditFormToggle;
+  openEditForm() {
+    this.isEditCardFormOpen = !this.isEditCardFormOpen;
   }
 
 
@@ -40,5 +39,8 @@ onRecevedMethodForCloseConfirmDeletePopup(isConfirmDeletePopup: boolean) {
   this.isConfirmDeletePopup = isConfirmDeletePopup;
 }
 
+onRecevedMethodForCloseEditCardForm(isEditCardFormOpen: boolean) {
+  this.isEditCardFormOpen = isEditCardFormOpen;
+}
 
 }

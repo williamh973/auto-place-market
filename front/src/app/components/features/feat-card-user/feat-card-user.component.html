@@ -5,7 +5,7 @@
 >
 </app-feat-confirm-delete-popup>
 
-
+ 
 <div class="card">
 
   <div class="container-btn">
@@ -17,10 +17,7 @@
   </div>
 
   <div>
-    <img 
-    [src]="card.image" 
-    alt="Image"
-    >
+    <img [src]="card.image" alt="Image">
   </div>
 
     <div
@@ -72,17 +69,17 @@
   <div class="container-btn">
     <button 
     class="btn"
-    (click)="openEditDialogue()"
-    >{{ isCardEditFormToggle ? 'Fermer' : 'Modifier'}}
+    (click)="openEditForm()"
+    >{{ isEditCardFormOpen ? 'Fermer' : 'Modifier'}}
    </button>
   </div>
 
 </div>
 
 <app-feat-edit-card-form 
-*ngIf="isCardEditFormToggle"
-(isCardEditFormToggle)="toggleCardEditForm($event)"
+*ngIf="isEditCardFormOpen"
 [card]="card"
+(onCloseEditCardFormEmit)="onRecevedMethodForCloseEditCardForm($event)"
 ></app-feat-edit-card-form>
 
 

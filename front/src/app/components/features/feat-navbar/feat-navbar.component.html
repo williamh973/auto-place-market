@@ -10,7 +10,7 @@
 <div class="container-button-shoppong-and-account">
 
     <div class="container-button">
-      <button (click)="createCard()" 
+      <button (click)="onEditCardFormOpen()" 
         >Mettre ma voiture
       </button>
     </div>
@@ -37,11 +37,12 @@
 
 </div>
 
+
 <app-feat-edit-card-form 
 class="edit-card-form"
-*ngIf="isFormCreateCard"
-(isFormCreateCard)="toggleCardCreateForm($event)"
+*ngIf="isEditCardFormOpen"
 [createMode]="true"
+(onCloseEditCardFormEmit)="onRecevedMethodForCloseEditCardForm($event)"
 ></app-feat-edit-card-form>
 
 

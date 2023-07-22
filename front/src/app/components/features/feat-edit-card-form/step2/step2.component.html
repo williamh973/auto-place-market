@@ -1,0 +1,80 @@
+<div
+*ngIf="currentStep === 2" 
+ class="full-form">
+
+    <form (ngSubmit)="onSubmit()">
+   
+        <svg 
+        (click)="onCancelAllStepsForms()" 
+        xmlns="http://www.w3.org/2000/svg" 
+        width="22" 
+        height="22" 
+        viewBox="0 0 24 24"
+        >
+            <path 
+            fill="none" 
+            d="M0 0h24v24H0z"
+            />
+            <path 
+            d="M18 6L6 18M6 6l12 12" 
+            stroke="currentColor" 
+            stroke-width="2" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"
+            />
+           </svg>
+           
+           <h2>
+            {{ createMode ? 'Mettre mon véhicule en ligne (Etape 2)' : 'Modifier mon véhicule (Etape 2)' }}
+           </h2>
+           <h3>
+            {{ createMode ? 'Au moins une photo est nécéssaire pour compléter votre annonce.' : 'Si vous ne souhaitez modifier les photos actuelles de votre véhicule, vous pouvez quitter le formulaire.' }}
+           </h3>
+           
+   <div class="all-elements">
+   
+   <div class="first-part">
+       
+     <label for="image">Image</label>
+   
+         <ngx-dropzone 
+         class="ngx-dropzone"
+         [accept]="'image/*'" 
+         (change)="onSelect($event)"
+        >
+         <ngx-dropzone-label>
+           <div 
+           title="Téléverser la ou les photo(s) désirée(s) en cliquant ici.">
+               <h3>
+                {{ createMode ? 'Téléverser les photos de votre véhicule ici *' : 'Téléverser les nouvelles photos ici *' }}
+               </h3>
+           </div>
+         </ngx-dropzone-label>
+   
+         <ngx-dropzone-image-preview 
+           ngProjectAs="ngx-dropzone-preview" 
+           *ngFor="let photo of photosList" 
+           [file]="photo" 
+           [removable]="true" 
+           (removed)="onRemove(photo)"
+         ></ngx-dropzone-image-preview>
+         </ngx-dropzone>
+   
+   </div>
+       
+   </div>
+   
+   <div class="container-btn">
+      <button 
+      type="button"
+      (click)="onGoToStep1()"
+      >Précédent
+     </button>
+
+      <button type="submit">Je valide</button>
+   </div>
+   </form>
+   
+   </div>
+   
+   

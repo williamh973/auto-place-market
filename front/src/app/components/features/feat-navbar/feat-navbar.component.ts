@@ -10,6 +10,7 @@ import { TokenService } from 'src/app/shared/services/token.service';
 export class FeatNavbarComponent {
 
 
+ 
   constructor(
     private tokenService: TokenService,
     public accountPopupService: AccountPopupService
@@ -17,7 +18,7 @@ export class FeatNavbarComponent {
 
 
   isAccountPopupOpen: boolean = false;
-  isFormCreateCard: boolean = false;
+  isEditCardFormOpen: boolean = false;
  
   delaySecondsForAnimationSearchBar: number = 2;
 
@@ -26,17 +27,18 @@ export class FeatNavbarComponent {
     return this.tokenService.checkToken();
   }
 
-  createCard() {
+  onEditCardFormOpen() {
     if (this.checkToken()) {
-      this.isFormCreateCard = !this.isFormCreateCard
+      this.isEditCardFormOpen = !this.isEditCardFormOpen;
       this.accountPopupService.closePopup();
     } else {
       this.accountPopupService.openPopup();
     }
   }
- 
-  toggleCardCreateForm(value: boolean) {
-    this.isFormCreateCard = value;
+
+  onRecevedMethodForCloseEditCardForm(isEditCardFormOpen: boolean) {
+    this.isEditCardFormOpen = isEditCardFormOpen;
   }
+
 
 }

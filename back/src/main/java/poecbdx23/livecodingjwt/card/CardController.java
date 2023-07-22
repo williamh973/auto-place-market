@@ -31,10 +31,12 @@ public class  CardController {
         return cardService.getCardById(id);
     }
 
+
     @PostMapping("/add")
     public Card addCard(@RequestBody Card card) {
-        return cardService.addCard(card);
-    }
+    return cardService.addCard(card);
+}
+
 
     @PutMapping("/update/{id}")
     public Card updateCard(@RequestBody Card card, @PathVariable("id") Long id) {

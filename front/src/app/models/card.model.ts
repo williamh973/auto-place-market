@@ -1,9 +1,8 @@
-import { RentPictures } from "./rent-pictures.model";
+import { Picture } from "./picture.model";
 import { User } from "./user.model";
 
 export class Card {
     constructor(
-        public pictures: RentPictures[],
         public image: string,
         public title: string,
         public resume: string,
@@ -13,6 +12,7 @@ export class Card {
         public transmission: string,
         public fuel: string,
         public year: number,
+        public picturesList: Picture[],
         public user: User,
         public id?: number
     ) { }
