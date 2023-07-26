@@ -12,6 +12,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import poecbdx23.livecodingjwt.card.Card;
+import poecbdx23.livecodingjwt.favorite.Favorite;
+
+
 import java.util.Collection;
 
 import java.util.*;
@@ -36,18 +39,18 @@ public class User implements UserDetails {
 
 
 
+
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnoreProperties("user")
     private Set<Card> cardList = new HashSet<>();
 
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JsonIgnoreProperties({"user", "cardList"})
+    private List<Favorite> favoriteList = new ArrayList<>();
 
 
 
-///////////////////////// -- A GARDER -- ////////////////////////////////
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return List.of(new SimpleGrantedAuthority(role));
-//    }
+
 
     @JsonDeserialize(using = CustomGrantedAuthorityDeserializer.class)
     @Override
@@ -55,9 +58,7 @@ public class User implements UserDetails {
     List<GrantedAuthority> authorities = new ArrayList<>();
     authorities.add(new SimpleGrantedAuthority(role));
     return authorities;
-}
-
-
+   }
 
 
     @Override
@@ -84,4 +85,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

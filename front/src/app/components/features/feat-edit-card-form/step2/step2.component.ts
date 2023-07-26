@@ -37,6 +37,7 @@ card:  Card = new Card(
     '', 
     '', 
     [], 
+    [], 
     'ROLE_USER'
     )
 );
@@ -121,31 +122,20 @@ isSubmitting: boolean = false;
 onSelect(event: any) {
   this.isPhotoInTheBox = true;
   this.photoService.photosList.push(...event.addedFiles);
-
-  this.isSubmitting = true;
-
-  const uploadObservables = this.photoService.photosList.map((photo: File) => {
-    const filePath = `car/${new Date().getTime()}_${photo.name}.png`;
+  for (let file of event.addedFiles) {
+    const filePath = `car/${new Date().getTime()}_${file.name}.png`;
     const fileRef = this.storage.ref(filePath);
-    return this.storage.upload(filePath, photo).snapshotChanges();
-  });
-
-  forkJoin(uploadObservables).pipe(
-    finalize(() => {
-      const downloadUrlsObservables = uploadObservables.map((snapshot: any) => snapshot.ref.getDownloadURL());
-
-      forkJoin(downloadUrlsObservables).subscribe((downloadUrls: string[]) => {
-        this.card.picturesList = downloadUrls.map((url: string) => new Picture(url));
-
-        this.isSubmitting = false;
-        this.photoService.photosList = [];
-        console.log(this.card.picturesList);
-      }, (error) => {
-        console.error('Erreur lors de la récupération des URLs de téléchargement :', error);
-        this.isSubmitting = false;
-      });
-    })
-  ).subscribe();
+    this.storage.upload(filePath, file)
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(url => {
+            this.card.image = url;
+          });
+        })
+      )
+      .subscribe();
+  }
 }
 
 

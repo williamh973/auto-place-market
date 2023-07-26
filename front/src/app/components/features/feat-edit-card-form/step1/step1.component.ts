@@ -33,6 +33,7 @@ card:  Card = new Card(
     '', 
     '', 
     [], 
+    [], 
     'ROLE_USER'
     )
 );

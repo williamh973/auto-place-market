@@ -6,4 +6,4 @@ export class UserRegister {
         public password: string,
         public requiredRole: string
     ) { }
-}
+} 

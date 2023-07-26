@@ -29,7 +29,6 @@ public class PictureService {
         return pictureRepository.save(picture);
     }
 
-
     public List<Picture> getAllPictures() {
         return pictureRepository.findAll();
     }

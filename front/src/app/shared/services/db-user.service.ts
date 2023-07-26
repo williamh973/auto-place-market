@@ -18,6 +18,9 @@ export class DbUserService {
     private http: HttpClient,
     private lsService: LocalStorageService) { }
 
+
+
+
   getOneUser(email: string): Observable<User> {
     return this.http.get<User>(`${this._BASE_URL}/email/${email}`);
   }
@@ -29,7 +32,7 @@ export class DbUserService {
   getUserFirstnameForUserPage(): Observable<string> {
     return this.http.get(`${this._BASE_URL}/firstname`, { responseType: 'text' })
       .pipe(
-        map(response => response as string)
+        map(response => response as string) 
       );
   }
   

@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import poecbdx23.livecodingjwt.favorite.Favorite;
 import poecbdx23.livecodingjwt.picture.Picture;
 import poecbdx23.livecodingjwt.user.User;
 
@@ -36,13 +37,23 @@ public class Card {
     private Number year;
 
 
+
+
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Picture> picturesList = new ArrayList<>();
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @JsonIgnoreProperties("cardList")
+    @JsonIgnoreProperties(
+            {
+                    "favoriteList",
+                    "authorities",
+                    "cardList",
+                    "enabled",
+                    "credentialsNonExpired",
+                    "accountNonExpired",
+                    "accountNonLocked"
+            })
     private User user;
-
 
 }

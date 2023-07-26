@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
+import { FavoriteService } from 'src/app/shared/services/favorite.service';
 
 
 @Component({
@@ -7,7 +8,7 @@ import { Card } from 'src/app/models/card.model';
   templateUrl: './feat-card.component.html',
   styleUrls: ['./feat-card.component.scss']
 })
-export class FeatCardComponent implements OnInit {
+export class FeatCardComponent {
 
    @Input() card!: Card
 
@@ -16,11 +17,35 @@ export class FeatCardComponent implements OnInit {
   isFavorite: boolean = false;
   isConfirmDeletePopup: boolean = false;
 
-  
-  ngOnInit(): void {
-   
-  }
 
+
+  constructor(private favoriteService: FavoriteService) {}
+
+
+
+  toggleFavorite() {
+    this.isFavorite = !this.isFavorite;
+  
+    if (this.isFavorite && this.card.id) {
+      this.favoriteService.addToFavorites(this.card.user.email, this.card.id).subscribe(
+        (responseFavorite) => {
+          console.log("La card a été ajoutée aux favoris.", responseFavorite);
+        },
+        (error) => {
+          console.log("Échec de l'ajout aux favoris.");
+        }
+      );
+    } else if (!this.isFavorite && this.card.id) {
+      this.favoriteService.removeFromFavorites(this.card.user.email, this.card.id).subscribe(
+        () => {
+          console.log("La card a été supprimée des favoris");
+        },
+        (error) => {
+          console.log("Échec de la suppression des favoris.");
+        }
+      );
+    }
+  }
 
   toggleCardEditForm(value: boolean) {
     this.isCardEditFormToggle = value;
@@ -32,12 +57,6 @@ export class FeatCardComponent implements OnInit {
 
 openConfirmDeletePopup() {
   this.isConfirmDeletePopup = true;
-}
-
-
-toggleFavorite() {
-  this.isFavorite = !this.isFavorite;
-  console.log(this.card);
 }
 
 onRecevedMethodForCloseConfirmDeletePopup(isConfirmDeletePopup: boolean) {

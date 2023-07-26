@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
 import { User } from 'src/app/models/user.model';
+import { DbUserService } from 'src/app/shared/services/db-user.service';
+import { FavoriteService } from 'src/app/shared/services/favorite.service';
 
 
 @Component({

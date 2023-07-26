@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Card } from 'src/app/models/card.model';
+import { Favorite } from 'src/app/models/favorite.model';
 import { CardService } from 'src/app/shared/services/card.service';
 import { DbUserService } from 'src/app/shared/services/db-user.service';
+import { FavoriteService } from 'src/app/shared/services/favorite.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { TokenService } from 'src/app/shared/services/token.service';
 
@@ -14,19 +16,22 @@ import { TokenService } from 'src/app/shared/services/token.service';
 })
 export class UserPageComponent {
 
+  @Input() userEmail!: string;
  
   cardListCreatedByUser: Card[] = [];
   filteredCardListCreatedByUser: Card[] = [];
+  favoriteCardList: Card[] = [];
 
   firstname!: String;
   lastname!: String;
  
+  isFavoriteListOpen: boolean = false;
 
   constructor( 
     private dbUser: DbUserService,
-    private cardService: CardService,
     private tokenS: TokenService,
     private lsService: LocalStorageService,
+    private favoriteService: FavoriteService,
     private router: Router ) {}
 
 
@@ -54,23 +59,40 @@ export class UserPageComponent {
         }
       );
 
-
-
-      // this.cardService.getCardList().subscribe((cardListFromDatabase: Card[]) => {
-      //   this.cardListCreatedByUser = cardListFromDatabase;
-      //   }) 
-
       this.dbUser.getUserCards().subscribe((cardListFromDatabase: Card[]) => {
         this.cardListCreatedByUser = cardListFromDatabase;
         }) 
-     
-     
-        // this.cardService.getFilteredCardList$().subscribe((newFileteredCardList: Card[]) => {
-        //   this.filteredCardListCreatedByUser = newFileteredCardList;
-        // });
 
+        console.log(this.favoriteCardList);
+     
     }
 
+
+    loadFavoriteCardList() {
+      this.isFavoriteListOpen = !this.isFavoriteListOpen;
+      if (this.isFavoriteListOpen) {
+        const userEmail = this.lsService.getToken();
+        if (userEmail !== null) {
+          this.favoriteService.getFavoriteList(userEmail).subscribe(
+            (favoriteList: Favorite[]) => { 
+              this.favoriteCardList = this.cardListCreatedByUser.filter(
+                (card) => card.id !== undefined && favoriteList.some(favorite => favorite.card.id === card.id)
+              );
+              console.log(this.favoriteCardList);
+            },
+            (error: any) => {
+              console.log("Erreur lors de la récupération des favoris :", error);
+            }
+          );
+        } else {
+          console.log("L'utilisateur n'est pas connecté.");
+        }
+      } else {
+        this.isFavoriteListOpen = false;
+      }
+    }
+
+    
 
     clearToken(): void {
       this.lsService.clearToken();

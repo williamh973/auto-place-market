@@ -1,7 +1,7 @@
 <div class="container-head">
 
 
-  <button class="btn-Logout" (click)="clearToken()">Déconnexion</button>
+  <button class="btn-head" (click)="clearToken()">Déconnexion</button>
 
 
   <div class="container-title">
@@ -12,6 +12,8 @@
       </div>
   </div>
 
+  <button class="btn-nav" (click)="loadFavoriteCardList()">Mes favoris</button>
+
 </div>
 
 <div class="card-list">
@@ -20,6 +22,16 @@
     <app-feat-card-user
     [card]="card"
     ></app-feat-card-user>
+  </div>
+
+</div>
+
+<div class="favorite-card-list" *ngIf="isFavoriteListOpen">
+
+  <div *ngFor="let card of favoriteCardList">
+    <app-feat-card 
+    [card]="card"
+    ></app-feat-card>
   </div>
 
 </div>

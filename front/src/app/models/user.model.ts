@@ -7,6 +7,7 @@ export class User {
         public pseudo: string,
         public email: string,
         public cardList: Card[],
+        public favoriteList: number[] = [],
         public role: "ROLE_USER" | "ROLE_ADMIN"
     ) {}  
 } 

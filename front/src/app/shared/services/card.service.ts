@@ -36,18 +36,18 @@ export class CardService {
     return this.http.get<Card>(url);
   }
 
-  // createCard(card: Card): Observable<Card> {
-  //   return this.http.post<Card>(`${this._BASE_URL_CARD}/add`, card);
-  // }
-
   createCard(card: Card): Observable<Card> {
-    return this.http.post<Card>(`${this._BASE_URL_CARD}/add`, card).pipe(
-      map((createdCard: Card) => {
-        card.id = createdCard.id; 
-        return card;
-      })
-    );
+    return this.http.post<Card>(`${this._BASE_URL_CARD}/add`, card);
   }
+
+  // createCard(card: Card): Observable<Card> {
+  //   return this.http.post<Card>(`${this._BASE_URL_CARD}/add`, card).pipe(
+  //     map((createdCard: Card) => {
+  //       card.id = createdCard.id; 
+  //       return card;
+  //     })
+  //   );
+  // }
 
   updateCard(card: Card): Observable<Card> {
     return this.http.put<Card>(`${this._BASE_URL_CARD}/update/${card.id}`, card);
