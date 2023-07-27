@@ -1,0 +1,69 @@
+<div class="card">
+
+  <div 
+  class="container-user"
+  >Mis en ligne par 
+   <span id="user">
+     {{ card.user.firstname }}
+   </span> 
+  </div>
+  
+  <div>
+    <img [src]="card.image" alt="Image">
+  </div>
+  
+      <div
+      id="title"
+      class="cardChild-elements" 
+      >{{ card.title }}
+    </div> 
+    <div 
+    class="container-door-fuel-transmission-year"
+    >
+    <li
+      id="door"
+      class="cardChild-elements"
+      >{{ card.door }} Portes
+    </li>
+    <li 
+      id="fuel"
+      class="cardChild-elements"
+      >{{ card.fuel }}
+    </li>
+    <li 
+      id="transmission"
+      class="cardChild-elements"
+      >{{ card.transmission }}
+    </li>
+    <li 
+    id="year"
+    class="cardChild-elements"
+    >{{ card.year }}
+  </li>
+  </div>
+  
+   <div class="container-kilometer-price">
+      <div
+        id="kilometer"
+        class="cardChild-elements"
+        >{{ card.kilometer }} 
+        <span id="km">Km</span>
+      </div>
+      <div
+       id="price"
+       class="cardChild-elements"
+       >{{ card.price }}
+       <span>€</span>
+       <span id="ttc">TTC</span>
+      </div>
+  </div>
+  
+    <div class="container-btn" title="Voir en détail ?">
+      <a [routerLink]="['/car-detail', card.id]">En savoir plus</a>
+    </div>
+  </div>
+  
+  
+  
+  
+  

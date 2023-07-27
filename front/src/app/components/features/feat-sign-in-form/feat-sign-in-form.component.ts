@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UserAuth } from 'src/app/models/user-auth.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { TokenService } from 'src/app/shared/services/token.service';
 import { TokenResponse } from '../../../models/token.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,13 +19,14 @@ export class FeatSignInFormComponent {
   isSignInFormOpen: boolean = false;
   isRegisterFormOpen: boolean = false;
 
-  userAuth: UserAuth = new UserAuth("", "");  
+   userAuth: UserAuth = new UserAuth("", "");  
 
 
   constructor(
     private httpS: AuthService,
     private LsService: LocalStorageService,
-    private tokenS: TokenService
+    private tokenS: TokenService,
+    private router: Router
     ) { }
 
 
@@ -39,12 +41,13 @@ export class FeatSignInFormComponent {
   onSubmitAuth(): void {
     this.LsService.clearToken();
     this.httpS.signIn(this.userAuth);
-  
-      setTimeout(() => {
-         window.location.reload();
-      }, 1000);
-
+    localStorage.setItem('userEmail', this.userAuth.email)
+      
+   setTimeout(() => {
+     window.location.reload() 
+   }, 500);
   } 
+
 
   onRecevedMethodForCloseRegisterForm(isRegisterFormOpen: boolean) {
     this.isRegisterFormOpen = isRegisterFormOpen;
