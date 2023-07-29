@@ -32,15 +32,108 @@ span {
     font-size: 35px;
 }
 
-.card-list {
-  gap: 50px;
+nav {
+  width: 100%;
+  padding: 100px 0;
+}
+ul {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  margin: 50px;
-  padding: 20px 0;
-  border: 1px solid red;
+  align-items: center;
+  gap: 30px;
 }
+li {
+  list-style-type: none;
+}
+
+.dropdown {
+  width: 250px;
+  position: relative;
+  display: inline-block;
+  background-color:  rgba(0, 0, 0, 0.866);
+  border: 2px solid whitesmoke;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.dropdown:hover {
+  border: 2px solid rgb(0, 177, 0);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-button {
+  background-color:  rgba(0, 0, 0, 0.866);
+  color: whitesmoke;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color:  rgba(0, 0, 0, 0.866);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: whitesmoke;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-radius: 10px;
+}
+
+.dropdown-content a:hover {
+  background-color:  rgba(81, 81, 81, 0.866);
+  cursor: pointer;
+}
+
+.container-card-list {
+  width: 90%;
+  margin: auto;
+}
+
+.card-list-title {
+  font-size: 25px;
+  color: whitesmoke;
+  cursor: default;
+  text-align: center;
+  padding: 20px 0;
+  background-color:  rgba(81, 81, 81, 0.492);
+  margin-top: 70px;
+}
+
+.card-list {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+  padding: 50px 0;
+}
+
+
+.container-favorite-card-list {
+  width: 90%;
+  margin: auto;
+}
+
+.favorite-card-list-title {
+  font-size: 25px;
+  color: whitesmoke;
+  cursor: default;
+  text-align: center;
+  padding: 20px 0;
+  background-color:  rgba(81, 81, 81, 0.492);
+  margin-top: 70px;
+}
+
 .favorite-card-list {
   gap: 50px;
   display: flex;
@@ -48,7 +141,6 @@ span {
   flex-wrap: wrap;
   margin: 50px;
   padding: 20px 0;
-  border: 1px solid rgb(24, 209, 0);
 }
 
 
@@ -60,7 +152,6 @@ span {
     color: whitesmoke;
     font-size: 15px;
     cursor: pointer;
-    margin: 20px auto 0 50px;
 }
 
 .btn-head:hover {
@@ -76,10 +167,10 @@ span {
   color: whitesmoke;
   font-size: 15px;
   cursor: pointer;
-  margin: 20px auto 0 50px;
 }
 
 .btn-nav:hover {
     border: 2px solid rgb(0, 177, 0);
     transition: all 200ms;
 }
+

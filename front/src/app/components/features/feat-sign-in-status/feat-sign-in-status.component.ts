@@ -35,9 +35,6 @@ export class FeatSignInStatusComponent {
     this.httpSuccess$.subscribe((response: HttpResponse<any>) => {
       this.showSuccessMessage = true;
 
-      setTimeout(() => {
-        this.showSuccessMessage = false;
-      }, 2000); 
     });
   }
 

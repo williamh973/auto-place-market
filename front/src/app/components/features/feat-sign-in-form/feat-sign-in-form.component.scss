@@ -88,8 +88,24 @@
   }
 
   .popup-sign-in-status {
-    position: absolute;
-    top: 100px;
-    left: 0;
+    position: fixed;
+    top: 10px; // 580px;
+    left: -340px;
   }
 
+  .popup-sign-in-status-animate {
+  animation: slideInAndOut 2.5s forwards;
+  }
+
+
+  @keyframes slideInAndOut {
+    0%, 100% {
+      left: -350; 
+    }
+    15% {
+      left: calc(1%);
+    }
+    85% {
+      left: calc(1%);
+    }
+  } 

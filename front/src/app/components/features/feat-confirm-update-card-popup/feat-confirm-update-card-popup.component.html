@@ -1,0 +1,16 @@
+<div class="full-popup">
+    <span>Souhaitez-vous vraiment modifier la carte ?</span>
+    
+    <div class="container-p">
+      <p (click)="onUpdateCard()">Oui</p>
+      <p (click)=" onCloseConfirmeUpdatePopup()">Non</p>
+     </div>
+   </div>
+
+
+   <app-feat-edit-card-form 
+*ngIf="isEditCardFormOpen"
+[card]="card"
+(onCloseEditCardFormEmit)="onRecevedMethodForCloseEditCardForm($event)"
+></app-feat-edit-card-form>
+   

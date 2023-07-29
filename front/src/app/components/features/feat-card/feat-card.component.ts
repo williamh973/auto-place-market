@@ -86,7 +86,6 @@ export class FeatCardComponent {
   
     if (this.isFavorite && this.card.id) {
       const userEmailInLocalStorage = localStorage.getItem('userEmail');
-      console.log(userEmailInLocalStorage);
       
       if (!userEmailInLocalStorage) {
         console.log("Vous devez être connecté pour ajouter un favori.");
@@ -103,6 +102,8 @@ export class FeatCardComponent {
         }
       );
       this.favoriteStatusService.setFavoriteStatus(this.card.id, this.isFavorite);
+      console.log(localStorage.getItem("favoriteCards"));
+      
       
     } else if (!this.isFavorite && this.card.id) {
       const userEmailInLocalStorage = localStorage.getItem('userEmail');

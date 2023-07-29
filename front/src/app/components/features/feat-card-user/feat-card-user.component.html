@@ -65,21 +65,22 @@
 </div>
 
 
-
   <div class="container-btn">
     <button 
     class="btn"
-    (click)="openEditForm()"
-    >{{ isEditCardFormOpen ? 'Fermer' : 'Modifier'}}
+    (click)="openConfirmeUpdateFormPopup()"
+    >Modifier
    </button>
   </div>
 
 </div>
 
-<app-feat-edit-card-form 
-*ngIf="isEditCardFormOpen"
-[card]="card"
-(onCloseEditCardFormEmit)="onRecevedMethodForCloseEditCardForm($event)"
-></app-feat-edit-card-form>
 
+<app-feat-confirm-update-card-popup
+class="confirm-update-card-popup"
+*ngIf="isConfirmUpdatePopupOpen"
+(onConfirmUpdatePopupEmit)="onRecevedMethodForCloseConfirmUpdateCardFormPopup($event)"
+[card]="card"
+>
+</app-feat-confirm-update-card-popup>
 

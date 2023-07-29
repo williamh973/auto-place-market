@@ -67,6 +67,7 @@ export class AdminPageComponent {
   clearToken(): void {
     this.lsService.clearToken();
     this.tokenS.resetToken();
+    localStorage.removeItem('userEmail');
     this.router.navigate(["/home"]);
   }
 

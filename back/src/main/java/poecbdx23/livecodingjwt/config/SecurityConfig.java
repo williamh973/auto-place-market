@@ -40,6 +40,7 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests()
                 .requestMatchers("/cards/**").permitAll()
+                .requestMatchers("/api/v1/**").permitAll()
                 .requestMatchers("/api/v1/auth").permitAll()
                 .requestMatchers("/api/v1/auth/**").permitAll() /* n'importe qui a accès à cet url */
                 .requestMatchers("/api/v1/users/**").permitAll() /* n'importe qui a accès à cet url */

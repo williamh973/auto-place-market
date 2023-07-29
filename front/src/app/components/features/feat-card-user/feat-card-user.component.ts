@@ -20,17 +20,19 @@ export class FeatCardUserComponent {
   isEditCardFormOpen: boolean = false;
   isFavorite: boolean = false;
   isConfirmDeletePopup: boolean = false;
+  isConfirmUpdatePopupOpen: boolean = false;
 
-
-
-  openEditForm() {
-    this.isEditCardFormOpen = !this.isEditCardFormOpen;
-  }
 
 
 openConfirmDeletePopup() {
   this.isConfirmDeletePopup = true;
 }
+
+openConfirmeUpdateFormPopup() {
+  this.isConfirmUpdatePopupOpen = true;
+  console.log(this.card);
+}
+
  
 
 toggleFavorite() {
@@ -41,8 +43,9 @@ onRecevedMethodForCloseConfirmDeletePopup(isConfirmDeletePopup: boolean) {
   this.isConfirmDeletePopup = isConfirmDeletePopup;
 }
 
-onRecevedMethodForCloseEditCardForm(isEditCardFormOpen: boolean) {
-  this.isEditCardFormOpen = isEditCardFormOpen;
+onRecevedMethodForCloseConfirmUpdateCardFormPopup(isConfirmUpdatePopupOpen: boolean) {
+this.isConfirmUpdatePopupOpen = isConfirmUpdatePopupOpen;
 }
+
 
 }

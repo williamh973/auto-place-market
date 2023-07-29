@@ -8,6 +8,7 @@ export class User {
         public email: string,
         public cardList: Card[],
         public favoriteList: number[] = [],
-        public role: "ROLE_USER" | "ROLE_ADMIN"
+        public role: "ROLE_USER" | "ROLE_ADMIN",
+        public id?: number
     ) {}  
 } 

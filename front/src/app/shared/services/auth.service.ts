@@ -2,10 +2,14 @@ import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/htt
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { UserAuth } from '../../models/user-auth.model';
+import { User } from '../../models/user.model';
 import { TokenService } from './token.service';
 import { TokenResponse } from '../../models/token.model';
 import { UserRegister } from '../../models/user-register.model';
 import { Router } from '@angular/router';
+import { LocalStorageService } from './local-storage.service';
+import { DbUserService } from './db-user.service';
+
 
  
 @Injectable({
@@ -21,7 +25,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private tokenService: TokenService,
-    private router: Router
+    private localStorageService: LocalStorageService,
+    private dbUserService: DbUserService
   ) { }
 
 
@@ -33,13 +38,27 @@ export class AuthService {
   }
 
   // Je me connecte : j'envoie mon objet UserAuth et je m'abonne à la réponse de mon serveur. Lorsque je la reçois, je reçois le token que je stock en localStorage.
+  // signIn(userAuth: UserAuth): void {
+  //   this.tokenService.resetToken();
+  //   this.http.post<any>(`${this._BASE_URL}/authenticate`, userAuth)
+  //     .subscribe((tokenFromDB: TokenResponse) => {
+  //       this.tokenService.updateToken(tokenFromDB);
+  //     })
+  // }
   signIn(userAuth: UserAuth): void {
     this.tokenService.resetToken();
     this.http.post<any>(`${this._BASE_URL}/authenticate`, userAuth)
       .subscribe((tokenFromDB: TokenResponse) => {
         this.tokenService.updateToken(tokenFromDB);
+        this.localStorageService.setUserEmail(userAuth);
+
       })
+        setTimeout(() => {
+          window.location.reload();
+        }, 2500);
+     
   }
+
 
   getHttpErrorSubject$(): Observable<HttpErrorResponse> {
     return this._httpErrorSubject$.asObservable();

@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Card } from 'src/app/models/card.model';
 import { Favorite } from 'src/app/models/favorite.model';
-import { CardService } from 'src/app/shared/services/card.service';
 import { DbUserService } from 'src/app/shared/services/db-user.service';
 import { FavoriteService } from 'src/app/shared/services/favorite.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
@@ -15,8 +14,6 @@ import { TokenService } from 'src/app/shared/services/token.service';
   styleUrls: ['./user-page.component.scss']
 })
 export class UserPageComponent {
-
-  @Input() userEmail!: string;
  
   cardListCreatedByUser: Card[] = [];
   filteredCardListCreatedByUser: Card[] = [];
@@ -26,6 +23,9 @@ export class UserPageComponent {
   lastname!: String;
  
   isFavoriteListOpen: boolean = false;
+  isUserCardListOpen: boolean = false;
+  isEditCardFormOpen: boolean = false;
+  isConfirmDeleteCurrentUserPopupOpen: boolean = false;
 
   constructor( 
     private dbUser: DbUserService,
@@ -61,23 +61,18 @@ export class UserPageComponent {
 
       this.dbUser.getUserCards().subscribe((cardListFromDatabase: Card[]) => {
         this.cardListCreatedByUser = cardListFromDatabase;
-        }) 
-
-        console.log(this.favoriteCardList);
-     
+        })     
     }
 
 
     loadFavoriteCardList() {
       this.isFavoriteListOpen = !this.isFavoriteListOpen;
       if (this.isFavoriteListOpen) {
-        const userEmail = this.lsService.getToken();
-        if (userEmail !== null) {
-          this.favoriteService.getFavoriteList(userEmail).subscribe(
+        const userEmailInLocalStorage = localStorage.getItem('userEmail');
+        if (userEmailInLocalStorage !== null) {
+          this.favoriteService.getFavoriteList(userEmailInLocalStorage).subscribe(
             (favoriteList: Favorite[]) => { 
-              this.favoriteCardList = this.cardListCreatedByUser.filter(
-                (card) => card.id !== undefined && favoriteList.some(favorite => favorite.card.id === card.id)
-              );
+              this.favoriteCardList = favoriteList.map(favorite => favorite.card);
               console.log(this.favoriteCardList);
             },
             (error: any) => {
@@ -88,18 +83,38 @@ export class UserPageComponent {
           console.log("L'utilisateur n'est pas connecté.");
         }
       } else {
-        this.isFavoriteListOpen = false;
+        this.isFavoriteListOpen = false; 
       }
     }
 
-    
-
-    clearToken(): void {
+    onLogout(): void {
       this.lsService.clearToken();
-      this.tokenS.resetToken();
+      localStorage.removeItem('userEmail');
       this.router.navigate(["/home"]);
     }
-  
 
+    onEditCardFormOpen() {
+        this.isEditCardFormOpen = !this.isEditCardFormOpen;
+    }
+
+    loadUserCardList() {
+      this.isUserCardListOpen = !this.isUserCardListOpen
+    }
+    
+    deleteAccount(): void {
+      this.isConfirmDeleteCurrentUserPopupOpen = true;
+    }
+    
+    changePhoneNumber(): void {
+      
+    }
+    
+    onRecevedMethodForCloseEditCardForm(isEditCardFormOpen: boolean) {
+      this.isEditCardFormOpen = isEditCardFormOpen;
+    }
+
+    onRecevedMethodForCloseConfirmDeleteUserPopup(isConfirmDeleteCurrentUserPopupOpen: boolean) {
+      this.isConfirmDeleteCurrentUserPopupOpen = isConfirmDeleteCurrentUserPopupOpen;
+    }
 
 }

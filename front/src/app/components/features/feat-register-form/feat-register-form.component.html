@@ -1,52 +1,54 @@
 <div class="full-form">
 
-<form>
-
-    <div>
-
-    <svg (click)="onCancelRegisterForm()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 22 22">
-        <path fill="none" d="M0 0h24v24H0z"/>
-        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+    <form>
     
-    <div>
-        <h2 name="inscription">Inscription</h2> 
-
-        <p>Les champs suivis d'un astérisque ( * ) sont obligatoire.</p>
-
-        <label for="user-firstname">Prénom</label>
-        <input type="text" name="user-firstname" id="user-firstname" [(ngModel)]="userRegister.firstname" placeholder="Taper votre prénom*">
-        
-        <label for="user-lastname">Nom</label>
-        <input type="text" name="user-lastname" id="user-lastname" [(ngModel)]="userRegister.lastname" placeholder="Taper votre nom*">
-       
-        <label for="user-register-email">Email</label>
-        <input type="email" name="user-register-email" id="user-register-email" [(ngModel)]="userRegister.email" placeholder="Taper votre email*">
+        <div>
     
-        <label id="label-password" for="user-register-password">Mot de passe</label>
-        <input type="password" name="user-register-password" id="user-register-password" autocomplete="on"  [(ngModel)]="userRegister.password" placeholder="Taper votre mot de passe*">    
+        <svg (click)="onCancelRegisterForm()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 22 22">
+            <path fill="none" d="M0 0h24v24H0z"/>
+            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
         
-        <fieldset>
-            <div class="container-role">
-               <input type="radio" name="user-role" id="user-role-user" value="ROLE_USER" [(ngModel)]="userRegister.requiredRole">
-               <label for="user-role-user">User</label>
-            </div>
-            <div class="container-role">
-               <input type="radio" name="user-role" id="user-role-admin"value="ROLE_ADMIN" [(ngModel)]="userRegister.requiredRole">
-               <label for="user-role-admin">Admin</label>
-            </div>
-      </fieldset>
-      
+        <div>
+            <h2 name="inscription">Inscription</h2> 
+    
+            <p>Les champs suivis d'un astérisque ( * ) sont obligatoire.</p>
+    
+            <label for="user-firstname">Prénom</label>
+            <input type="text" name="user-firstname" id="user-firstname" [(ngModel)]="userRegister.firstname" placeholder="Taper votre prénom*">
+            
+            <label for="user-lastname">Nom</label>
+            <input type="text" name="user-lastname" id="user-lastname" [(ngModel)]="userRegister.lastname" placeholder="Taper votre nom*">
+           
+            <label for="user-register-email">Email</label>
+            <input type="email" name="user-register-email" id="user-register-email" [(ngModel)]="userRegister.email" placeholder="Taper votre email*">
+        
+            <label id="label-password" for="user-register-password">Mot de passe</label>
+            <input type="password" name="user-register-password" id="user-register-password" autocomplete="on"  [(ngModel)]="userRegister.password" placeholder="Taper votre mot de passe*">    
+            
+            <fieldset>
+                <div class="container-role">
+                   <input type="radio" name="user-role" id="user-role-user" value="ROLE_USER" [(ngModel)]="userRegister.requiredRole">
+                   <label for="user-role-user">User</label>
+                </div>
+                <div class="container-role">
+                   <input type="radio" name="user-role" id="user-role-admin"value="ROLE_ADMIN" [(ngModel)]="userRegister.requiredRole">
+                   <label for="user-role-admin">Admin</label>
+                </div>
+          </fieldset>
+          
+        </div>
+        <button type="submit" (click)="onSubmitRegister()">Je m'inscris</button>
+    
     </div>
-    <button type="submit" (click)="onSubmitRegister()">Je m'inscris</button>
+    
+    </form>
+    
+    </div>
 
-</div>
-
-</form>
-
-</div>
-
-<app-feat-register-status
-class="popup-register-status"
-></app-feat-register-status>
+    <app-feat-sign-in-status
+class="popup-sign-in-status"
+[class.popup-sign-in-status-animate]="isAnimationPopupSignInStatusActive"
+></app-feat-sign-in-status>
+    
 

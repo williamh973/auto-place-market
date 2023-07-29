@@ -36,9 +36,11 @@ import { UserPageComponent } from './pages/user-page/user-page.component';
 import { FeatSignInStatusComponent } from './components/features/feat-sign-in-status/feat-sign-in-status.component';
 import { FeatCardUserComponent } from './components/features/feat-card-user/feat-card-user.component';
 import { FeatSloganComponent } from './components/features/feat-slogan/feat-slogan.component';
-import { FeatRegisterStatusComponent } from './components/features/feat-register-status/feat-register-status.component';
 import { Step1Component } from './components/features/feat-edit-card-form/step1/step1.component';
 import { Step2Component } from './components/features/feat-edit-card-form/step2/step2.component';
+import { FeatCardFavoriteComponent } from './components/features/feat-card-favorite/feat-card-favorite.component';
+import { FeatConfirmUpdateCardPopupComponent } from './components/features/feat-confirm-update-card-popup/feat-confirm-update-card-popup.component';
+import { FeatConfirmDeleteCurrentUserPopupComponent } from './components/features/feat-confirm-delete-current-user-popup/feat-confirm-delete-current-user-popup.component';
 
 
 @NgModule({
@@ -67,9 +69,11 @@ import { Step2Component } from './components/features/feat-edit-card-form/step2/
     FeatSignInStatusComponent,
     FeatCardUserComponent,
     FeatSloganComponent,
-    FeatRegisterStatusComponent,
     Step1Component,
-    Step2Component
+    Step2Component,
+    FeatCardFavoriteComponent,
+    FeatConfirmUpdateCardPopupComponent,
+    FeatConfirmDeleteCurrentUserPopupComponent
   ],
   imports: [
     BrowserModule,

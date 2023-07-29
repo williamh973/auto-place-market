@@ -23,9 +23,24 @@ public class FavoriteService {
     private final CardRepository cardRepository;
 
 
+//    public List<Favorite> getFavoritesByEmail(String userEmail) {
+//        return favoriteRepository.findByUserEmail(userEmail);
+//    }
+
+
     public List<Favorite> getFavoritesByEmail(String userEmail) {
+        Optional<User> optionalUser = userRepository.findByEmail(userEmail);
+
+        if (optionalUser.isEmpty()) {
+            throw new RuntimeException("L'utilisateur avec l'e-mail " + userEmail + " n'a pas été trouvé.");
+        }
+
+        User user = optionalUser.get();
+        List<Favorite> favoriteList = user.getFavoriteList();
         return favoriteRepository.findByUserEmail(userEmail);
     }
+
+
 
     public Favorite addToFavorite(String userEmail, Long cardId) {
         Optional<User> optionalUser = userRepository.findByEmail(userEmail);
@@ -70,6 +85,7 @@ public class FavoriteService {
             throw new RuntimeException("Le favori avec l'ID " + favoriteId + " n'a pas été trouvé pour l'utilisateur avec l'e-mail " + userEmail);
         }
     }
+
 
 
     private User getCurrentUser() {

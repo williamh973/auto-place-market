@@ -1,24 +1,55 @@
 <div class="container-head">
 
-
-  <button class="btn-head" (click)="clearToken()">Déconnexion</button>
-
-
   <div class="container-title">
     <h1>Bienvenue dans ton espace</h1>
-      <div class="lastname-firstname">
-        <span>{{ lastname }}</span>
-        <span>{{ firstname }}</span>
-      </div>
+    <div class="lastname-firstname">
+      <span>{{ lastname }}</span>
+      <span>{{ firstname }}</span>
+    </div>
   </div>
+  
+  <div>
+    <nav>
+      <ul>
+        <li>
+          <button class="btn-nav" (click)="onEditCardFormOpen()">Poster une annonce</button>
+        </li>
+        <li>
+          <button class="btn-nav" (click)="loadUserCardList()">Mes voitures</button>
+        </li>
+        <li>
+          <button class="btn-nav" (click)="loadFavoriteCardList()">Mes favoris</button>
+        </li>
+        <li>
+          <div class="dropdown">
+            <button class="dropdown-button">Paramètres de compte</button>
+            <div class="dropdown-content">
+              <a (click)="deleteAccount()">Supprimer mon compte</a>
+              <a (click)="changePhoneNumber()">Modifier le numéro de téléphone</a>
+            </div>
+          </div>   
+        </li>
+        <li>
+          <button class="btn-head" (click)="onLogout()">Déconnexion</button>
+        </li>
+      </ul>
+    </nav>
+</div>
 
-  <button class="btn-nav" (click)="loadFavoriteCardList()">Mes favoris</button>
 
 </div>
 
-<div class="card-list">
+<div 
+*ngIf="isUserCardListOpen" 
+class="container-card-list">
 
-  <div *ngFor="let card of (filteredCardListCreatedByUser.length > 0 ? filteredCardListCreatedByUser : cardListCreatedByUser); let i = index">
+  <p *ngIf="cardListCreatedByUser.length === 0" class="card-list-title">Pas de voiture</p>
+  <p *ngIf="cardListCreatedByUser.length === 1" class="card-list-title">Ma voiture mise en ligne</p>
+  <p *ngIf="cardListCreatedByUser.length > 1" class="card-list-title">Mes voitures mises en ligne</p>
+
+  <div 
+  class="card-list" 
+  *ngFor="let card of (filteredCardListCreatedByUser.length > 0 ? filteredCardListCreatedByUser : cardListCreatedByUser); let i = index">
     <app-feat-card-user
     [card]="card"
     ></app-feat-card-user>
@@ -26,12 +57,33 @@
 
 </div>
 
-<div class="favorite-card-list" *ngIf="isFavoriteListOpen">
+<div 
+*ngIf="isFavoriteListOpen" 
+class="container-favorite-card-list">
 
-  <div *ngFor="let card of favoriteCardList">
-    <app-feat-card 
+<p *ngIf="favoriteCardList.length === 0" class="card-list-title">Pas de voiture dans les favoris</p>
+<p *ngIf="favoriteCardList.length === 1" class="card-list-title">Mon coup de coeur</p>
+<p *ngIf="favoriteCardList.length > 1" class="card-list-title">Mes coups de coeur</p>
+
+  <div 
+  class="favorite-card-list" 
+  *ngFor="let card of favoriteCardList">
+    <app-feat-card-favorite 
     [card]="card"
-    ></app-feat-card>
+    ></app-feat-card-favorite>
   </div>
 
 </div>
+
+<app-feat-confirm-delete-current-user-popup
+*ngIf="isConfirmDeleteCurrentUserPopupOpen"
+(onisConfirmDeletePopupEmit)="onRecevedMethodForCloseConfirmDeleteUserPopup($event)"
+>
+</app-feat-confirm-delete-current-user-popup>
+
+<app-feat-edit-card-form 
+class="edit-card-form"
+*ngIf="isEditCardFormOpen"
+[createMode]="true"
+(onCloseEditCardFormEmit)="onRecevedMethodForCloseEditCardForm($event)"
+></app-feat-edit-card-form>

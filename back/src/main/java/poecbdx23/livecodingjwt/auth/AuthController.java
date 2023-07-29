@@ -24,7 +24,7 @@ public class AuthController {
     @PostMapping("/authenticate")
     public ResponseEntity<?> authenticate(@RequestBody AuthRequest request, HttpServletRequest httpRequest) {
     AuthResponse authenticationResponse = service.authenticate(request, httpRequest);
-    return ResponseEntity.ok(authenticationResponse); // Réponse réussie avec le token JWT
+    return ResponseEntity.ok(authenticationResponse);
 
 
 

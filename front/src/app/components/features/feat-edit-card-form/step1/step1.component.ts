@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
 import { User } from 'src/app/models/user.model';
-import { AccountPopupService } from 'src/app/shared/services/account-popup.service';
-import { CardService } from 'src/app/shared/services/card.service';
 
 
 @Component({
@@ -52,9 +50,10 @@ createMode: boolean = false;
 onCloseAllStepsFormEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
-  constructor(
-    private cardService: CardService,
-    ) {}
+
+    ngOnInit() {
+      console.log(this.card);  
+    }
 
 
     onCancelAllStepsForms() {
@@ -66,7 +65,6 @@ onCloseAllStepsFormEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
     if (this.createMode) {
         this.forGoToStep2.emit();
   } else {
-      this.cardService.updateCard(this.card).subscribe();
       this.forGoToStep2.emit();
     } 
   }

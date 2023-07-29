@@ -13,6 +13,7 @@ export class FeatRegisterFormComponent {
   @Output() onRegisterFormOpenEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
   
   isRegisterFormOpen: boolean = false;
+  isAnimationPopupSignInStatusActive: boolean = false; 
 
   userRegister: UserRegister = new UserRegister("", "", "", "", "");
 
@@ -29,10 +30,11 @@ export class FeatRegisterFormComponent {
 
     onSubmitRegister(): void {
       this.httpS.signUp(this.userRegister);
+      this.isAnimationPopupSignInStatusActive = true;
 
       setTimeout(() => {
         this.onRegisterFormOpenEmit.emit(this.isRegisterFormOpen);
-     }, 1000);
+     }, 2500);
   
     }
 

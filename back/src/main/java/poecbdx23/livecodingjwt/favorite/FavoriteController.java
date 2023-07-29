@@ -49,10 +49,8 @@ public class FavoriteController {
         if (favoriteToRemove != null) {
 
             user.getFavoriteList().remove(favoriteToRemove);
-
             favoriteToRemove.setUser(null);
             favoriteRepository.save(favoriteToRemove);
-
             userRepository.save(user);
         } else {
             throw new RuntimeException("Favorite not found");

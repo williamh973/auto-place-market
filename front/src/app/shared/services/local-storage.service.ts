@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { TokenResponse } from '../../models/token.model';
+import { UserAuth } from 'src/app/models/user-auth.model';
+import { User } from 'src/app/models/user.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class LocalStorageService {
+export class LocalStorageService { 
+ 
 
-  // Ce service contient toute la logique où j'interagis avec le LocalStorage
   constructor() { }
 
-  // Je récupère le token stocké en LocalStorage
+
   getToken(): string | null {
     const tokenId = localStorage.getItem("tokenId");
     if (tokenId) {
@@ -19,13 +22,33 @@ export class LocalStorageService {
     }
   }
 
-  // Je mets le nouveau token dans le localStorage
   setToken(tokenFromDB: TokenResponse): void {
     localStorage.setItem("tokenId", tokenFromDB.token);
   }
 
-  // Je supprime le token dans le localStorage
   clearToken(): void {
     localStorage.removeItem("tokenId")
   }
+
+
+  getUserId(): number | null {
+    const userId = localStorage.getItem('userId');
+    return userId ? parseInt(userId, 10) : null;
+  }
+  
+  setUserId(userId: number): void {
+    if (userId) {
+      localStorage.setItem('userId', userId.toString());
+    }
+  }
+
+  
+  getUserEmail(): void {
+    localStorage.getItem('userEmail');
+  }
+  setUserEmail(userAuth: UserAuth): void {
+    localStorage.setItem('userEmail', userAuth.email);
+  }
+
+  
 }

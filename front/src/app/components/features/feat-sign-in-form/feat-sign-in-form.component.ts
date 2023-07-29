@@ -1,10 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { UserAuth } from 'src/app/models/user-auth.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
-import { TokenService } from 'src/app/shared/services/token.service';
-import { TokenResponse } from '../../../models/token.model';
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +14,7 @@ export class FeatSignInFormComponent {
   @Output() onSignInFormOpenEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
   
   isSignInFormOpen: boolean = false;
-  isRegisterFormOpen: boolean = false;
+  isAnimationPopupSignInStatusActive: boolean = false;   
 
    userAuth: UserAuth = new UserAuth("", "");  
 
@@ -25,8 +22,6 @@ export class FeatSignInFormComponent {
   constructor(
     private httpS: AuthService,
     private LsService: LocalStorageService,
-    private tokenS: TokenService,
-    private router: Router
     ) { }
 
 
@@ -34,23 +29,28 @@ export class FeatSignInFormComponent {
   this.onSignInFormOpenEmit.emit(this.isSignInFormOpen);
   }
 
-  onOpenRegisterForm() {
-    this.isRegisterFormOpen = true;
-  }
+
     
+  // onSubmitAuth(): void {
+  //   this.LsService.clearToken();
+  //   this.httpS.signIn(this.userAuth);
+  //   localStorage.setItem('userEmail', this.userAuth.email);
+  //   const userEmailInLocalStorage = localStorage.getItem('userEmail');
+  //   this.isAnimationPopupSignInStatusActive = true;
+  //   if (userEmailInLocalStorage === this.userAuth.email) {
+  //     console.log(userEmailInLocalStorage);
+  //     setTimeout(() => {
+  //       window.location.reload();
+  //     }, 2500); 
+  //   } else {  
+  //    return; 
+  //   }
+  // } 
   onSubmitAuth(): void {
     this.LsService.clearToken();
     this.httpS.signIn(this.userAuth);
-    localStorage.setItem('userEmail', this.userAuth.email)
-      
-   setTimeout(() => {
-     window.location.reload() 
-   }, 500);
-  } 
-
-
-  onRecevedMethodForCloseRegisterForm(isRegisterFormOpen: boolean) {
-    this.isRegisterFormOpen = isRegisterFormOpen;
+    this.isAnimationPopupSignInStatusActive = true;
   }
+
 
 }

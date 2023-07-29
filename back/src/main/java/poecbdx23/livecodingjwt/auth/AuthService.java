@@ -39,7 +39,7 @@ public class AuthService {
             repository.save(user);
 
             Map<String, String> body = new HashMap<>();
-            body.put("message", "Account successfully created");
+            body.put("message", "Compte créé avec succès !");
             return body;
 
         } else {
@@ -77,7 +77,7 @@ public class AuthService {
             String jwtToken = jwtService.generateToken(new HashMap<>(extraClaims), user);
             return AuthResponse.builder()
                     .token(jwtToken)
-                    .message("Connexion réussie")
+                    .message("Connexion réussie !")
                     .build();
 
         } catch (BadCredentialsException ex) {

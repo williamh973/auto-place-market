@@ -30,7 +30,7 @@ public class AuthenticationEntryPoint implements org.springframework.security.we
 
         if (request.getAttribute("expired_exception") != null) {
             error.put("is_token_expired", "true");
-            error.put("error_message", "JWT has expired. Please log in again.");
+            error.put("error_message", "Votre session a expiré. Merci de vous reconnecter.");
         } else if (request.getAttribute("malformed_exception") != null) {
             error.put("is_jwt_malformed", "true");
             error.put("error_message", "JWT is malformed. Please verify its integrity.");

@@ -105,12 +105,15 @@ onSubmit() {
           const downloadUrlsObservables = uploadSnapshots.map((snapshot: any) => snapshot.ref.getDownloadURL());
           forkJoin(downloadUrlsObservables).subscribe((downloadUrls: string[]) => {
             this.card.picturesList = downloadUrls.map((url: string) => new Picture(url));
+           
             this.cardService.updateCard(this.card).subscribe(() => {
             });
           });
         });
+        window.location.reload();
   } else {
     this.cardService.updateCard(this.card).subscribe((createdCard) => {
+      window.location.reload();
     });
   }
 

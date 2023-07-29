@@ -1,5 +1,6 @@
 package poecbdx23.livecodingjwt.favorite;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,15 +24,14 @@ public class Favorite {
 
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @JsonIgnoreProperties(value = "favoriteList")
-    private User user;
-
-
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "card_id", referencedColumnName = "id")
     @JsonIgnoreProperties("favorites")
     private Card card;
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+//    @JsonIgnoreProperties(value = "favoriteList")
+    @JsonIgnore
+    private User user;
 
 }

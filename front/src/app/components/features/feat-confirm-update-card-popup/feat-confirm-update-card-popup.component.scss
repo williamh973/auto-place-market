@@ -2,13 +2,13 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 20px 20px;
+    padding: 20px 25px;
     position: absolute;
     color: whitesmoke;
     background-color: rgb(10, 10, 10);
     border-radius: 10px;
     border: 2px solid  rgb(37, 37, 37);
-    z-index: 1;
+    z-index: 0;
 }
 span {
     padding: 10px 0; 
@@ -30,3 +30,4 @@ p {
 p:hover {
     border: 2px solid rgb(0, 177, 0);
 }
+

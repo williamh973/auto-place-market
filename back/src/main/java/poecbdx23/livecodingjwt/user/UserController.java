@@ -48,8 +48,15 @@ public class UserController {
         }
     }
 
+    @GetMapping("current/{id}")
+    public ResponseEntity<Long> getUserId() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByEmail(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return ResponseEntity.ok(user.getId());
+    }
 
-    @GetMapping("/firstname")
+    @GetMapping("current/firstname")
     public ResponseEntity<String> getUserFirstname() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByEmail(username)
@@ -57,7 +64,7 @@ public class UserController {
         return ResponseEntity.ok(user.getFirstname());
     }
 
-    @GetMapping("/lastname")
+    @GetMapping("current/lastname")
     public ResponseEntity<String> getUserLastname() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByEmail(username)
@@ -65,10 +72,7 @@ public class UserController {
         return ResponseEntity.ok(user.getLastname());
     }
 
-
-
-
-    @GetMapping("/cardList")
+    @GetMapping("current/cardList")
     public ResponseEntity<Set<Card>> getUserCards(Principal principal, HttpServletRequest request) throws AccessDeniedException {
         User user = userRepository.findByEmail(principal.getName())
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -83,7 +87,7 @@ public class UserController {
 
     @DeleteMapping("/delete/{userId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable Long userId, HttpServletRequest request) throws AccessDeniedException {
+    public void deleteUserById(@PathVariable Long userId, HttpServletRequest request) throws AccessDeniedException {
         String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
 
         if (role.equals("[ROLE_ADMIN]")) {
@@ -92,6 +96,16 @@ public class UserController {
             request.setAttribute("access_denied", "You do not have sufficient rights to access this resource");
             throw new AccessDeniedException("User does not have the correct rights to access this resource");
         }
+    }
+
+    @DeleteMapping("current/delete")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCurrentUser(HttpServletRequest request) throws AccessDeniedException {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByEmail(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        userRepository.delete(user);
     }
 
 }
