@@ -2,6 +2,11 @@
     font-family: Helvetica, sans-serif;
   }
 
+  .full-page {
+   width: 100vw;
+   height: 200vh;
+  }
+
   .container-head {
     width: 100%;
     display: flex;
@@ -97,6 +102,7 @@ li {
 
 .container-card-list {
   width: 90%;
+  height: 100vh;
   margin: auto;
 }
 

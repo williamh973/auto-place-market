@@ -40,5 +40,4 @@ export class FeatNavbarComponent {
     this.isEditCardFormOpen = isEditCardFormOpen;
   }
 
-
 }

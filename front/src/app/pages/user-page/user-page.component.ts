@@ -89,6 +89,7 @@ export class UserPageComponent {
 
     onLogout(): void {
       this.lsService.clearToken();
+      this.tokenS.resetToken();
       localStorage.removeItem('userEmail');
       this.router.navigate(["/home"]);
     }

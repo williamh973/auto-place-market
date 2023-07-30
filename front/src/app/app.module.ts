@@ -41,6 +41,7 @@ import { Step2Component } from './components/features/feat-edit-card-form/step2/
 import { FeatCardFavoriteComponent } from './components/features/feat-card-favorite/feat-card-favorite.component';
 import { FeatConfirmUpdateCardPopupComponent } from './components/features/feat-confirm-update-card-popup/feat-confirm-update-card-popup.component';
 import { FeatConfirmDeleteCurrentUserPopupComponent } from './components/features/feat-confirm-delete-current-user-popup/feat-confirm-delete-current-user-popup.component';
+import { ConceptPageComponent } from './pages/concept-page/concept-page.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { FeatConfirmDeleteCurrentUserPopupComponent } from './components/feature
     Step2Component,
     FeatCardFavoriteComponent,
     FeatConfirmUpdateCardPopupComponent,
-    FeatConfirmDeleteCurrentUserPopupComponent
+    FeatConfirmDeleteCurrentUserPopupComponent,
+    ConceptPageComponent
   ],
   imports: [
     BrowserModule,

@@ -28,6 +28,7 @@ public class Card {
     private Long id;
     private String image;
     private String title;
+    @Column(length = 1000)
     private String resume;
     private Number price;
     private Number kilometer;

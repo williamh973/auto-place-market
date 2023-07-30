@@ -24,9 +24,7 @@ export class FeatConfirmUpdateCardPopupComponent {
 
   constructor(private cardService: CardService) {}
 
-  ngOnInit() {
-    console.log(this.card);
-    
+  ngOnInit() {  
   }
   
 

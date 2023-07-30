@@ -30,7 +30,6 @@ openConfirmDeletePopup() {
 
 openConfirmeUpdateFormPopup() {
   this.isConfirmUpdatePopupOpen = true;
-  console.log(this.card);
 }
 
  

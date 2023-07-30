@@ -17,7 +17,8 @@ import { forkJoin, of } from 'rxjs';
 })
 export class Step2Component {
 
-  @Input() currentStep!: number
+  @Input() 
+  currentStep!: number
 
   @Input() 
 card:  Card = new Card(
@@ -65,6 +66,7 @@ forGoToStep1: EventEmitter<void> = new EventEmitter<void>();
 onCloseAllStepsFormEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
  
   isPhotoInTheBox: boolean = false;
+
   photosList: File[] = [];
 
 
@@ -81,12 +83,10 @@ onCloseAllStepsFormEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
       
     }
 
-
 onCancelAllStepsForms() {
   this.onCloseAllStepsFormEmit.emit();
 }
 
- 
 onSubmit() {
     if (this.createMode) {
         this.cardService.createCard(this.card).pipe(
@@ -119,9 +119,6 @@ onSubmit() {
 
 }
 
-
-isSubmitting: boolean = false;
-
 onSelect(event: any) {
   this.isPhotoInTheBox = true;
   this.photoService.photosList.push(...event.addedFiles);
@@ -140,8 +137,6 @@ onSelect(event: any) {
       .subscribe();
   }
 }
-
-
 
   onRemove(event: any) {
     const removedIndex = this.photosList.indexOf(event);

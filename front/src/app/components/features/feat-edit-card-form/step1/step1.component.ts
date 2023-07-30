@@ -10,49 +10,26 @@ import { User } from 'src/app/models/user.model';
 })
 export class Step1Component {
 
-  @Input() currentStep!: number
+  @Input() 
+  currentStep!: number
 
+  @Input() 
+  createMode: boolean = false;
+
+  @Input() 
+  card:  Card = new Card(  '',  '',   '',   0,   0,   0,   '',   '',   0,  [],  new User(    '',     '',     '',     '',     [],     [],     'ROLE_USER'    ));
+
+
+  @Output() 
+  forGoToStep2: EventEmitter<void> = new EventEmitter<void>();
   
-@Input() 
-card:  Card = new Card(
-  '',
-  '', 
-  '', 
-  0, 
-  0, 
-  0, 
-  '', 
-  '', 
-  0,
-  [],
-  new User(
-    '', 
-    '', 
-    '', 
-    '', 
-    [], 
-    [], 
-    'ROLE_USER'
-    )
-);
-
-
-@Input() 
-createMode: boolean = false;
-
- 
-// @Output() 
-// isFormCreateCard: EventEmitter<boolean> = new EventEmitter<boolean>();
- 
-@Output() forGoToStep2: EventEmitter<void> = new EventEmitter<void>();
-
-@Output() 
-onCloseAllStepsFormEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() 
+  onCloseAllStepsFormEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
 
     ngOnInit() {
-      console.log(this.card);  
+ 
     }
 
 
@@ -61,12 +38,12 @@ onCloseAllStepsFormEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
     }
 
 
-  onGoStep2() {
-    if (this.createMode) {
+    onGoStep2() {
+      if (this.createMode) {
+          this.forGoToStep2.emit();
+    } else {
         this.forGoToStep2.emit();
-  } else {
-      this.forGoToStep2.emit();
-    } 
-  }
+      } 
+    }
   
 }
