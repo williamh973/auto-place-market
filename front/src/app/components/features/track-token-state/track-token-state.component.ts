@@ -24,7 +24,7 @@ export class TrackTokenStateComponent implements OnInit {
 
 
   clearToken(): void {
-    this.lsService.clearToken();
+    this.lsService.clearTokenAndUserEmail();
     this.tokenS.resetToken();
   }
 

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Card } from 'src/app/models/card.model';
 import { Favorite } from 'src/app/models/favorite.model';
 import { DbUserService } from 'src/app/shared/services/db-user.service';
+import { FavoriteStatusService } from 'src/app/shared/services/favorite-status.service';
 import { FavoriteService } from 'src/app/shared/services/favorite.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { TokenService } from 'src/app/shared/services/token.service';
@@ -23,17 +24,19 @@ export class UserPageComponent {
   lastname!: String;
  
   isFavoriteListOpen: boolean = false;
-  isUserCardListOpen: boolean = false;
+  isUserCardListOpen: boolean = true;
   isEditCardFormOpen: boolean = false;
   isConfirmDeleteCurrentUserPopupOpen: boolean = false;
+
+  favoriteCards: number[] = [];
 
   constructor( 
     private dbUser: DbUserService,
     private tokenS: TokenService,
     private lsService: LocalStorageService,
     private favoriteService: FavoriteService,
+    private favoriteStatusService: FavoriteStatusService,
     private router: Router ) {}
-
 
 
     ngOnInit() {
@@ -62,6 +65,11 @@ export class UserPageComponent {
       this.dbUser.getUserCards().subscribe((cardListFromDatabase: Card[]) => {
         this.cardListCreatedByUser = cardListFromDatabase;
         })     
+
+        this.favoriteStatusService.getFavoriteCardsSubject$().subscribe((favoriteCards) => {
+          this.favoriteCards = favoriteCards;
+          console.log(favoriteCards);
+        });
     }
 
 
@@ -88,9 +96,8 @@ export class UserPageComponent {
     }
 
     onLogout(): void {
-      this.lsService.clearToken();
+      this.lsService.clearTokenAndUserEmail();
       this.tokenS.resetToken();
-      localStorage.removeItem('userEmail');
       this.router.navigate(["/home"]);
     }
 

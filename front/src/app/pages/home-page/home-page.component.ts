@@ -12,8 +12,5 @@ constructor(
  private localStorage: LocalStorageService
 ) {}
   ngOnInit() {
-   console.log(localStorage.getItem("favoriteCards"));
-   console.log(localStorage.getItem("userEmail")); 
-   
   }
 }

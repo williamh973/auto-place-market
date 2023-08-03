@@ -33,7 +33,7 @@ export class TokenService {
   }
 
   private _clearLocalStorageAndThenPutNewToken(tokenFromDB: TokenResponse): void {
-    this.lsService.clearToken();
+    this.lsService.clearTokenAndUserEmail();
     this.lsService.setToken(tokenFromDB)
   }
 

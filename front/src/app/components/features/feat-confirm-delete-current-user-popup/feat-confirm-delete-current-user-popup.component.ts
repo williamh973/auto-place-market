@@ -18,14 +18,15 @@ export class FeatConfirmDeleteCurrentUserPopupComponent {
   constructor(
     private dbUserService: DbUserService,
     private router: Router,
-    private lsService: LocalStorageService,) {}
+    private lsService: LocalStorageService,
+    private tokenS: TokenService) {}
 
 
   deleteCurrentUser() {
     this.dbUserService.deleteCurrentUser().subscribe(
       (response) => {
-        this.lsService.clearToken();
-        localStorage.removeItem('userEmail');
+        this.lsService.clearTokenAndUserEmail();
+        this.tokenS.resetToken();
         this.router.navigate(["/home"]); 
       },
       (error) => {

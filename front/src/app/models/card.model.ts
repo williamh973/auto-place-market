@@ -17,4 +17,4 @@ export class Card {
         public id?: number
     ) { }
 }
-
+ 

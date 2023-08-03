@@ -39,8 +39,11 @@ public class Card {
 
 
 
-
+//    A GARDER ! ! ! ! ! ! ! !
+//    @OneToMany(mappedBy = "card", cascade = CascadeType.ALL, orphanRemoval = true)
+//    @OneToMany(mappedBy = "card", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("card")
     private List<Picture> picturesList = new ArrayList<>();
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})

@@ -64,10 +64,10 @@ export class AdminPageComponent {
     });
   }
 
-  clearToken(): void {
-    this.lsService.clearToken();
+
+  onLogout(): void {
+    this.lsService.clearTokenAndUserEmail();
     this.tokenS.resetToken();
-    localStorage.removeItem('userEmail');
     this.router.navigate(["/home"]);
   }
 

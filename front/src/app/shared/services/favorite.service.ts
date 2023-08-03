@@ -19,15 +19,15 @@ export class FavoriteService {
 
 
   getFavoriteList(email: string): Observable<Favorite[]> {
-    return this.http.get<Favorite[]>(`${this._BASE_URL}/${email}`);
+    return this.http.get<Favorite[]>(`${this._BASE_URL}/${email}/favoriteList/all`);
   }
 
   addToFavorites(email: string, cardId: number): Observable<Card> {
-    return this.http.post<Card>(`${this._BASE_URL}/${email}/cards/${cardId}`, null);
+    return this.http.post<Card>(`${this._BASE_URL}/${email}/cards/${cardId}`, {});
   }
 
   removeFromFavorites(email: string, favoriteId: number): Observable<void> {
-    return this.http.delete<void>(`${this._BASE_URL}/${email}/favorites/delete/${favoriteId}`);
+    return this.http.delete<void>(`${this._BASE_URL}/${email}/favoriteList/delete/${favoriteId}`);
   }
   
 

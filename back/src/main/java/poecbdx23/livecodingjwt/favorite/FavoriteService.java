@@ -44,10 +44,10 @@ public class FavoriteService {
 
     public Favorite addToFavorite(String userEmail, Long cardId) {
         Optional<User> optionalUser = userRepository.findByEmail(userEmail);
-
         if (optionalUser.isEmpty()) {
             throw new RuntimeException("L'utilisateur avec l'e-mail " + userEmail + " n'a pas été trouvé.");
         }
+
         User user = getCurrentUser();
 
         Card card = cardRepository.findById(cardId)
@@ -61,31 +61,25 @@ public class FavoriteService {
         return favorite;
     }
 
+public void removeFromFavorite(String userEmail, Long favoriteId) {
+    Optional<User> optionalUser = userRepository.findByEmail(userEmail);
 
-    public void removeFromFavorite(String userEmail, Long favoriteId) {
-        Optional<User> optionalUser = userRepository.findByEmail(userEmail);
-
-        if (optionalUser.isEmpty()) {
-            throw new RuntimeException("L'utilisateur avec l'e-mail " + userEmail + " n'a pas été trouvé.");
-        }
-
-        User user = optionalUser.get();
-        List<Favorite> favoriteList = user.getFavoriteList();
-
-        Optional<Favorite> optionalFavorite = favoriteList.stream()
-                .filter(favorite -> favorite.getId().equals(favoriteId))
-                .findFirst();
-
-        if (optionalFavorite.isPresent()) {
-            Favorite favoriteToRemove = optionalFavorite.get();
-            favoriteList.remove(favoriteToRemove);
-
-            userRepository.save(user);
-        } else {
-            throw new RuntimeException("Le favori avec l'ID " + favoriteId + " n'a pas été trouvé pour l'utilisateur avec l'e-mail " + userEmail);
-        }
+    if (optionalUser.isEmpty()) {
+        throw new RuntimeException("L'utilisateur avec l'e-mail " + userEmail + " n'a pas été trouvé.");
     }
+    User user = getCurrentUser();
 
+    Favorite favorite = favoriteRepository.findById(favoriteId)
+            .orElseThrow(() -> new RuntimeException("Favori non trouvé"));
+
+    if (user.getFavoriteList().remove(favorite)) {
+        favorite.setUser(null); // Supprimer la relation entre le favori et l'utilisateur
+        favoriteRepository.delete(favorite); // Supprimer le favori de la base de données
+        userRepository.save(user); // Enregistrer l'utilisateur mis à jour
+    } else {
+        throw new RuntimeException("Le favori avec l'ID " + favoriteId + " n'a pas été trouvé pour l'utilisateur avec l'e-mail " + userEmail);
+    }
+}
 
 
     private User getCurrentUser() {

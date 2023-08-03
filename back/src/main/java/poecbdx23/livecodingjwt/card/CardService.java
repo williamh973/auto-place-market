@@ -2,9 +2,13 @@ package poecbdx23.livecodingjwt.card;
 
 
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import poecbdx23.livecodingjwt.favorite.FavoriteRepository;
+import poecbdx23.livecodingjwt.picture.Picture;
+import poecbdx23.livecodingjwt.picture.PictureRepository;
 import poecbdx23.livecodingjwt.user.User;
 import poecbdx23.livecodingjwt.user.UserRepository;
 import org.springframework.security.core.Authentication;
@@ -21,6 +25,7 @@ public class CardService {
 
     private final CardRepository cardRepository;
     private final UserRepository userRepository;
+    private final FavoriteRepository favoriteRepository;
 
     public List<Card> getAllCards() {
         return cardRepository.findAll();
@@ -35,6 +40,7 @@ public class CardService {
         card.setUser(user);
         return cardRepository.save(card);
     }
+
 
         private User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -71,10 +77,17 @@ public class CardService {
 
     }
 
+//    public void deleteCard(Long id) {
+//        cardRepository.deleteById(id);
+//    }
+@Transactional
+public void deleteCard(Long id) {
+    Card card = cardRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Card not found"));
 
-    public void deleteCard(Long id) {
-        cardRepository.deleteById(id);
-    }
+    favoriteRepository.deleteByCard(card);
+    cardRepository.deleteById(id);
+}
 
 
 }

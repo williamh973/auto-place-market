@@ -40,11 +40,11 @@ public class User implements UserDetails {
 
 
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIgnoreProperties("user")
     private Set<Card> cardList = new HashSet<>();
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIgnoreProperties({"user", "cardList"})
     private List<Favorite> favoriteList = new ArrayList<>();
 
@@ -59,6 +59,8 @@ public class User implements UserDetails {
     authorities.add(new SimpleGrantedAuthority(role));
     return authorities;
    }
+
+
 
 
     @Override

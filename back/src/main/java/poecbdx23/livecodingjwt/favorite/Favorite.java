@@ -23,14 +23,15 @@ public class Favorite {
     private Long id;
 
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne
     @JoinColumn(name = "card_id", referencedColumnName = "id")
-    @JsonIgnoreProperties("favorites")
+    @JsonIgnoreProperties("favoriteList")
     private Card card;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-//    @JsonIgnoreProperties(value = "favoriteList")
+
     @JsonIgnore
     private User user;
 

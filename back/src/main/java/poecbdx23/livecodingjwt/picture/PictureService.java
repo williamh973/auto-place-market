@@ -22,12 +22,13 @@ public class PictureService {
 
 
     private final PictureRepository pictureRepository;
-
+    private final CardRepository cardRepository;
 
 
     public Picture addPicture(Picture picture) {
         return pictureRepository.save(picture);
     }
+
 
     public List<Picture> getAllPictures() {
         return pictureRepository.findAll();

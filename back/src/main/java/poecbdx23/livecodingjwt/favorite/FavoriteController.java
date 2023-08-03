@@ -21,11 +21,13 @@ public class FavoriteController {
     private final CardRepository cardRepository;
 
 
-    @GetMapping("/{email}")
+    @GetMapping("/{email}/favoriteList/all")
     public List<Favorite> getFavoritesByEmail(@PathVariable String email) {
         return favoriteService.getFavoritesByEmail(email);
     }
 
+
+//    @PostMapping("/{email}/favoriteList/add")
     @PostMapping("/{email}/cards/{cardId}")
     public Favorite addToFavorite(@PathVariable String email, @PathVariable Long cardId) {
         User user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
@@ -34,7 +36,7 @@ public class FavoriteController {
         return favoriteService.addToFavorite(email, cardId);
     }
 
-    @DeleteMapping("/{email}/favorites/delete/{favoriteId}")
+    @DeleteMapping("/{email}/favoriteList/delete/{favoriteId}")
     public void removeFromFavorite(@PathVariable String email, @PathVariable Long favoriteId) {
         User user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
 

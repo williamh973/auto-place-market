@@ -27,6 +27,8 @@ export class Step1Component {
   onCloseAllStepsFormEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
+  constructor() {}
+
 
     ngOnInit() {
  
@@ -45,5 +47,6 @@ export class Step1Component {
         this.forGoToStep2.emit();
       } 
     }
+
   
 }

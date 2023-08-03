@@ -47,9 +47,10 @@ export class FeatSignInFormComponent {
   //   }
   // } 
   onSubmitAuth(): void {
-    this.LsService.clearToken();
+    this.LsService.clearTokenAndUserEmail();
     this.httpS.signIn(this.userAuth);
     this.isAnimationPopupSignInStatusActive = true;
+    
   }
 
 

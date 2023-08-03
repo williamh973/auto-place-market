@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { Card } from 'src/app/models/card.model';
+import { Picture } from 'src/app/models/picture.model';
 
 
 
@@ -39,15 +40,6 @@ export class CardService {
   createCard(card: Card): Observable<Card> {
     return this.http.post<Card>(`${this._BASE_URL_CARD}/add`, card);
   }
-
-  // createCard(card: Card): Observable<Card> {
-  //   return this.http.post<Card>(`${this._BASE_URL_CARD}/add`, card).pipe(
-  //     map((createdCard: Card) => {
-  //       card.id = createdCard.id; 
-  //       return card;
-  //     })
-  //   );
-  // }
 
   updateCard(card: Card): Observable<Card> {
     return this.http.put<Card>(`${this._BASE_URL_CARD}/update/${card.id}`, card);

@@ -27,6 +27,4 @@ public class Picture {
     @JsonIgnoreProperties("picturesList")
     private Card card;
 
-
-
 }
