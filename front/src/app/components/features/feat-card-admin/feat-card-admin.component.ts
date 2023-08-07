@@ -17,14 +17,16 @@ export class FeatCardAdminComponent implements OnInit {
   isFavorite: boolean = false;
   isConfirmDeletePopup: boolean = false;
 
-
+  firstPictureSrc: string = '';
 
   openEditDialogue() {
     this.isEditCardFormOpen = !this.isEditCardFormOpen;
   }
 
 ngOnInit() {
-  
+  if (this.card.picturesList.length > 0) {
+    this.firstPictureSrc = this.card.picturesList[0].src;
+  }
 }
 
 openConfirmDeletePopup() {

@@ -4,7 +4,7 @@
 
   .full-page {
    width: 100vw;
-   height: 200vh;
+   height: 100%;
   }
 
   .container-head {
@@ -102,8 +102,8 @@ li {
 
 .container-card-list {
   width: 90%;
-  height: 100vh;
   margin: auto;
+  padding: 50px 0;
 }
 
 .card-list-title {
@@ -117,11 +117,13 @@ li {
 }
 
 .card-list {
+  gap: 50px;
   display: flex;
   justify-content: center;
-  gap: 50px;
   flex-wrap: wrap;
-  padding: 50px 0;
+  margin: 50px;
+  padding: 20px 0;
+  background-color:  transparent;
 }
 
 

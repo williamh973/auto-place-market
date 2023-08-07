@@ -42,6 +42,8 @@ import { FeatCardFavoriteComponent } from './components/features/feat-card-favor
 import { FeatConfirmUpdateCardPopupComponent } from './components/features/feat-confirm-update-card-popup/feat-confirm-update-card-popup.component';
 import { FeatConfirmDeleteCurrentUserPopupComponent } from './components/features/feat-confirm-delete-current-user-popup/feat-confirm-delete-current-user-popup.component';
 import { ConceptPageComponent } from './pages/concept-page/concept-page.component';
+import { FavoriteStatusService } from './shared/services/favorite-status.service';
+import { FeatCardPreviewComponent } from './components/features/feat-card-preview/feat-card-preview.component';
 
 
 @NgModule({
@@ -75,7 +77,8 @@ import { ConceptPageComponent } from './pages/concept-page/concept-page.componen
     FeatCardFavoriteComponent,
     FeatConfirmUpdateCardPopupComponent,
     FeatConfirmDeleteCurrentUserPopupComponent,
-    ConceptPageComponent
+    ConceptPageComponent,
+    FeatCardPreviewComponent
   ],
   imports: [
     BrowserModule,
@@ -91,8 +94,9 @@ import { ConceptPageComponent } from './pages/concept-page/concept-page.componen
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorInterceptor,
-      multi: true
+      multi: true,
     },
+    FavoriteStatusService
   ],
   bootstrap: [AppComponent]
 })

@@ -77,7 +77,7 @@ export class UserPageComponent {
       this.isFavoriteListOpen = !this.isFavoriteListOpen;
       if (this.isFavoriteListOpen) {
         const userEmailInLocalStorage = localStorage.getItem('userEmail');
-        if (userEmailInLocalStorage !== null) {
+        if (userEmailInLocalStorage) {
           this.favoriteService.getFavoriteList(userEmailInLocalStorage).subscribe(
             (favoriteList: Favorite[]) => { 
               this.favoriteCardList = favoriteList.map(favorite => favorite.card);

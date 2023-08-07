@@ -23,10 +23,6 @@ public class  CardController {
     public List<Card> getAll() {
         return cardService.getAll();
     }
-    @GetMapping
-    public List<Card> getAllCards() {
-        return cardService.getAllCards();
-    }
 
     @GetMapping("/{id}")
     public Card getCardById(@PathVariable("id") Long id) {

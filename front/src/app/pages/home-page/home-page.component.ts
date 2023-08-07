@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { Card } from 'src/app/models/card.model';
+import { FavoriteStatusService } from 'src/app/shared/services/favorite-status.service';
+
 
 @Component({
   selector: 'app-home-page',
@@ -8,9 +10,17 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 })
 export class HomePageComponent {
 
+  favoriteCards: number[] = [];
+  
 constructor(
- private localStorage: LocalStorageService
+  private favoriteStatusService: FavoriteStatusService,
 ) {}
+
+
   ngOnInit() {
-  }
+      this.favoriteStatusService.getFavoriteCardsSubject$().subscribe((favoriteCards) => {
+        this.favoriteCards = favoriteCards;
+      });
+}
+
 }

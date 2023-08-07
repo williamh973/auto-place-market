@@ -13,33 +13,36 @@ import poecbdx23.livecodingjwt.user.User;
 import poecbdx23.livecodingjwt.user.UserRepository;
 import org.springframework.security.core.Authentication;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 
 
 @Service
 @RequiredArgsConstructor
 public class CardService {
 
-
     private final CardRepository cardRepository;
     private final UserRepository userRepository;
     private final FavoriteRepository favoriteRepository;
+    private final PictureRepository pictureRepository;
 
-    public List<Card> getAllCards() {
-        return cardRepository.findAll();
-    }
+
     public List<Card> getAll() {
         return cardRepository.findAll();
     }
 
 
-    public Card addCard(Card card) {
-        User user = getCurrentUser();
-        card.setUser(user);
-        return cardRepository.save(card);
-    }
+
+@Transactional
+public Card addCard(Card card) {
+
+    User user = getCurrentUser();
+    card.setUser(user);
+
+    return cardRepository.save(card);
+
+}
 
 
         private User getCurrentUser() {
@@ -77,9 +80,6 @@ public class CardService {
 
     }
 
-//    public void deleteCard(Long id) {
-//        cardRepository.deleteById(id);
-//    }
 @Transactional
 public void deleteCard(Long id) {
     Card card = cardRepository.findById(id)

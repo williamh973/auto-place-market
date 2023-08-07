@@ -1,6 +1,6 @@
 <div
 *ngIf="currentStep === 2" 
- class="full-form">
+ class="full-page">
 
     <form (ngSubmit)="onSubmit()">
    
@@ -28,53 +28,87 @@
             {{ createMode ? 'Mettre mon véhicule en ligne (Etape 2)' : 'Modifier mon véhicule (Etape 2)' }}
            </h2>
            <h3>
-            {{ createMode ? 'Au moins une photo est nécéssaire pour compléter votre annonce.' : 'Si vous ne souhaitez modifier les photos actuelles de votre véhicule, vous pouvez quitter le formulaire.' }}
+            {{ createMode ? 'Au moins une photo est nécéssaire pour compléter votre annonce.' : ', Si vous ne vous pouvez quitter le formulaire.' }}
            </h3>
            
    <div class="all-elements">
-   
-   <div class="first-part">
-       
-     <label for="image">Image</label>
-   
+    
+    <div class="container-upload" *ngIf="!createMode">
+      <label for="image">Image(s) déjà connue(s)</label>
+      <div class="container-img-upload" *ngIf="card.picturesList.length > 0">
+       <div *ngFor="let picture of card.picturesList; let i = index">
+         <img [src]="picture.src" alt="Image">
+         <svg 
+         class="svg-delete-picture"
+        (click)="onDeletePictureOfCardPicturesList(picture)" 
+        xmlns="http://www.w3.org/2000/svg" 
+        width="22" 
+        height="22" 
+        viewBox="0 0 24 24"
+        >
+            <path 
+            fill="none" 
+            d="M0 0h24v24H0z"
+            />
+            <path 
+            d="M18 6L6 18M6 6l12 12" 
+            stroke="currentColor" 
+            stroke-width="2" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"
+            />
+           </svg>
+        </div>
+      </div> 
+  </div>
+
+  <div class="container-ngx-dropzone">
+        <label for="image">Image à téléverser</label>
          <ngx-dropzone 
          class="ngx-dropzone"
          [accept]="'image/*'" 
-         (change)="onSelect($event)"
-        >
+         (change)="onHandlePhotoUpload($event)"
+         >
          <ngx-dropzone-label>
+           <div 
+           title="Cliquer ici">
            <div 
            title="Téléverser la ou les photo(s) désirée(s) en cliquant ici.">
                <h3>
                 {{ createMode ? 'Téléverser les photos de votre véhicule ici *' : 'Téléverser les nouvelles photos ici *' }}
                </h3>
            </div>
+           </div>
          </ngx-dropzone-label>
-   
          <ngx-dropzone-image-preview 
+         class="img-preview"
            ngProjectAs="ngx-dropzone-preview" 
            *ngFor="let photo of photosList" 
            [file]="photo" 
            [removable]="true" 
-           (removed)="onRemove(photo)"
+           (removed)="onRemovePhotoOfPhotoList(photo)"
          ></ngx-dropzone-image-preview>
+         <div 
+         title="Ajouter une photo"
+         class="upload-icon" 
+         *ngIf="photosList.length > 0">
+           <span>+</span>
+          </div>
          </ngx-dropzone>
-   
-   </div>
-       
-   </div>
-   
-   <div class="container-btn">
+      </div>
+    </div>
+
+    <div class="container-btn">
       <button 
       type="button"
       (click)="onGoToStep1()"
-      >Précédent
+      >Etape Précédente
      </button>
 
       <button type="submit">Je valide</button>
    </div>
+   
    </form>
    
    </div>
-   
    

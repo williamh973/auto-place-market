@@ -1,6 +1,9 @@
+import { Card } from "./card.model";
+
 export class Picture {
     constructor(
         public src: string, 
-        public id?: number 
+        public card: Card,
+        public id?: number
         ) {}
 }

@@ -13,6 +13,8 @@ import poecbdx23.livecodingjwt.card.Card;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+
+
 public class Picture {
 
     @Id
@@ -22,7 +24,7 @@ public class Picture {
     private String src;
 
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne
     @JoinColumn(name = "card_id", referencedColumnName = "id")
     @JsonIgnoreProperties("picturesList")
     private Card card;

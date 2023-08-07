@@ -8,9 +8,12 @@
    </span> 
   </div>
   
-  <div>
-    <img [src]="card.image" alt="Image">
+  <div *ngIf="card.picturesList.length > 0">
+    <div>
+      <img [src]="firstPictureSrc" alt="Image">
+    </div>
   </div>
+
   
       <div
       id="title"
@@ -46,13 +49,13 @@
       <div
         id="kilometer"
         class="cardChild-elements"
-        >{{ card.kilometer }} 
+        >{{ card.kilometer.toLocaleString() }} 
         <span id="km">Km</span>
       </div>
       <div
        id="price"
        class="cardChild-elements"
-       >{{ card.price }}
+       >{{ card.price.toLocaleString() }}
        <span>€</span>
        <span id="ttc">TTC</span>
       </div>

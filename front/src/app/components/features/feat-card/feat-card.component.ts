@@ -21,6 +21,9 @@ export class FeatCardComponent {
   favoriteId: number | null = null;
   favoriteCards: number[] = [];
 
+  firstPictureSrc: string = '';
+  
+
   constructor(
     private favoriteService: FavoriteService,
     private favoriteStatusService: FavoriteStatusService,
@@ -29,15 +32,14 @@ export class FeatCardComponent {
     ) {}
 
 
-    // ngOnInit(): void {
-    //   this.favoriteStatusService.getFavoriteCardsSubject$().subscribe((favoriteCards) => {
-    //     this.favoriteCards = favoriteCards; 
-    //   });
-    // }
     ngOnInit(): void {
       this.favoriteStatusService.getFavoriteCardsSubject$().subscribe((favoriteCards) => {
         this.favoriteCards = favoriteCards;
-     });
+      });
+
+      if (this.card.picturesList.length > 0) {
+        this.firstPictureSrc = this.card.picturesList[0].src;
+      }
     }
 
    
@@ -59,7 +61,6 @@ export class FeatCardComponent {
           if(this.card.id) {
             this.favoriteId = responseFavorite.id ?? null;
             console.log("La card a été ajoutée aux favoris.");
-            console.log(this.favoriteId);
             this.favoriteStatusService.setFavoriteStatus(this.card.id, true);
           }
         },

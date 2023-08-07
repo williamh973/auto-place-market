@@ -22,6 +22,16 @@ export class FeatCardUserComponent {
   isConfirmDeletePopup: boolean = false;
   isConfirmUpdatePopupOpen: boolean = false;
 
+  firstPictureSrc: string = '';
+
+
+
+  ngOnInit(): void {
+
+    if (this.card.picturesList.length > 0) {
+      this.firstPictureSrc = this.card.picturesList[0].src;
+    }
+  }
 
 
 openConfirmDeletePopup() {

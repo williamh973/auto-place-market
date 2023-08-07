@@ -1,16 +1,15 @@
 import { Component, Input } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
 
-
-
 @Component({
-  selector: 'app-feat-card-favorite',
-  templateUrl: './feat-card-favorite.component.html',
-  styleUrls: ['./feat-card-favorite.component.scss']
+  selector: 'app-feat-card-preview',
+  templateUrl: './feat-card-preview.component.html',
+  styleUrls: ['./feat-card-preview.component.scss']
 })
-export class FeatCardFavoriteComponent {
+export class FeatCardPreviewComponent {
 
   @Input() card!: Card
+  @Input() createMode: boolean = false;
 
   firstPictureSrc: string = '';
 
@@ -22,4 +21,3 @@ export class FeatCardFavoriteComponent {
   }
 
 }
-

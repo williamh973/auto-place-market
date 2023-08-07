@@ -14,24 +14,20 @@ export class FavoriteStatusService {
 
   private favoriteCardsSubject$: Subject<number[]> = new Subject<number[]>();
 
-  constructor(private localStorageService: LocalStorageService) {}
 
+  constructor(private localStorageService: LocalStorageService) {}
 
 
   public getUserFavoriteKey(userEmail: string): string {
     return `${this.FAVORITE_KEY_PREFIX}${userEmail}`;
   }
-
   public getFavoriteCards(favoriteKey: string): number[] {
     const favoriteCardsStr = localStorage.getItem(favoriteKey);
     return favoriteCardsStr ? JSON.parse(favoriteCardsStr) : [];
   }
-
-  private saveFavoriteCards(favoriteKey: string, favoriteCards: number[]): void {
+  public saveFavoriteCards(favoriteKey: string, favoriteCards: number[]): void {
     localStorage.setItem(favoriteKey, JSON.stringify(favoriteCards));
   }
-
-
 
 
   getFavoriteStatus(cardId: number): boolean {
@@ -69,14 +65,18 @@ export class FavoriteStatusService {
     }
   }
 
-  this.saveFavoriteCards(userFavoritesKey, favoriteCards);
-  console.log(`${userFavoritesKey} : ${favoriteCards}`);
-}
+   this.saveFavoriteCards(userFavoritesKey, favoriteCards);
+   localStorage.setItem(userFavoritesKey, JSON.stringify(favoriteCards));
+  //  localStorage.removeItem(userFavoritesKey);
+
+   console.log(`${userFavoritesKey} : ${favoriteCards}`);
+   }
   }
 
 
   getFavoriteCardsSubject$(): Observable<number[]> {
     return this.favoriteCardsSubject$.asObservable();
   }
+
 
 }

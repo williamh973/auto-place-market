@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
 import { User } from 'src/app/models/user.model';
+import { CardService } from 'src/app/shared/services/card.service';
 
 
 @Component({
@@ -27,7 +28,9 @@ export class Step1Component {
   onCloseAllStepsFormEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
-  constructor() {}
+  constructor(
+    private cardService: CardService,
+  ) {}
 
 
     ngOnInit() {
@@ -44,7 +47,9 @@ export class Step1Component {
       if (this.createMode) {
           this.forGoToStep2.emit();
     } else {
+      this.cardService.updateCard(this.card).subscribe((updatedCard) => {
         this.forGoToStep2.emit();
+      });
       } 
     }
 

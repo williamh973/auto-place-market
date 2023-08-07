@@ -29,7 +29,7 @@ export class CardService {
 
 
   getCardList(): Observable<Card[]> {
-    return this.http.get<Card[]>(this._BASE_URL_CARD);
+    return this.http.get<Card[]>(`${this._BASE_URL_CARD}/all`);
   }
 
   getCardById(id: number): Observable<Card> {
@@ -66,5 +66,5 @@ export class CardService {
     return this.filteredCardListCreatedByUserSubject$.asObservable();
   }
 
- 
+
 }
