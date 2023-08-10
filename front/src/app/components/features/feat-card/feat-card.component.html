@@ -92,5 +92,19 @@ class="container-user"
 </div>
 
 
-
+<div
+class="card-operation-status"
+*ngIf="
+isCardFavoriteAdded || 
+isCardFavoriteAddedError || 
+isCardFavoriteDelete || 
+isCarFavoritedDeleteError">
+  <app-feat-card-operation-status
+    [isCardFavoriteAdded]="isCardFavoriteAdded"
+    [isCardFavoriteAddedError]="isCardFavoriteAddedError"
+    [isCardFavoriteDelete]="isCardFavoriteDelete"
+    [isCarFavoritedDeleteError]="isCarFavoritedDeleteError"
+   >
+  </app-feat-card-operation-status>
+</div>
 

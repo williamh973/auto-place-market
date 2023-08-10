@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
 import { FavoriteStatusService } from 'src/app/shared/services/favorite-status.service';
 import { FavoriteService } from 'src/app/shared/services/favorite.service';
@@ -17,6 +17,10 @@ export class FeatCardComponent {
   isCardEditFormToggle: boolean = false;
   isFavorite: boolean = false;
   isConfirmDeletePopup: boolean = false;
+  isCardFavoriteAdded: boolean = false;
+  isCardFavoriteAddedError: boolean = false;
+  isCardFavoriteDelete: boolean = false;
+  isCarFavoritedDeleteError: boolean = false;
 
   favoriteId: number | null = null;
   favoriteCards: number[] = [];
@@ -28,23 +32,19 @@ export class FeatCardComponent {
     private favoriteService: FavoriteService,
     private favoriteStatusService: FavoriteStatusService,
     private localStorageService: LocalStorageService,
-    
     ) {}
 
 
-    ngOnInit(): void {
-      this.favoriteStatusService.getFavoriteCardsSubject$().subscribe((favoriteCards) => {
-        this.favoriteCards = favoriteCards;
-      });
+  ngOnInit(): void {
+    this.favoriteStatusService.getFavoriteCardsSubject$().subscribe((favoriteCards) => {
+      this.favoriteCards = favoriteCards;
+    });
 
-      if (this.card.picturesList.length > 0) {
-        this.firstPictureSrc = this.card.picturesList[0].src;
-      }
+    if (this.card.picturesList.length > 0) {
+      this.firstPictureSrc = this.card.picturesList[0].src;
     }
+  }
 
-   
-
-   
   toggleFavorite() {
     this.isFavorite = !this.isFavorite;
     
@@ -60,13 +60,19 @@ export class FeatCardComponent {
         (responseFavorite) => {
           if(this.card.id) {
             this.favoriteId = responseFavorite.id ?? null;
-            console.log("La card a été ajoutée aux favoris.");
             this.favoriteStatusService.setFavoriteStatus(this.card.id, true);
+            this.isCardFavoriteAdded = true;
+            setTimeout(() => {
+              this.isCardFavoriteAdded = false;
+            }, 1000);
           }
         },
         (error) => {
-          console.log("Échec de l'ajout aux favoris.");
           this.isFavorite = !this.isFavorite;
+          this.isCardFavoriteAddedError = true;
+          setTimeout(() => {
+            this.isCardFavoriteAddedError = false;
+          }, 1000);
         }
       );
       
@@ -79,14 +85,20 @@ export class FeatCardComponent {
       this.favoriteService.removeFromFavorites(userEmailInLocalStorage, this.favoriteId).subscribe(
         () => {
           if(this.card.id) {
-          console.log("La card a été supprimée des favoris");
+            this.isCardFavoriteDelete = true;
+            setTimeout(() => {
+              this.isCardFavoriteDelete = false;
+            }, 1000);
           this.isFavorite = false;
           this.favoriteId = null;
           this.favoriteStatusService.setFavoriteStatus(this.card.id, false);
           }
         },
         (error) => {
-          console.log("Échec de la suppression du favori.");
+          this.isCarFavoritedDeleteError = true;
+          setTimeout(() => {
+            this.isCarFavoritedDeleteError = false;
+          }, 1000);
         }
       );
     }

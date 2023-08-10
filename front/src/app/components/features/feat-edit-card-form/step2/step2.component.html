@@ -28,13 +28,14 @@
             {{ createMode ? 'Mettre mon véhicule en ligne (Etape 2)' : 'Modifier mon véhicule (Etape 2)' }}
            </h2>
            <h3>
-            {{ createMode ? 'Au moins une photo est nécéssaire pour compléter votre annonce.' : ', Si vous ne vous pouvez quitter le formulaire.' }}
+            {{ createMode ? 'Au moins une photo est nécéssaire pour compléter votre annonce.' : 'Si vous ne souhaitez pas apporter de modification dans cette étape, vous pouvez quitter le formulaire.' }}
            </h3>
            
    <div class="all-elements">
     
     <div class="container-upload" *ngIf="!createMode">
       <label for="image">Image(s) déjà connue(s)</label>
+
       <div class="container-img-upload" *ngIf="card.picturesList.length > 0">
        <div *ngFor="let picture of card.picturesList; let i = index">
          <img [src]="picture.src" alt="Image">
@@ -101,14 +102,49 @@
     <div class="container-btn">
       <button 
       type="button"
+      class="btn-prev"
       (click)="onGoToStep1()"
-      >Etape Précédente
+      >
+      <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="25"
+      height="25"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="whitesmoke"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="arrow-left"
+      >
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+    Etape Précédente
      </button>
 
-      <button type="submit">Je valide</button>
-   </div>
-   
+     <button class="btn-submit" [ngClass]="{'disabled-button': !areAllFieldsFilled()}"  type="submit">Je valide</button>
+    </div>
+    
    </form>
    
+   <div 
+   class="container-loader" 
+   *ngIf="isLoadingComposantActive">
+     <app-feat-loader></app-feat-loader>
    </div>
+
+   <div
+   class="card-operation-status"
+   *ngIf="isCardCreated || isCardUpdated">
+     <app-feat-card-operation-status
+      [isCardCreated]="isCardCreated"
+      [isCardCreatedError]="isCardCreatedError"
+      [isCardUpdated]="isCardUpdated"
+      [isCardUpdatedError]="isCardUpdatedError"
+     >
+     </app-feat-card-operation-status>
+  </div>
    
+
+   </div>
+

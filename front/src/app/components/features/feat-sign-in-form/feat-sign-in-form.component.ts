@@ -29,23 +29,6 @@ export class FeatSignInFormComponent {
   this.onSignInFormOpenEmit.emit(this.isSignInFormOpen);
   }
 
-
-    
-  // onSubmitAuth(): void {
-  //   this.LsService.clearToken();
-  //   this.httpS.signIn(this.userAuth);
-  //   localStorage.setItem('userEmail', this.userAuth.email);
-  //   const userEmailInLocalStorage = localStorage.getItem('userEmail');
-  //   this.isAnimationPopupSignInStatusActive = true;
-  //   if (userEmailInLocalStorage === this.userAuth.email) {
-  //     console.log(userEmailInLocalStorage);
-  //     setTimeout(() => {
-  //       window.location.reload();
-  //     }, 2500); 
-  //   } else {  
-  //    return; 
-  //   }
-  // } 
   onSubmitAuth(): void {
     this.LsService.clearTokenAndUserEmail();
     this.httpS.signIn(this.userAuth);

@@ -1,3 +1,5 @@
+<div class="full-page">
+
 <div class="full-popup">
  <span>Souhaitez-vous vraiment supprimer la carte ?</span>
  
@@ -5,4 +7,17 @@
    <p (click)="deleteCard()">Oui</p>
    <p (click)="onCloseConfirmeDeletePopup()">Non</p>
   </div>
+
+</div>
+
+</div>
+
+<div
+class="card-operation-status"
+*ngIf="isCardDeleted || isCardDeletedError">
+  <app-feat-card-operation-status
+    [isCardDeleted]="isCardDeleted"
+    [isCardDeletedError]="isCardDeletedError"
+   >
+  </app-feat-card-operation-status>
 </div>

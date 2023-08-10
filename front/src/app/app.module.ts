@@ -44,6 +44,8 @@ import { FeatConfirmDeleteCurrentUserPopupComponent } from './components/feature
 import { ConceptPageComponent } from './pages/concept-page/concept-page.component';
 import { FavoriteStatusService } from './shared/services/favorite-status.service';
 import { FeatCardPreviewComponent } from './components/features/feat-card-preview/feat-card-preview.component';
+import { FeatLoaderComponent } from './components/features/feat-loader/feat-loader.component';
+import { FeatCardOperationStatusComponent } from './components/features/feat-card-operation-status/feat-card-operation-status.component';
 
 
 @NgModule({
@@ -78,7 +80,9 @@ import { FeatCardPreviewComponent } from './components/features/feat-card-previe
     FeatConfirmUpdateCardPopupComponent,
     FeatConfirmDeleteCurrentUserPopupComponent,
     ConceptPageComponent,
-    FeatCardPreviewComponent
+    FeatCardPreviewComponent,
+    FeatLoaderComponent,
+    FeatCardOperationStatusComponent
   ],
   imports: [
     BrowserModule,

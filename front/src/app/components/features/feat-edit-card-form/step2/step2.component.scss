@@ -134,23 +134,51 @@ label {
  .container-btn {
     width: 100%;
     display: flex;
-    justify-content: center;
-    gap: 30px;
+    justify-content: space-evenly;
  }
+
+ .arrow-left {
+    color: rgb(165, 165, 165);
+    padding: 0 10px;
+    margin: 0;
+}
     
- button {
-     width: 150px;
-     padding: 10px;
-     margin: auto;
-     border: 2px solid whitesmoke;
-     border-radius: 5px;
+ .btn-prev, .btn-submit {
+     width: 230px;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     text-align: center;
      background-color: rgba(0, 0, 0, 0.755);
      color: whitesmoke;
      font-size: 15px;
+     border: 2px solid whitesmoke;
+     border-radius: 5px;
+     padding: 10px;
      cursor: pointer;
  }
- button:hover {
+ .btn-submit {
+    justify-content: center;
+ }
+ .btn-prev:hover, .btn-submit:hover {
      border: 2px solid rgb(0, 177, 0);
      transition: all 200ms;
  } 
+
+ .disabled-button {
+    pointer-events: none;
+    opacity: 0.6;
+  }
  
+ .container-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+ }
+
+ .card-operation-status {
+    position: absolute;
+    top: 0;
+    left: 0;
+ }
+

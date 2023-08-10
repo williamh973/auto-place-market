@@ -1,0 +1,36 @@
+<div class="full-page">
+    <div class="container-succes" *ngIf="isCardCreated">
+        <p class="succes">Annonce créé avec succès!</p>
+    </div>
+    <div *ngIf="isCardCreatedError">
+        <p class="error">Erreur survenue lors de la création de l'annonce!</p>
+    </div>
+
+    <div class="container-succes" *ngIf="isCardUpdated">
+        <p class="succes">Annonce modifié avec succès!</p>
+    </div>
+    <div *ngIf="isCardUpdatedError">
+        <p class="error">Erreur survenue lors de la modification de l'annonce!</p>
+    </div>
+
+    <div class="container-succes" *ngIf="isCardDeleted">
+        <p class="succes">Annonce supprimé avec succès!</p>
+    </div>
+    <div *ngIf="isCardDeletedError">
+        <p class="error">Erreur survenue lors de la supression de l'annonce!</p>
+    </div>
+
+    <div class="container-succes" *ngIf="isCardFavoriteAdded">
+        <p class="succes">Annonce ajouté aux favoris!</p>
+    </div>
+    <div *ngIf="isCardFavoriteAddedError">
+        <p class="error">Erreur survenue lors de la l'ajout aux favoris!</p>
+    </div>
+
+    <div class="container-succes" *ngIf="isCardFavoriteDelete">
+        <p class="succes">Annonce supprimé des favoris</p>
+    </div>
+    <div *ngIf="isCarFavoritedDeleteError">
+        <p class="error">Erreur survenue lors de la suppression des favoris!</p>
+    </div>
+</div>

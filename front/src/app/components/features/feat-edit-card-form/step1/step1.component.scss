@@ -22,6 +22,11 @@
     align-items: center;
 }
 
+.preview-and-card {
+    display: flex;
+    flex-direction: column;
+}
+
 .btn-cancel {
     margin-left: auto;
     margin-right: 30px;
@@ -34,7 +39,7 @@
     cursor: pointer;
 }
 
- h2, .create-mode-sub-title {
+ h4, h2, .create-mode-sub-title {
      text-align: center;
      padding: 15px;
      color: rgba(245, 245, 245, 0.803);
@@ -89,7 +94,7 @@
  .btn-next-step {
     width: 200px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     border: 2px solid whitesmoke;
     border-radius: 5px;
@@ -103,17 +108,22 @@
 } 
  
  button {
-     width: 150px;
+     width: 200px;
      display: flex;
+     justify-content: space-between;
      padding: 10px;
      background-color: rgba(0, 0, 0, 0.755);
      color: whitesmoke;
      font-size: 15px;
      border: none;
+     cursor: pointer;
+     align-items: center;
  }
 
  .arrow-right {
     color: rgb(165, 165, 165);
+    padding: 0 10px;
+    margin: 0;
 }
 
  .container-transmission {
@@ -123,9 +133,7 @@
  #transmission {
      width: 315px;
      padding: 10px;
-    //  background-color: rgba(0, 0, 0, 0.755);
      background-color: rgba(245, 245, 245, 0.901);
-    //  color: whitesmoke;
      color: rgb(0, 0, 0);
      border: 1px solid  rgb(255, 255, 255);
      border-radius: 10px;
@@ -140,8 +148,6 @@
  #fuel{
      width: 315px;
      padding: 10px;
-    //  background-color: rgba(0, 0, 0, 0.755);
-    //  color: whitesmoke;
      color: rgb(0, 0, 0);
      background-color: rgba(245, 245, 245, 0.901);
      border: 1px solid  rgb(255, 255, 255);

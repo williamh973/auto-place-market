@@ -34,13 +34,19 @@
            </h3>
            
            <div class="all-elements">
-            
-    <app-feat-card-preview
-    *ngIf="!createMode"
-    [card]="card"
-    >
-    </app-feat-card-preview>
 
+           <div 
+           *ngIf="!createMode" 
+           class="preview-and-card">
+             <h4 *ngIf="!createMode">Prévisualisation</h4>
+                     
+             <app-feat-card-preview
+             *ngIf="!createMode"
+             [card]="card"
+             >
+             </app-feat-card-preview>
+           </div>
+           
       <form (ngSubmit)="onGoStep2()">
 
     <h3 class="update-mode-sub-title" *ngIf="!createMode">
@@ -134,7 +140,7 @@
    <button 
    type="submit" 
    >Etape suivante
-   </button>
+   
    <svg
    xmlns="http://www.w3.org/2000/svg"
    width="25"
@@ -146,9 +152,11 @@
    stroke-linecap="round"
    stroke-linejoin="round"
    class="arrow-right"
- >
-   <polyline points="9 18 15 12 9 6"></polyline>
- </svg>
+   >
+    <polyline points="9 18 15 12 9 6"></polyline>
+   </svg>
+
+</button>
   </div>
   </form>
   </div>
