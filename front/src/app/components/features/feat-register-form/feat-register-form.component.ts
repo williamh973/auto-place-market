@@ -13,7 +13,8 @@ export class FeatRegisterFormComponent {
   @Output() onRegisterFormOpenEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
   
   isRegisterFormOpen: boolean = false;
-  isAnimationPopupSignInStatusActive: boolean = false; 
+  isAnimationPopupSignInStatusActive: boolean = false;
+  isPasswordVisible: boolean = false; 
 
   userRegister: UserRegister = new UserRegister("", "", "", "", "");
 
@@ -26,6 +27,10 @@ export class FeatRegisterFormComponent {
 
     onCancelRegisterForm() {
       this.onRegisterFormOpenEmit.emit(this.isRegisterFormOpen);
+    }
+
+    togglePasswordVisibility() {
+      this.isPasswordVisible = !this.isPasswordVisible;
     }
 
     onSubmitRegister(): void {

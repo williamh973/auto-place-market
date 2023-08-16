@@ -1,0 +1,65 @@
+<div class="full-header">
+
+    <div class="container-title-and-nav">
+   
+         <h1><span class="a">A</span>uto <span class="p">P</span>lace <span class="m">M</span>arket</h1>
+   
+         <div class="hamburger-container" (click)="onOpenMenuToggle()">
+            <div class="hamburger-icon">
+              &#9776;
+            </div>
+              <div class="dropdown" *ngIf="isMenuOpen">
+                <ul>
+                  <li *ngFor="let menuItem of menuItems">
+                    <a (click)="onMenuItemClick(menuItem)">{{ menuItem.label }}</a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+       
+    </div>
+   
+   </div>
+   
+   
+   <app-feat-edit-card-form 
+   class="edit-card-form"
+   *ngIf="isEditCardFormOpen"
+   [createMode]="true"
+   (onCloseEditCardFormEmit)="onRecevedMethodForCloseEditCardForm($event)"
+   ></app-feat-edit-card-form>
+   
+   <app-feat-contact-popup
+     class="contact-form-popup"
+     *ngIf="isContactPopupFormOpen"
+     (onCloseContactPopupFormEmit)="onRecevedMethodForCloseContactForm($event)"
+     >
+   </app-feat-contact-popup> 
+   
+   <div class="full-popup-account">
+     <app-feat-account-popup 
+       class="popup-account"
+       *ngIf="accountPopupService.isAccountPopupOpen$ | async"
+       ></app-feat-account-popup>
+   </div>
+   
+   <div 
+   class="container-search-bar"
+   >
+   
+   <div class="search-bar"
+   [ngStyle]="{ 'animation-delay': delaySecondsForAnimationSearchBar + 's' }">
+     
+   <app-feat-search 
+   *ngIf="isComputerResolution"
+   ></app-feat-search>
+
+   <app-search-responsive-tablet 
+   *ngIf="isTabletResolution"
+   ></app-search-responsive-tablet>
+
+
+   </div>
+   
+   
+   

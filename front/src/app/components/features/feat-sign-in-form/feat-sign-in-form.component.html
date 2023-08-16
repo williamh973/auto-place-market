@@ -1,8 +1,6 @@
-<div class="full-form">
+<div class="full-page">
 
 <form>
-
-<div>
     <svg (click)="onCancelSignInForm()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 22 22">
         <path fill="none" d="M0 0h24v24H0z"/>
         <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
@@ -17,9 +15,6 @@
     <input type="password" name="user-password" id="user-password"  autocomplete="on" [(ngModel)]="userAuth.password" placeholder="Taper votre mot de passe">    
     
     <button type="submit" (click)="onSubmitAuth()">Connexion</button>
-     
-</div>
-
 </form>
 
 </div>

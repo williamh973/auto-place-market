@@ -12,95 +12,111 @@
       justify-content: center;
       align-items: center;
       backdrop-filter: blur(10px);
-      // z-index: 1;
-    }
-  
-    svg {
-      margin-left: auto;
-      padding: 2px;
-      color: whitesmoke;
-    }
-    svg:hover {
-      transition: 300ms;
-      color: rgb(255, 0, 0);
-      scale: 1.1;
-      cursor: pointer;
     }
   
     form {
-      position: relative;
-      width: 23vw;
+      width: 30vw;
+      height: 80vh;
       display: flex;
       flex-direction: column;
       padding: 60px;
       background-color: rgba(0, 0, 0, 0.755);
-      border-radius: 5px;
-      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.275);
+      border-radius: 10px;
+      border: 4px solid rgb(37, 37, 37);
     }
     
+    svg {
+      margin-left: auto;
+    }
+    svg:hover {
+      transition: 200ms;
+      color: rgb(255, 0, 0);
+      cursor: pointer;
+    }
+  
     h2 {
+      width: 100%;
+      height: 50px;
       text-align: center;
-      padding: 20px;
-      color: rgba(245, 245, 245, 0.803);
       letter-spacing: 1.5px;
     }
 
     p {
+      width: 100%;
+      height: 50px;
       text-align: center;
-      color: rgba(245, 245, 245, 0.803);
-      padding: 20px 2px;
-      font-size: 13px;
-    }
-    
-    div {
-      display: flex;
-      flex-direction: column;
+      font-size: 15px;
     }
   
     label {
-      color: rgba(245, 245, 245, 0.803);
+      width: 70%;
+      height: 30px;
+      display: flex;
+      align-items: end;
       font-size: large;
       letter-spacing: 1.5px;
+      justify-content: flex-start;
+      margin: auto;
+      // border: 1px solid red;
     }
-    #label-password {
-      color: rgba(245, 245, 245, 0.803);
-    }
+
   
     input {
-    height: 30px;
-    border-radius: 10px;
-    border: none;
-    font-size: 16px;
-    background-color: rgba(245, 245, 245, 0.901);
-    color: rgb(0, 0, 0);
-    padding: 5px;
-    outline: none;
-    margin-bottom: 30px;
+      width: 70%;
+      height: 25px;
+      min-height: 25px;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+      background-color: rgba(245, 245, 245, 0.901);
+      color: rgb(0, 0, 0);
+      padding: 5px;
+      outline: none;
+      margin: auto;
+      margin-bottom: 10px;
+    }
+
+    .container-password-and-checkbox {
+     width: 100%;
+     display: flex;
+     align-items: center;
+     margin: auto;
+     position: relative;
+    }
+    
+    .checkbox {
+      position: absolute;
+      top: 25%;
+      right: 70px;
+      width: 15px;
+      height: 15px;
+    }
+
+    .checkbox:hover {
+      cursor: pointer;
     }
 
     fieldset {
+      width: 100%;
+      height: 30px;
       display: flex;
       justify-content: space-between;
+      padding: 10px 0;
       border: none;
     }
 
     .container-role {
-      width: 150px;
+      width: 100px;
       height: 20px;
       display: flex;
-      flex-direction: row;
       justify-content: center;
+      align-items: center;
+      margin: auto;
     }
 
-    #user-role-user {
+    #user-role-user, #user-role-admin {
       width: 15px;
       height: 15px;
-      margin: 0 5px;
-    }
-    #user-role-admin {
-      width: 15px;
-      height: 15px;
-      margin: 0 5px;
     }
 
     .container-user-role {
@@ -111,13 +127,7 @@
       justify-content: flex-start;
       align-items: center;
       padding: 0;
-    }
-  
-    .input-role {
-      width: 15px;
-    }
-    .label-role {
-      font-size: 13px;
+      font-size: 10px;
     }
 
     button {
@@ -125,10 +135,10 @@
       padding: 10px;
       margin: auto;
       margin-top: 25px;
+      color: whitesmoke;
       border: 2px solid whitesmoke;
       border-radius: 10px;
       background-color:  rgba(0, 0, 0, 0.866);
-      color: whitesmoke;
       font-size: 15px;
       cursor: pointer;
     }
@@ -140,7 +150,7 @@
 
      .popup-sign-in-status {
       position: fixed;
-      top: 10px; // 580px;
+      top: 10px;
       left: -340px;
     }
   

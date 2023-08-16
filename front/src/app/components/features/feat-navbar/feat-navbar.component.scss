@@ -1,4 +1,8 @@
-.full-navbar {
+* {
+  color: whitesmoke;
+}
+
+.full-header {
     position: relative;
     width: 100vw;
     height: 500px;
@@ -11,7 +15,7 @@
     opacity: 0; 
     animation: fadeIn 3s forwards;
 }
-.full-navbar::before {
+.full-header::before {
     content: "";
     position: absolute;
     top: 0;
@@ -21,80 +25,74 @@
     background-color: rgba(0, 0, 0, 0.2);
   }
 
-  
-.container-title {
-    width: 30vw;
-    min-width: 30vw;
-    height: 80px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: transparent;
-    cursor:default;
-    z-index: 1;
-  }
-  
-  .c, .p, .m {
-    color: whitesmoke;
+.container-title-and-nav {
+  width: 100vw;
+  height: 16vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+  .a, .p, .m {
     font-size: 5vw;
+    min-width: 5vw;
   }
   
   h1 {
-    width: 70vw;
-    height: 90px;
-    font-size: 30px;
+    width: 27vw;
+    min-width: 27vw;
+    font-size: 25px;
     font-family: cursive, sans-serif;
     letter-spacing: 2px;
     font-style: italic;
-    color: whitesmoke;
-    align-items: baseline;
-    flex-wrap: wrap;
+    text-align: center;
+    z-index: 1;
   }
 
-  .container-button-shoppong-and-account {
-    width: 800px;
-    height: 50px;
-    display: flex;
-    justify-content: flex-end;
-    gap: 20px;
-    padding: 20px 0;
-  }
-
-  .container-button {
-    width: 150px;
-    height: 45px;
+  nav {
+    height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:  rgba(0, 0, 0, 0.733);
-    color: whitesmoke;
-    font-size: 20px;
-    font-family: sans-serif;
-    border-radius: 10px;
     z-index: 1;
+  }
+
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  li {
+    width: 100%;
+    display: flex;
+    list-style-type: none;
 }
+
   .container-button:hover {
     border: none;
   }
 
-button {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+a {
+  width: 10vw;
+  padding: 10px 0;
+  text-align: center;
   background-color:  rgba(0, 0, 0, 0.733);
   border: 2px solid rgb(241, 241, 241);
   border-radius: 10px;
-  color: whitesmoke;
   font-size: 16px;
-  font-family: sans-serif;
+  font-family: sans-serif,Helvetica, Arial;
   cursor: pointer;
+  text-decoration: none;
 }
-button:hover {
+a:hover {
   transition: all 200ms;
   border: 2px solid rgb(0, 177, 0);
 }
+
+
+
 
 .edit-card-form {
   position: absolute;
@@ -115,11 +113,19 @@ button:hover {
   z-index: 2;
 }
 
+.contact-form-popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
 .container-search-bar {
   position: relative;
   bottom: 100px;
   z-index: 1;
 }
+
 .search-bar {
   transform: translateX(100%);
   animation: slide-from-right 1s forwards;

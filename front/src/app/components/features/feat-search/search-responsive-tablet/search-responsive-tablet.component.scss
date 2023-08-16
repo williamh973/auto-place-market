@@ -1,0 +1,105 @@
+* {
+  font-size: 22px;
+  outline: none;
+  color: #f0f0f0;
+}
+
+.full-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: transparent; 
+    z-index: 1;
+    border: none;
+  }
+
+  .container-all-inputs {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  #input-search {
+      width: 30vw;
+      min-width: 30vw;
+      height: 40px;
+      font-family: sans-serif;
+      border: 1px solid #e3e3e3;
+      border-radius: 10px;
+      padding: 5px 40px 5px 5px;
+      background-color: rgba(0, 0, 0, 0.733);
+      caret-color: none;
+      background:  rgba(0, 0, 0, 0.733);
+    }
+    #input-search:focus {
+      border-color: rgb(0, 177, 0); 
+      transition: all 200ms;
+    }
+  
+    #input-price {
+      width: 15vw;
+      min-width: 15vw;
+      height: 40px;
+      border: 1px solid #e3e3e3;
+      border-radius: 10px;
+      padding: 5px 40px 5px 5px;
+      background-color: rgba(0, 0, 0, 0.733);
+    }
+
+    #input-price::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
+    #input-price:focus {
+      border-color: rgb(0, 177, 0); 
+      transition: all 200ms;
+    }
+  
+    #input-kilometric {
+      width: 20vw;
+      min-width: 20vw;
+      height: 40px;
+      border: 1px solid #e3e3e3;
+      border-radius: 10px;
+      padding: 5px 40px 5px 5px;
+      background-color: rgba(0, 0, 0, 0.733);
+    }
+
+    #input-kilometric::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+    
+    #input-kilometric:focus {
+      border-color: rgb(0, 177, 0); 
+      transition: all 200ms;
+    }
+  
+    svg {
+      position: relative;
+      right: 35px;
+      top: 5px;
+      cursor: pointer;
+    }
+    
+    svg:hover {
+      transition: all 200ms;
+      scale: 1.2;
+    }
+    
+    svg:active {
+      transition: all 200ms;
+      scale: 1.0;
+    }
+  
+    
+    .full-no-cards-found-popup {
+      position: absolute;
+      top: 130px;
+      left: 0;
+      width: 100%;
+      height: 30px;
+      background-color: transparent;
+      padding: 20px;
+      z-index: 1;
+    }

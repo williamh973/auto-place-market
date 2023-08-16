@@ -46,7 +46,10 @@ import { FavoriteStatusService } from './shared/services/favorite-status.service
 import { FeatCardPreviewComponent } from './components/features/feat-card-preview/feat-card-preview.component';
 import { FeatLoaderComponent } from './components/features/feat-loader/feat-loader.component';
 import { FeatCardOperationStatusComponent } from './components/features/feat-card-operation-status/feat-card-operation-status.component';
-
+import { NavbarResponsiveTabletComponent } from "./components/features/feat-navbar/navbar-responsive-tablet/navbar-responsive-tablet.component";
+import { FeatContactPopupComponent } from './components/features/feat-contact-popup/feat-contact-popup.component';
+import { SearchResponsiveTabletComponent } from './components/features/feat-search/search-responsive-tablet/search-responsive-tablet.component';
+import { SearchResponsiveSmartphoneComponent } from './components/features/feat-search/search-responsive-smartphone/search-responsive-smartphone.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +85,11 @@ import { FeatCardOperationStatusComponent } from './components/features/feat-car
     ConceptPageComponent,
     FeatCardPreviewComponent,
     FeatLoaderComponent,
-    FeatCardOperationStatusComponent
+    FeatCardOperationStatusComponent,
+    NavbarResponsiveTabletComponent,
+    FeatContactPopupComponent,
+    SearchResponsiveTabletComponent,
+    SearchResponsiveSmartphoneComponent
   ],
   imports: [
     BrowserModule,

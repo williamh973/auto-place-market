@@ -1,15 +1,13 @@
 <div class="full-page">
     
-    <app-feat-navbar></app-feat-navbar>
+    <app-feat-navbar *ngIf="isComputerResolution"></app-feat-navbar>
+    <app-navbar-responsive-tablet *ngIf="isTabletResolution"></app-navbar-responsive-tablet>
 
-<div class="container-background-img"> 
- </div> 
+    <div class="container-background-img"></div> 
 
-<div class="container-cardList">
-   <app-feat-card-list></app-feat-card-list>
-</div>
-
-<div class="background-img"></div>
+    <div class="container-cardList">
+       <app-feat-card-list></app-feat-card-list>
+    </div>
 
 </div>
 

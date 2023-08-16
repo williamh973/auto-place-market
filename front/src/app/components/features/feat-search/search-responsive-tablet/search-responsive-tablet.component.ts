@@ -1,13 +1,15 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
 import { CardService } from 'src/app/shared/services/card.service';
 
+
 @Component({
-  selector: 'app-feat-search',
-  templateUrl: './feat-search.component.html',
-  styleUrls: ['./feat-search.component.scss']
+  selector: 'app-search-responsive-tablet',
+  templateUrl: './search-responsive-tablet.component.html',
+  styleUrls: ['./search-responsive-tablet.component.scss']
 })
-export class FeatSearchComponent {
+export class SearchResponsiveTabletComponent {
+
 
   notFoundMessage: string = '';
   isNoCardFoundPopupDisplay: boolean = false;
@@ -34,6 +36,9 @@ export class FeatSearchComponent {
       this.cardList = cards;
     });
   } 
+
+
+
 
   filterCardsByTitle() {
     if (this.titleValueInSearchInput) {
@@ -99,14 +104,5 @@ export class FeatSearchComponent {
 
   
 }
-
-
-
-
-
-
-
-
-
 
 

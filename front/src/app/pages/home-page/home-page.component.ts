@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { Card } from 'src/app/models/card.model';
+import { Component, HostListener } from '@angular/core';
 import { FavoriteStatusService } from 'src/app/shared/services/favorite-status.service';
 
 
@@ -9,18 +8,33 @@ import { FavoriteStatusService } from 'src/app/shared/services/favorite-status.s
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent {
-
+  
   favoriteCards: number[] = [];
   
-constructor(
-  private favoriteStatusService: FavoriteStatusService,
-) {}
+  isComputerResolution: boolean = false;
+  isTabletResolution: boolean = false;
 
 
+  constructor(
+    private favoriteStatusService: FavoriteStatusService,
+  ) {}
+  
+  
   ngOnInit() {
+    const screenWidth = window.innerWidth;
+    this.isTabletResolution = screenWidth > 767 && screenWidth <= 1299; 
+    this.isComputerResolution = screenWidth >= 1300; 
+    
       this.favoriteStatusService.getFavoriteCardsSubject$().subscribe((favoriteCards) => {
         this.favoriteCards = favoriteCards;
       });
-}
+  }
+  
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    const screenWidth = window.innerWidth;
+    this.isTabletResolution = screenWidth > 767 && screenWidth <= 1299; 
+    this.isComputerResolution = screenWidth >= 1300; 
+  }
 
 }

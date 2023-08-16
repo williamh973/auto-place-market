@@ -1,53 +1,18 @@
-<div class="full-navbar">
+<div class="full-header">
 
-    <div class="container-title">
-        <h1><span class="c">A</span>uto <span class="p">P</span>lace <span class="m">M</span>arket</h1>
-      </div>
+ <div class="container-title-and-nav">
 
-     
-       
+      <h1><span class="a">A</span>uto <span class="p">P</span>lace <span class="m">M</span>arket</h1>
 
-<div class="container-button-shoppong-and-account">
-
-    <div class="container-button">
-      <button 
-      (click)="onEditCardFormOpen()" 
-        >Mettre ma voiture
-      </button>
-    </div>
-
-    <div class="container-button">
-      <button 
-      routerLink="/concept"
-        >Notre concept
-      </button>
-    </div>
-  
-    <div class="container-button">
-      <button 
-      routerLink="/user-space"
-      >Mon compte
-    </button>
-   </div>
-
-   <div class="container-button">
-      <button 
-      routerLink="/admin"
-      >Admin
-    </button>
-   </div>
-
-   <div class="container-button">
-    <button 
-      >Contact
-    </button>
-  </div>
-
-</div>
+    <nav>
+      <ul>
+        <li *ngFor="let menuItem of menuItems">
+          <a (click)="onMenuItemClick(menuItem)">{{ menuItem.label }}</a>
+        </li>
+      </ul>
+    </nav>
     
-
-
-
+ </div>
 
 </div>
 
@@ -59,7 +24,12 @@ class="edit-card-form"
 (onCloseEditCardFormEmit)="onRecevedMethodForCloseEditCardForm($event)"
 ></app-feat-edit-card-form>
 
-
+<app-feat-contact-popup
+class="contact-form-popup"
+*ngIf="isContactPopupFormOpen"
+(onCloseContactPopupFormEmit)="onRecevedMethodForCloseContactForm($event)"
+>
+</app-feat-contact-popup> 
 
 <div class="full-popup-account">
   <app-feat-account-popup 
@@ -71,14 +41,24 @@ class="edit-card-form"
 <div 
 class="container-search-bar"
 >
+  <div
+  class="search-bar"
+  [ngStyle]="{ 
+    'animation-delay': delaySecondsForAnimationSearchBar + 's' }"
+  >
+    <app-feat-search 
+    *ngIf="isComputerResolution"
+    ></app-feat-search>
 
-<div class="search-bar"
-[ngStyle]="{ 'animation-delay': delaySecondsForAnimationSearchBar + 's' }">
-  <app-feat-search 
-  ></app-feat-search>
+    <app-search-responsive-tablet 
+    *ngIf="isTabletResolution"
+    ></app-search-responsive-tablet>
+    
+  </div>
+
 </div>
 
-</div>
+
 
 
 

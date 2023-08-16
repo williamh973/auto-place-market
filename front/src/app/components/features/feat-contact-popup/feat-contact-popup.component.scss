@@ -1,0 +1,97 @@
+* {
+    font-family: Helvetica, sans-serif;
+    color: rgba(245, 245, 245, 0.803);
+  }
+
+.full-page {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+
+.full-popup {
+   width: 70vw;
+   height: 70vh;
+   display: flex;
+   flex-direction: column;
+   background-color: rgba(0, 0, 0, 0.755);
+   border-radius: 10px;
+   border: 4px solid rgb(37, 37, 37);
+}
+
+.container-btn {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.btn-cancel {
+  padding: 10px;
+  margin-right: 10px;
+  color: rgb(165, 165, 165);
+}
+.btn-cancel:hover {
+  transition: 300ms;
+  color: rgb(255, 0, 0);
+  scale: 1.1;
+  cursor: pointer;
+}
+
+h1 {
+  width: 100%;
+  height: 70px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+p {
+  width: 80%;
+  height: 70px;
+  margin: auto; 
+}
+
+form {
+  width: 80%;
+  height: 50vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px;
+}
+
+textarea {
+  width: 80%;
+  height: 100px;
+  margin: auto;
+  outline: none;
+  background-color: transparent;
+  border: 1px solid rgba(245, 245, 245, 0.34);
+  border-radius: 10px;
+  font-size: 17px;
+  padding: 5px 10px;
+}
+
+button {
+  width: 230px;
+  background-color: transparent;
+  color: whitesmoke;
+  font-size: 15px;
+  border: 2px solid whitesmoke;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  margin: auto;
+}
+
+button:hover {
+  border: 2px solid rgb(0, 177, 0);
+  transition: all 200ms;
+} 
+
