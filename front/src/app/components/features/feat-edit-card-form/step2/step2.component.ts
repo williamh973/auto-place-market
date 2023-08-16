@@ -21,9 +21,9 @@ import { Observable, forkJoin } from 'rxjs';
 export class Step2Component {
 
   
-picture: Picture = new Picture('',new Card('','', '', 0, 0, 0, '', '', 0,[],new User('', '', '', '', [], [], 'ROLE_USER')))
+picture: Picture = new Picture('', new Card(new Date(), '','', '', 0, 0, 0, '', '', 0, [], new User('', '', '', '', [], [], [], 'ROLE_USER')))
   
-@Input() card:  Card = new Card('','', '', 0, 0, 0, '', '', 0,[],new User('', '', '', '', [], [], 'ROLE_USER'));
+@Input() card:  Card = new Card(new Date(), '', '', '', 0, 0, 0, '', '', 0, [], new User('', '', '', '', [], [], [], 'ROLE_USER'));
 @Input() currentStep!: number
 @Input() createMode: boolean = false;
 

@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Card } from 'src/app/models/card.model';
 import { Favorite } from 'src/app/models/favorite.model';
+import { Menu } from 'src/app/models/menu.model';
+import { Message } from 'src/app/models/message.model';
 import { DbUserService } from 'src/app/shared/services/db-user.service';
 import { FavoriteStatusService } from 'src/app/shared/services/favorite-status.service';
 import { FavoriteService } from 'src/app/shared/services/favorite.service';
@@ -15,10 +17,29 @@ import { TokenService } from 'src/app/shared/services/token.service';
   styleUrls: ['./user-page.component.scss']
 })
 export class UserPageComponent {
+
+  mainMenuItems: Menu[] = [
+    new Menu('Poster une annonce', ''),
+    new Menu('Mes voitures', ''),
+    new Menu('Mes favoris', ''),
+    new Menu('Déconnexion', '')
+  ];
+
+  dropDownAccountMenuItems: Menu[] = [
+    new Menu('Supprimer mon compte', ''),
+    new Menu('Modifier le numéro de téléphone', ''),
+  ];
+
+  dropDownMessageMenuItems: Menu[] = [
+    new Menu('Envoyer un message', ''),
+    new Menu('Historique des messages', ''),
+  ];
  
   cardListCreatedByUser: Card[] = [];
   filteredCardListCreatedByUser: Card[] = [];
   favoriteCardList: Card[] = [];
+  messageListCreatedByUser: Message[] = [];
+  filteredMessageListCreatedByUser: Message[] = [];
 
   firstname!: String;
   lastname!: String;
@@ -27,8 +48,11 @@ export class UserPageComponent {
   isUserCardListOpen: boolean = true;
   isEditCardFormOpen: boolean = false;
   isConfirmDeleteCurrentUserPopupOpen: boolean = false;
+  isContactPopupFormOpen: boolean = false;
+  isUserMessageListOpen: boolean = false;
 
   favoriteCards: number[] = [];
+
 
   constructor( 
     private dbUser: DbUserService,
@@ -64,7 +88,7 @@ export class UserPageComponent {
 
       this.dbUser.getUserCards().subscribe((cardListFromDatabase: Card[]) => {
         this.cardListCreatedByUser = cardListFromDatabase;
-        })     
+        });     
 
         this.favoriteStatusService.getFavoriteCardsSubject$().subscribe((favoriteCards) => {
           this.favoriteCards = favoriteCards;
@@ -105,6 +129,10 @@ export class UserPageComponent {
         this.isEditCardFormOpen = !this.isEditCardFormOpen;
     }
 
+    onContactFormOpen() {
+      this.isContactPopupFormOpen = !this.isContactPopupFormOpen;
+  }
+
     loadUserCardList() {
       this.isUserCardListOpen = !this.isUserCardListOpen
     }
@@ -116,6 +144,10 @@ export class UserPageComponent {
     changePhoneNumber(): void {
       
     }
+
+    onLoadUserMessageList() {
+      this.isUserMessageListOpen = !this.isUserMessageListOpen;
+    }
     
     onRecevedMethodForCloseEditCardForm(isEditCardFormOpen: boolean) {
       this.isEditCardFormOpen = isEditCardFormOpen;
@@ -125,4 +157,35 @@ export class UserPageComponent {
       this.isConfirmDeleteCurrentUserPopupOpen = isConfirmDeleteCurrentUserPopupOpen;
     }
 
+    onRecevedMethodForCloseContactForm(isContactPopupFormOpen: boolean) {
+      this.isContactPopupFormOpen = isContactPopupFormOpen;
+    }
+
+    onMainMenuItemClick(menuItem: Menu) {
+      if (menuItem.label === 'Poster une annonce') {
+        this.onEditCardFormOpen();
+      } else if (menuItem.label === 'Mes voitures') {
+        this.loadUserCardList();
+      } else if (menuItem.label === 'Mes favoris') {
+        this.loadFavoriteCardList();
+      } else if (menuItem.label === 'Déconnexion') {
+        this.onLogout();
+      } 
+    }
+
+  onDropdownAccountMenuItemClick(menuItem: Menu) {
+    if (menuItem.label === 'Supprimer mon compte') {
+      this.deleteAccount();
+    } else if (menuItem.label === 'Modifier le numéro de téléphone') {
+      this.changePhoneNumber();
+    }
+  }
+
+    onDropdownMessageMenuItemClick(menuItem: Menu) {
+      if (menuItem.label === 'Envoyer un message') {
+        this.onContactFormOpen();
+      } else if (menuItem.label === 'Historique des messages') {
+        this.onLoadUserMessageList();
+      }
+    }
 }

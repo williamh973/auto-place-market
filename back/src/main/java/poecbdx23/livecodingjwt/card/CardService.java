@@ -7,13 +7,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import poecbdx23.livecodingjwt.favorite.FavoriteRepository;
-import poecbdx23.livecodingjwt.picture.Picture;
-import poecbdx23.livecodingjwt.picture.PictureRepository;
 import poecbdx23.livecodingjwt.user.User;
 import poecbdx23.livecodingjwt.user.UserRepository;
 import org.springframework.security.core.Authentication;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +23,7 @@ public class CardService {
     private final CardRepository cardRepository;
     private final UserRepository userRepository;
     private final FavoriteRepository favoriteRepository;
-    private final PictureRepository pictureRepository;
+//    private final PictureRepository pictureRepository;
 
 
     public List<Card> getAll() {
@@ -39,9 +37,9 @@ public Card addCard(Card card) {
 
     User user = getCurrentUser();
     card.setUser(user);
+    card.setTimestamp(new Date());
 
     return cardRepository.save(card);
-
 }
 
 

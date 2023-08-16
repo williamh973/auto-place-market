@@ -8,6 +8,7 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import poecbdx23.livecodingjwt.card.Card;
+import poecbdx23.livecodingjwt.message.Message;
 
 import java.security.Principal;
 import java.util.List;
@@ -82,7 +83,15 @@ public class UserController {
         return ResponseEntity.ok(cardList);
     }
 
+    @GetMapping("current/messagesList")
+    public ResponseEntity<Set<Message>> getUserMessages(Principal principal, HttpServletRequest request) throws AccessDeniedException {
+        User user = userRepository.findByEmail(principal.getName())
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
+        Set<Message> messagesList = user.getMessagesList();
+
+        return ResponseEntity.ok(messagesList);
+    }
 
 
     @DeleteMapping("/delete/{userId}")

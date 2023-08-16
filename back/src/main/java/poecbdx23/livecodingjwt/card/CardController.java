@@ -3,12 +3,10 @@ package poecbdx23.livecodingjwt.card;
 
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -32,6 +30,7 @@ public class  CardController {
 
     @PostMapping("/add")
     public Card addCard(@RequestBody Card card) {
+        card.setTimestamp(new Date());
     return cardService.addCard(card);
 }
 

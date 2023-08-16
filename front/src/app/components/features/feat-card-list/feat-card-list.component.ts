@@ -1,7 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Card } from 'src/app/models/card.model';
-import { User } from 'src/app/models/user.model';
 import { CardService } from 'src/app/shared/services/card.service';
 
 
@@ -18,8 +17,7 @@ export class FeatCardListComponent {
   filteredCardList: Card[] = [];
 
   
-  constructor(private cardService: CardService,
-    private router: Router) { }
+  constructor(private cardService: CardService) { }
   
 
   ngOnInit(): void {

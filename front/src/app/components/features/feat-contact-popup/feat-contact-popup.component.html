@@ -28,8 +28,22 @@
         <p>Nous sommes là pour vous aider et comprendre tout problème que vous pourriez rencontrer lors de l'utilisation de notre application. N'hésitez pas à nous faire part de vos préoccupations et de vos suggestions. Votre retour est essentiel pour nous améliorer et vous offrir la meilleure expérience possible.</p>
   
           <form>
-            <textarea name="textarea" id="textarea" cols="30" rows="10" placeholder="Exprimez vos questions, préoccupations ou suggestions ici..." maxlength="500" minlength="1"></textarea>
-           <button type="submit">Envoyer</button>
+            <textarea 
+            name="textarea" 
+            id="textarea" 
+            cols="30" 
+            rows="10" 
+            placeholder="Exprimez vos questions, préoccupations ou suggestions ici..." 
+            maxlength="1000" 
+            minlength="1"
+            [(ngModel)]="message.resume"
+            ></textarea>
+             <button 
+             type="submit"
+             (click)="onSubmitMessage()"
+             >
+             Envoyer
+             </button>
           </form>
     </div>
 

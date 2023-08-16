@@ -1,0 +1,19 @@
+<div class="full-page">
+
+    <p *ngIf="messageListCreatedByUser.length === 0" class="message-list-title">Pas de message envoyé</p>
+    <p *ngIf="messageListCreatedByUser.length > 0" class="message-list-title">Historique des messages envoyés</p>
+
+ <div class="container-message" *ngFor="let message of messageListCreatedByUser">
+    <div class="message">
+        <p class="timestamp">{{ message.timestamp | date:'dd/MM/yyyy à HH:mm' }}</p>
+        <p *ngIf="message.isExpanded || message.resume.length <= 70">{{ message.resume }}</p>
+        <p *ngIf="!message.isExpanded && message.resume.length > 70">{{ message.resume.substring(0, 70) }}...</p>
+    </div>
+    <button *ngIf="message.resume.length > 70" class="read-more-btn" (click)="onExpandMessage(message)">
+        {{ message.isExpanded ? 'Lire moins' : (message.resume.length > 70 ? 'Lire plus' : '') }}
+    </button>
+</div>
+ 
+</div>
+
+

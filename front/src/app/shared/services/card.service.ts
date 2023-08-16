@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { Card } from 'src/app/models/card.model';
-import { Picture } from 'src/app/models/picture.model';
 
 
 
@@ -38,6 +37,7 @@ export class CardService {
   }
 
   createCard(card: Card): Observable<Card> {
+    card.timestamp = new Date();
     return this.http.post<Card>(`${this._BASE_URL_CARD}/add`, card);
   }
 

@@ -13,6 +13,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import poecbdx23.livecodingjwt.card.Card;
 import poecbdx23.livecodingjwt.favorite.Favorite;
+import poecbdx23.livecodingjwt.message.Message;
 
 
 import java.util.Collection;
@@ -47,6 +48,10 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIgnoreProperties({"user", "cardList"})
     private List<Favorite> favoriteList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JsonIgnoreProperties("user")
+    private Set<Message> messagesList = new HashSet<>();
 
 
 

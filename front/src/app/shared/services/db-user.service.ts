@@ -4,6 +4,7 @@ import { User } from '../../models/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LocalStorageService } from './local-storage.service';
 import { Card } from 'src/app/models/card.model';
+import { Message } from 'src/app/models/message.model';
 
 
 @Injectable({
@@ -46,6 +47,11 @@ export class DbUserService {
   getUserCards(): Observable<Card[]> {
     return this.http.get<Card[]>(`${this._BASE_URL}/current/cardList`);
   }
+
+  getUserMessages(): Observable<Message[]> {
+    return this.http.get<Message[]>(`${this._BASE_URL}/current/messagesList`);
+  }
+
 
 // A GARDER !! ! ! ! 
   // getUserId(): Observable<number> {

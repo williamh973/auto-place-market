@@ -13,30 +13,30 @@
   <div>
     <nav>
       <ul>
-        <li>
-          <button class="btn-nav" (click)="onEditCardFormOpen()">Poster une annonce</button>
+        <li *ngFor="let menuItem of mainMenuItems">
+          <a class="btn-nav" (click)="onMainMenuItemClick(menuItem)">{{ menuItem.label }}</a>
         </li>
-        <li>
-          <button class="btn-nav" (click)="loadUserCardList()">Mes voitures</button>
-        </li>
-        <li>
-          <button class="btn-nav" (click)="loadFavoriteCardList()">Mes favoris</button>
-        </li>
-        <li>
-          <div class="dropdown">
-            <button class="dropdown-button">Paramètres de compte</button>
-            <div class="dropdown-content">
-              <a (click)="deleteAccount()">Supprimer mon compte</a>
-              <a (click)="changePhoneNumber()">Modifier le numéro de téléphone</a>
-            </div>
-          </div>   
-        </li>
-        <li>
-          <button class="btn-head" (click)="onLogout()">Déconnexion</button>
-        </li>
+
+        <div class="dropdown">
+          <button class="dropdown-button">Paramètres de compte</button>
+          <div class="dropdown-content">
+            <li *ngFor="let dropDownAccountMenuItem of dropDownAccountMenuItems">
+              <a (click)="onDropdownAccountMenuItemClick(dropDownAccountMenuItem)">{{ dropDownAccountMenuItem.label }}</a>
+            </li>
+          </div>
+        </div>   
+
+        <div class="dropdown">
+          <button class="dropdown-button">Messages</button>
+          <div class="dropdown-content">
+            <li *ngFor="let dropDownMessageMenuItem of dropDownMessageMenuItems">
+              <a (click)="onDropdownMessageMenuItemClick(dropDownMessageMenuItem)">{{ dropDownMessageMenuItem.label }}</a>
+            </li>
+          </div>
+        </div>   
       </ul>
     </nav>
-</div>
+  </div>
 
 </div>
 
@@ -88,4 +88,16 @@ class="edit-card-form"
 (onCloseEditCardFormEmit)="onRecevedMethodForCloseEditCardForm($event)"
 ></app-feat-edit-card-form>
 
+<app-feat-contact-popup
+class="contact-form"
+*ngIf="isContactPopupFormOpen"
+(onCloseContactPopupFormEmit)="onRecevedMethodForCloseContactForm($event)"
+>
+</app-feat-contact-popup>
+
+<app-feat-message-user
+*ngIf="isUserMessageListOpen"
+>
+</app-feat-message-user>
 </div>
+

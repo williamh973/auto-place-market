@@ -3,6 +3,7 @@ import { User } from "./user.model";
 
 export class Card {
     constructor(
+        public timestamp: Date,
         public image: string,
         public title: string,
         public resume: string,

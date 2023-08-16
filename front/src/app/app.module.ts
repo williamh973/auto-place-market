@@ -50,6 +50,7 @@ import { NavbarResponsiveTabletComponent } from "./components/features/feat-navb
 import { FeatContactPopupComponent } from './components/features/feat-contact-popup/feat-contact-popup.component';
 import { SearchResponsiveTabletComponent } from './components/features/feat-search/search-responsive-tablet/search-responsive-tablet.component';
 import { SearchResponsiveSmartphoneComponent } from './components/features/feat-search/search-responsive-smartphone/search-responsive-smartphone.component';
+import { FeatMessageUserComponent } from './components/features/feat-message-user/feat-message-user.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { SearchResponsiveSmartphoneComponent } from './components/features/feat-
     NavbarResponsiveTabletComponent,
     FeatContactPopupComponent,
     SearchResponsiveTabletComponent,
-    SearchResponsiveSmartphoneComponent
+    SearchResponsiveSmartphoneComponent,
+    FeatMessageUserComponent
   ],
   imports: [
     BrowserModule,

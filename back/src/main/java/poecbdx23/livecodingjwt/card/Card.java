@@ -11,10 +11,7 @@ import lombok.Setter;
 import poecbdx23.livecodingjwt.picture.Picture;
 import poecbdx23.livecodingjwt.user.User;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -27,6 +24,8 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timestamp;
     private String image;
     private String title;
     @Column(length = 1000)

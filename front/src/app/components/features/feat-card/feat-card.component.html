@@ -24,13 +24,14 @@
     </svg>
   </div>
 
-  <div 
+  <!-- <div 
 class="container-user"
 >Mis en ligne par 
  <span id="user">
    {{ card.user.firstname }}
  </span> 
-</div>
+</div> -->
+<p class="timestamp">Posté le {{ card.timestamp | date:'dd/MM/yyyy' }}</p>
 
 </div>
 
