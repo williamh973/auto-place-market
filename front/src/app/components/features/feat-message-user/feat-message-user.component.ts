@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Message } from 'src/app/models/message.model';
 import { User } from 'src/app/models/user.model';
 import { DbUserService } from 'src/app/shared/services/db-user.service';
+import { MessageService } from 'src/app/shared/services/message.service';
 
 @Component({
   selector: 'app-feat-message-user',
@@ -14,8 +15,13 @@ export class FeatMessageUserComponent {
 
   messageListCreatedByUser: Message[] = [];
 
+  isConfirmDeleteMessagePopupOpen: boolean = false;
 
-  constructor(private dbUser: DbUserService) {}
+
+  constructor(
+    private dbUser: DbUserService,
+    private messageService: MessageService
+    ) {}
 
 
   ngOnInit() {
@@ -27,5 +33,22 @@ export class FeatMessageUserComponent {
 
   onExpandMessage(message: Message) {
     message.isExpanded = !message.isExpanded;
-}
+  }
+
+  onCancelBtn(message: Message) {
+    this.messageService.deleteMessage(message.id as number).subscribe(() => {
+      const index = this.messageListCreatedByUser.findIndex(p => p.id === message.id);
+          if (index !== -1) {
+            this.messageListCreatedByUser.splice(index, 1);
+          }
+        })
+      };
+  // onCancelBtn() {
+  //   this.isConfirmDeleteMessagePopupOpen = !this.isConfirmDeleteMessagePopupOpen
+  // }
+
+  onForCloseConfirmDeletePopup(isConfirmDeleteMessagePopupOpen: boolean) {
+   this.isConfirmDeleteMessagePopupOpen = !this.isConfirmDeleteMessagePopupOpen
+  }
+
 }

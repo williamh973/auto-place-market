@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
 import { FavoriteStatusService } from 'src/app/shared/services/favorite-status.service';
 import { FavoriteService } from 'src/app/shared/services/favorite.service';
@@ -39,10 +39,13 @@ export class FeatCardComponent {
     this.favoriteStatusService.getFavoriteCardsSubject$().subscribe((favoriteCards) => {
       this.favoriteCards = favoriteCards;
     });
+   
+    this.card.picturesList.sort((pictureA, pictureB) => (pictureA.id ?? 0) - (pictureB.id ?? 0));   
 
     if (this.card.picturesList.length > 0) {
       this.firstPictureSrc = this.card.picturesList[0].src;
     }
+
   }
 
   toggleFavorite() {

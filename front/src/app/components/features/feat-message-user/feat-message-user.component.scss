@@ -36,6 +36,7 @@
 
 .read-more-btn {
     width: 100px;
+    min-width: 100px;
     height: 30px;
     display: flex;
     justify-content: center;
@@ -50,4 +51,36 @@
 .read-more-btn:hover {
     border: 1px solid rgb(0, 177, 0);
     transition: all 200ms;
+    cursor: pointer;
 }
+
+  .container-btn {
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .btn-cancel {
+    width: 25px;
+    min-width: 25px;
+    height: 25px;
+    min-height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(165, 165, 165);
+  }
+
+  .btn-cancel:hover {
+    transition: 300ms;
+    color: rgb(255, 0, 0);
+    scale: 1.1;
+    cursor: pointer;
+  }
+
+  .confirm-delete-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }

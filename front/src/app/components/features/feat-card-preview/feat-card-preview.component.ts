@@ -14,6 +14,7 @@ export class FeatCardPreviewComponent {
   firstPictureSrc: string = '';
 
   ngOnInit(): void {
+    this.card.picturesList.sort((pictureA, pictureB) => (pictureA.id ?? 0) - (pictureB.id ?? 0));   
 
     if (this.card.picturesList.length > 0) {
       this.firstPictureSrc = this.card.picturesList[0].src;

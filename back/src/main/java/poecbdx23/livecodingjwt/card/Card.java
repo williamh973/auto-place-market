@@ -22,14 +22,16 @@ import java.util.*;
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date timestamp;
+
     private String image;
     private String title;
     @Column(length = 1000)
     private String resume;
+    
     private int price;
     private int kilometer;
     private int door;

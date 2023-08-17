@@ -10,7 +10,7 @@ import { CardService } from 'src/app/shared/services/card.service';
 export class FeatConfirmDeletePopupComponent {
   
   @Input() card!: Card;
-
+  
   @Output() onisConfirmDeletePopupEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   isConfirmDeletePopup: boolean = false;

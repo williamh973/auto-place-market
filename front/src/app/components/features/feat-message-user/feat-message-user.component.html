@@ -1,19 +1,73 @@
 <div class="full-page">
 
-    <p *ngIf="messageListCreatedByUser.length === 0" class="message-list-title">Pas de message envoyé</p>
-    <p *ngIf="messageListCreatedByUser.length > 0" class="message-list-title">Historique des messages envoyés</p>
+    <p 
+    *ngIf="messageListCreatedByUser.length === 0" 
+    class="message-list-title"
+    >
+    Pas de message envoyé
+    </p>
+    <p 
+    *ngIf="messageListCreatedByUser.length > 0" 
+    class="message-list-title"
+    >
+    Historique des messages envoyés
+    </p>
 
- <div class="container-message" *ngFor="let message of messageListCreatedByUser">
-    <div class="message">
-        <p class="timestamp">{{ message.timestamp | date:'dd/MM/yyyy à HH:mm' }}</p>
-        <p *ngIf="message.isExpanded || message.resume.length <= 70">{{ message.resume }}</p>
-        <p *ngIf="!message.isExpanded && message.resume.length > 70">{{ message.resume.substring(0, 70) }}...</p>
+    <div 
+    class="container-message" 
+    *ngFor="let message of messageListCreatedByUser"
+    >
+    <div 
+    class="message"
+    >
+        <p 
+        class="timestamp"
+        >
+        {{ message.timestamp | date:'dd/MM/yyyy à HH:mm' }}
+        </p>
+        <p 
+        *ngIf="message.isExpanded || message.resume.length <= 70"
+        >{{ message.resume }}
+        </p>
+        <p 
+        *ngIf="!message.isExpanded && message.resume.length > 70"
+        >
+        {{ message.resume.substring(0, 70) }}...
+        </p>
     </div>
-    <button *ngIf="message.resume.length > 70" class="read-more-btn" (click)="onExpandMessage(message)">
-        {{ message.isExpanded ? 'Lire moins' : (message.resume.length > 70 ? 'Lire plus' : '') }}
-    </button>
-</div>
+
+        <div class="container-btn">
+            <button 
+            *ngIf="message.resume.length > 70" 
+            class="read-more-btn" 
+            (click)="onExpandMessage(message)"
+            >
+            {{ message.isExpanded ? 'Lire moins' : (message.resume.length > 70 ? 'Lire plus' : '') }}
+            </button>
+
+            <svg 
+            (click)="onCancelBtn(message)"
+            xmlns="http://www.w3.org/2000/svg" 
+            width="25" 
+            height="25" 
+            viewBox="0 0 25 25"
+            class="btn-cancel"
+            >
+                <path 
+                fill="none" 
+                d="M0 0h24v24H0z"
+                />
+                <path 
+                d="M18 6L6 18M6 6l12 12" 
+                stroke="currentColor" 
+                stroke-width="1" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"
+                />
+            </svg>
+        </div>
+
+    </div>
  
 </div>
-
 

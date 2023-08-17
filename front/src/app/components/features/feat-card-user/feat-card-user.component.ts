@@ -1,8 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
-import { User } from 'src/app/models/user.model';
-import { DbUserService } from 'src/app/shared/services/db-user.service';
-import { FavoriteService } from 'src/app/shared/services/favorite.service';
 
 
 @Component({
@@ -27,6 +24,7 @@ export class FeatCardUserComponent {
 
 
   ngOnInit(): void {
+    this.card.picturesList.sort((pictureA, pictureB) => (pictureA.id ?? 0) - (pictureB.id ?? 0));   
 
     if (this.card.picturesList.length > 0) {
       this.firstPictureSrc = this.card.picturesList[0].src;

@@ -20,10 +20,7 @@ import { Observable, forkJoin } from 'rxjs';
 
 export class Step2Component {
 
-  
-picture: Picture = new Picture('', new Card(new Date(), '','', '', 0, 0, 0, '', '', 0, [], new User('', '', '', '', [], [], [], 'ROLE_USER')))
-  
-@Input() card:  Card = new Card(new Date(), '', '', '', 0, 0, 0, '', '', 0, [], new User('', '', '', '', [], [], [], 'ROLE_USER'));
+@Input() card:  Card = new Card('', '', '', 0, 0, 0, '', '', 0, new Date(), [], new User('', '', '', '', [], [], [], 'ROLE_USER'));
 @Input() currentStep!: number
 @Input() createMode: boolean = false;
 
@@ -32,6 +29,7 @@ picture: Picture = new Picture('', new Card(new Date(), '','', '', 0, 0, 0, '', 
 @Output() forGoToStep1: EventEmitter<void> = new EventEmitter<void>();
 @Output() onCloseAllStepsFormEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
  
+picture: Picture = new Picture('', new Card('','', '', 0, 0, 0, '', '', 0, new Date(), [], new User('', '', '', '', [], [], [], 'ROLE_USER')));
 
 isPhotoInTheBox: boolean = false;
 isDropZoneOnCreateMode: boolean = false;

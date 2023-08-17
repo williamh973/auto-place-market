@@ -13,7 +13,6 @@ export class FeatEditCardFormComponent {
 
 @Input() 
 card:  Card = new Card(
-  new Date(),
   '',
   '', 
   '', 
@@ -23,6 +22,7 @@ card:  Card = new Card(
   '', 
   '', 
   0,
+  new Date(),
   [],
   new User(
     '', 
