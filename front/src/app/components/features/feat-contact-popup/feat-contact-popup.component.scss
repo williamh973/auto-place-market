@@ -38,7 +38,7 @@
   color: rgb(165, 165, 165);
 }
 .btn-cancel:hover {
-  transition: 300ms;
+  transition: 100ms;
   color: rgb(255, 0, 0);
   scale: 1.1;
   cursor: pointer;
@@ -86,12 +86,13 @@ button {
   border: 2px solid whitesmoke;
   border-radius: 5px;
   padding: 10px;
-  cursor: pointer;
   margin: auto;
 }
 
 button:hover {
   border: 2px solid rgb(0, 177, 0);
-  transition: all 200ms;
+      transition: all 100ms;
+      cursor: pointer;
+      scale: 1.05;
 } 
 

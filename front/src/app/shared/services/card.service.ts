@@ -14,9 +14,6 @@ export class CardService {
   
   cardList: Card[] = [];
   filteredCardListSubject$: BehaviorSubject<Card[]> = new BehaviorSubject<Card[]>([]);
-  
-  cardListCreatedByUser: Card[] = [];
-  filteredCardListCreatedByUserSubject$: BehaviorSubject<Card[]> = new BehaviorSubject<Card[]>([]);
 
   
   private readonly _BASE_URL_CARD: string = "http://localhost:8080/cards";
@@ -57,14 +54,5 @@ export class CardService {
   getFilteredCardList$(): Observable<Card[]> {
     return this.filteredCardListSubject$.asObservable();
   }
-  
-
-  postFilterCardListCreatedByUser(filteredCardListCreatedByUser: Card[],) {
-    this.filteredCardListCreatedByUserSubject$.next([...filteredCardListCreatedByUser]);
-  }
-  getFilteredCardListCreatedByUser$(): Observable<Card[]> {
-    return this.filteredCardListCreatedByUserSubject$.asObservable();
-  }
-
 
 }

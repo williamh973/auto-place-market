@@ -30,42 +30,34 @@ svg {
   color: whitesmoke;
   background-color: transparent;
 }
+
 svg:hover {
    cursor: pointer;
    scale: 1.1;
    transition: all 100ms;
 }
-svg:active {
-  cursor: pointer;
-  scale: 0.9;
-  transition: all 100ms;
-}
+
  .svg-favorite {
   stroke: red;
  }
 
- .container-user, .timestamp{
+ .timestamp{
   padding: 5px;
   color: rgb(221, 221, 221);
   cursor: default;
  }
- #user {
-  padding: 0 5px;
-  font-style: italic;
-  font-size: 18px;
-}
 
   img {
     width: 100%;
     height: 260px;
   }
 
-#title {
-  font-size: 20px;
-  padding: 10px 10px;
-  font-weight: bold;
-  text-align: center;
-}
+ #title {
+   font-size: 20px;
+   padding: 10px 10px;
+   font-weight: bold;
+   text-align: center;
+ }
 
 .container-door-fuel-transmission-year {
   width: 100%;
@@ -144,9 +136,10 @@ a {
   text-align: center;
 }
 a:hover {
-cursor: pointer;
-border: 2px solid rgb(0, 177, 0);
-transition: all 200ms;
+  border: 2px solid rgb(0, 177, 0);
+  transition: all 100ms;
+  cursor: pointer;
+  scale: 1.05;
 }
 
 .card-operation-status {

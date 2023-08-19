@@ -27,6 +27,7 @@ export class FavoriteStatusService {
   }
   public saveFavoriteCards(favoriteKey: string, favoriteCards: number[]): void {
     localStorage.setItem(favoriteKey, JSON.stringify(favoriteCards));
+    this.favoriteCardsSubject$.next(favoriteCards);
   }
 
 
@@ -42,7 +43,7 @@ export class FavoriteStatusService {
     return isFavorite;
   }
 
-  setFavoriteStatus(cardId: number, isFavorite: boolean): void {
+  setFavoriteStatus(cardId: number, isFavorite: boolean) {
     const userEmailInLocalStorage = this.localStorageService.getUserEmail();
     if (userEmailInLocalStorage) {
       const userFavoritesKey = this.getUserFavoriteKey(userEmailInLocalStorage);
@@ -73,10 +74,8 @@ export class FavoriteStatusService {
    }
   }
 
-
   getFavoriteCardsSubject$(): Observable<number[]> {
     return this.favoriteCardsSubject$.asObservable();
   }
-
 
 }

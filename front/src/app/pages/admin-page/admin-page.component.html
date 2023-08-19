@@ -1,40 +1,60 @@
-<div class="container-main">
+<div class="full-page">
 
-  <div class="container-title">
-    <h1>Espace Administrateur</h1>
-      <div class="container-firstname-lastname">
-        <h2>{{ firstname }}</h2>
-        <h2>{{ lastname }}</h2>
-      </div>
-  </div>
-    <div class="container-btn">
-      <button (click)="onLogout()">Déconnexion</button>
+  <div class="container-head">
+
+    <div class="container-title">
+      <h1>Espace Administrateur</h1>
+        <div class="container-firstname-lastname">
+          <h2>{{ firstname }}</h2>
+          <h2>{{ lastname }}</h2>
+        </div>
     </div>
 
-</div>
-
-<div class="container-get-data">
-    <app-get-datas></app-get-datas> 
-</div>
-
-<div class="container-card-list">
-
-  <div id="container-btn-show-all-cards">
-    <button 
-    id="btn-show-all-cards"
-    (click)="showCardList()">{{ isCardListOpen ? 'Fermer la liste' : 'Voir toutes les cartes' }}</button>
+    <div>
+      <nav>
+        <ul>
+          <li *ngFor="let menuItem of mainMenuItems">
+            <a class="btn-nav" (click)="onMainMenuItemClick(menuItem)">{{ menuItem.label }}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!-- <div class="container-btn">
+      <button (click)="onLogout()">Déconnexion</button>
+    </div> -->
+    
   </div>
+  
+  <div class="container-card-list">
+    
+    <div id="container-btn-show-all-cards">
+      <button 
+      id="btn-show-all-cards"
+      (click)="showCardList()">{{ isCardListOpen ? 'Fermer la liste' : 'Voir toutes les cartes' }}</button>
+    </div>
 
-  <div class="search-bar" *ngIf="isCardListOpen">
-  <app-feat-search 
-  ></app-feat-search>
-</div>
 
-  <div class="card-list" *ngIf="isCardListOpen">
-      <div *ngFor="let card of (filteredCardList.length > 0 ? filteredCardList : cardList); let i = index">
-        <app-feat-card-admin
-           [card]="card"
+<div class="card-list" *ngIf="isCardListOpen">
+  <div *ngFor="let card of (filteredCardList.length > 0 ? filteredCardList : cardList); let i = index">
+    <app-feat-card-admin
+    [card]="card"
        ></app-feat-card-admin>
       </div>
     </div>
+  </div>
+
+  </div>
+
+  <div 
+  class="container-get-data"
+  *ngIf="isGetDataOpen"
+  >
+    <app-get-datas></app-get-datas> 
+  </div>
+
+  <div 
+  class="search-bar" 
+  *ngIf="isCardListOpen"
+  >
+    <app-feat-search ></app-feat-search>
   </div>

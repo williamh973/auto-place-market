@@ -49,9 +49,10 @@
 }
 
 .read-more-btn:hover {
-    border: 1px solid rgb(0, 177, 0);
-    transition: all 200ms;
+    border: 2px solid rgb(0, 177, 0);
+    transition: all 100ms;
     cursor: pointer;
+    scale: 1.05;
 }
 
   .container-btn {
@@ -73,7 +74,7 @@
   }
 
   .btn-cancel:hover {
-    transition: 300ms;
+    transition: 100ms;
     color: rgb(255, 0, 0);
     scale: 1.1;
     cursor: pointer;

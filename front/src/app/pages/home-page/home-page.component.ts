@@ -13,21 +13,19 @@ export class HomePageComponent {
   
   isComputerResolution: boolean = false;
   isTabletResolution: boolean = false;
+  isHomePageCardListOpen: boolean = true;
+  isFavorite: boolean = false;
 
 
   constructor(
-    private favoriteStatusService: FavoriteStatusService,
-  ) {}
+    ) {}
   
   
   ngOnInit() {
     const screenWidth = window.innerWidth;
     this.isTabletResolution = screenWidth > 767 && screenWidth <= 1299; 
     this.isComputerResolution = screenWidth >= 1300; 
-    
-      this.favoriteStatusService.getFavoriteCardsSubject$().subscribe((favoriteCards) => {
-        this.favoriteCards = favoriteCards;
-      });
+
   }
   
   @HostListener('window:resize', ['$event'])

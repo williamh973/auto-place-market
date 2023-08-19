@@ -116,8 +116,9 @@ a {
   text-align: center;
 }
 a:hover {
-cursor: pointer;
-border: 2px solid rgb(0, 177, 0);
-transition: all 200ms;
+  border: 2px solid rgb(0, 177, 0);
+  transition: all 100ms;
+  cursor: pointer;
+  scale: 1.05;
 }
 

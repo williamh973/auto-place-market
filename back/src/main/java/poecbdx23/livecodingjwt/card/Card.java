@@ -31,7 +31,7 @@ public class Card {
     private String title;
     @Column(length = 1000)
     private String resume;
-    
+
     private int price;
     private int kilometer;
     private int door;

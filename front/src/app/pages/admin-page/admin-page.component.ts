@@ -5,6 +5,7 @@ import { CardService } from 'src/app/shared/services/card.service';
 import { DbUserService } from 'src/app/shared/services/db-user.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { TokenService } from 'src/app/shared/services/token.service';
+import { Menu } from 'src/app/models/menu.model';
 
 
 @Component({
@@ -14,13 +15,19 @@ import { TokenService } from 'src/app/shared/services/token.service';
 })
 export class AdminPageComponent {
 
+  mainMenuItems: Menu[] = [
+    new Menu('Rechercher un utilisateur', ''),
+    new Menu('Déconnexion', '')
+  ];
+
   cardList: Card[] = [];
   filteredCardList: Card[] = [];
 
   firstname!: String
   lastname!: String
 
-  isCardListOpen: boolean = true;
+  isCardListOpen: boolean = false;
+  isGetDataOpen: boolean = false;
 
   constructor(
     private cardService: CardService,
@@ -73,6 +80,18 @@ export class AdminPageComponent {
 
   showCardList() {
     this.isCardListOpen = !this.isCardListOpen
+  }
+
+  showGetData() {
+    this.isGetDataOpen = !this.isGetDataOpen
+  }
+
+  onMainMenuItemClick(menuItem: Menu) {
+    if (menuItem.label === 'Rechercher un utilisateur') {
+      this.showGetData();
+    } else if (menuItem.label === 'Déconnexion') {
+      this.onLogout();
+    } 
   }
 
 }

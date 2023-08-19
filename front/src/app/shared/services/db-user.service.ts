@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, of } from 'rxjs';
+import { BehaviorSubject, Observable, map, of } from 'rxjs';
 import { User } from '../../models/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LocalStorageService } from './local-storage.service';
@@ -12,14 +12,15 @@ import { Message } from 'src/app/models/message.model';
 })
 export class DbUserService {
 
+  cardListCreatedByUser: Card[] = [];
+  filteredCardListCreatedByUserSubject$: BehaviorSubject<Card[]> = new BehaviorSubject<Card[]>([]);
+
   private readonly _BASE_URL = "http://localhost:8080/api/v1/users";
 
 
   constructor(
     private http: HttpClient,
     private lsService: LocalStorageService) { }
-
-
 
 
   getOneUser(email: string): Observable<User> {
@@ -52,7 +53,6 @@ export class DbUserService {
     return this.http.get<Message[]>(`${this._BASE_URL}/current/messagesList`);
   }
 
-
 // A GARDER !! ! ! ! 
   // getUserId(): Observable<number> {
   //   return this.http.get<number>(`${this._BASE_URL}/current/id`);
@@ -60,6 +60,14 @@ export class DbUserService {
 
   deleteCurrentUser(): Observable<void> {
     return this.http.delete<void>(`${this._BASE_URL}/current/delete`);
+  }
+
+
+  postFilterCardListCreatedByUser(filteredCardListCreatedByUser: Card[],) {
+    this.filteredCardListCreatedByUserSubject$.next([...filteredCardListCreatedByUser]);
+  }
+  getFilteredCardListCreatedByUser$(): Observable<Card[]> {
+    return this.filteredCardListCreatedByUserSubject$.asObservable();
   }
 
 }

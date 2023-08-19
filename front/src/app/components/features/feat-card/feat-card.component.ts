@@ -36,21 +36,21 @@ export class FeatCardComponent {
 
 
   ngOnInit(): void {
-    this.favoriteStatusService.getFavoriteCardsSubject$().subscribe((favoriteCards) => {
-      this.favoriteCards = favoriteCards;
-    });
-   
-    this.card.picturesList.sort((pictureA, pictureB) => (pictureA.id ?? 0) - (pictureB.id ?? 0));   
 
+    this.isFavorite = this.favoriteStatusService.getFavoriteStatus(this.card.id || 0);
+
+    this.card.picturesList.sort((pictureA, pictureB) => (pictureA.id ?? 0) - (pictureB.id ?? 0));   
+    
     if (this.card.picturesList.length > 0) {
       this.firstPictureSrc = this.card.picturesList[0].src;
     }
 
   }
 
+
   toggleFavorite() {
     this.isFavorite = !this.isFavorite;
-    
+
     if (this.isFavorite && this.card.id) {
       const userEmailInLocalStorage = this.localStorageService.getUserEmail();;
       
@@ -59,28 +59,37 @@ export class FeatCardComponent {
         this.isFavorite = !this.isFavorite;
         return;
       }
+
       this.favoriteService.addToFavorites(userEmailInLocalStorage, this.card.id).subscribe(
         (responseFavorite) => {
           if(this.card.id) {
             this.favoriteId = responseFavorite.id ?? null;
             this.favoriteStatusService.setFavoriteStatus(this.card.id, true);
+
+            localStorage.setItem('favoriteId', JSON.stringify(this.favoriteId));
+            
             this.isCardFavoriteAdded = true;
-            setTimeout(() => {
+            setTimeout(() => { 
               this.isCardFavoriteAdded = false;
-            }, 1000);
+            }, 2000);
           }
-        },
-        (error) => {
-          this.isFavorite = !this.isFavorite;
-          this.isCardFavoriteAddedError = true;
-          setTimeout(() => {
-            this.isCardFavoriteAddedError = false;
-          }, 1000);
         }
       );
+    } else {
+        this.onDeleteFavorite();
+      }
+    }
       
-    } else if (!this.isFavorite && this.favoriteId) {
+
+    onDeleteFavorite() {
+        const favoriteIdFromLocalStorage = localStorage.getItem('favoriteId');
+          if (favoriteIdFromLocalStorage) {
+            this.favoriteId = Number(favoriteIdFromLocalStorage); 
+          }
+
+      if (!this.isFavorite && this.favoriteId) {
       const userEmailInLocalStorage = localStorage.getItem('userEmail');
+      
       if (!userEmailInLocalStorage) {
         console.log("Vous devez être connecté pour supprimer un favori.");
         return;
@@ -91,27 +100,19 @@ export class FeatCardComponent {
             this.isCardFavoriteDelete = true;
             setTimeout(() => {
               this.isCardFavoriteDelete = false;
-            }, 1000);
+            }, 2000);
+
           this.isFavorite = false;
           this.favoriteId = null;
           this.favoriteStatusService.setFavoriteStatus(this.card.id, false);
+          localStorage.removeItem('favoriteId');
           }
-        },
-        (error) => {
-          this.isCarFavoritedDeleteError = true;
-          setTimeout(() => {
-            this.isCarFavoritedDeleteError = false;
-          }, 1000);
         }
       );
     }
   }
-  
-  
-  
-  
 
-
+  
   toggleCardEditForm(value: boolean) {
     this.isCardEditFormToggle = value;
   }

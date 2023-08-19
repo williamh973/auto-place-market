@@ -69,15 +69,14 @@
   
   .arrow-left:hover, .arrow-right:hover {
     cursor: pointer;
-    transform: scale(1.05); 
-    transition: 100ms linear;
+    scale: 1.05; 
+    transition: 100ms;
     background-color: rgba(128, 128, 128, 0.344);
   }
   
   .arrow-left:active, .arrow-right:active {
-    cursor: pointer;
     transform: scale(0.90); 
-    transition: 100ms linear;
+    transition: 100ms;
     background-color: rgba(128, 128, 128, 0.344);
   }
 
@@ -121,8 +120,10 @@
   }
 
   button:hover {
-      border: 2px solid rgb(0, 177, 0);
-      transition: all 200ms;
+    border: 2px solid rgb(0, 177, 0);
+    transition: all 100ms;
+    cursor: pointer;
+    scale: 1.05;
   } 
   
   .container-right {

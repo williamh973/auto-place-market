@@ -21,4 +21,23 @@ button:hover {
 }
 
 
+.container-user-card-list, .container-favorite-user-card-list {
+    width: 90%;
+    margin: auto;
+    padding: 50px 0;
+  }
+  
+  .user-card-list-title, .favorite-card-list-title {
+    font-size: 25px;
+    color: whitesmoke;
+    cursor: default;
+    text-align: center;
+    padding: 20px 0;
+    background-color:  rgba(81, 81, 81, 0.492);
+    margin-top: 70px;
+  }
+  
+  
+
+
 

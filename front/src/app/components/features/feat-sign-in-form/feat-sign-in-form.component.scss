@@ -20,9 +20,10 @@
     color: whitesmoke;
   }
   svg:hover {
-    transition: 200ms;
+    transition: 100ms;
     color: rgb(255, 0, 0);
     cursor: pointer;
+    scale: 1.1;
   }
 
   form {
@@ -76,15 +77,17 @@
     cursor: pointer;
   }
   button:hover {
-   border: 2px solid rgb(0, 177, 0);
-   transition: all 200ms;
+    border: 2px solid rgb(0, 177, 0);
+    transition: all 100ms;
+    cursor: pointer;
+    scale: 1.05;
   }
 
 
 
   .popup-sign-in-status {
     position: fixed;
-    top: 10px; // 580px;
+    top: 10px;
     left: -340px;
   }
 

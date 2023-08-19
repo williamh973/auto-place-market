@@ -161,8 +161,10 @@ label {
     justify-content: center;
  }
  .btn-prev:hover, .btn-submit:hover {
-     border: 2px solid rgb(0, 177, 0);
-     transition: all 200ms;
+    border: 2px solid rgb(0, 177, 0);
+    transition: all 100ms;
+    cursor: pointer;
+    scale: 1.05;
  } 
 
  .disabled-button {

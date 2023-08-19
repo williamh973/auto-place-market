@@ -6,7 +6,10 @@
     <div class="container-background-img"></div> 
 
     <div class="container-cardList">
-       <app-feat-card-list></app-feat-card-list>
+       <app-feat-card-list
+       *ngIf="isHomePageCardListOpen"
+       [isHomePageCardListOpen]="isHomePageCardListOpen"
+       ></app-feat-card-list>
     </div>
 
 </div>

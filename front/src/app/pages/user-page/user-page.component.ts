@@ -35,8 +35,6 @@ export class UserPageComponent {
     new Menu('Historique des messages', ''),
   ];
  
-  cardListCreatedByUser: Card[] = [];
-  filteredCardListCreatedByUser: Card[] = [];
   favoriteCardList: Card[] = [];
   messageListCreatedByUser: Message[] = [];
   filteredMessageListCreatedByUser: Message[] = [];
@@ -86,14 +84,34 @@ export class UserPageComponent {
         }
       );
 
-      this.dbUser.getUserCards().subscribe((cardListFromDatabase: Card[]) => {
-        this.cardListCreatedByUser = cardListFromDatabase;
-        });     
+    }
 
-        this.favoriteStatusService.getFavoriteCardsSubject$().subscribe((favoriteCards) => {
-          this.favoriteCards = favoriteCards;
-          console.log(favoriteCards);
-        });
+    onDropdownAccountMenuItemClick(menuItem: Menu) {
+      if (menuItem.label === 'Supprimer mon compte') {
+        this.deleteAccount();
+      } else if (menuItem.label === 'Modifier le numéro de téléphone') {
+        this.changePhoneNumber();
+      }
+    }
+
+    onDropdownMessageMenuItemClick(menuItem: Menu) {
+      if (menuItem.label === 'Envoyer un message') {
+        this.onContactFormOpen();
+      } else if (menuItem.label === 'Historique des messages') {
+        this.onLoadUserMessageList();
+      }
+    }
+
+    onMainMenuItemClick(menuItem: Menu) {
+      if (menuItem.label === 'Poster une annonce') {
+        this.onEditCardFormOpen();
+      } else if (menuItem.label === 'Mes voitures') {
+        this.loadUserCardList();
+      } else if (menuItem.label === 'Mes favoris') {
+        this.loadFavoriteCardList();
+      } else if (menuItem.label === 'Déconnexion') {
+        this.onLogout();
+      } 
     }
 
 
@@ -161,31 +179,4 @@ export class UserPageComponent {
       this.isContactPopupFormOpen = isContactPopupFormOpen;
     }
 
-    onMainMenuItemClick(menuItem: Menu) {
-      if (menuItem.label === 'Poster une annonce') {
-        this.onEditCardFormOpen();
-      } else if (menuItem.label === 'Mes voitures') {
-        this.loadUserCardList();
-      } else if (menuItem.label === 'Mes favoris') {
-        this.loadFavoriteCardList();
-      } else if (menuItem.label === 'Déconnexion') {
-        this.onLogout();
-      } 
-    }
-
-  onDropdownAccountMenuItemClick(menuItem: Menu) {
-    if (menuItem.label === 'Supprimer mon compte') {
-      this.deleteAccount();
-    } else if (menuItem.label === 'Modifier le numéro de téléphone') {
-      this.changePhoneNumber();
-    }
-  }
-
-    onDropdownMessageMenuItemClick(menuItem: Menu) {
-      if (menuItem.label === 'Envoyer un message') {
-        this.onContactFormOpen();
-      } else if (menuItem.label === 'Historique des messages') {
-        this.onLoadUserMessageList();
-      }
-    }
 }

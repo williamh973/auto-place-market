@@ -45,6 +45,9 @@ p {
 }
 p:hover {
     border: 2px solid rgb(0, 177, 0);
+    transition: all 100ms;
+    cursor: pointer;
+    scale: 1.05;
 }
 
 .card-operation-status {
