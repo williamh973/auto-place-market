@@ -94,17 +94,22 @@ class="container-user"
 
 
 <div
-class="card-operation-status"
+class="container-card-operation-status"
 *ngIf="
 isCardFavoriteAdded || 
 isCardFavoriteAddedError || 
 isCardFavoriteDelete || 
-isCarFavoritedDeleteError">
+isCardFavoritedDeleteError ||
+isUserLoggedInForAddFavorite"
+>
   <app-feat-card-operation-status
+    class="card-operation-status"
     [isCardFavoriteAdded]="isCardFavoriteAdded"
     [isCardFavoriteAddedError]="isCardFavoriteAddedError"
     [isCardFavoriteDelete]="isCardFavoriteDelete"
-    [isCarFavoritedDeleteError]="isCarFavoritedDeleteError"
+    [isCardFavoritedDeleteError]="isCardFavoritedDeleteError"
+    [isUserLoggedInForAddFavorite]="isUserLoggedInForAddFavorite"
+    [class.card-operation-status-animate]="isAnimationPopupCardOperationStatusActive"
    >
   </app-feat-card-operation-status>
 </div>

@@ -1,36 +1,26 @@
 * {
     font-family: Helvetica, sans-serif;
-    font-size: 18px;
+    font-size: 16px;
 }
 
-.full-page {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(10px);
-}
-
-.container-succes {
-    z-index: 1;
-}
-
-p {
-    padding: 50px 50px;
+.container-succes, .container-error {
+    width: 370px;
+    height: 80px;
     background-color: rgb(10, 10, 10);
     border-radius: 10px;
     border: 4px solid rgb(37, 37, 37);
+    display: flex;
+    justify-content: center;    
+    align-items: center; 
+    gap: 10px;
+    z-index: 1;
 }
 
 .succes {
-    color: rgb(115, 255, 69);
+    color: rgb(221, 221, 221);
     text-align: center;
 }
 .error {
-    color: rgb(226, 0, 0);
+    color: rgb(218, 43, 43);
     text-align: center;
 }

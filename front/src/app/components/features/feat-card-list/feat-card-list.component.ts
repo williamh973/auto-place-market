@@ -1,9 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
-import { User } from 'src/app/models/user.model';
 import { CardService } from 'src/app/shared/services/card.service';
 import { DbUserService } from 'src/app/shared/services/db-user.service';
-import { FavoriteStatusService } from 'src/app/shared/services/favorite-status.service';
 
 
 
@@ -29,8 +27,7 @@ export class FeatCardListComponent {
 
   constructor(
     private cardService: CardService,
-    private dbUser: DbUserService,
-    private favoriteStatusService: FavoriteStatusService,) { }
+    private dbUser: DbUserService) { }
   
 
   ngOnInit(): void {
@@ -49,7 +46,6 @@ export class FeatCardListComponent {
         this.filteredCardListCreatedByUser = newFileteredUserCardList;
         });   
 
-        
   }
 
 

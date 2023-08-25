@@ -10,10 +10,9 @@
 </div>
 
 
-<div 
+<div class="container-user-card-list"
 *ngIf="isUserCardListOpen" 
-class="container-user-card-list">
-
+>
   <p *ngIf="cardListCreatedByUser.length === 0" class="user-card-list-title">Pas de voiture</p>
   <p *ngIf="cardListCreatedByUser.length === 1" class="user-card-list-title">Ma voiture mise en ligne</p>
   <p *ngIf="cardListCreatedByUser.length > 1" class="user-card-list-title">Mes voitures mises en ligne</p>
@@ -29,10 +28,9 @@ class="container-user-card-list">
 
 
 
-<div 
+<div class="container-favorite-user-card-list"
 *ngIf="isFavoriteListOpen" 
-class="container-favorite-user-card-list">
-
+>
   <p *ngIf="favoriteCardList.length === 0" class="favorite-card-list-title">Pas de voiture dans les favoris</p>
   <p *ngIf="favoriteCardList.length === 1" class="favorite-card-list-title">Mon coup de coeur</p>
   <p *ngIf="favoriteCardList.length > 1" class="favorite-card-list-title">Mes coups de coeur</p>

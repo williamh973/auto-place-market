@@ -47,7 +47,7 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIgnoreProperties({"user", "cardList"})
-    private List<Favorite> favoriteList = new ArrayList<>();
+    private Set<Favorite> favoriteList = new HashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIgnoreProperties("user")

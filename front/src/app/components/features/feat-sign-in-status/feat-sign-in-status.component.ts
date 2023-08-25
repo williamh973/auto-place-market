@@ -1,6 +1,5 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/shared/services/auth.service';
 

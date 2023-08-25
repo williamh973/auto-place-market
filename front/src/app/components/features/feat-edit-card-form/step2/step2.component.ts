@@ -138,14 +138,14 @@ constructor(
             setTimeout(() => {
               this.isCardCreated = false;
               window.location.reload();
-            }, 1000);
+            }, 3000);
           },
           (error) => {
             this.isLoadingComposantActive = false;
             this.isCardCreatedError = true;
             setTimeout(() => {
               this.isCardCreatedError = false;
-            }, 1000);
+            }, 3000);
           }
         );
       }
@@ -198,7 +198,7 @@ constructor(
               setTimeout(() => {
                 this.isCardUpdated = false;
                 window.location.reload();
-              }, 1000);
+              }, 3000);
             },
             (error) => {
               this.isLoadingComposantActive = false;
@@ -206,7 +206,7 @@ constructor(
               setTimeout(() => {
                 this.isCardUpdatedError = false;
                 window.location.reload();
-              }, 1000);
+              }, 3000);
             }
           );
         });

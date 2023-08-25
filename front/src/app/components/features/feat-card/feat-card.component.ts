@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
+
 import { Card } from 'src/app/models/card.model';
+import { Favorite } from 'src/app/models/favorite.model';
+import { User } from 'src/app/models/user.model';
 import { FavoriteStatusService } from 'src/app/shared/services/favorite-status.service';
 import { FavoriteService } from 'src/app/shared/services/favorite.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
@@ -11,8 +14,12 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
   styleUrls: ['./feat-card.component.scss']
 })
 export class FeatCardComponent {
+  
+  
+  @Input() card!: Card;
 
-   @Input() card!: Card;
+  
+
 
   isCardEditFormToggle: boolean = false;
   isFavorite: boolean = false;
@@ -20,11 +27,15 @@ export class FeatCardComponent {
   isCardFavoriteAdded: boolean = false;
   isCardFavoriteAddedError: boolean = false;
   isCardFavoriteDelete: boolean = false;
-  isCarFavoritedDeleteError: boolean = false;
+  isCardFavoritedDeleteError: boolean = false;
+  isUserLoggedInForAddFavorite: boolean = false;
 
-  favoriteId: number | null = null;
+  isAnimationPopupCardOperationStatusActive: boolean = false; 
+
+  favoriteId: number[] = [];
+  // favoriteIdsList: number[] = [];
   favoriteCards: number[] = [];
-
+  favoriteIdsList: { cardId: number; favoriteId: number; }[] = [];
   firstPictureSrc: string = '';
   
 
@@ -36,81 +47,114 @@ export class FeatCardComponent {
 
 
   ngOnInit(): void {
-
     this.isFavorite = this.favoriteStatusService.getFavoriteStatus(this.card.id || 0);
+
 
     this.card.picturesList.sort((pictureA, pictureB) => (pictureA.id ?? 0) - (pictureB.id ?? 0));   
     
     if (this.card.picturesList.length > 0) {
       this.firstPictureSrc = this.card.picturesList[0].src;
     }
-
+//  localStorage.removeItem('favoriteId');
   }
 
 
-  toggleFavorite() {
-    this.isFavorite = !this.isFavorite;
+  private showCardOperationStatusForFavoriteAdded() {
+    this.isCardFavoriteAdded = true;
+    this.isAnimationPopupCardOperationStatusActive = true;
+    setTimeout(() => { 
+      this.isCardFavoriteAdded = false;
+      this.isAnimationPopupCardOperationStatusActive = false;
+    }, 3000);
+}
 
-    if (this.isFavorite && this.card.id) {
-      const userEmailInLocalStorage = this.localStorageService.getUserEmail();;
-      
-      if (!userEmailInLocalStorage) {
-        console.log("Vous devez être connecté pour ajouter un favori.");
-        this.isFavorite = !this.isFavorite;
-        return;
-      }
+private showCardOperationStatusForFavoriteDeleted() {
+   this.isCardFavoriteDelete = true;
+   this.isAnimationPopupCardOperationStatusActive = true;
+   setTimeout(() => { 
+     this.isCardFavoriteDelete = false;
+     this.isAnimationPopupCardOperationStatusActive = false;
+   }, 3000);
+}
 
-      this.favoriteService.addToFavorites(userEmailInLocalStorage, this.card.id).subscribe(
-        (responseFavorite) => {
-          if(this.card.id) {
-            this.favoriteId = responseFavorite.id ?? null;
-            this.favoriteStatusService.setFavoriteStatus(this.card.id, true);
+private onUserEmailIsNotInLocalStorage() {
+   this.isUserLoggedInForAddFavorite = true;
+   this.isAnimationPopupCardOperationStatusActive = true;
+   setTimeout(() => { 
+     this.isUserLoggedInForAddFavorite = false;
+     this.isAnimationPopupCardOperationStatusActive = false;
+   }, 3000);
+   this.isFavorite = !this.isFavorite;
+}
 
-            localStorage.setItem('favoriteId', JSON.stringify(this.favoriteId));
-            
-            this.isCardFavoriteAdded = true;
-            setTimeout(() => { 
-              this.isCardFavoriteAdded = false;
-            }, 2000);
-          }
-        }
-      );
-    } else {
-        this.onDeleteFavorite();
-      }
+
+toggleFavorite() {
+  this.isFavorite = !this.isFavorite;
+
+  if (this.isFavorite && this.card.id) { 
+    const userEmailInLocalStorage = this.localStorageService.getUserEmail();
+    if (!userEmailInLocalStorage) {
+      this.onUserEmailIsNotInLocalStorage();
+      return;
     }
-      
+    this.favoriteService.addToFavorites(userEmailInLocalStorage, this.card.id).subscribe(
+      (responseFavorite) => {
+        if (this.card.id && responseFavorite.id) {         
+          this.favoriteIdsList = JSON.parse(localStorage.getItem('favoriteId') || '[]');
+          this.favoriteIdsList = Array.isArray(this.favoriteIdsList) ? this.favoriteIdsList : [];
+          this.favoriteIdsList.push({ cardId: this.card.id || 0, favoriteId: responseFavorite.id || 0 });
 
-    onDeleteFavorite() {
-        const favoriteIdFromLocalStorage = localStorage.getItem('favoriteId');
-          if (favoriteIdFromLocalStorage) {
-            this.favoriteId = Number(favoriteIdFromLocalStorage); 
-          }
-
-      if (!this.isFavorite && this.favoriteId) {
-      const userEmailInLocalStorage = localStorage.getItem('userEmail');
-      
-      if (!userEmailInLocalStorage) {
-        console.log("Vous devez être connecté pour supprimer un favori.");
-        return;
-      }
-      this.favoriteService.removeFromFavorites(userEmailInLocalStorage, this.favoriteId).subscribe(
-        () => {
-          if(this.card.id) {
-            this.isCardFavoriteDelete = true;
-            setTimeout(() => {
-              this.isCardFavoriteDelete = false;
-            }, 2000);
-
-          this.isFavorite = false;
-          this.favoriteId = null;
-          this.favoriteStatusService.setFavoriteStatus(this.card.id, false);
-          localStorage.removeItem('favoriteId');
-          }
+          localStorage.setItem('favoriteId', JSON.stringify(this.favoriteIdsList));
+          this.favoriteStatusService.setFavoriteStatus(this.card.id, true);
+          
+          this.showCardOperationStatusForFavoriteAdded();
+          console.log("favoriteIdsList : ", localStorage.getItem('favoriteId'));
         }
-      );
+      });
+  } else {
+    this.onDeleteFavorite();
+  }
+}
+               
+                                    
+onDeleteFavorite() {     
+  this.favoriteIdsList = JSON.parse(localStorage.getItem('favoriteId') || '[]');
+
+  if (!this.isFavorite && this.favoriteIdsList.length > 0 && this.card.id) {
+    const userEmailInLocalStorage = localStorage.getItem('userEmail');
+    if (!userEmailInLocalStorage) {
+      console.log("Vous devez être connecté pour supprimer un favori.");
+      return;
+    }
+
+    const favoriteIdFromLocalStorage = localStorage.getItem('favoriteId');
+    if (favoriteIdFromLocalStorage) {
+      this.favoriteIdsList = JSON.parse(favoriteIdFromLocalStorage); 
+    }
+          
+    const favoriteToRemove = this.favoriteIdsList.find(favorite => favorite.cardId === this.card.id);
+      console.log("favoriteToRemove", favoriteToRemove);
+  
+      if (favoriteToRemove) {
+        this.favoriteService.removeFromFavorites(userEmailInLocalStorage, favoriteToRemove.favoriteId).subscribe(
+          () => {
+            this.showCardOperationStatusForFavoriteDeleted();
+            this.favoriteIdsList = this.favoriteIdsList.filter(favorite => favorite.cardId !== this.card.id);
+            localStorage.setItem('favoriteId', JSON.stringify(this.favoriteIdsList));  
+            console.log("favoriteIdsList : ", localStorage.getItem('favoriteId'));
+            if (this.card.id) {
+              this.favoriteStatusService.setFavoriteStatus(this.card.id, false);              
+            }
+          }
+        );
+      }
     }
   }
+  
+        
+
+               
+
 
   
   toggleCardEditForm(value: boolean) {
@@ -129,4 +173,121 @@ export class FeatCardComponent {
     this.isConfirmDeletePopup = isConfirmDeletePopup;
   }
 
+
 }
+// console.log("favoriteId : " ,this.favoriteId);
+     // this.favoriteIdsSubject.next(this.favoriteIdsList);
+  // this.favoriteIdsSubject.next(this.favoriteIdsList);
+// this.favoriteIdsSubject.next(this.favoriteIdsList);
+ // this.favoriteId = null;
+                // localStorage.removeItem('favoriteId');
+                // localStorage.removeItem('favoriteIdsList');
+
+
+
+
+
+
+
+// A GARDER ! ! ! LES VALEURS DANS LE TABLEAU SE CUMULENT
+                // toggleFavorite() {
+                //   this.isFavorite = !this.isFavorite;
+                
+                //   if (this.isFavorite && this.card.id) { 
+                //     const userEmailInLocalStorage = this.localStorageService.getUserEmail();
+                //     if (!userEmailInLocalStorage) {
+                //       this.onUserEmailIsNotInLocalStorage();
+                //       return;
+                //     }
+                //     this.favoriteService.addToFavorites(userEmailInLocalStorage, this.card.id).subscribe(
+                //       (responseFavorite) => {
+                //         if (this.card.id && responseFavorite.id) {         
+                //           this.favoriteIdsList = JSON.parse(localStorage.getItem('favoriteId') || '[]'); // Load existing list or create an empty array
+                //           this.favoriteIdsList = Array.isArray(this.favoriteIdsList) ? this.favoriteIdsList : []; // Ensure it's an array
+                //           this.favoriteIdsList.push(responseFavorite.id);  // Add the new ID to the list
+                //           this.showCardOperationStatusForFavoriteAdded();
+                //           localStorage.setItem('favoriteId', JSON.stringify(this.favoriteIdsList));  // Store the updated list
+                //           console.log("favoriteIdsList : ", localStorage.getItem('favoriteId'));
+                //           this.favoriteStatusService.setFavoriteStatus(this.card.id, true);
+                //         }
+                //       });
+                //   } else {
+                //     this.onDeleteFavorite();
+                //     if (this.card.id) {   
+                //       this.favoriteStatusService.setFavoriteStatus(this.card.id, false);
+                //     }
+                //   }
+                // }
+
+
+     
+
+
+// METHODE QUI AJOUTE A LA FOIS L'ID DE LA CARD ET CELUI DU FAVORI
+                // toggleFavorite() {
+                //   this.isFavorite = !this.isFavorite;
+                
+                //   if (this.isFavorite && this.card.id) { 
+                //     const userEmailInLocalStorage = this.localStorageService.getUserEmail();
+                //     if (!userEmailInLocalStorage) {
+                //       this.onUserEmailIsNotInLocalStorage();
+                //       return;
+                //     }
+                //     this.favoriteService.addToFavorites(userEmailInLocalStorage, this.card.id).subscribe(
+                //       (responseFavorite) => {
+                //         if (this.card.id && responseFavorite.id) {         
+                //           this.favoriteIdsList = JSON.parse(localStorage.getItem('favoriteId') || '[]');
+                //           this.favoriteIdsList = Array.isArray(this.favoriteIdsList) ? this.favoriteIdsList : [];
+                //           this.favoriteIdsList.push({ cardId: this.card.id || 0, favoriteId: responseFavorite.id || 0 });
+                
+                //           localStorage.setItem('favoriteId', JSON.stringify(this.favoriteIdsList));
+                //           this.favoriteStatusService.setFavoriteStatus(this.card.id, true);
+                          
+                //           this.showCardOperationStatusForFavoriteAdded();
+                //           console.log("favoriteIdsList : ", localStorage.getItem('favoriteId'));
+                //         }
+                //       });
+                //   } else {
+                //     this.onDeleteFavorite();
+                //       // localStorage.removeItem('favoriteId');
+                //     if (this.card.id) {   
+                //       this.favoriteStatusService.setFavoriteStatus(this.card.id, false);
+                //     }
+                //   }
+                // }
+                               
+                                                    
+                // onDeleteFavorite() {     
+                //   this.favoriteIdsList = JSON.parse(localStorage.getItem('favoriteId') || '[]');
+                //   console.log("favoriteIdsList : ", localStorage.getItem('favoriteId'));
+                
+                //   if (!this.isFavorite && this.favoriteIdsList.length > 0 && this.card.id) {
+                //     const userEmailInLocalStorage = localStorage.getItem('userEmail');
+                //     if (!userEmailInLocalStorage) {
+                //       console.log("Vous devez être connecté pour supprimer un favori.");
+                //       return;
+                //     }
+                
+                //     const favoriteIdFromLocalStorage = localStorage.getItem('favoriteId');
+                //     if (favoriteIdFromLocalStorage) {
+                //       this.favoriteIdsList = JSON.parse(favoriteIdFromLocalStorage); 
+                //     }
+                          
+                //     const favoriteToRemove = this.favoriteIdsList.find(favorite => favorite.cardId === this.card.id);
+                //       console.log("favoriteToRemove", favoriteToRemove);
+                  
+                //       if (favoriteToRemove) {
+                //         this.favoriteService.removeFromFavorites(userEmailInLocalStorage, favoriteToRemove.favoriteId).subscribe(
+                //           () => {
+                //             this.showCardOperationStatusForFavoriteDeleted();
+                //             this.favoriteIdsList = this.favoriteIdsList.filter(favorite => favorite.cardId !== this.card.id);
+                //             localStorage.setItem('favoriteId', JSON.stringify(this.favoriteIdsList));  
+                //             console.log("favoriteIdsList : ", localStorage.getItem('favoriteId'));
+                //             if (this.card.id) {
+                //               this.favoriteStatusService.setFavoriteStatus(this.card.id, false);              
+                //             }
+                //           }
+                //         );
+                //       }
+                //     }
+                //   }

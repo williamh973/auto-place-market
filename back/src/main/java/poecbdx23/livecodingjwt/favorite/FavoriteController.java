@@ -36,6 +36,32 @@ public class FavoriteController {
         return favoriteService.addToFavorite(email, cardId);
     }
 
+
+
+//    @DeleteMapping("/{email}/favoriteList/delete/{favoriteId}")
+//    public void removeFromFavorite(@PathVariable String email, @PathVariable Long favoriteId) {
+//        User user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
+//
+//        Favorite favoriteToRemove = null;
+//        for (Favorite favorite : user.getFavoriteList()) {
+//            if (favorite.getId().equals(favoriteId)) {
+//                favoriteToRemove = favorite;
+//                break;
+//            }
+//        }
+//
+//        if (favoriteToRemove != null) {
+//
+//            user.getFavoriteList().remove(favoriteToRemove);
+//            favoriteToRemove.setUser(null);
+//            favoriteRepository.save(favoriteToRemove);
+//            userRepository.save(user);
+//        } else {
+//            throw new RuntimeException("Favorite not found");
+//        }
+//    }
+
+
     @DeleteMapping("/{email}/favoriteList/delete/{favoriteId}")
     public void removeFromFavorite(@PathVariable String email, @PathVariable Long favoriteId) {
         User user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
@@ -49,13 +75,43 @@ public class FavoriteController {
         }
 
         if (favoriteToRemove != null) {
-
+            // Supprimer la carte associée au favori
+            Card cardToRemove = favoriteToRemove.getCard();
             user.getFavoriteList().remove(favoriteToRemove);
             favoriteToRemove.setUser(null);
-            favoriteRepository.save(favoriteToRemove);
+
+            favoriteRepository.delete(favoriteToRemove);
             userRepository.save(user);
         } else {
             throw new RuntimeException("Favorite not found");
         }
     }
+
+
+
+
+//    @DeleteMapping("/{email}/favoriteList/delete/{favoriteId}")
+//    public void removeFromFavorite(@PathVariable String email, @PathVariable Long favoriteId) {
+//        User user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
+//
+//        Favorite favoriteToRemove = null;
+//        for (Favorite favorite : user.getFavoriteList()) {
+//            if (favorite.getId().equals(favoriteId)) {
+//                favoriteToRemove = favorite;
+//                break;
+//            }
+//        }
+//
+//        if (favoriteToRemove != null) {
+//
+//            user.getFavoriteList().remove(favoriteToRemove);
+//            favoriteToRemove.setUser(null);
+//            favoriteRepository.save(favoriteToRemove);
+//            userRepository.save(user);
+//        } else {
+//            throw new RuntimeException("Favorite not found");
+//        }
+//    }
+
+
 }

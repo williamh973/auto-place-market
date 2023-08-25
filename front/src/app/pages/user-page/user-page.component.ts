@@ -5,7 +5,6 @@ import { Favorite } from 'src/app/models/favorite.model';
 import { Menu } from 'src/app/models/menu.model';
 import { Message } from 'src/app/models/message.model';
 import { DbUserService } from 'src/app/shared/services/db-user.service';
-import { FavoriteStatusService } from 'src/app/shared/services/favorite-status.service';
 import { FavoriteService } from 'src/app/shared/services/favorite.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { TokenService } from 'src/app/shared/services/token.service';
@@ -49,15 +48,12 @@ export class UserPageComponent {
   isContactPopupFormOpen: boolean = false;
   isUserMessageListOpen: boolean = false;
 
-  favoriteCards: number[] = [];
-
 
   constructor( 
     private dbUser: DbUserService,
     private tokenS: TokenService,
     private lsService: LocalStorageService,
     private favoriteService: FavoriteService,
-    private favoriteStatusService: FavoriteStatusService,
     private router: Router ) {}
 
 
@@ -67,9 +63,7 @@ export class UserPageComponent {
           this.firstname = firstname;
         },
         (error: any) => {
-          console.log('Error occurred:', error);
           console.log('Error message:', error.message);
-          console.log('Error response:', error.error);
         }
       );
 
@@ -78,13 +72,13 @@ export class UserPageComponent {
           this.lastname = lastname;
         },
         (error: any) => {
-          console.log('Error occurred:', error);
           console.log('Error message:', error.message);
-          console.log('Error response:', error.error);
         }
       );
-
+  
     }
+
+
 
     onDropdownAccountMenuItemClick(menuItem: Menu) {
       if (menuItem.label === 'Supprimer mon compte') {

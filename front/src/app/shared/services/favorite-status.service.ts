@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 
 
@@ -72,6 +72,7 @@ export class FavoriteStatusService {
 
    console.log(`${userFavoritesKey} : ${favoriteCards}`);
    }
+
   }
 
   getFavoriteCardsSubject$(): Observable<number[]> {

@@ -26,7 +26,6 @@ export class AuthService {
   ) { }
 
 
-  // Je m'inscris : j'envoie mon objet UserRegister et je m'abonne à la réponse de mon serveur
   signUp(userRegister: UserRegister): void {
     this.http.post<any>(`${this._BASE_URL}/register`, userRegister)
     .pipe(tap(res => console.log(res)))

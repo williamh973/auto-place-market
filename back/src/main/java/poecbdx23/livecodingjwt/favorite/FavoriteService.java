@@ -13,6 +13,7 @@ import poecbdx23.livecodingjwt.user.UserRepository;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -36,7 +37,7 @@ public class FavoriteService {
         }
 
         User user = optionalUser.get();
-        List<Favorite> favoriteList = user.getFavoriteList();
+        Set<Favorite> favoriteList = user.getFavoriteList();
         return favoriteRepository.findByUserEmail(userEmail);
     }
 

@@ -62,6 +62,7 @@
        id="title" 
        [(ngModel)]="card.title"
        maxlength="33"
+       minlength="5"
        placeholder="Le model du véhicule *"
        required
        >
@@ -71,7 +72,8 @@
        name="resume" 
        id="resume" 
        [(ngModel)]="card.resume"
-       maxlength="500"
+       maxlength="1000"
+       minlength="5"
        placeholder="Descriptif détaillé * "
        required
        >
@@ -102,6 +104,8 @@
        id="kilometer" 
        [(ngModel)]="card.kilometer"
        placeholder="Kilomètres parcourus * "
+       maxlength="6"
+       minlength="1"
        required
        >
        <label for="price">Portes</label>
@@ -112,6 +116,8 @@
        [(ngModel)]="card.door"
        placeholder="Nombre de portes * "
        required
+       maxlength="1"
+       minlength="1" 
        >
        <label for="price">Prix</label>
        <input 
@@ -121,6 +127,8 @@
        [(ngModel)]="card.price"
        placeholder="Prix d\'achat souhaité *"
        required
+       maxlength="7"
+       minlength="1" 
        >
    
        <label for="year">Année</label>
@@ -131,6 +139,8 @@
        [(ngModel)]="card.year"
        placeholder="Année de fabrication* "
        required
+       maxlength="4"
+       minlength="4" 
        >
    </div>
 

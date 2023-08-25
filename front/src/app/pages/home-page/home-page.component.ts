@@ -1,5 +1,4 @@
 import { Component, HostListener } from '@angular/core';
-import { FavoriteStatusService } from 'src/app/shared/services/favorite-status.service';
 
 
 @Component({

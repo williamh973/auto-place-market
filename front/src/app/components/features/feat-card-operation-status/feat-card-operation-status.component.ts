@@ -21,7 +21,11 @@ export class FeatCardOperationStatusComponent {
   @Input() isCardFavoriteAddedError: boolean = false;
   
   @Input() isCardFavoriteDelete: boolean = false;
-  @Input() isCarFavoritedDeleteError: boolean = false;
+  @Input() isCardFavoritedDeleteError: boolean = false;
+
+  @Input() isUserLoggedInForCreateCard: boolean = false;
+  @Input() isUserLoggedInForAddFavorite: boolean = false;
+  
 
 
 }
