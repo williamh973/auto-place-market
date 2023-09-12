@@ -51,7 +51,7 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIgnoreProperties("user")
-    private Set<Message> messagesList = new HashSet<>();
+    private Set<Message> historicMessagesList = new HashSet<>();
 
 
 

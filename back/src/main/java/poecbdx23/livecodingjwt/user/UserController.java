@@ -9,8 +9,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import poecbdx23.livecodingjwt.card.Card;
 import poecbdx23.livecodingjwt.message.Message;
+import poecbdx23.livecodingjwt.message.MessageRepository;
 
 import java.security.Principal;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -20,6 +22,8 @@ import java.util.Set;
 public class UserController {
 
     private final UserRepository userRepository;
+    private final MessageRepository messageRepository;
+
 
     @GetMapping("/email/{email}")
     public ResponseEntity<User> getUserByEmail(@PathVariable String email, HttpServletRequest request) throws AccessDeniedException {
@@ -47,6 +51,13 @@ public class UserController {
             throw new AccessDeniedException("User does not have the correct rights to access to this resource");
 
         }
+    }
+
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable("id") Long id) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     @GetMapping("current/{id}")
@@ -83,14 +94,14 @@ public class UserController {
         return ResponseEntity.ok(cardList);
     }
 
-    @GetMapping("current/messagesList")
+    @GetMapping("current/sentMessagesList")
     public ResponseEntity<Set<Message>> getUserMessages(Principal principal, HttpServletRequest request) throws AccessDeniedException {
         User user = userRepository.findByEmail(principal.getName())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        Set<Message> messagesList = user.getMessagesList();
+        Set<Message> historicMessageList = user.getHistoricMessagesList();
 
-        return ResponseEntity.ok(messagesList);
+        return ResponseEntity.ok(historicMessageList);
     }
 
 

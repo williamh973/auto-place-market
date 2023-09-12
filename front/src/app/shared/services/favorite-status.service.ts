@@ -47,7 +47,7 @@ export class FavoriteStatusService {
     const userEmailInLocalStorage = this.localStorageService.getUserEmail();
     if (userEmailInLocalStorage) {
       const userFavoritesKey = this.getUserFavoriteKey(userEmailInLocalStorage);
-  let favoriteCards: number[] = [];
+let favoriteCards: number[] = [];
 
   const existingFavoriteCards = this.getFavoriteCards(userFavoritesKey);
   if (existingFavoriteCards) {

@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { FeatRegisterFormComponent } from './components/features/feat-register-form/feat-register-form.component';
 import { TrackTokenStateComponent } from './components/features/track-token-state/track-token-state.component';
 import { TrackHttpStatusComponent } from './components/features/track-http-status/track-http-status.component';
-import { GetDatasComponent } from './get-datas/get-datas.component';
+import { GetUserDatasComponent } from './components/features/feat-get-user-datas/feat-get-user-datas.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailsPageComponent } from './pages/details-page/details-page.component';
@@ -32,10 +32,8 @@ import { FeatAccountPopupComponent } from './components/features/feat-account-po
 import { FeatConfirmDeletePopupComponent } from './components/features/feat-confirm-delete-popup/feat-confirm-delete-popup.component';
 import { FeatNoCardsFoundComponent } from './components/features/feat-no-cards-found-popup/feat-no-cards-found-popup.component';
 import { FeatCardAdminComponent } from './components/features/feat-card-admin/feat-card-admin.component';
-import { UserPageComponent } from './pages/user-page/user-page.component';
-import { FeatSignInStatusComponent } from './components/features/feat-sign-in-status/feat-sign-in-status.component';
+import { UserPageComponent } from './pages/user-space/user-page/user-page.component';
 import { FeatCardUserComponent } from './components/features/feat-card-user/feat-card-user.component';
-import { FeatSloganComponent } from './components/features/feat-slogan/feat-slogan.component';
 import { Step1Component } from './components/features/feat-edit-card-form/step1/step1.component';
 import { Step2Component } from './components/features/feat-edit-card-form/step2/step2.component';
 import { FeatCardFavoriteComponent } from './components/features/feat-card-favorite/feat-card-favorite.component';
@@ -50,7 +48,11 @@ import { NavbarResponsiveTabletComponent } from "./components/features/feat-navb
 import { FeatContactPopupComponent } from './components/features/feat-contact-popup/feat-contact-popup.component';
 import { SearchResponsiveTabletComponent } from './components/features/feat-search/search-responsive-tablet/search-responsive-tablet.component';
 import { SearchResponsiveSmartphoneComponent } from './components/features/feat-search/search-responsive-smartphone/search-responsive-smartphone.component';
-import { FeatMessageUserComponent } from './components/features/feat-message-user/feat-message-user.component';
+import { FeatMessageHistoryComponent } from './components/features/feat-message-history/feat-message-history.component';
+import { FeatReceivedMessagesComponent } from './components/features/feat-received-messages/feat-received-messages.component';
+import { FeatDropDownMenuComponent } from './pages/user-space/feat-drop-down-menu/feat-drop-down-menu.component';
+
+
 
 @NgModule({
   declarations: [
@@ -72,12 +74,10 @@ import { FeatMessageUserComponent } from './components/features/feat-message-use
     FeatNoCardsFoundComponent,
     TrackTokenStateComponent,
     TrackHttpStatusComponent,
-    GetDatasComponent,
+    GetUserDatasComponent,
     FeatCardAdminComponent,
     UserPageComponent,
-    FeatSignInStatusComponent,
     FeatCardUserComponent,
-    FeatSloganComponent,
     Step1Component,
     Step2Component,
     FeatCardFavoriteComponent,
@@ -91,7 +91,9 @@ import { FeatMessageUserComponent } from './components/features/feat-message-use
     FeatContactPopupComponent,
     SearchResponsiveTabletComponent,
     SearchResponsiveSmartphoneComponent,
-    FeatMessageUserComponent
+    FeatMessageHistoryComponent,
+    FeatReceivedMessagesComponent,
+    FeatDropDownMenuComponent
   ],
   imports: [
     BrowserModule,

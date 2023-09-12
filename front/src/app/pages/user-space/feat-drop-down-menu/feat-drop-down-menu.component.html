@@ -1,0 +1,19 @@
+
+   <div class="dropdown">
+      <button class="dropdown-button">Paramètres de compte</button>
+     <div class="dropdown-content">
+       <li *ngFor="let dropDownAccountMenuItem of dropDownAccountMenuItems">
+         <a (click)="onDropdownAccountMenuItemClick(dropDownAccountMenuItem)">{{ dropDownAccountMenuItem.label }}</a>
+       </li>
+    </div>
+  </div> 
+
+  <div class="dropdown">
+    <button class="dropdown-button">Notifications</button>
+    <div class="dropdown-content">
+      <li *ngFor="let dropDownMessageMenuItem of dropDownMessageMenuItems">
+        <a (click)="onDropdownMessageMenuItemClick(dropDownMessageMenuItem)">{{ dropDownMessageMenuItem.label }}</a>
+      </li>
+    </div>
+   </div>
+

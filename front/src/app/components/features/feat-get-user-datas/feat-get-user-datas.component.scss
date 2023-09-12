@@ -1,33 +1,30 @@
-.first-container {
-    width: 100%;
+.full-page {
+    width: 90%;
+    height: 350px;
+    margin: auto;
     display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 50px 0;
 }
 
-#btn-search-profil {
-    width: 350px;
-    height: 45px;
+.title-page {
+    width: 100%;
+    font-size: 25px;
+    color: whitesmoke;
+    cursor: default;
     text-align: center;
-    border: none;
-    background-color: transparent;
-    font-size: 20px;
-    font-family: Helvetica, sans-serif;
-    font-style: italic;
-    border: 1px solid rgb(190, 190, 190);
-    border-radius: 25px;
-    margin: 0 50px;
-    color: rgb(208, 208, 208);
-}
-#btn-search-profil:hover {
-    width: 350px;
-    text-align: center;
-    padding: 10px;
-    background-color: rgb(224, 224, 224);
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 100ms;
-    color: rgb(0, 0, 0);
-}
+    padding: 20px 0;
+    background-color:  rgba(81, 81, 81, 0.492);
+  }
+
+  .container-form-and-main-container-user {
+    width: 100%;
+    height: 350px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
 
 form {
     width: 450px;
@@ -35,7 +32,6 @@ form {
     padding: 10px 20px;
     border: 1px solid rgb(119, 119, 119);
     border-radius: 25px;
-    margin-top: 70px;
 }
 
 label {
@@ -60,47 +56,46 @@ label {
     align-items: center;
 }
 
-#btn-submit-profil-user, #btn-submit-all-user {
+.btn-submit {
     width: 200px;
     text-align: center;
-    padding: 5px;
-    border: none;
+    padding: 7px;
     background-color: transparent;
-    font-size: 18px;
+    font-size: 16px;
     font-family: Helvetica, sans-serif;
     border: 1px solid rgb(190, 190, 190);
     border-radius: 25px;
     margin-top: 20px;
     color: rgb(208, 208, 208);
 }
-#btn-submit-profil-user:hover, #btn-submit-all-user:hover {
-    width: 200px;
-    text-align: center;
-    padding: 5px;
+.btn-submit:hover {
     background-color: rgb(224, 224, 224);
-    border: none;
-    border-radius: 25px;
     cursor: pointer;
     scale: 1.05;
     transition: all 100ms;
     color: rgb(0, 0, 0);
 }
 
-#btn-submit-profil-user:active, #btn-submit-all-user:active {
-scale: 0.95;
-transition: all 100ms;
+.btn-submit:active {
+    scale: 0.95;
+    transition: all 100ms;
+}
+
+.container-btn-submit {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-container-user {
-    width: 400px;
+    width: 450px;
     height: 200px;
     border-radius: 25px;
     padding: 10px 0;
     overflow: auto;
     border: 1px solid rgb(119, 119, 119);
     border-radius: 25px;
-    margin-left: 50px;
-    margin-top: 70px;
     color: rgb(208, 208, 208);
 }
 .main-container-user::-webkit-scrollbar {
@@ -129,7 +124,7 @@ transition: all 100ms;
     margin-left: 20px;
 }
 
-.title {
+.container-result-title {
     padding: 10px 0;
     padding-left: 15px;
     font-size: 20px;
@@ -138,11 +133,16 @@ transition: all 100ms;
 }
 
 ul {
-    padding: 10px 0;
+    padding: 15px 0;
+}
+ul:hover {
+    border: 2px solid rgb(0, 138, 162);
+    transition: all 100ms;
 }
 
 li {
     margin: 0 30px;
+    cursor: default;
 }
 
 #container-userFechted {

@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Card } from 'src/app/models/card.model';
-import { CardService } from 'src/app/shared/services/card.service';
 import { DbUserService } from 'src/app/shared/services/db-user.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { TokenService } from 'src/app/shared/services/token.service';
+import { TokenValidityService } from 'src/app/shared/services/token-validity.service';
 import { Menu } from 'src/app/models/menu.model';
+import { catchError, of } from 'rxjs';
 
 
 @Component({
@@ -17,7 +18,13 @@ export class AdminPageComponent {
 
   mainMenuItems: Menu[] = [
     new Menu('Rechercher un utilisateur', ''),
+    new Menu('Voir les annonces', ''),
     new Menu('Déconnexion', '')
+  ];
+
+  dropDownMessageMenuItems: Menu[] = [
+    new Menu('Boite de reception', ''),
+    new Menu('Historique des messages', ''),
   ];
 
   cardList: Card[] = [];
@@ -26,15 +33,19 @@ export class AdminPageComponent {
   firstname!: String
   lastname!: String
 
-  isCardListOpen: boolean = false;
+  isAdminCardListOpen: boolean = false;
   isGetDataOpen: boolean = false;
+  isUserReceivedMessageListOpen: boolean = false;
+  isUserSentMessageListOpen: boolean = false;
+  isAdminMode: boolean = false;
 
   constructor(
-    private cardService: CardService,
     private dbUser: DbUserService,
     private tokenS: TokenService,
     private lsService: LocalStorageService,
-    private router: Router) { }
+    private router: Router,
+    private tokenValidityService : TokenValidityService,
+    ) { }
 
   ngOnInit(): void {
 
@@ -60,15 +71,16 @@ export class AdminPageComponent {
       }
     );
 
-      
-    this.cardService.getCardList().subscribe((cardListFromDatabase: Card[]) => {
-    this.cardList = cardListFromDatabase;
-    }) 
-
- 
-    this.cardService.getFilteredCardList$().subscribe((newFileteredCardList: Card[]) => {
-      this.filteredCardList = newFileteredCardList;
-    });
+    this.tokenValidityService.getTokenValidity().pipe(
+      catchError(error => {
+        if (error.status === 401) {
+          return of(false); 
+        }
+        this.onLogout();
+        this.router.navigate(["/home"]);
+        throw error;
+      })
+    ).subscribe();
   }
 
 
@@ -79,19 +91,51 @@ export class AdminPageComponent {
   }
 
   showCardList() {
-    this.isCardListOpen = !this.isCardListOpen
+    this.isAdminCardListOpen = !this.isAdminCardListOpen
+    console.log(this.isAdminCardListOpen);
+    
   }
 
   showGetData() {
     this.isGetDataOpen = !this.isGetDataOpen
-  }
+  } 
 
   onMainMenuItemClick(menuItem: Menu) {
     if (menuItem.label === 'Rechercher un utilisateur') {
       this.showGetData();
+    } else if (menuItem.label === 'Voir les annonces') {
+      this.showCardList();
     } else if (menuItem.label === 'Déconnexion') {
       this.onLogout();
     } 
   }
+
+  onDropdownMessageMenuItemClick(menuItem: Menu) {
+    // if (menuItem.label === 'Envoyer un message') {
+      // this.onContactFormOpen();
+    // } else 
+    if (menuItem.label === 'Boite de reception') {  
+      this.onLoadUserReceivedMessageList();
+    } else if (menuItem.label === 'Historique des messages') {
+      this.onLoadUserSentMessageList();
+    }
+  }
+
+
+  onLoadUserReceivedMessageList() {
+    this.isUserReceivedMessageListOpen = !this.isUserReceivedMessageListOpen;
+  }
+
+  onLoadUserSentMessageList() {
+    this.isUserSentMessageListOpen = !this.isUserSentMessageListOpen;
+  }
+
+  // onContactFormOpen() {
+  //   this.isContactPopupFormOpen = !this.isContactPopupFormOpen;
+  // }
+
+  // onRecevedMethodForCloseContactForm(isContactPopupFormOpen: boolean) {
+  //   this.isContactPopupFormOpen = isContactPopupFormOpen;
+  // }
 
 }

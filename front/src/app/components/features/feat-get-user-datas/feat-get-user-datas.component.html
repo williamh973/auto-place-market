@@ -1,0 +1,110 @@
+<div class="full-page">
+
+    <p class="title-page">Recherche utilisateur</p>
+
+<div class="container-form-and-main-container-user">
+    <form (ngSubmit)="onSubmit()">
+        
+        <div class="container-search-profil">
+          <label for="user-email-to-get">Email</label>
+          <input 
+          type="text" 
+          id="user-email-to-get" 
+          name="user-email-to-get" 
+          [(ngModel)]="userEmailToGet"
+          placeholder="Entrez le mail de l'utilisateur"
+          >
+          
+        </div>
+
+        <div class="container-btn">
+          
+           <button 
+           class="btn-submit"
+           type="submit"
+           >Lancer la recherche</button>
+
+           <button 
+           class="btn-submit"
+           name="admin" 
+           (click)="getAllUsers()"
+           >Rechercher tous</button>
+
+        </div>
+
+    </form>
+
+    
+    <div 
+    class="main-container-user" 
+    *ngIf="showSearchProfilResult"
+    >
+
+    <p class="resultShearch">Résultat de recherche</p>
+
+    <div 
+    class="container-search-user-result" 
+    id="container-userFechted" 
+    *ngIf="userFechted$ | async as userFechted"
+    >
+      <p class="container-result-title">
+        Détail de l'utilisateur recherché
+      </p>
+         <ul>
+             <li> {{userFechted.email}} </li>
+             <li> {{userFechted.firstname}} </li>
+             <li> {{userFechted.lastname}} </li>
+             <li> {{userFechted.role}} </li>
+
+             <div class="container-btn-submit">
+               <button 
+               class="btn-submit" 
+               (click)="onContactFormOpen(userFechted)"
+               >
+               Envoyer un message
+              </button>
+             </div>
+
+         </ul>
+    </div>
+
+        
+    <div 
+    class="container-search-user-result" 
+    id="container-alluserFechted" 
+    *ngIf="allUsersFetched$ | async as allUsersFetched"
+    >
+
+      <p class="container-result-title">Tous les utilisateurs</p>
+        <ul *ngFor="let user of allUsersFetched">
+            <li> {{user.email}} </li>
+            <li> {{user.firstname}} </li>
+            <li> {{user.lastname}} </li>
+            <li> {{user.role}} </li>
+
+            <div class="container-btn-submit">
+                <button 
+                class="btn-submit" 
+                (click)="onContactFormOpen(user)"
+                >
+                Envoyer un message
+               </button>
+            </div>
+
+        </ul>
+    </div>
+
+    </div>
+
+</div>
+
+<app-feat-contact-popup
+class="contact-form"
+*ngIf="isContactPopupFormOpen"
+(onCloseContactPopupFormEmit)="onRecevedMethodForCloseContactForm($event)"
+[isAdminMode]="true"
+[selectedUser]="selectedUser"
+></app-feat-contact-popup>
+
+</div>
+    

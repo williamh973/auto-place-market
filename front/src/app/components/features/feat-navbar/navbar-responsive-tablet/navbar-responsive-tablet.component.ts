@@ -16,7 +16,6 @@ export class NavbarResponsiveTabletComponent {
     new Menu('Mettre ma voiture', ''),
     new Menu('Notre concept', '/concept'),
     new Menu('Mon compte', '/user-space'),
-    new Menu('Espace Admin', '/admin'),
     new Menu('Contact', '')
   ];
 
@@ -52,7 +51,7 @@ export class NavbarResponsiveTabletComponent {
       }
       
       checkToken(): boolean {
-        return this.tokenService.checkToken();
+        return this.tokenService.isCheckTokenInLocalStorage();
       }
     
       onEditCardFormOpen() {
@@ -83,12 +82,13 @@ export class NavbarResponsiveTabletComponent {
       onMenuItemClick(menuItem: Menu) {
         if (menuItem.label === 'Mettre ma voiture') {
           this.onEditCardFormOpen();
+
         } else if (menuItem.label === 'Notre concept') {
           this.router.navigate(['/concept']);
+
         } else if (menuItem.label === 'Mon compte') {
           this.router.navigate(['/user-space']);
-        } else if (menuItem.label === 'Espace Admin') {
-          this.router.navigate(['/admin']);
+          
         } else if (menuItem.label === 'Contact') {
           this.onContactPopupFormOpen();
       }

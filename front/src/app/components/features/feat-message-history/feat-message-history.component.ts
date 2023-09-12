@@ -5,13 +5,13 @@ import { DbUserService } from 'src/app/shared/services/db-user.service';
 import { MessageService } from 'src/app/shared/services/message.service';
 
 @Component({
-  selector: 'app-feat-message-user',
-  templateUrl: './feat-message-user.component.html',
-  styleUrls: ['./feat-message-user.component.scss']
+  selector: 'app-feat-message-history',
+  templateUrl: './feat-message-history.component.html',
+  styleUrls: ['./feat-message-history.component.scss']
 })
-export class FeatMessageUserComponent {
+export class FeatMessageHistoryComponent {
 
-  message: Message = new Message('', new Date(), new User('', '', '', '', [], [], [], 'ROLE_USER'));
+  message: Message = new Message('', new Date(), new User('', '', '', '', [], [], [], 'ROLE_USER'), new User('', '', '', '', [], [], [], 'ROLE_USER'));
 
   messageListCreatedByUser: Message[] = [];
 
@@ -28,8 +28,10 @@ export class FeatMessageUserComponent {
     this.dbUser.getUserMessages().subscribe((messageListFromDatabase: Message[]) => {
       this.messageListCreatedByUser = messageListFromDatabase
       .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-      });   
-  }
+      console.log(this.messageListCreatedByUser);
+    });  
+      
+  } 
 
   onExpandMessage(message: Message) {
     message.isExpanded = !message.isExpanded;
@@ -50,5 +52,7 @@ export class FeatMessageUserComponent {
   onForCloseConfirmDeletePopup(isConfirmDeleteMessagePopupOpen: boolean) {
    this.isConfirmDeleteMessagePopupOpen = !this.isConfirmDeleteMessagePopupOpen
   }
+
+  
 
 }

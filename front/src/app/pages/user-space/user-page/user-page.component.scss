@@ -12,6 +12,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    height: 300px;
   }
 
 .container-title {
@@ -37,17 +38,28 @@ span {
 }
 
 nav {
-  width: 100%;
-  padding: 100px 0;
+  width: 90%;
+  padding: 30px 0; 
+  margin: auto;
+  // border: 1px solid red;
 }
+
 ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
 }
+
 li {
   list-style-type: none;
+}
+
+.menu-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .dropdown {
@@ -149,3 +161,4 @@ li {
   left: 0;
   z-index: 2;
 }
+

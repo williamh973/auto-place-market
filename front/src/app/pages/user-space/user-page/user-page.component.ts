@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { catchError, map, of } from 'rxjs';
 import { Card } from 'src/app/models/card.model';
 import { Favorite } from 'src/app/models/favorite.model';
 import { Menu } from 'src/app/models/menu.model';
@@ -7,6 +8,7 @@ import { Message } from 'src/app/models/message.model';
 import { DbUserService } from 'src/app/shared/services/db-user.service';
 import { FavoriteService } from 'src/app/shared/services/favorite.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { TokenValidityService } from 'src/app/shared/services/token-validity.service';
 import { TokenService } from 'src/app/shared/services/token.service';
 
 
@@ -17,22 +19,19 @@ import { TokenService } from 'src/app/shared/services/token.service';
 })
 export class UserPageComponent {
 
-  mainMenuItems: Menu[] = [
+  adminMainMenuItems: Menu[] = [
+    new Menu('Voir les annonces', ''),
+    new Menu('Rechercher un utilisateur', ''),
+    new Menu('Déconnexion', '')
+  ];
+
+  userMainMenuItems: Menu[] = [
     new Menu('Poster une annonce', ''),
     new Menu('Mes voitures', ''),
     new Menu('Mes favoris', ''),
     new Menu('Déconnexion', '')
   ];
 
-  dropDownAccountMenuItems: Menu[] = [
-    new Menu('Supprimer mon compte', ''),
-    new Menu('Modifier le numéro de téléphone', ''),
-  ];
-
-  dropDownMessageMenuItems: Menu[] = [
-    new Menu('Envoyer un message', ''),
-    new Menu('Historique des messages', ''),
-  ];
  
   favoriteCardList: Card[] = [];
   messageListCreatedByUser: Message[] = [];
@@ -40,13 +39,18 @@ export class UserPageComponent {
 
   firstname!: String;
   lastname!: String;
- 
+  role!: "ROLE_USER" | "ROLE_ADMIN";
+
   isFavoriteListOpen: boolean = false;
-  isUserCardListOpen: boolean = true;
+  isUserCardListOpen: boolean = false;
   isEditCardFormOpen: boolean = false;
+  isAnimationTrackHttpStatusActive: boolean = false; 
+  isGetDataOpen: boolean = false;
+  isAdminCardListOpen: boolean = false;
   isConfirmDeleteCurrentUserPopupOpen: boolean = false;
   isContactPopupFormOpen: boolean = false;
   isUserMessageListOpen: boolean = false;
+  isUserReceivedMessageListOpen: boolean = false;
 
 
   constructor( 
@@ -54,7 +58,9 @@ export class UserPageComponent {
     private tokenS: TokenService,
     private lsService: LocalStorageService,
     private favoriteService: FavoriteService,
-    private router: Router ) {}
+    private tokenValidityService : TokenValidityService,
+    private router: Router
+    ) {}
 
 
     ngOnInit() {
@@ -75,40 +81,79 @@ export class UserPageComponent {
           console.log('Error message:', error.message);
         }
       );
-  
+
+      this.tokenS._getTokenDetailsSubject$()
+      .pipe(
+        map((decodedToken: any) => decodedToken.role)
+      )
+      .subscribe((role: "ROLE_USER" | "ROLE_ADMIN") => {
+        this.role = role;
+      });
+
+      this.tokenValidityService.getTokenValidity().pipe(
+        catchError(error => {
+          if (error.status === 401) {
+            return of(false); 
+          }
+          this.onLogout();
+          this.router.navigate(["/home"]);
+          throw error;
+        })
+      ).subscribe();
+      
+    }
+    
+
+    onAdminMainMenuItemClick(menuItem: Menu) {
+      if (menuItem.label === 'Rechercher un utilisateur') {
+        this.showGetData();
+
+      } else if (menuItem.label === 'Voir les annonces') {
+        this.showCardList();
+
+      }  else if (menuItem.label === 'Déconnexion') {
+        this.onLogout();
+
+      } 
     }
 
-
-
-    onDropdownAccountMenuItemClick(menuItem: Menu) {
-      if (menuItem.label === 'Supprimer mon compte') {
-        this.deleteAccount();
-      } else if (menuItem.label === 'Modifier le numéro de téléphone') {
-        this.changePhoneNumber();
-      }
-    }
-
-    onDropdownMessageMenuItemClick(menuItem: Menu) {
-      if (menuItem.label === 'Envoyer un message') {
-        this.onContactFormOpen();
-      } else if (menuItem.label === 'Historique des messages') {
-        this.onLoadUserMessageList();
-      }
-    }
-
-    onMainMenuItemClick(menuItem: Menu) {
+    onUserMainMenuItemClick(menuItem: Menu) {
       if (menuItem.label === 'Poster une annonce') {
         this.onEditCardFormOpen();
-      } else if (menuItem.label === 'Mes voitures') {
+
+      }  else if (menuItem.label === 'Mes voitures') {
         this.loadUserCardList();
+
       } else if (menuItem.label === 'Mes favoris') {
         this.loadFavoriteCardList();
+
       } else if (menuItem.label === 'Déconnexion') {
         this.onLogout();
       } 
     }
 
+    showGetData() {
+      this.isGetDataOpen = !this.isGetDataOpen
+    } 
 
+    showCardList() {
+      this.isAdminCardListOpen = !this.isAdminCardListOpen
+    }
+
+    onLogout(): void {
+      this.lsService.clearTokenAndUserEmail();
+      this.tokenS.resetToken();
+      this.router.navigate(["/home"]);
+    }
+
+    onEditCardFormOpen() {
+      this.isEditCardFormOpen = !this.isEditCardFormOpen;
+    }
+
+    loadUserCardList() {
+      this.isUserCardListOpen = !this.isUserCardListOpen
+    }
+    
     loadFavoriteCardList() {
       this.isFavoriteListOpen = !this.isFavoriteListOpen;
       if (this.isFavoriteListOpen) {
@@ -117,7 +162,6 @@ export class UserPageComponent {
           this.favoriteService.getFavoriteList(userEmailInLocalStorage).subscribe(
             (favoriteList: Favorite[]) => { 
               this.favoriteCardList = favoriteList.map(favorite => favorite.card);
-              console.log(this.favoriteCardList);
             },
             (error: any) => {
               console.log("Erreur lors de la récupération des favoris :", error);
@@ -130,47 +174,33 @@ export class UserPageComponent {
         this.isFavoriteListOpen = false; 
       }
     }
-
-    onLogout(): void {
-      this.lsService.clearTokenAndUserEmail();
-      this.tokenS.resetToken();
-      this.router.navigate(["/home"]);
-    }
-
-    onEditCardFormOpen() {
-        this.isEditCardFormOpen = !this.isEditCardFormOpen;
-    }
-
-    onContactFormOpen() {
-      this.isContactPopupFormOpen = !this.isContactPopupFormOpen;
-  }
-
-    loadUserCardList() {
-      this.isUserCardListOpen = !this.isUserCardListOpen
-    }
     
-    deleteAccount(): void {
-      this.isConfirmDeleteCurrentUserPopupOpen = true;
-    }
-    
-    changePhoneNumber(): void {
-      
-    }
-
-    onLoadUserMessageList() {
-      this.isUserMessageListOpen = !this.isUserMessageListOpen;
-    }
-    
-    onRecevedMethodForCloseEditCardForm(isEditCardFormOpen: boolean) {
+    onForCloseEditCardForm(isEditCardFormOpen: boolean) {
       this.isEditCardFormOpen = isEditCardFormOpen;
     }
 
-    onRecevedMethodForCloseConfirmDeleteUserPopup(isConfirmDeleteCurrentUserPopupOpen: boolean) {
+    onForOpenConfirmDeleteCurrentUserPopup(isConfirmDeleteCurrentUserPopupOpen: boolean) {
+      this.isConfirmDeleteCurrentUserPopupOpen = isConfirmDeleteCurrentUserPopupOpen
+    }
+
+    onForCloseConfirmDeleteUserPopup(isConfirmDeleteCurrentUserPopupOpen: boolean) {
       this.isConfirmDeleteCurrentUserPopupOpen = isConfirmDeleteCurrentUserPopupOpen;
     }
 
-    onRecevedMethodForCloseContactForm(isContactPopupFormOpen: boolean) {
+    onForOpenContactFormPopup(isContactPopupFormOpen: boolean) {
       this.isContactPopupFormOpen = isContactPopupFormOpen;
+    }
+
+    onForCloseContactForm(isContactPopupFormOpen: boolean) {
+      this.isContactPopupFormOpen = isContactPopupFormOpen;
+    }
+
+    onForLoadUserReceivedMessageList(isUserReceivedMessageListOpen: boolean) {
+      this.isUserReceivedMessageListOpen = isUserReceivedMessageListOpen
+    }
+
+    onForLoadUserMessageList(isUserMessageListOpen: boolean) {
+      this.isUserMessageListOpen = isUserMessageListOpen
     }
 
 }

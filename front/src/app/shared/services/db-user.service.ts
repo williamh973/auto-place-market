@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, of } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { User } from '../../models/user.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LocalStorageService } from './local-storage.service';
+import { HttpClient } from '@angular/common/http';
 import { Card } from 'src/app/models/card.model';
 import { Message } from 'src/app/models/message.model';
 
@@ -19,16 +18,20 @@ export class DbUserService {
 
 
   constructor(
-    private http: HttpClient,
-    private lsService: LocalStorageService) { }
+    private http: HttpClient
+    ) { }
 
-
-  getOneUser(email: string): Observable<User> {
-    return this.http.get<User>(`${this._BASE_URL}/email/${email}`);
-  }
 
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this._BASE_URL}/all`);
+  }
+
+  getUserByEmail(email: string): Observable<User> {
+    return this.http.get<User>(`${this._BASE_URL}/email/${email}`);
+  }
+
+  getUserById(id: number): Observable<User> {
+    return this.http.get<User>(`${this._BASE_URL}/${id}`);
   }
 
   getUserFirstnameForUserPage(): Observable<string> {
@@ -50,13 +53,8 @@ export class DbUserService {
   }
 
   getUserMessages(): Observable<Message[]> {
-    return this.http.get<Message[]>(`${this._BASE_URL}/current/messagesList`);
+    return this.http.get<Message[]>(`${this._BASE_URL}/current/sentMessagesList`);
   }
-
-// A GARDER !! ! ! ! 
-  // getUserId(): Observable<number> {
-  //   return this.http.get<number>(`${this._BASE_URL}/current/id`);
-  // }
 
   deleteCurrentUser(): Observable<void> {
     return this.http.delete<void>(`${this._BASE_URL}/current/delete`);
@@ -69,5 +67,6 @@ export class DbUserService {
   getFilteredCardListCreatedByUser$(): Observable<Card[]> {
     return this.filteredCardListCreatedByUserSubject$.asObservable();
   }
+
 
 }

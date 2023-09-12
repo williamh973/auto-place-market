@@ -16,7 +16,6 @@ export class FeatNavbarComponent {
     new Menu('Mettre ma voiture', ''),
     new Menu('Notre concept', '/concept'),
     new Menu('Mon compte', '/user-space'),
-    new Menu('Espace Admin', '/admin'),
     new Menu('Contact', '')
   ];
 
@@ -52,12 +51,8 @@ export class FeatNavbarComponent {
     this.isComputerResolution = screenWidth >= 1300; 
   }
   
-  checkToken(): boolean {
-    return this.tokenService.checkToken();
-  }
-
   onEditCardFormOpen() {
-    if (this.checkToken()) {
+    if (this.tokenService.isCheckTokenInLocalStorage()) {
       this.isEditCardFormOpen = !this.isEditCardFormOpen;
       this.accountPopupService.closePopup();
     } else {
@@ -66,7 +61,11 @@ export class FeatNavbarComponent {
   }
 
   onContactPopupFormOpen() {
+    if (this.tokenService.isCheckTokenInLocalStorage()) {
     this.isContactPopupFormOpen = !this.isContactPopupFormOpen;
+    } else {
+      this.accountPopupService.openPopup();
+    }
   }
 
   onRecevedMethodForCloseEditCardForm(isEditCardFormOpen: boolean) {
@@ -84,12 +83,13 @@ export class FeatNavbarComponent {
   onMenuItemClick(menuItem: Menu) {
     if (menuItem.label === 'Mettre ma voiture') {
       this.onEditCardFormOpen();
+
     } else if (menuItem.label === 'Notre concept') {
       this.router.navigate(['/concept']);
+
     } else if (menuItem.label === 'Mon compte') {
       this.router.navigate(['/user-space']);
-    } else if (menuItem.label === 'Espace Admin') {
-      this.router.navigate(['/admin']);
+      
     } else if (menuItem.label === 'Contact') {
       this.onContactPopupFormOpen();
   }

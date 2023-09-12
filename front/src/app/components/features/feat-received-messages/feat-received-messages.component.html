@@ -1,32 +1,35 @@
 <div class="full-page">
 
     <p 
-    *ngIf="messageListCreatedByUser.length === 0" 
+    *ngIf="messageListReceived.length === 0" 
     class="message-list-title"
     >
-    Pas de message envoyé
+    Boite de réception vide
     </p>
     <p 
-    *ngIf="messageListCreatedByUser.length > 0" 
+    *ngIf="messageListReceived.length > 0" 
     class="message-list-title"
     >
-    Historique des messages envoyés
+    Messages reçus
     </p>
+
+
+
 
     <div 
     class="container-message" 
-    *ngFor="let message of messageListCreatedByUser"
+    *ngFor="let message of messageListReceived"
     >
-    <div 
-    class="message"
-    >
-        <p 
-        class="timestamp"
-        >
-        {{ message.timestamp | date:'dd/MM/yyyy à HH:mm' }}
+
+    
+    <div class="message">
+        <p class="user-email">Edité par : {{ message.user.email }}</p>
+
+        <p class="timestamp">
+           le {{ message.timestamp | date:'dd/MM/yyyy à HH:mm' }}
         </p>
-        <p 
-        *ngIf="message.isExpanded || message.resume.length <= 70"
+        <p *ngIf="message.isExpanded || 
+                  message.resume.length <= 70"
         >{{ message.resume }}
         </p>
         <p 
@@ -35,6 +38,8 @@
         {{ message.resume.substring(0, 70) }}...
         </p>
     </div>
+
+
 
         <div class="container-btn">
             <button 
@@ -70,4 +75,5 @@
     </div>
  
 </div>
+
 

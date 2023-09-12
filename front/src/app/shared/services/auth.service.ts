@@ -6,6 +6,7 @@ import { TokenService } from './token.service';
 import { TokenResponse } from '../../models/token.model';
 import { UserRegister } from '../../models/user-register.model';
 import { LocalStorageService } from './local-storage.service';
+import { Router } from '@angular/router';
 
 
  
@@ -22,7 +23,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private tokenService: TokenService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private router: Router,
   ) { }
 
 
@@ -40,9 +42,9 @@ export class AuthService {
         this.localStorageService.setUserEmail(userAuth);
       })
         setTimeout(() => {
-          window.location.reload();
+          this.router.navigateByUrl("/user-space");        
         }, 2500);
-     
+        
   }
 
 
@@ -50,9 +52,7 @@ export class AuthService {
     return this._httpErrorSubject$.asObservable();
   }
   setHttpErrorSubject$(error: HttpErrorResponse): void {
-    // On retire l'erreur stockée dans le SuccessSubject
     this._httpSuccessSubject$.next(new HttpResponse({}))
-    // On ajoute l'erreur au ErrorSubject
     this._httpErrorSubject$.next(error);
   }
 
@@ -60,9 +60,7 @@ export class AuthService {
     return this._httpSuccessSubject$.asObservable();
   }
   setHttpSuccessSubject$(success: HttpResponse<any>): void {
-    // On retire l'erreur stockée dans le ErrorSubject
     this._httpErrorSubject$.next(new HttpErrorResponse({}))
-    // On ajoute l'erreur au SuccessSubject
     this._httpSuccessSubject$.next(success);
   }
 

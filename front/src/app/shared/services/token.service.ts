@@ -3,6 +3,7 @@ import { TokenResponse } from '../../models/token.model';
 import jwt_decode from 'jwt-decode';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,12 @@ export class TokenService {
 
   private readonly _tokenDetailsSubject$: BehaviorSubject<any> = new BehaviorSubject<any>(this.getTokenFromLocalStorageAndDecode());
 
-  constructor(private lsService: LocalStorageService) { }
+
+  constructor(
+    private http: HttpClient,
+    private lsService: LocalStorageService
+    ) { }
+
 
   updateToken(tokenFromDB: TokenResponse) {
     this._clearLocalStorageAndThenPutNewToken(tokenFromDB);
@@ -54,8 +60,9 @@ export class TokenService {
   }
 
 
-  checkToken(): boolean {
+  isCheckTokenInLocalStorage(): boolean {
     const token = this.lsService.getToken();
     return !!token;
   }
+
 }

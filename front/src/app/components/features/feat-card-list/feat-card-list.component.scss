@@ -21,13 +21,13 @@ button:hover {
 }
 
 
-.container-user-card-list, .container-favorite-user-card-list {
+.container-user-card-list, .container-admin-card-list, .container-favorite-user-card-list {
     width: 90%;
     margin: auto;
     padding: 50px 0;
   }
   
-  .user-card-list-title, .favorite-card-list-title {
+  .user-card-list-title, .admin-card-list-title, .favorite-card-list-title {
     font-size: 25px;
     color: whitesmoke;
     cursor: default;

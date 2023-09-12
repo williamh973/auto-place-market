@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { Message } from 'src/app/models/message.model';
+import { User } from 'src/app/models/user.model';
 
 
 
@@ -27,7 +28,7 @@ export class MessageService {
 
 
 
-  getMessageList(): Observable<Message[]> {
+  getAllMessages(): Observable<Message[]> {
     return this.http.get<Message[]>(`${this._BASE_URL_MESSAGE}/all`);
   }
 
@@ -36,7 +37,13 @@ export class MessageService {
     return this.http.get<Message>(url);
   }
 
-  createMessage(message: Message): Observable<Message> {
+  createUserMessage(message: Message): Observable<Message> {
+    message.timestamp = new Date();
+    return this.http.post<Message>(`${this._BASE_URL_MESSAGE}/add`, message);
+  }
+
+  createAdminMessage(message: Message, selectedUser: User): Observable<Message> {
+    message.receiver = selectedUser;
     message.timestamp = new Date();
     return this.http.post<Message>(`${this._BASE_URL_MESSAGE}/add`, message);
   }

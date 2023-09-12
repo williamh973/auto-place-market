@@ -23,7 +23,6 @@ public class CardService {
     private final CardRepository cardRepository;
     private final UserRepository userRepository;
     private final FavoriteRepository favoriteRepository;
-//    private final PictureRepository pictureRepository;
 
 
     public List<Card> getAll() {

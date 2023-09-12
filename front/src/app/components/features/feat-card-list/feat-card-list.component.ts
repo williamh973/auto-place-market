@@ -15,6 +15,7 @@ export class FeatCardListComponent {
   @Input() isHomePageCardListOpen!: boolean;
   @Input() isUserCardListOpen!: boolean;
   @Input() isFavoriteListOpen!: boolean;
+  @Input() isAdminCardListOpen!: boolean;
   @Input() favoriteCardList!: Card[];
 
  

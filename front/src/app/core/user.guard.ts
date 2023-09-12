@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { TokenService } from '../shared/services/token.service';
-import { TokenResponse } from '../models/token.model';
 import { AccountPopupService } from '../shared/services/account-popup.service';
 
 @Injectable({
@@ -28,9 +27,6 @@ export class UserGuard implements CanActivate {
       });
   }
 
-  checkToken(): boolean {
-    return this.tokenS.checkToken();
-  }
  
   canActivate(
     route: ActivatedRouteSnapshot,

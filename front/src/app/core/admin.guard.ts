@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { TokenService } from '../shared/services/token.service';
-import { TokenResponse } from '../models/token.model';
 import { AccountPopupService } from '../shared/services/account-popup.service';
 
 @Injectable({
@@ -12,6 +11,7 @@ export class AdminGuard implements CanActivate {
 
   role!: "ROLE_USER" | "ROLE_ADMIN";
 
+  
   constructor(
     private router: Router,
     private tokenS: TokenService,

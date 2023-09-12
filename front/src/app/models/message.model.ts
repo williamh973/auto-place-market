@@ -5,6 +5,7 @@ export class Message {
         public resume: string,
         public timestamp: Date,
         public user: User,
+        public receiver: User,
         public id?: number,
         public isExpanded?: boolean,
     ) { }

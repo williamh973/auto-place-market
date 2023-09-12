@@ -7,7 +7,10 @@
     [card]="card"
     ></app-feat-card>
   </div>
+
 </div>
+
+
 
 
 <div class="container-user-card-list"
@@ -24,7 +27,9 @@
     ></app-feat-card-user>
   </div>
 </div>
+
 </div>
+
 
 
 
@@ -40,6 +45,25 @@
     [card]="card"
     ></app-feat-card-favorite>
   </div>
+
+</div>
+
+
+
+<div class="container-admin-card-list"
+*ngIf="isAdminCardListOpen" 
+>
+  <p *ngIf="cardList.length === 0" class="admin-card-list-title">Pas de voiture</p>
+  <p *ngIf="cardList.length === 1" class="admin-card-list-title">La voiture mise en ligne</p>
+  <p *ngIf="cardList.length > 1" class="admin-card-list-title">Les voitures mises en ligne</p>
+
+<div class="card-list">
+  <div *ngFor="let card of (filteredCardList.length > 0 ? filteredCardList : cardList); let i = index">
+    <app-feat-card-admin
+    [card]="card"
+    ></app-feat-card-admin>
+  </div>
+</div>
 
 </div>
 

@@ -16,45 +16,54 @@
           <li *ngFor="let menuItem of mainMenuItems">
             <a class="btn-nav" (click)="onMainMenuItemClick(menuItem)">{{ menuItem.label }}</a>
           </li>
+          <div class="dropdown">
+            <button class="dropdown-button">Mes messages</button>
+            <div class="dropdown-content">
+              <li *ngFor="let dropDownMessageMenuItem of dropDownMessageMenuItems">
+                <a (click)="onDropdownMessageMenuItemClick(dropDownMessageMenuItem)">{{ dropDownMessageMenuItem.label }}</a>
+              </li>
+            </div>
+          </div>  
         </ul>
       </nav>
     </div>
-    <!-- <div class="container-btn">
-      <button (click)="onLogout()">Déconnexion</button>
-    </div> -->
     
   </div>
   
-  <div class="container-card-list">
-    
-    <div id="container-btn-show-all-cards">
-      <button 
-      id="btn-show-all-cards"
-      (click)="showCardList()">{{ isCardListOpen ? 'Fermer la liste' : 'Voir toutes les cartes' }}</button>
-    </div>
+
+  <app-feat-search 
+  *ngIf="isAdminCardListOpen"
+  ></app-feat-search>
 
 
-<div class="card-list" *ngIf="isCardListOpen">
-  <div *ngFor="let card of (filteredCardList.length > 0 ? filteredCardList : cardList); let i = index">
-    <app-feat-card-admin
-    [card]="card"
-       ></app-feat-card-admin>
-      </div>
-    </div>
-  </div>
+  <app-feat-card-list
+  *ngIf="isAdminCardListOpen" 
+  class="container-card-list"
+  [isAdminCardListOpen]="isAdminCardListOpen"
+  ></app-feat-card-list>
 
-  </div>
 
-  <div 
-  class="container-get-data"
+  <app-feat-get-user-datas
   *ngIf="isGetDataOpen"
-  >
-    <app-get-datas></app-get-datas> 
-  </div>
+  class="container-user-search"
+  ></app-feat-get-user-datas> 
 
-  <div 
-  class="search-bar" 
-  *ngIf="isCardListOpen"
-  >
-    <app-feat-search ></app-feat-search>
+
+  <app-feat-received-messages
+  *ngIf="isUserReceivedMessageListOpen"
+  ></app-feat-received-messages>
+ 
+
+  <app-feat-message-history
+  *ngIf="isUserSentMessageListOpen"
+  ></app-feat-message-history>
+
+
+  <!-- <app-feat-contact-popup
+  class="contact-form"
+  *ngIf="isContactPopupFormOpen"
+  (onCloseContactPopupFormEmit)="onRecevedMethodForCloseContactForm($event)"
+  ></app-feat-contact-popup> -->
+
+  
   </div>
