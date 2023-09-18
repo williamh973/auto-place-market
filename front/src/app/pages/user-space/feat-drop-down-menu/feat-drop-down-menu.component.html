@@ -17,3 +17,12 @@
     </div>
    </div>
 
+   <div class="dropdown" *ngIf="role === 'ROLE_ADMIN'" >
+    <button class="dropdown-button">Utilisateurs</button>
+    <div class="dropdown-content">
+      <li *ngFor="let dropDownUserMenuItem of dropDownUserMenuItems">
+        <a (click)="onDropdownUserMenuItemClick(dropDownUserMenuItem)">{{ dropDownUserMenuItem.label }}</a>
+      </li>
+    </div>
+   </div>
+

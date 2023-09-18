@@ -9,10 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import poecbdx23.livecodingjwt.card.Card;
 import poecbdx23.livecodingjwt.message.Message;
-import poecbdx23.livecodingjwt.message.MessageRepository;
-
 import java.security.Principal;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +19,6 @@ import java.util.Set;
 public class UserController {
 
     private final UserRepository userRepository;
-    private final MessageRepository messageRepository;
 
 
     @GetMapping("/email/{email}")
@@ -126,6 +122,62 @@ public class UserController {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         userRepository.delete(user);
+    }
+
+
+
+//    -----------------------------------------------------------------------------------
+
+    @GetMapping("/disable/all")
+    public List<User> getUserDisable(HttpServletRequest request) throws AccessDeniedException {
+        String role  = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+        if(role.equals("[ROLE_ADMIN]")) {
+            return userRepository.findAll();
+        } else {
+            request.setAttribute("access_denied", "You do not have suffisant rights to access to this resource");
+            throw new AccessDeniedException("User does not have the correct rights to access to this resource");
+
+        }
+    }
+
+    @PutMapping("/disable/{userId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> disableUser(@PathVariable Long userId, HttpServletRequest request) throws AccessDeniedException {
+        String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+
+        if (role.equals("[ROLE_ADMIN]")) {
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+
+            user.setBlocked(true);
+
+             userRepository.save(user);
+
+             return ResponseEntity.noContent().build();
+        } else {
+            request.setAttribute("access_denied", "You do not have sufficient rights to access this resource");
+            throw new AccessDeniedException("User does not have the correct rights to access this resource");
+        }
+    }
+
+    @PutMapping("/enable/{userId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> enabledUser(@PathVariable Long userId, HttpServletRequest request) throws AccessDeniedException {
+        String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+
+        if (role.equals("[ROLE_ADMIN]")) {
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+
+            user.setBlocked(false);
+
+            userRepository.save(user);
+
+            return ResponseEntity.noContent().build();
+        } else {
+            request.setAttribute("access_denied", "You do not have sufficient rights to access this resource");
+            throw new AccessDeniedException("User does not have the correct rights to access this resource");
+        }
     }
 
 }

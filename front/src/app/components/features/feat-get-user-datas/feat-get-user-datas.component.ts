@@ -18,9 +18,10 @@ export class GetUserDatasComponent implements OnInit {
   showSearchProfilResult: boolean = false;
   isContactPopupFormOpen: boolean = false;
   isAdminMode: boolean = false;
+  isUserDisabled!: boolean;
   
   selectedUser!: User; 
-
+  
 
   constructor(private dbUser: DbUserService) { }
 
@@ -39,6 +40,10 @@ export class GetUserDatasComponent implements OnInit {
   onSubmit() {
     this.showSearchProfilResult = true;
     this.userFechted$ = this.dbUser.getUserByEmail(this.userEmailToGet);
+    
+    this.userFechted$.subscribe(user => {
+      this.isUserDisabled = user.blocked; 
+    });
   }
 
   getAllUsers() {
@@ -53,8 +58,33 @@ export class GetUserDatasComponent implements OnInit {
     this.selectedUser = user;
     this.isContactPopupFormOpen = !this.isContactPopupFormOpen;
   }
+  
   updateSelectedUserForSendMessage(user: User) {
     this.selectedUser = user;
   }
+
+
+  toggleAccountDisabled(user: User) {
+    if (user.id && !this.isUserDisabled) {
+     this.dbUser.disabledUser(user.id).subscribe(
+       () => {
+        console.log("compte suspendu", this.isUserDisabled);
+       },
+       (error) => {
+         console.log("erreur lors de la suspension du compte", this.isUserDisabled);
+       }
+     );
+    } else if (user.id && this.isUserDisabled) {
+      this.dbUser.enabledUser(user.id).subscribe(
+        () => {
+         console.log("compte débloqué", this.isUserDisabled);
+        },
+        (error) => {
+          console.log("erreur lors du déblocage du compte", this.isUserDisabled);
+        }
+      );
+    }
+  }
+
 
 }

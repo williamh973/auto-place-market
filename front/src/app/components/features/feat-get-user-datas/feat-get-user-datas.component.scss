@@ -65,7 +65,7 @@ label {
     font-family: Helvetica, sans-serif;
     border: 1px solid rgb(190, 190, 190);
     border-radius: 25px;
-    margin-top: 20px;
+    margin-top: 5px;
     color: rgb(208, 208, 208);
 }
 .btn-submit:hover {
@@ -84,8 +84,7 @@ label {
 .container-btn-submit {
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
 }
 
 .main-container-user {

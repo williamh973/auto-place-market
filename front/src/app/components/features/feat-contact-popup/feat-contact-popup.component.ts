@@ -15,7 +15,7 @@ export class FeatContactPopupComponent {
 
   @Output() onCloseContactPopupFormEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  message: Message = new Message('', new Date(), new User('', '', '', '', [], [], [], 'ROLE_USER'), new User('', '', '', '', [], [], [], 'ROLE_USER'));
+  message: Message = new Message('', new Date(), new User('', '', '', '', false, [], [], [], 'ROLE_USER'), new User('', '', '', '', false, [], [], [], 'ROLE_USER'));
 
   isContactPopupFormOpen: boolean = false;
   isLoadingComposantActive: boolean = false;

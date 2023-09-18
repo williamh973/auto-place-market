@@ -21,7 +21,6 @@ export class UserPageComponent {
 
   adminMainMenuItems: Menu[] = [
     new Menu('Voir les annonces', ''),
-    new Menu('Rechercher un utilisateur', ''),
     new Menu('Déconnexion', '')
   ];
 
@@ -96,7 +95,10 @@ export class UserPageComponent {
             return of(false); 
           }
           this.onLogout();
+          this.lsService.clearTokenAndUserEmail();
+          this.tokenS.resetToken();
           this.router.navigate(["/home"]);
+
           throw error;
         })
       ).subscribe();
@@ -105,17 +107,14 @@ export class UserPageComponent {
     
 
     onAdminMainMenuItemClick(menuItem: Menu) {
-      if (menuItem.label === 'Rechercher un utilisateur') {
-        this.showGetData();
-
-      } else if (menuItem.label === 'Voir les annonces') {
+      if (menuItem.label === 'Voir les annonces') {
         this.showCardList();
 
       }  else if (menuItem.label === 'Déconnexion') {
         this.onLogout();
-
       } 
     }
+
 
     onUserMainMenuItemClick(menuItem: Menu) {
       if (menuItem.label === 'Poster une annonce') {
@@ -131,10 +130,6 @@ export class UserPageComponent {
         this.onLogout();
       } 
     }
-
-    showGetData() {
-      this.isGetDataOpen = !this.isGetDataOpen
-    } 
 
     showCardList() {
       this.isAdminCardListOpen = !this.isAdminCardListOpen
@@ -201,6 +196,10 @@ export class UserPageComponent {
 
     onForLoadUserMessageList(isUserMessageListOpen: boolean) {
       this.isUserMessageListOpen = isUserMessageListOpen
+    }
+
+    onForOpenGetData(isGetDataOpen: boolean) {
+      this.isGetDataOpen = isGetDataOpen
     }
 
 }

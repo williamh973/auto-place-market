@@ -8,6 +8,7 @@ export class User {
         public lastname: string,
         public pseudo: string,
         public email: string,
+        public blocked: boolean,
         public cardList: Card[],
         public favoriteList: Favorite[],
         public messageList: Message[],

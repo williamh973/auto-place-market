@@ -3,6 +3,7 @@
     <p class="title-page">Recherche utilisateur</p>
 
 <div class="container-form-and-main-container-user">
+    
     <form (ngSubmit)="onSubmit()">
         
         <div class="container-search-profil">
@@ -14,7 +15,6 @@
           [(ngModel)]="userEmailToGet"
           placeholder="Entrez le mail de l'utilisateur"
           >
-          
         </div>
 
         <div class="container-btn">
@@ -50,6 +50,7 @@
       <p class="container-result-title">
         Détail de l'utilisateur recherché
       </p>
+      
          <ul>
              <li> {{userFechted.email}} </li>
              <li> {{userFechted.firstname}} </li>
@@ -57,12 +58,20 @@
              <li> {{userFechted.role}} </li>
 
              <div class="container-btn-submit">
-               <button 
-               class="btn-submit" 
-               (click)="onContactFormOpen(userFechted)"
-               >
-               Envoyer un message
-              </button>
+                <button 
+                class="btn-submit" 
+                (click)="onContactFormOpen(userFechted)"
+                >Envoyer un message
+                </button>
+ 
+                <button
+                class="btn-submit" 
+                (click)="toggleAccountDisabled(userFechted)"
+                >
+                {{ isUserDisabled ? 'Débloquer le compte' : 'Suspendre le compte' }}
+                </button>
+
+              
              </div>
 
          </ul>
@@ -81,16 +90,6 @@
             <li> {{user.firstname}} </li>
             <li> {{user.lastname}} </li>
             <li> {{user.role}} </li>
-
-            <div class="container-btn-submit">
-                <button 
-                class="btn-submit" 
-                (click)="onContactFormOpen(user)"
-                >
-                Envoyer un message
-               </button>
-            </div>
-
         </ul>
     </div>
 

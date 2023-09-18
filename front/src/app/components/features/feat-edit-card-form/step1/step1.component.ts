@@ -18,7 +18,7 @@ export class Step1Component {
   createMode: boolean = false;
 
   @Input() 
-  card:  Card = new Card('',  '',   '',   0,   0,   0,   '',   '',   0, new Date(), [],  new User('', '', '', '', [], [], [], 'ROLE_USER'));
+  card:  Card = new Card('',  '',   '',   0,   0,   0,   '',   '',   0, new Date(), [],  new User('', '', '', '', false, [], [], [], 'ROLE_USER'));
 
 
   @Output() 

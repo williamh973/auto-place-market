@@ -12,7 +12,7 @@ import { MessageService } from 'src/app/shared/services/message.service';
 export class FeatReceivedMessagesComponent {
 
 
-  message: Message = new Message('', new Date(), new User('', '', '', '', [], [], [], 'ROLE_USER'), new User('', '', '', '', [], [], [], 'ROLE_USER'));
+  message: Message = new Message('', new Date(), new User('', '', '', '', false, [], [], [], 'ROLE_USER'), new User('', '', '', '', false, [], [], [], 'ROLE_USER'));
 
   messageListReceived: Message[] = [];
 

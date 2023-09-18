@@ -60,6 +60,18 @@ export class DbUserService {
     return this.http.delete<void>(`${this._BASE_URL}/current/delete`);
   }
 
+  disabledUser(userId: number): Observable<User[]> {
+    return this.http.put<User[]>(`${this._BASE_URL}/disable/${userId}`, {});
+  }
+
+  enabledUser(userId: number): Observable<User[]> {
+    return this.http.put<User[]>(`${this._BASE_URL}/enable/${userId}`, {});
+  }
+ 
+  // getUserBlockStatus(userId: number): Observable<boolean> {
+  //   return this.http.get<boolean>(`${this._BASE_URL}/blockStatus/${userId}`);
+  // }
+
 
   postFilterCardListCreatedByUser(filteredCardListCreatedByUser: Card[],) {
     this.filteredCardListCreatedByUserSubject$.next([...filteredCardListCreatedByUser]);

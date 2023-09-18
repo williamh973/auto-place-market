@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { map } from 'rxjs';
 import { Menu } from 'src/app/models/menu.model';
+import { TokenService } from 'src/app/shared/services/token.service';
 
 @Component({
   selector: 'app-feat-drop-down-menu',
@@ -12,7 +14,9 @@ export class FeatDropDownMenuComponent {
   @Output() isContactPopupFormOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isUserReceivedMessageListOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isUserMessageListOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() isGetDataOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  role!: "ROLE_USER" | "ROLE_ADMIN";
 
   dropDownAccountMenuItems: Menu[] = [
     new Menu('Supprimer mon compte', ''),
@@ -25,6 +29,26 @@ export class FeatDropDownMenuComponent {
     new Menu('Historique des notifications', ''),
   ];
 
+  dropDownUserMenuItems: Menu[] = [
+    new Menu('Rechercher un utilisateur', ''),
+    new Menu('Utilisateur bloqué', ''),
+  ];
+
+
+  constructor( 
+    private tokenS: TokenService,
+    ) {}
+
+
+  ngOnInit() {
+    this.tokenS._getTokenDetailsSubject$()
+      .pipe(
+        map((decodedToken: any) => decodedToken.role)
+      )
+      .subscribe((role: "ROLE_USER" | "ROLE_ADMIN") => {
+        this.role = role;
+      });
+  }
 
 
   onDropdownAccountMenuItemClick(menuItem: Menu) {
@@ -43,6 +67,18 @@ export class FeatDropDownMenuComponent {
     }else if (menuItem.label === 'Historique des notifications') {
       this.onLoadUserMessageList();
     }
+  }
+
+   onDropdownUserMenuItemClick(menuItem: Menu) {
+    if (menuItem.label === 'Rechercher un utilisateur') {
+       this.showGetData();
+    }  else if (menuItem.label === 'Utilisateur bloqué') {  
+     
+    }
+  }
+
+  showGetData() {
+    this.isGetDataOpen.emit(true);
   }
 
   deleteAccount(): void {

@@ -37,7 +37,7 @@ public class User implements UserDetails {
     private String password;
 
     private String role;
-
+    private boolean isBlocked;
 
 
 
@@ -66,8 +66,6 @@ public class User implements UserDetails {
    }
 
 
-
-
     @Override
     public String getUsername() {
         return email;
@@ -90,7 +88,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return !isBlocked;
     }
 
 }
