@@ -35,9 +35,9 @@ public class User implements UserDetails {
     private String email;
     @JsonIgnore
     private String password;
-
     private String role;
-    private boolean isBlocked;
+
+    private boolean blocked;
 
 
 
@@ -88,7 +88,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return !isBlocked;
+        return !blocked;
     }
 
 }

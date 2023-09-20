@@ -100,6 +100,59 @@ public class UserController {
         return ResponseEntity.ok(historicMessageList);
     }
 
+    @GetMapping("/disable/all")
+    public ResponseEntity<List<User>> getAllUserDisable(HttpServletRequest request) throws AccessDeniedException {
+        String role  = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+        if(role.equals("[ROLE_ADMIN]")) {
+
+            List<User> blockedUsers =  userRepository.findByBlocked(true);
+
+            return ResponseEntity.ok(blockedUsers);
+        } else {
+            request.setAttribute("access_denied", "You do not have suffisant rights to access to this resource");
+            throw new AccessDeniedException("User does not have the correct rights to access to this resource");
+        }
+    }
+
+    @PutMapping("/disable/{userId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> disableUser(@PathVariable Long userId, HttpServletRequest request) throws AccessDeniedException {
+        String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+
+        if (role.equals("[ROLE_ADMIN]")) {
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+
+            user.setBlocked(true);
+
+            userRepository.save(user);
+
+            return ResponseEntity.noContent().build();
+        } else {
+            request.setAttribute("access_denied", "You do not have sufficient rights to access this resource");
+            throw new AccessDeniedException("User does not have the correct rights to access this resource");
+        }
+    }
+
+    @PutMapping("/enable/{userId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> enabledUser(@PathVariable Long userId, HttpServletRequest request) throws AccessDeniedException {
+        String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+
+        if (role.equals("[ROLE_ADMIN]")) {
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+
+            user.setBlocked(false);
+
+            userRepository.save(user);
+
+            return ResponseEntity.noContent().build();
+        } else {
+            request.setAttribute("access_denied", "You do not have sufficient rights to access this resource");
+            throw new AccessDeniedException("User does not have the correct rights to access this resource");
+        }
+    }
 
     @DeleteMapping("/delete/{userId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -126,58 +179,5 @@ public class UserController {
 
 
 
-//    -----------------------------------------------------------------------------------
-
-    @GetMapping("/disable/all")
-    public List<User> getUserDisable(HttpServletRequest request) throws AccessDeniedException {
-        String role  = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
-        if(role.equals("[ROLE_ADMIN]")) {
-            return userRepository.findAll();
-        } else {
-            request.setAttribute("access_denied", "You do not have suffisant rights to access to this resource");
-            throw new AccessDeniedException("User does not have the correct rights to access to this resource");
-
-        }
-    }
-
-    @PutMapping("/disable/{userId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Void> disableUser(@PathVariable Long userId, HttpServletRequest request) throws AccessDeniedException {
-        String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
-
-        if (role.equals("[ROLE_ADMIN]")) {
-            User user = userRepository.findById(userId)
-                    .orElseThrow(() -> new RuntimeException("User not found"));
-
-            user.setBlocked(true);
-
-             userRepository.save(user);
-
-             return ResponseEntity.noContent().build();
-        } else {
-            request.setAttribute("access_denied", "You do not have sufficient rights to access this resource");
-            throw new AccessDeniedException("User does not have the correct rights to access this resource");
-        }
-    }
-
-    @PutMapping("/enable/{userId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Void> enabledUser(@PathVariable Long userId, HttpServletRequest request) throws AccessDeniedException {
-        String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
-
-        if (role.equals("[ROLE_ADMIN]")) {
-            User user = userRepository.findById(userId)
-                    .orElseThrow(() -> new RuntimeException("User not found"));
-
-            user.setBlocked(false);
-
-            userRepository.save(user);
-
-            return ResponseEntity.noContent().build();
-        } else {
-            request.setAttribute("access_denied", "You do not have sufficient rights to access this resource");
-            throw new AccessDeniedException("User does not have the correct rights to access this resource");
-        }
-    }
 
 }

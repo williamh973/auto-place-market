@@ -51,6 +51,7 @@ import { SearchResponsiveSmartphoneComponent } from './components/features/feat-
 import { FeatMessageHistoryComponent } from './components/features/feat-message-history/feat-message-history.component';
 import { FeatReceivedMessagesComponent } from './components/features/feat-received-messages/feat-received-messages.component';
 import { FeatDropDownMenuComponent } from './pages/user-space/feat-drop-down-menu/feat-drop-down-menu.component';
+import { FeatDisabledUsersListComponent } from './components/features/feat-disabled-users-list/feat-disabled-users-list.component';
 
 
 
@@ -93,7 +94,8 @@ import { FeatDropDownMenuComponent } from './pages/user-space/feat-drop-down-men
     SearchResponsiveSmartphoneComponent,
     FeatMessageHistoryComponent,
     FeatReceivedMessagesComponent,
-    FeatDropDownMenuComponent
+    FeatDropDownMenuComponent,
+    FeatDisabledUsersListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DbUserService } from '../../../shared/services/db-user.service';
 import { Observable } from 'rxjs';
 import { User } from '../../../models/user.model';
@@ -8,7 +8,7 @@ import { User } from '../../../models/user.model';
   templateUrl: './feat-get-user-datas.component.html',
   styleUrls: ['./feat-get-user-datas.component.scss']
 })
-export class GetUserDatasComponent implements OnInit {
+export class GetUserDatasComponent {
 
 
   userEmailToGet: string = "";
@@ -19,16 +19,10 @@ export class GetUserDatasComponent implements OnInit {
   isContactPopupFormOpen: boolean = false;
   isAdminMode: boolean = false;
   isUserDisabled!: boolean;
-  
   selectedUser!: User; 
   
 
   constructor(private dbUser: DbUserService) { }
-
-
-  ngOnInit() {
-
-  }
 
 
   onOpenSearchProfilForm() {
@@ -43,6 +37,9 @@ export class GetUserDatasComponent implements OnInit {
     
     this.userFechted$.subscribe(user => {
       this.isUserDisabled = user.blocked; 
+      this.userEmailToGet = user.email
+      console.log(this.isUserDisabled);
+      
     });
   }
 
@@ -68,7 +65,8 @@ export class GetUserDatasComponent implements OnInit {
     if (user.id && !this.isUserDisabled) {
      this.dbUser.disabledUser(user.id).subscribe(
        () => {
-        console.log("compte suspendu", this.isUserDisabled);
+        this.isUserDisabled = !this.isUserDisabled
+        console.log(`"compte ${this.userEmailToGet}  suspendu" ${this.isUserDisabled}`);
        },
        (error) => {
          console.log("erreur lors de la suspension du compte", this.isUserDisabled);
@@ -77,6 +75,7 @@ export class GetUserDatasComponent implements OnInit {
     } else if (user.id && this.isUserDisabled) {
       this.dbUser.enabledUser(user.id).subscribe(
         () => {
+         this.isUserDisabled = !this.isUserDisabled
          console.log("compte débloqué", this.isUserDisabled);
         },
         (error) => {

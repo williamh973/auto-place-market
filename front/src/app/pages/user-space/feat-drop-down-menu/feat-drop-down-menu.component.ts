@@ -15,8 +15,7 @@ export class FeatDropDownMenuComponent {
   @Output() isUserReceivedMessageListOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isUserMessageListOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isGetDataOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-  role!: "ROLE_USER" | "ROLE_ADMIN";
+  @Output() isUserDisabledListOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   dropDownAccountMenuItems: Menu[] = [
     new Menu('Supprimer mon compte', ''),
@@ -34,10 +33,10 @@ export class FeatDropDownMenuComponent {
     new Menu('Utilisateur bloqué', ''),
   ];
 
+  role!: "ROLE_USER" | "ROLE_ADMIN";
 
-  constructor( 
-    private tokenS: TokenService,
-    ) {}
+
+  constructor(private tokenS: TokenService) {}
 
 
   ngOnInit() {
@@ -73,12 +72,16 @@ export class FeatDropDownMenuComponent {
     if (menuItem.label === 'Rechercher un utilisateur') {
        this.showGetData();
     }  else if (menuItem.label === 'Utilisateur bloqué') {  
-     
+      this.onLoadUserDisabledList();
     }
   }
 
   showGetData() {
     this.isGetDataOpen.emit(true);
+  }
+
+  onLoadUserDisabledList() {
+    this.isUserDisabledListOpen.emit(true);
   }
 
   deleteAccount(): void {

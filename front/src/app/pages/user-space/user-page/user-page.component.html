@@ -14,11 +14,12 @@
     <nav>
       <ul>
         <app-feat-drop-down-menu
-        (isConfirmDeleteCurrentUserPopupOpen)="onForOpenConfirmDeleteCurrentUserPopup($event)"
+        (isConfirmDeleteCurrentUserPopupOpen)="onForOpenConfirmDeleteCurrentUserPopup()"
         (isContactPopupFormOpen)="onForOpenContactFormPopup($event)"
-        (isUserReceivedMessageListOpen)="onForLoadUserReceivedMessageList($event)"
-        (isUserMessageListOpen)="onForLoadUserMessageList($event)"
-        (isGetDataOpen)="onForOpenGetData($event)"
+        (isUserReceivedMessageListOpen)="onForLoadUserReceivedMessageList()"
+        (isUserMessageListOpen)="onForLoadUserMessageList()"
+        (isGetDataOpen)="onForOpenGetData()"
+        (isUserDisabledListOpen)="onForLoadUserDisabledList()"
         >
         </app-feat-drop-down-menu>
 
@@ -101,6 +102,10 @@ class="contact-form"
 <app-feat-message-history
 *ngIf="isUserMessageListOpen"
 ></app-feat-message-history>
+
+<app-feat-disabled-users-list
+*ngIf="isUserDisabledListOpen"
+></app-feat-disabled-users-list>
 
 </div>
 

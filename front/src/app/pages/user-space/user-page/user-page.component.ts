@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, map, of } from 'rxjs';
 import { Card } from 'src/app/models/card.model';
@@ -50,6 +50,7 @@ export class UserPageComponent {
   isContactPopupFormOpen: boolean = false;
   isUserMessageListOpen: boolean = false;
   isUserReceivedMessageListOpen: boolean = false;
+  isUserDisabledListOpen: boolean = false;
 
 
   constructor( 
@@ -174,8 +175,8 @@ export class UserPageComponent {
       this.isEditCardFormOpen = isEditCardFormOpen;
     }
 
-    onForOpenConfirmDeleteCurrentUserPopup(isConfirmDeleteCurrentUserPopupOpen: boolean) {
-      this.isConfirmDeleteCurrentUserPopupOpen = isConfirmDeleteCurrentUserPopupOpen
+    onForOpenConfirmDeleteCurrentUserPopup() {
+      this.isConfirmDeleteCurrentUserPopupOpen = !this.isConfirmDeleteCurrentUserPopupOpen
     }
 
     onForCloseConfirmDeleteUserPopup(isConfirmDeleteCurrentUserPopupOpen: boolean) {
@@ -190,16 +191,20 @@ export class UserPageComponent {
       this.isContactPopupFormOpen = isContactPopupFormOpen;
     }
 
-    onForLoadUserReceivedMessageList(isUserReceivedMessageListOpen: boolean) {
-      this.isUserReceivedMessageListOpen = isUserReceivedMessageListOpen
+    onForLoadUserReceivedMessageList() {
+      this.isUserReceivedMessageListOpen = !this.isUserReceivedMessageListOpen
     }
 
-    onForLoadUserMessageList(isUserMessageListOpen: boolean) {
-      this.isUserMessageListOpen = isUserMessageListOpen
+    onForLoadUserMessageList() {
+      this.isUserMessageListOpen = !this.isUserMessageListOpen
     }
 
-    onForOpenGetData(isGetDataOpen: boolean) {
-      this.isGetDataOpen = isGetDataOpen
+    onForOpenGetData() {
+      this.isGetDataOpen = !this.isGetDataOpen
+    }
+
+    onForLoadUserDisabledList() {
+      this.isUserDisabledListOpen = !this.isUserDisabledListOpen
     }
 
 }

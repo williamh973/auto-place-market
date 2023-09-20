@@ -1,0 +1,41 @@
+<div class="full-page">
+
+    <p 
+    *ngIf="userDisabledList.length === 0" 
+    class="list-title"
+    >
+    Liste vide
+    </p>
+    <p 
+    *ngIf="userDisabledList.length > 0" 
+    class="list-title"
+    >
+    Utilisateurs bloqués
+    </p>
+
+
+
+    <div 
+    class="container-user" 
+    *ngFor="let user of userDisabledList; let i = index"
+    >
+
+      <div class="user-list">
+        {{ i + 1 }}
+          <ul>
+             <li>
+                 <div class="user-list-content">
+                     <ul>
+                        <li>{{ user.email }}</li>
+                        <li>{{ user.firstname }}</li>
+                        <li>{{ user.lastname }}</li>
+                        <li>{{ user.role }}</li>
+                     </ul>
+                 </div>
+             </li>
+            </ul>
+      </div>
+
+    </div>
+    
+</div>
