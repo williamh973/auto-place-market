@@ -24,8 +24,20 @@
            </svg>
         </div>
 
-        <h1>Contactez-nous!</h1>
-        <p>Nous sommes là pour vous aider et comprendre tout problème que vous pourriez rencontrer lors de l'utilisation de notre application. N'hésitez pas à nous faire part de vos préoccupations et de vos suggestions. Votre retour est essentiel pour nous améliorer et vous offrir la meilleure expérience possible.</p>
+        <div *ngIf="!isAdminMode">
+          <h1>Contactez-nous!</h1>
+            <p>Nous sommes là pour vous aider et comprendre tout problème que vous pourriez rencontrer lors de l'utilisation de notre application. N'hésitez pas à nous faire part de vos préoccupations et de vos suggestions. Votre retour est essentiel pour nous améliorer et vous offrir la meilleure expérience possible.</p>
+        </div>
+
+        <div *ngIf="isAdminMode" class="container-user-datas">
+          <h2>Vous souhaitez envoyer un message à l'utilisateur :</h2>
+            <ul>
+              <li>{{ selectedUser.firstname }}</li>
+              <li>{{ selectedUser.lastname }}</li>
+              <li>{{ selectedUser.email }}</li>
+            </ul>
+        </div>
+
   
           <form>
             <textarea 

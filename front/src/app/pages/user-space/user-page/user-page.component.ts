@@ -1,10 +1,11 @@
-import { Component, Output } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, map, of } from 'rxjs';
 import { Card } from 'src/app/models/card.model';
 import { Favorite } from 'src/app/models/favorite.model';
 import { Menu } from 'src/app/models/menu.model';
 import { Message } from 'src/app/models/message.model';
+import { User } from 'src/app/models/user.model';
 import { DbUserService } from 'src/app/shared/services/db-user.service';
 import { FavoriteService } from 'src/app/shared/services/favorite.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
@@ -19,25 +20,13 @@ import { TokenService } from 'src/app/shared/services/token.service';
 })
 export class UserPageComponent {
 
-  adminMainMenuItems: Menu[] = [
-    new Menu('Voir les annonces', ''),
-    new Menu('Déconnexion', '')
-  ];
-
-  userMainMenuItems: Menu[] = [
-    new Menu('Poster une annonce', ''),
-    new Menu('Mes voitures', ''),
-    new Menu('Mes favoris', ''),
-    new Menu('Déconnexion', '')
-  ];
-
+ user: User = new User('', '', '', '', false, [], [], [], 'ROLE_USER' || 'ROLE_ADMIN')
  
   favoriteCardList: Card[] = [];
   messageListCreatedByUser: Message[] = [];
   filteredMessageListCreatedByUser: Message[] = [];
+  
 
-  firstname!: String;
-  lastname!: String;
   role!: "ROLE_USER" | "ROLE_ADMIN";
 
   isFavoriteListOpen: boolean = false;
@@ -53,6 +42,19 @@ export class UserPageComponent {
   isUserDisabledListOpen: boolean = false;
 
 
+  adminMainMenuItems: Menu[] = [
+    new Menu('Voir les annonces', ''),
+    new Menu('Déconnexion', '')
+  ];
+
+  userMainMenuItems: Menu[] = [
+    new Menu('Poster une annonce', ''),
+    new Menu('Mes voitures', ''),
+    new Menu('Mes favoris', ''),
+    new Menu('Déconnexion', '')
+  ];
+
+
   constructor( 
     private dbUser: DbUserService,
     private tokenS: TokenService,
@@ -64,32 +66,25 @@ export class UserPageComponent {
 
 
     ngOnInit() {
-      this.dbUser.getUserFirstnameForUserPage().subscribe(
-        (firstname: string) => {
-          this.firstname = firstname;
-        },
-        (error: any) => {
-          console.log('Error message:', error.message);
-        }
-      );
-
-      this.dbUser.getUserLastnameForUserPage().subscribe(
-        (lastname: string) => {
-          this.lastname = lastname;
-        },
-        (error: any) => {
-          console.log('Error message:', error.message);
-        }
-      );
 
       this.tokenS._getTokenDetailsSubject$()
-      .pipe(
-        map((decodedToken: any) => decodedToken.role)
-      )
-      .subscribe((role: "ROLE_USER" | "ROLE_ADMIN") => {
-        this.role = role;
+       .pipe(
+        map((decodedToken: any) => ({
+          role: decodedToken.role
+        }))
+      ).subscribe((tokenDetails: any) => {
+        this.role = tokenDetails.role;
       });
 
+      this.dbUser.getCurrentUserData().subscribe(
+        (user: User) => {
+          this.user = user;
+        },
+        (error: any) => {
+          console.error("Erreur lors de la récupération des données de l'utilisateur :", error);
+        }
+      );
+    
       this.tokenValidityService.getTokenValidity().pipe(
         catchError(error => {
           if (error.status === 401) {
@@ -99,14 +94,13 @@ export class UserPageComponent {
           this.lsService.clearTokenAndUserEmail();
           this.tokenS.resetToken();
           this.router.navigate(["/home"]);
-
           throw error;
         })
       ).subscribe();
-      
+        
     }
-    
 
+    
     onAdminMainMenuItemClick(menuItem: Menu) {
       if (menuItem.label === 'Voir les annonces') {
         this.showCardList();
@@ -115,7 +109,6 @@ export class UserPageComponent {
         this.onLogout();
       } 
     }
-
 
     onUserMainMenuItemClick(menuItem: Menu) {
       if (menuItem.label === 'Poster une annonce') {

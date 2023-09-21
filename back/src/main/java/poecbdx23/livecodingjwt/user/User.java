@@ -54,9 +54,6 @@ public class User implements UserDetails {
     private Set<Message> historicMessagesList = new HashSet<>();
 
 
-
-
-
     @JsonDeserialize(using = CustomGrantedAuthorityDeserializer.class)
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

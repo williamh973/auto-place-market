@@ -44,8 +44,4 @@ public class Message {
     private User user;
 
 
-
-//    private User receiver;
-
-
 }

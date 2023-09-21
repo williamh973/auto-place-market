@@ -17,9 +17,7 @@ export class DbUserService {
   private readonly _BASE_URL = "http://localhost:8080/api/v1/users";
 
 
-  constructor(
-    private http: HttpClient
-    ) { }
+  constructor(private http: HttpClient) { }
 
 
   getAllUsers(): Observable<User[]> {
@@ -34,19 +32,9 @@ export class DbUserService {
     return this.http.get<User>(`${this._BASE_URL}/${id}`);
   }
 
-  getUserFirstnameForUserPage(): Observable<string> {
-    return this.http.get(`${this._BASE_URL}/current/firstname`, { responseType: 'text' })
-      .pipe(
-        map(response => response as string) 
-      );
+  getCurrentUserData(): Observable<User> {
+    return this.http.get<User>(`${this._BASE_URL}/current/data`);
   }
-  
-  getUserLastnameForUserPage(): Observable<string> {
-    return this.http.get(`${this._BASE_URL}/current/lastname`, { responseType: 'text' })
-      .pipe(
-        map(response => response as string)
-      );
-  } 
 
   getUserCards(): Observable<Card[]> {
     return this.http.get<Card[]>(`${this._BASE_URL}/current/cardList`);
@@ -73,11 +61,13 @@ export class DbUserService {
   }
 
 
-  postFilterCardListCreatedByUser(filteredCardListCreatedByUser: Card[],) {
-    this.filteredCardListCreatedByUserSubject$.next([...filteredCardListCreatedByUser]);
-  }
+
   getFilteredCardListCreatedByUser$(): Observable<Card[]> {
     return this.filteredCardListCreatedByUserSubject$.asObservable();
+  }
+
+  postFilterCardListCreatedByUser(filteredCardListCreatedByUser: Card[],) {
+    this.filteredCardListCreatedByUserSubject$.next([...filteredCardListCreatedByUser]);
   }
 
 

@@ -51,6 +51,29 @@ h1 {
   padding: 10px 0;
 }
 
+.container-user-datas {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  gap: 40px;
+}
+
+.container-user-datas h2 {
+  text-align: center;
+}
+
+.container-user-datas ul {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.container-user-datas ul li {
+  width: 100%;
+}
+
 p {
   width: 80%;
   height: 70px;

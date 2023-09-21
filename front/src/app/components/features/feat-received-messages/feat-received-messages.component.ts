@@ -29,6 +29,8 @@ export class FeatReceivedMessagesComponent {
       this.messageListReceived = messageListReceivedFromDataBase
       .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
       console.log(this.messageListReceived);
+      console.log(this.message.user.email);
+      
     });
 
 

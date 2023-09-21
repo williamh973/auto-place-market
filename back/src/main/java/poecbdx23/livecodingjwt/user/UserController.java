@@ -64,20 +64,14 @@ public class UserController {
         return ResponseEntity.ok(user.getId());
     }
 
-    @GetMapping("current/firstname")
-    public ResponseEntity<String> getUserFirstname() {
+    @GetMapping("current/data")
+    public ResponseEntity<User> getUserCurrentData() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByEmail(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
-        return ResponseEntity.ok(user.getFirstname());
-    }
 
-    @GetMapping("current/lastname")
-    public ResponseEntity<String> getUserLastname() {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userRepository.findByEmail(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-        return ResponseEntity.ok(user.getLastname());
+
+        return ResponseEntity.ok(user);
     }
 
     @GetMapping("current/cardList")

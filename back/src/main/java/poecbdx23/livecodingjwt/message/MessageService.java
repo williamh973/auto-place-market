@@ -1,13 +1,10 @@
 package poecbdx23.livecodingjwt.message;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import poecbdx23.livecodingjwt.message.Message;
-import poecbdx23.livecodingjwt.message.MessageRepository;
 import poecbdx23.livecodingjwt.user.User;
 import poecbdx23.livecodingjwt.user.UserRepository;
 
@@ -49,19 +46,11 @@ public class MessageService {
 
     }
 
-//    public Message addMessage(Message message, Long receiverId) {
-//        Optional<User> receiverOptional = userRepository.findById(receiverId);
-//
-//        if (receiverOptional.isPresent()) {
-//            User receiver = receiverOptional.get();
-//            message.setReceiver(receiver);
-//            message.setUser(getCurrentUser());
-//            message.setTimestamp(new Date());
-//            return messageRepository.save(message);
-//        } else {
-//            return null;
-//        }
-//    }
+    public Message addAdminMessage(Message message) {
+
+            message.setTimestamp(new Date());
+            return messageRepository.save(message);
+    }
 
 
     private User getCurrentUser() {

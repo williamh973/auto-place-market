@@ -43,9 +43,13 @@ export class MessageService {
   }
 
   createAdminMessage(message: Message, selectedUser: User): Observable<Message> {
-    message.receiver = selectedUser;
+    
     message.timestamp = new Date();
-    return this.http.post<Message>(`${this._BASE_URL_MESSAGE}/add`, message);
+    
+    message.receiver = selectedUser;
+    const selectedUserId = message.receiver.id;
+
+    return this.http.post<Message>(`${this._BASE_URL_MESSAGE}/admin/add?userId=${selectedUserId}`, message);
   }
 
   updateMessage(message: Message): Observable<Message> {

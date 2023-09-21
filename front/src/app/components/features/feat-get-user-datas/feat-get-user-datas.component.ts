@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DbUserService } from '../../../shared/services/db-user.service';
 import { Observable } from 'rxjs';
 import { User } from '../../../models/user.model';
+import { Message } from 'src/app/models/message.model';
 
 @Component({
   selector: 'app-feat-get-user-datas',
@@ -37,9 +38,7 @@ export class GetUserDatasComponent {
     
     this.userFechted$.subscribe(user => {
       this.isUserDisabled = user.blocked; 
-      this.userEmailToGet = user.email
-      console.log(this.isUserDisabled);
-      
+      this.userEmailToGet = user.email   
     });
   }
 
@@ -51,13 +50,13 @@ export class GetUserDatasComponent {
     this.isContactPopupFormOpen = isContactPopupFormOpen;
   }
 
-  onContactFormOpen(user: User) {
-    this.selectedUser = user;
+  onContactFormOpenForSendMessage(selectedUser: User) {
+    this.selectedUser = selectedUser;
     this.isContactPopupFormOpen = !this.isContactPopupFormOpen;
   }
   
-  updateSelectedUserForSendMessage(user: User) {
-    this.selectedUser = user;
+  updateSelectedUserForSendMessage(selectedUser: User) {
+    this.selectedUser = selectedUser;
   }
 
 
