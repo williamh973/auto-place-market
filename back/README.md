@@ -93,7 +93,7 @@ L'énumération est définie dans le fichier `Role.java` et elle contient les va
 Pour utiliser l'énumération `Role`, vous pouvez l'utiliser dans votre code en tant que type pour définir le rôle d'un utilisateur. Par exemple :
 
 ```java
-import poecbdx23.livecodingjwt.user.Role;
+import user.project.autoplacemarket.Role;
 
 public class User {
     private String username;
@@ -136,7 +136,7 @@ Si l'utilisateur actuel a le rôle d'administrateur, la méthode renvoie la list
 Pour utiliser le contrôleur `UserController`, assurez-vous d'importer les dépendances nécessaires et de configurer les endpoints appropriés dans votre application Spring.
 
 ```java
-import poecbdx23.livecodingjwt.user.UserController;
+import user.project.autoplacemarket.UserController;
 
 // ...
 
@@ -169,7 +169,7 @@ Cette méthode permet de rechercher un utilisateur en fonction de son adresse e-
 Pour utiliser le repository `UserRepository`, assurez-vous d'importer les dépendances nécessaires et d'injecter le repository dans les classes qui en ont besoin.
 
 ```java
-import poecbdx23.livecodingjwt.user.UserRepository;
+import user.project.autoplacemarket.UserRepository;
 
 // ...
 
