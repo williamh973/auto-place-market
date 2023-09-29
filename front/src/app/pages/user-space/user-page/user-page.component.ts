@@ -20,13 +20,13 @@ import { TokenService } from 'src/app/shared/services/token.service';
 })
 export class UserPageComponent {
 
- user: User = new User('', '', '', '', false, [], [], [], 'ROLE_USER' || 'ROLE_ADMIN')
+  user: User = new User('', '', '', '', false, [], [], [], 'ROLE_USER' || 'ROLE_ADMIN')
  
   favoriteCardList: Card[] = [];
+  
   messageListCreatedByUser: Message[] = [];
   filteredMessageListCreatedByUser: Message[] = [];
   
-
   role!: "ROLE_USER" | "ROLE_ADMIN";
 
   isFavoriteListOpen: boolean = false;

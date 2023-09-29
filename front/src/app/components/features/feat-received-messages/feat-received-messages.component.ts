@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Message } from 'src/app/models/message.model';
 import { User } from 'src/app/models/user.model';
-import { DbUserService } from 'src/app/shared/services/db-user.service';
 import { MessageService } from 'src/app/shared/services/message.service';
 
 @Component({
@@ -11,6 +10,7 @@ import { MessageService } from 'src/app/shared/services/message.service';
 })
 export class FeatReceivedMessagesComponent {
 
+  @Input() user!: User
 
   message: Message = new Message('', new Date(), new User('', '', '', '', false, [], [], [], 'ROLE_USER'), new User('', '', '', '', false, [], [], [], 'ROLE_USER'));
 
@@ -25,14 +25,18 @@ export class FeatReceivedMessagesComponent {
 
 
   ngOnInit() {
-    this.messageService.getAllMessages().subscribe((messageListReceivedFromDataBase: Message[]) => {
-      this.messageListReceived = messageListReceivedFromDataBase
-      .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-      console.log(this.messageListReceived);
-      console.log(this.message.user.email);
-      
-    });
+    // this.messageService.getAllMessages().subscribe((messageListReceivedFromDataBase: Message[]) => {
+    //   this.messageListReceived = messageListReceivedFromDataBase
+    //   .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+    // });
 
+    if (this.user.id) {
+      this.messageService.getMessagesForUser(this.user.id).subscribe((messageListReceivedFromDataBase: Message[]) => {
+        this.messageListReceived = messageListReceivedFromDataBase
+        .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+        console.log(this.messageListReceived);    
+      });
+    }
 
   }
   

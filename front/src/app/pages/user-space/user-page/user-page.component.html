@@ -75,6 +75,7 @@ class="container-card-list"
 <app-feat-get-user-datas
 *ngIf="isGetDataOpen"
 class="container-user-search"
+[user]="user"
 ></app-feat-get-user-datas> 
 
 
@@ -101,6 +102,7 @@ class="contact-form"
 
 <app-feat-received-messages
 *ngIf="isUserReceivedMessageListOpen"
+[user]="user"
 ></app-feat-received-messages>
 
 

@@ -12,10 +12,11 @@ export class FeatContactPopupComponent {
 
   @Input() isAdminMode!: boolean;
   @Input() selectedUser!: User; 
+  @Input() user!: User; 
 
   @Output() onCloseContactPopupFormEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  message: Message = new Message('', new Date(), new User('', '', '', '', false, [], [], [], 'ROLE_USER'), new User('', '', '', '', false, [], [], [], 'ROLE_USER'));
+  message: Message = new Message('', new Date(), this.user, this.selectedUser);
 
   isContactPopupFormOpen: boolean = false;
   isLoadingComposantActive: boolean = false;
@@ -25,7 +26,8 @@ export class FeatContactPopupComponent {
 
 
   ngOnInit() {
-    
+    console.log("Expéditeur", this.user);
+    console.log("Destinataire", this.selectedUser);
   }
 
   onCancelContactPopupForm() {
@@ -37,10 +39,10 @@ export class FeatContactPopupComponent {
     if (this.isAdminMode) {
       this.isLoadingComposantActive = true;
 
-      const createMessageObservable = this.messageService.createAdminMessage(this.message, this.selectedUser);
+      const createMessageObservable = this.messageService.createAdminMessage(this.message, this.user, this.selectedUser);
       createMessageObservable.subscribe(
         (createdMessage) => {
-          console.log(`Message de ${this.message.user.firstname} envoyé avec succès à ${this.message.receiver.firstname}`, createdMessage);
+          console.log(`Message de ${this.user.firstname} envoyé avec succès à ${this.selectedUser.firstname}`, createdMessage);
           this.isLoadingComposantActive = false;
     
           this.onCloseContactPopupFormEmit.emit(false);

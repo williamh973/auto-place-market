@@ -27,7 +27,6 @@ public class Message {
     private Date timestamp;
 
 
-
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @JsonIgnoreProperties(

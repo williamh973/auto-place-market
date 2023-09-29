@@ -35,6 +35,13 @@ public class MessageService {
         }
     }
 
+    public List<Message> getMessagesByUserId(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return messageRepository.findByUser(user);
+    }
+
 
     public Message addMessage(Message message) {
 

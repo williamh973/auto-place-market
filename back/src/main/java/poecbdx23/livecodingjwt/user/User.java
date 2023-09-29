@@ -53,6 +53,10 @@ public class User implements UserDetails {
     @JsonIgnoreProperties("user")
     private Set<Message> historicMessagesList = new HashSet<>();
 
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JsonIgnoreProperties("user")
+    private Set<Message> receivedMessagesList = new HashSet<>();
+
 
     @JsonDeserialize(using = CustomGrantedAuthorityDeserializer.class)
     @Override

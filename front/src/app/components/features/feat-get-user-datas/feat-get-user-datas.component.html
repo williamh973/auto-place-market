@@ -102,6 +102,7 @@ class="contact-form"
 *ngIf="isContactPopupFormOpen"
 (onCloseContactPopupFormEmit)="onRecevedMethodForCloseContactForm($event)"
 [isAdminMode]="true"
+[user]="user"
 [selectedUser]="selectedUser"
 ></app-feat-contact-popup>
 

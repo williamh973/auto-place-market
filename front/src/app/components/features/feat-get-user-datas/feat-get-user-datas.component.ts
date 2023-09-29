@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DbUserService } from '../../../shared/services/db-user.service';
 import { Observable } from 'rxjs';
 import { User } from '../../../models/user.model';
@@ -11,6 +11,7 @@ import { Message } from 'src/app/models/message.model';
 })
 export class GetUserDatasComponent {
 
+  @Input() user!: User
 
   userEmailToGet: string = "";
   userFechted$!: Observable<User>;
