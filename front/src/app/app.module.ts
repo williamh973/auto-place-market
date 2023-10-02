@@ -51,6 +51,8 @@ import { FeatMessageHistoryComponent } from './components/features/feat-message-
 import { FeatReceivedMessagesComponent } from './components/features/feat-received-messages/feat-received-messages.component';
 import { FeatDropDownMenuComponent } from './pages/user-space/feat-drop-down-menu/feat-drop-down-menu.component';
 import { FeatDisabledUsersListComponent } from './components/features/feat-disabled-users-list/feat-disabled-users-list.component';
+import { FeatUserPersonnalInformationComponent } from './components/features/feat-user-personnal-information/feat-user-personnal-information.component';
+import { FeatUpdateInformationFormComponent } from './components/features/feat-user-personnal-information/feat-update-information-form/feat-update-information-form.component';
 
 
 
@@ -93,7 +95,9 @@ import { FeatDisabledUsersListComponent } from './components/features/feat-disab
     FeatMessageHistoryComponent,
     FeatReceivedMessagesComponent,
     FeatDropDownMenuComponent,
-    FeatDisabledUsersListComponent
+    FeatDisabledUsersListComponent,
+    FeatUserPersonnalInformationComponent,
+    FeatUpdateInformationFormComponent
   ],
   imports: [
     BrowserModule,

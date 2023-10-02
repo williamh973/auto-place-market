@@ -16,10 +16,12 @@ export class FeatDropDownMenuComponent {
   @Output() isUserMessageListOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isGetDataOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isUserDisabledListOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() isPersonnalInformationPopupOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
+  
 
   dropDownAccountMenuItems: Menu[] = [
     new Menu('Supprimer mon compte', ''),
-    new Menu('Modifier mon numéro de téléphone', ''),
+    new Menu('Modifier mes informations', ''),
   ];
 
   dropDownMessageMenuItems: Menu[] = [
@@ -53,8 +55,8 @@ export class FeatDropDownMenuComponent {
   onDropdownAccountMenuItemClick(menuItem: Menu) {
     if (menuItem.label === 'Supprimer mon compte') {
       this.deleteAccount();
-    } else if (menuItem.label === 'Modifier mon numéro de téléphone') {
-      this.changePhoneNumber();
+    } else if (menuItem.label === 'Modifier mes informations') {
+      this.updatePersonnalInformation();
     }
   }
 
@@ -88,8 +90,8 @@ export class FeatDropDownMenuComponent {
     this.isConfirmDeleteCurrentUserPopupOpen.emit(true);
   }
 
-  changePhoneNumber(): void {
-      
+  updatePersonnalInformation() {
+    this.isPersonnalInformationPopupOpen.emit(true);
   }
 
   onContactFormOpen() {

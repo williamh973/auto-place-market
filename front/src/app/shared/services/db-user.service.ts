@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map } from 'rxjs';
 import { User } from '../../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Card } from 'src/app/models/card.model';
@@ -48,10 +48,6 @@ export class DbUserService {
     return this.http.get<User[]>(`${this._BASE_URL}/disable/all`);
   }
 
-  deleteCurrentUser(): Observable<void> {
-    return this.http.delete<void>(`${this._BASE_URL}/current/delete`);
-  }
-
   disabledUser(userId: number): Observable<User[]> {
     return this.http.put<User[]>(`${this._BASE_URL}/disable/${userId}`, {});
   }
@@ -59,6 +55,22 @@ export class DbUserService {
   enabledUser(userId: number): Observable<User[]> {
     return this.http.put<User[]>(`${this._BASE_URL}/enable/${userId}`, {});
   }
+
+  updateUserFirstname(userId: number, newFirstname: string): Observable<User[]> {
+    const params = { newFirstname };
+    return this.http.put<User[]>(`${this._BASE_URL}/updateFirstname/${userId}`, null, { params });
+  }
+  
+
+  updateUserLastname(userId: number, newLastname: string): Observable<User[]> {
+    const params = { newLastname };
+    return this.http.put<User[]>(`${this._BASE_URL}/updateLastname/${userId}`, null, { params });
+  }
+
+  deleteCurrentUser(): Observable<void> {
+    return this.http.delete<void>(`${this._BASE_URL}/current/delete`);
+  }
+
 
 
 

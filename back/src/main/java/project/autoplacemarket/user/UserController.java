@@ -70,7 +70,6 @@ public class UserController {
         User user = userRepository.findByEmail(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-
         return ResponseEntity.ok(user);
     }
 
@@ -138,6 +137,44 @@ public class UserController {
                     .orElseThrow(() -> new RuntimeException("User not found"));
 
             user.setBlocked(false);
+
+            userRepository.save(user);
+
+            return ResponseEntity.noContent().build();
+        } else {
+            request.setAttribute("access_denied", "You do not have sufficient rights to access this resource");
+            throw new AccessDeniedException("User does not have the correct rights to access this resource");
+        }
+    }
+
+    @PutMapping("/updateFirstname/{userId}")
+    public ResponseEntity<Void> updateFirstname(@PathVariable Long userId, @RequestParam String newFirstname, HttpServletRequest request) throws AccessDeniedException {
+        String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+
+        if (role.equals("[ROLE_ADMIN]") || role.equals("[ROLE_USER]")) {
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+
+            user.setFirstname(newFirstname);
+
+            userRepository.save(user);
+
+            return ResponseEntity.noContent().build();
+        } else {
+            request.setAttribute("access_denied", "You do not have sufficient rights to access this resource");
+            throw new AccessDeniedException("User does not have the correct rights to access this resource");
+        }
+    }
+
+    @PutMapping("/updateLastname/{userId}")
+    public ResponseEntity<Void> updateLastname(@PathVariable Long userId, @RequestParam String newLastname, HttpServletRequest request) throws AccessDeniedException {
+        String role = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+
+        if (role.equals("[ROLE_ADMIN]") || role.equals("[ROLE_USER]")) {
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+
+            user.setLastname(newLastname);
 
             userRepository.save(user);
 

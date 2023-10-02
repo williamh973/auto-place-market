@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, map, of } from 'rxjs';
 import { Card } from 'src/app/models/card.model';
@@ -20,7 +20,7 @@ import { TokenService } from 'src/app/shared/services/token.service';
 })
 export class UserPageComponent {
 
-  user: User = new User('', '', '', '', false, [], [], [], 'ROLE_USER' || 'ROLE_ADMIN')
+  user: User = new User('', '', '', '', false, [], [], [], 'ROLE_USER' || 'ROLE_ADMIN');
  
   favoriteCardList: Card[] = [];
   
@@ -40,6 +40,7 @@ export class UserPageComponent {
   isUserMessageListOpen: boolean = false;
   isUserReceivedMessageListOpen: boolean = false;
   isUserDisabledListOpen: boolean = false;
+  isPersonnalInformationPopupOpen: boolean = false;
 
 
   adminMainMenuItems: Menu[] = [
@@ -78,7 +79,7 @@ export class UserPageComponent {
 
       this.dbUser.getCurrentUserData().subscribe(
         (user: User) => {
-          this.user = user;
+          this.user = user;          
         },
         (error: any) => {
           console.error("Erreur lors de la récupération des données de l'utilisateur :", error);
@@ -198,6 +199,14 @@ export class UserPageComponent {
 
     onForLoadUserDisabledList() {
       this.isUserDisabledListOpen = !this.isUserDisabledListOpen
+    }
+
+    onForLoadPersonnalInformation() {
+      this.isPersonnalInformationPopupOpen = !this.isPersonnalInformationPopupOpen
+    }
+
+    onForClosePersonnalInformation() {
+      this.isPersonnalInformationPopupOpen = !this.isPersonnalInformationPopupOpen;
     }
 
 }

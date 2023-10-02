@@ -1,0 +1,42 @@
+<div class="full-popup">
+
+    <div class="popup">
+
+        <svg 
+        class="btn-cancel"
+        (click)="onCancelPopup()"
+        xmlns="http://www.w3.org/2000/svg" 
+        width="15" 
+        height="15" 
+        viewBox="0 0 24 24"
+        >
+        <path 
+        fill="none" 
+        d="M0 0h24v24H0z"
+        />
+        <path 
+        d="M18 6L6 18M6 6l12 12" 
+        stroke="currentColor" 
+        stroke-width="2" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        />
+      </svg>
+
+     <form (ngSubmit)="submit()">
+        <div>
+          <label *ngIf="dataToUpdate === 'firstname'" for="inputFirstname">Nouveau prénom</label>
+          <label *ngIf="dataToUpdate === 'lastname'" for="inputLastname">Nouveau nom</label>
+
+          <input *ngIf="dataToUpdate === 'firstname'" type="text" id="inputFirstname" name="newFirstname" [(ngModel)]="newFirstname" placeholder="Entrer le nouveau prénom">
+          <input *ngIf="dataToUpdate === 'lastname'" type="text" id="inputLastname" name="newLastname" [(ngModel)]="newLastname" placeholder="Entrer le nouveau nom">
+        </div>
+
+         <button *ngIf="dataToUpdate === 'firstname'" type="submit">Changer mon prénom</button>
+         <button *ngIf="dataToUpdate === 'lastname'" type="submit">Changer mon nom</button> 
+     </form>
+
+
+    </div>
+
+</div>

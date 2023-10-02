@@ -1,0 +1,78 @@
+.full-popup {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    z-index: 1;
+}
+
+.popup {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px;
+    color: whitesmoke;
+    background-color: rgb(10, 10, 10);
+    border-radius: 10px;
+    border: 2px solid  rgb(37, 37, 37);
+    z-index: 2;
+    gap: 20px;
+}
+
+form {
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+
+form div {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+form label {
+    padding: 5px;
+    margin: auto;
+}
+
+form input {
+    padding: 5px;
+}
+
+.btn-cancel {
+    margin-left: auto;
+    color: rgb(165, 165, 165);
+}
+.btn-cancel:hover {
+    transition: 100ms;
+    color: rgb(255, 0, 0);
+    scale: 1.1;
+    cursor: pointer;
+}
+
+button {
+    width: 150px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    background-color:  rgba(0, 0, 0, 0.866);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: auto;
+}
+
+button:hover {
+    border: 2px solid rgb(0, 177, 0);
+    transition: all 100ms;
+    cursor: pointer;
+    scale: 1.05;
+}
