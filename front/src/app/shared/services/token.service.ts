@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TokenResponse } from '../../models/token.model';
 import jwt_decode from 'jwt-decode';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, filter } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -55,10 +55,10 @@ export class TokenService {
     this._tokenDetailsSubject$.next(tokenInfos);
   }
 
+  // Ne pas effacer !
   _getTokenDetailsSubject$(): Observable<any> {
     return this._tokenDetailsSubject$.asObservable();
   }
-
 
   isCheckTokenInLocalStorage(): boolean {
     const token = this.lsService.getToken();

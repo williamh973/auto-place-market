@@ -89,7 +89,7 @@ export class FeatNavbarComponent {
 
     } else if (menuItem.label === 'Mon compte') {
       this.router.navigate(['/user-space']);
-      
+
     } else if (menuItem.label === 'Contact') {
       this.onContactPopupFormOpen();
   }

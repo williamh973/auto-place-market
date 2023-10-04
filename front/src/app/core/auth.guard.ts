@@ -30,23 +30,25 @@ export class AuthGuard implements CanActivate {
  
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot
+    ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    if (this.role === "ROLE_USER") {
-      return true;
-
-    } else if (this.role === "ROLE_ADMIN") {
-      return true;
-
-    } else { 
-      this.router.navigate([""]);
-      this.accountPopupService.openPopup();
-      return false;
-    }
-
-
-
+      return this.tokenS._getTokenDetailsSubject$().pipe(
+        map((tokenDetails: any) => {
+          if (tokenDetails && tokenDetails.role) {
+            this.role = tokenDetails.role;
+    
+            if (this.role === "ROLE_USER" || this.role === "ROLE_ADMIN") {
+              return true;
+            }
+          }
+          this.router.navigate([""]);
+          this.accountPopupService.openPopup();
+          return false;
+        })
+      );
 }
+
 
 
 }

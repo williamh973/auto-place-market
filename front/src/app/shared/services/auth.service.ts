@@ -42,7 +42,7 @@ export class AuthService {
         this.localStorageService.setUserEmail(userAuth);
       })
         setTimeout(() => {
-          this.router.navigateByUrl("/user-space");        
+          this.router.navigateByUrl("/user-space");             
         }, 2500);
         
   }
