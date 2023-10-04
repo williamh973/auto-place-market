@@ -55,7 +55,7 @@ export class TokenService {
     this._tokenDetailsSubject$.next(tokenInfos);
   }
 
-  // Ne pas effacer !
+
   _getTokenDetailsSubject$(): Observable<any> {
     return this._tokenDetailsSubject$.asObservable();
   }
@@ -66,3 +66,4 @@ export class TokenService {
   }
 
 }
+ 
