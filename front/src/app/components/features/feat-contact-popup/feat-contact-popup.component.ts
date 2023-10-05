@@ -54,7 +54,6 @@ export class FeatContactPopupComponent {
       );
     } else {
       this.isLoadingComposantActive = true;
-      this.message.receiver = this.selectedUser;
       
       const createMessageObservable = this.messageService.createUserMessage(this.message);
       createMessageObservable.subscribe(

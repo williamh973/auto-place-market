@@ -59,7 +59,7 @@ public class MessageController {
                     .orElseThrow(() -> new RuntimeException("Selected user not found"));
 
             message.setTimestamp(new Date());
-            message.setUser(senderUser);
+//            message.setUser(senderUser);
 
             return messageService.addAdminMessage(message);
         } else {
