@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { TokenService } from '../shared/services/token.service';
 import { AccountPopupService } from '../shared/services/account-popup.service';
@@ -7,7 +7,7 @@ import { AccountPopupService } from '../shared/services/account-popup.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard  {
 
   role!: "ROLE_USER" | "ROLE_ADMIN";
 

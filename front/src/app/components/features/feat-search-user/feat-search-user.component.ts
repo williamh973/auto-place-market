@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
-import { CardService } from 'src/app/shared/services/card.service';
+import { DbUserService } from 'src/app/shared/services/db-user.service';
 
 @Component({
-  selector: 'app-feat-search',
-  templateUrl: './feat-search.component.html',
-  styleUrls: ['./feat-search.component.scss']
+  selector: 'app-feat-search-user',
+  templateUrl: './feat-search-user.component.html',
+  styleUrls: ['./feat-search-user.component.scss']
 })
-export class FeatSearchComponent {
+export class FeatSearchUserComponent { 
 
   notFoundMessage: string = '';
   isNoCardFoundPopupDisplay: boolean = false;
   
-  cardList: Card[] = [];
-  filteredCardList: Card[] = [];
+  cardListCreatedByUser: Card[] = [];
+  filteredCardListCreatedByUser: Card[] = [];
   
   titleValueInSearchInput: string = '';
   valueInPriceInput: number = 0;
@@ -22,22 +22,21 @@ export class FeatSearchComponent {
   showFilteredCards: boolean = false;
 
 
-  constructor(
-    private cardService: CardService
-    ) { }
+  constructor(private userService: DbUserService) { }
 
 
-  ngOnInit(): void {
-    this.cardService.getCardList().subscribe(
+  ngOnInit() {
+    this.userService.getUserCards().subscribe(
       (cards: Card[]) => {
-      this.cardList = [];
-      this.cardList = cards;
+      this.cardListCreatedByUser = [];
+      this.cardListCreatedByUser = cards;
     });
   } 
 
+  
   filterCardsByTitle() {
     if (this.titleValueInSearchInput) {
-      this.filteredCardList = this.cardList.filter(
+      this.filteredCardListCreatedByUser = this.cardListCreatedByUser.filter(
         (card: Card) => (
           card.title.toLowerCase().startsWith(
             this.titleValueInSearchInput.toLowerCase()
@@ -45,68 +44,55 @@ export class FeatSearchComponent {
       ));
       this.isNoCardFoundPopupDisplay = false;
 
-      if (this.filteredCardList.length === 0) {
+      if (this.filteredCardListCreatedByUser.length === 0) {
         this.notFoundMessage = "Aucune carte correspondante n'a été trouvée.";
         this.isNoCardFoundPopupDisplay = true;
       }
     } else {
-      this.filteredCardList = [...this.cardList];
+      this.filteredCardListCreatedByUser = [...this.cardListCreatedByUser];
     }
-    this.cardService.postFilterCardList(
-      this.filteredCardList,
-    ); 
+    this.userService.postFilterCardListCreatedByUser(this.filteredCardListCreatedByUser); 
   }
 
 
   filterCardsByPrice() {
     if (this.valueInPriceInput) {
-      this.filteredCardList = this.cardList.filter(
+      this.filteredCardListCreatedByUser = this.cardListCreatedByUser.filter(
         (card: Card) => card.price === this.valueInPriceInput
       );
       this.isNoCardFoundPopupDisplay = false;
 
-      if (this.filteredCardList.length === 0) {
+      if (this.filteredCardListCreatedByUser.length === 0) {
         this.notFoundMessage = "Aucune carte correspondante n'a été trouvée.";
         this.isNoCardFoundPopupDisplay = true;
       }
     } else {
-      this.filteredCardList = [...this.cardList];
+      this.filteredCardListCreatedByUser = [...this.cardListCreatedByUser];
     }
-    this.cardService.postFilterCardList(this.filteredCardList);
+    this.userService.postFilterCardListCreatedByUser(this.filteredCardListCreatedByUser); 
   }
 
 
   filterCardsByKilometric() {
     if (this.valueInKilometricInput) {
-      this.filteredCardList = this.cardList.filter(
+      this.filteredCardListCreatedByUser = this.cardListCreatedByUser.filter(
         (card: Card) => card.kilometer === this.valueInKilometricInput
       );
       this.isNoCardFoundPopupDisplay = false;
 
-      if (this.filteredCardList.length === 0) {
+      if (this.filteredCardListCreatedByUser.length === 0) {
         this.notFoundMessage = "Aucune carte correspondante n'a été trouvée.";
         this.isNoCardFoundPopupDisplay = true;
       }
     } else {
-      this.filteredCardList = [...this.cardList];
+      this.filteredCardListCreatedByUser = [...this.cardListCreatedByUser];
     }
-    this.cardService.postFilterCardList(this.filteredCardList);
+    this.userService.postFilterCardListCreatedByUser(this.filteredCardListCreatedByUser); 
   }
   
 
 
 
 
-  
+
 }
-
-
-
-
-
-
-
-
-
-
-

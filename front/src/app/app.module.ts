@@ -53,6 +53,7 @@ import { FeatDropDownMenuComponent } from './pages/user-space/feat-drop-down-men
 import { FeatDisabledUsersListComponent } from './components/features/feat-disabled-users-list/feat-disabled-users-list.component';
 import { FeatUserPersonnalInformationComponent } from './components/features/feat-user-personnal-information/feat-user-personnal-information.component';
 import { FeatUpdateInformationFormComponent } from './components/features/feat-user-personnal-information/feat-update-information-form/feat-update-information-form.component';
+import { FeatSearchUserComponent } from './components/features/feat-search-user/feat-search-user.component';
 
 
 
@@ -97,7 +98,8 @@ import { FeatUpdateInformationFormComponent } from './components/features/feat-u
     FeatDropDownMenuComponent,
     FeatDisabledUsersListComponent,
     FeatUserPersonnalInformationComponent,
-    FeatUpdateInformationFormComponent
+    FeatUpdateInformationFormComponent,
+    FeatSearchUserComponent
   ],
   imports: [
     BrowserModule,
