@@ -12,7 +12,6 @@ import { AppComponent } from './app.component';
 import { TokenInterceptorInterceptor } from './core/token-interceptor.interceptor';
 import { FormsModule } from '@angular/forms';
 import { FeatRegisterFormComponent } from './components/features/feat-register-form/feat-register-form.component';
-import { TrackTokenStateComponent } from './components/features/track-token-state/track-token-state.component';
 import { TrackHttpStatusComponent } from './components/features/track-http-status/track-http-status.component';
 import { GetUserDatasComponent } from './components/features/feat-get-user-datas/feat-get-user-datas.component';
 
@@ -73,7 +72,6 @@ import { FeatUpdateInformationFormComponent } from './components/features/feat-u
     FeatAccountPopupComponent,
     FeatConfirmDeletePopupComponent,
     FeatNoCardsFoundComponent,
-    TrackTokenStateComponent,
     TrackHttpStatusComponent,
     GetUserDatasComponent,
     FeatCardAdminComponent,

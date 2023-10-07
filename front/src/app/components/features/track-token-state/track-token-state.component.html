@@ -1,5 +1,0 @@
-<h3>Suivi du token : </h3>
-<div *ngIf="tokenDetailsSubject$ | async as tokenDetailsSubject">
-    <p>{{tokenDetailsSubject | json}}</p>
-    <button (click)="clearToken()">Retirer le token du localStorage</button>
-</div>
