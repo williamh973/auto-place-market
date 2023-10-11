@@ -30,12 +30,6 @@ public class MessageController {
         return messageService.getMessageById(id);
     }
 
-    @GetMapping("/user/{userId}")
-    public List<Message> getUserMessages(@PathVariable("userId") Long userId) {
-        return messageService.getMessagesByUserId(userId);
-    }
-
-
     @PostMapping("/add")
     public Message addMessage(@RequestBody Message message) {
         message.setTimestamp(new Date());
@@ -49,8 +43,11 @@ public class MessageController {
             @RequestParam("selectedUserId") Long selectedUserId,
             HttpServletRequest request) throws AccessDeniedException {
 
+        System.out.println(message);
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ROLE_ADMIN"))) {
+
 
             User senderUser = userRepository.findById(senderUserId)
                     .orElseThrow(() -> new RuntimeException("Sender user not found"));
@@ -60,6 +57,7 @@ public class MessageController {
 
             message.setTimestamp(new Date());
             message.setUser(senderUser);
+            message.setReceiver(selectedUser);
 
             return messageService.addAdminMessage(message);
         } else {

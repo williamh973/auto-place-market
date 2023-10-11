@@ -12,7 +12,7 @@ import { Message } from 'src/app/models/message.model';
 export class GetUserDatasComponent {
 
   @Input() user!: User
-
+  
   userEmailToGet: string = "";
   userFechted$!: Observable<User>;
   allUsersFetched$!: Observable<User[]>;
@@ -21,7 +21,7 @@ export class GetUserDatasComponent {
   isContactPopupFormOpen: boolean = false;
   isAdminMode: boolean = false;
   isUserDisabled!: boolean;
-  selectedUser!: User; 
+  receiver!: User; 
   
 
   constructor(private dbUser: DbUserService) { }
@@ -51,13 +51,13 @@ export class GetUserDatasComponent {
     this.isContactPopupFormOpen = isContactPopupFormOpen;
   }
 
-  onContactFormOpenForSendMessage(selectedUser: User) {
-    this.selectedUser = selectedUser;
+  onContactFormOpenForSendMessage(receiver: User) {
+    this.receiver = receiver;
     this.isContactPopupFormOpen = !this.isContactPopupFormOpen;
   }
   
-  updateSelectedUserForSendMessage(selectedUser: User) {
-    this.selectedUser = selectedUser;
+  updateSelectedUserForSendMessage(receiver: User) {
+    this.receiver = receiver;
   }
 
 

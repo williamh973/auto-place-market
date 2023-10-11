@@ -37,6 +37,7 @@ public class User implements UserDetails {
     private String password;
     private String role;
 
+    @Column(columnDefinition = "TINYINT DEFAULT 0")
     private boolean blocked;
 
 

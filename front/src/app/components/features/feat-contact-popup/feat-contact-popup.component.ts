@@ -11,12 +11,17 @@ import { MessageService } from 'src/app/shared/services/message.service';
 export class FeatContactPopupComponent {
 
   @Input() isAdminMode!: boolean;
-  @Input() selectedUser!: User; 
   @Input() user!: User; 
+  @Input() receiver!: User; 
 
   @Output() onCloseContactPopupFormEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  message: Message = new Message('', new Date(), this.user, this.selectedUser);
+  message: Message = new Message(
+    '', 
+    new Date(), 
+    new User('', '', '', '', false, [], [], [], "ROLE_USER" || "ROLE_ADMIN"), 
+    new User('', '', '', '', false, [], [], [], "ROLE_USER" || "ROLE_ADMIN")
+  );
 
   isContactPopupFormOpen: boolean = false;
   isLoadingComposantActive: boolean = false;
@@ -27,7 +32,7 @@ export class FeatContactPopupComponent {
 
   ngOnInit() {
     console.log("Expéditeur", this.user);
-    console.log("Destinataire", this.selectedUser);
+    console.log("Destinataire", this.receiver);
   }
 
   onCancelContactPopupForm() {
@@ -39,13 +44,15 @@ export class FeatContactPopupComponent {
     if (this.isAdminMode) {
       this.isLoadingComposantActive = true;
 
-      const createMessageObservable = this.messageService.createAdminMessage(this.message, this.user, this.selectedUser);
+      console.log(this.message, this.user, this.receiver);
+      
+      const createMessageObservable = this.messageService.createAdminMessage(this.message, this.user, this.receiver);
       createMessageObservable.subscribe(
         (createdMessage) => {
-          console.log(`Message de ${this.user.firstname} envoyé avec succès à ${this.selectedUser.firstname}`, createdMessage);
+          console.log(`Message de ${this.user.firstname} envoyé avec succès à ${this.receiver.firstname}`, createdMessage);
           this.isLoadingComposantActive = false;
     
-          this.onCloseContactPopupFormEmit.emit(false);
+          this.onCloseContactPopupFormEmit.emit(this.isContactPopupFormOpen);
         },
         (error) => {
           console.error('Erreur lors de la création du message', error);
@@ -54,7 +61,7 @@ export class FeatContactPopupComponent {
       );
     } else {
       this.isLoadingComposantActive = true;
-      this.message.receiver = this.selectedUser;
+      this.message.receiver = this.receiver;
       
       const createMessageObservable = this.messageService.createUserMessage(this.message);
       createMessageObservable.subscribe(
@@ -62,7 +69,7 @@ export class FeatContactPopupComponent {
           console.log('Message créé avec succès', createdMessage);
           this.isLoadingComposantActive = false;
       
-          this.onCloseContactPopupFormEmit.emit(false);
+          this.onCloseContactPopupFormEmit.emit(this.isContactPopupFormOpen);
         },
         (error) => {
           console.error('Erreur lors de la création du message', error);

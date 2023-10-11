@@ -40,10 +40,15 @@ export class DbUserService {
     return this.http.get<Card[]>(`${this._BASE_URL}/current/cardList`);
   }
 
-  getUserMessages(): Observable<Message[]> {
-    return this.http.get<Message[]>(`${this._BASE_URL}/current/sentMessagesList`);
+  getUserHistoricMessagesList(): Observable<Message[]> {
+    return this.http.get<Message[]>(`${this._BASE_URL}/current/historicMessagesList`);
   }
 
+  getUserReceivedMessagesList(userId: number): Observable<Message[]> {
+    return this.http.get<Message[]>(`${this._BASE_URL}/current/receivedMessagesList/${userId}`);
+  }
+
+ 
   getAllUserDisabled(): Observable<User[]> {
     return this.http.get<User[]>(`${this._BASE_URL}/disable/all`);
   }

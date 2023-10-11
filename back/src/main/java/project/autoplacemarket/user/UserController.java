@@ -12,6 +12,7 @@ import project.autoplacemarket.message.Message;
 import java.security.Principal;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -83,8 +84,8 @@ public class UserController {
         return ResponseEntity.ok(cardList);
     }
 
-    @GetMapping("current/sentMessagesList")
-    public ResponseEntity<Set<Message>> getUserMessages(Principal principal, HttpServletRequest request) throws AccessDeniedException {
+    @GetMapping("current/historicMessagesList")
+    public ResponseEntity<Set<Message>> getUserHistoricMessagesList(Principal principal, HttpServletRequest request) throws AccessDeniedException {
         User user = userRepository.findByEmail(principal.getName())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -92,6 +93,29 @@ public class UserController {
 
         return ResponseEntity.ok(historicMessageList);
     }
+
+    @GetMapping("/current/receivedMessagesList/{userId}")
+    public ResponseEntity<Set<Message>> getUserReceivedMessagesList(
+            Principal principal,
+            @PathVariable Long userId,
+            HttpServletRequest request
+    ) throws AccessDeniedException {
+
+        User loggedInUser = userRepository.findByEmail(principal.getName())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        User targetUser = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("Target user not found"));
+
+        Set<Message> receivedMessagesList = targetUser.getReceivedMessagesList();
+
+        receivedMessagesList = receivedMessagesList.stream()
+                .filter(message -> !message.getUser().equals(loggedInUser))
+                .collect(Collectors.toSet());
+
+        return ResponseEntity.ok(receivedMessagesList);
+    }
+
 
     @GetMapping("/disable/all")
     public ResponseEntity<List<User>> getAllUserDisable(HttpServletRequest request) throws AccessDeniedException {

@@ -36,23 +36,21 @@ export class MessageService {
     return this.http.get<Message>(`${this._BASE_URL_MESSAGE}/${id}`);
   }
 
-  getMessagesForUser(userId: number): Observable<Message[]> {
-    return this.http.get<Message[]>(`${this._BASE_URL_MESSAGE}/user/${userId}`);
-  }
-
   createUserMessage(message: Message): Observable<Message> {
     message.timestamp = new Date();
     return this.http.post<Message>(`${this._BASE_URL_MESSAGE}/add`, message);
   }
 
-  createAdminMessage(message: Message, user: User, selectedUser: User): Observable<Message> {
+  createAdminMessage(message: Message, user: User, receiver: User): Observable<Message> {
     
     message.timestamp = new Date();
     message.user = user;
-    message.receiver = selectedUser;
+    message.receiver = receiver;
 
     const senderUserId = message.user.id;
     const selectedUserId = message.receiver.id;
+
+    console.log(message, senderUserId, selectedUserId);
 
     return this.http.post<Message>(`${this._BASE_URL_MESSAGE}/admin/add?senderUserId=${senderUserId}&selectedUserId=${selectedUserId}`, message);
   }

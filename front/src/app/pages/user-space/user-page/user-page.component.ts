@@ -98,7 +98,7 @@ export class UserPageComponent {
           throw error;
         })
       ).subscribe();
-        
+      
     }
 
     

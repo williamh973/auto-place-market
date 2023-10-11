@@ -35,7 +35,7 @@ public class MessageService {
         }
     }
 
-    public List<Message> getMessagesByUserId(Long userId) {
+    public List<Message> getHistoricMessagesListForUser(Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 

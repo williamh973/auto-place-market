@@ -5,16 +5,16 @@
   <div class="container-title">
 
     <h1>Bienvenue dans ton espace</h1>
+
     <h1 *ngIf="role === 'ROLE_ADMIN'">Administrateur</h1>
 
-    <div class="lastname-firstname">
+  <div class="lastname-firstname">
       <ul>
          <li>{{ user.lastname }}</li>
          <li>{{ user.firstname }}</li>
       </ul>
     </div>
   </div>
-
   
     <nav>
       <ul>
@@ -113,6 +113,7 @@ class="personnal-info-popup"
 
 <app-feat-message-history
 *ngIf="isUserMessageListOpen"
+[user]="user"
 ></app-feat-message-history>
 
 

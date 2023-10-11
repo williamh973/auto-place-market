@@ -43,4 +43,19 @@ public class Message {
     private User user;
 
 
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "receiver_id", referencedColumnName = "id")
+    @JsonIgnoreProperties(
+            {
+                    "messagesList",
+                    "favoriteList",
+                    "authorities",
+                    "cardList",
+                    "enabled",
+                    "credentialsNonExpired",
+                    "accountNonExpired",
+                    "accountNonLocked"
+            })
+    private User receiver;
+
 }
