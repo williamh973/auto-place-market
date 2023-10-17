@@ -1,4 +1,4 @@
-package project.autoplacemarket.message;
+package project.autoplacemarket.historicMessage;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
@@ -15,7 +15,8 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Message {
+public class HistoricMessage {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,21 +42,4 @@ public class Message {
                     "accountNonLocked"
             })
     private User user;
-
-
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "receiver_id", referencedColumnName = "id")
-    @JsonIgnoreProperties(
-            {
-                    "messagesList",
-                    "favoriteList",
-                    "authorities",
-                    "cardList",
-                    "enabled",
-                    "credentialsNonExpired",
-                    "accountNonExpired",
-                    "accountNonLocked"
-            })
-    private User receiver;
-
 }

@@ -13,7 +13,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import project.autoplacemarket.card.Card;
 import project.autoplacemarket.favorite.Favorite;
-import project.autoplacemarket.message.Message;
+import project.autoplacemarket.historicMessage.HistoricMessage;
+import project.autoplacemarket.receivedMessage.ReceivedMessage;
 
 
 import java.util.Collection;
@@ -52,11 +53,11 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIgnoreProperties("user")
-    private Set<Message> historicMessagesList = new HashSet<>();
+    private Set<HistoricMessage> historicMessagesList = new HashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIgnoreProperties("user")
-    private Set<Message> receivedMessagesList = new HashSet<>();
+    private Set<ReceivedMessage> receivedMessagesList = new HashSet<>();
 
 
     @JsonDeserialize(using = CustomGrantedAuthorityDeserializer.class)

@@ -63,14 +63,14 @@ export class FeatDropDownMenuComponent {
   onDropdownMessageMenuItemClick(menuItem: Menu) {
     if (menuItem.label === 'Envoyer une notification') {
       this.onContactFormOpen();
-    }  else if (menuItem.label === 'Boite de reception') {  
+    } else if (menuItem.label === 'Boite de reception') {  
       this.onLoadUserReceivedMessageList();
-    }else if (menuItem.label === 'Historique des notifications') {
+    } else if (menuItem.label === 'Historique des notifications') {
       this.onLoadUserMessageList();
     }
   }
 
-   onDropdownUserMenuItemClick(menuItem: Menu) {
+  onDropdownUserMenuItemClick(menuItem: Menu) {
     if (menuItem.label === 'Rechercher un utilisateur') {
        this.showGetData();
     }  else if (menuItem.label === 'Utilisateur bloqué') {  

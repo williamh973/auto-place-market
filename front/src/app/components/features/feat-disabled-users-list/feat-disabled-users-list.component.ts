@@ -9,7 +9,7 @@ import { DbUserService } from 'src/app/shared/services/db-user.service';
 })
 export class FeatDisabledUsersListComponent {
 
- user: User = new User('', '', '', '', false, [], [], [], 'ROLE_USER');
+ user: User = new User('', '', '', '', false, [], [], [], [], 'ROLE_USER');
 
  userDisabledList: User[] = [];
 

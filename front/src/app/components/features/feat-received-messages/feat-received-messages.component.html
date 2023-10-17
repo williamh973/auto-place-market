@@ -23,7 +23,7 @@
 
     
     <div class="message">
-        <p class="user-email">Edité par : {{ message.user.email }}</p>
+        <p class="user-email">Edité par l'admin</p>
 
         <p class="timestamp">
            le {{ message.timestamp | date:'dd/MM/yyyy à HH:mm' }}
@@ -48,6 +48,12 @@
             (click)="onExpandMessage(message)"
             >
             {{ message.isExpanded ? 'Lire moins' : (message.resume.length > 70 ? 'Lire plus' : '') }}
+            </button>
+
+            <button 
+                class="btn-submit" 
+                (click)="onContactFormOpenForSendMessage()"
+                >Répondre
             </button>
 
             <svg 
@@ -77,3 +83,9 @@
 </div>
 
 
+<app-feat-contact-popup
+class="contact-form"
+*ngIf="isContactPopupFormOpen"
+(onCloseContactPopupFormEmit)="onRecevedMethodForCloseContactForm($event)"
+[user]="user"
+></app-feat-contact-popup>

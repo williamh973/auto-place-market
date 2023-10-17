@@ -8,7 +8,9 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import project.autoplacemarket.card.Card;
-import project.autoplacemarket.message.Message;
+import project.autoplacemarket.historicMessage.HistoricMessage;
+import project.autoplacemarket.receivedMessage.ReceivedMessage;
+
 import java.security.Principal;
 import java.util.List;
 import java.util.Set;
@@ -85,33 +87,27 @@ public class UserController {
     }
 
     @GetMapping("current/historicMessagesList")
-    public ResponseEntity<Set<Message>> getUserHistoricMessagesList(Principal principal, HttpServletRequest request) throws AccessDeniedException {
+    public ResponseEntity<Set<HistoricMessage>> getUserHistoricMessagesList(Principal principal, HttpServletRequest request) throws AccessDeniedException {
         User user = userRepository.findByEmail(principal.getName())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        Set<Message> historicMessageList = user.getHistoricMessagesList();
+        Set<HistoricMessage> historicMessageList = user.getHistoricMessagesList();
 
         return ResponseEntity.ok(historicMessageList);
     }
 
     @GetMapping("/current/receivedMessagesList/{userId}")
-    public ResponseEntity<Set<Message>> getUserReceivedMessagesList(
+    public ResponseEntity<Set<ReceivedMessage>> getUserReceivedMessagesList(
             Principal principal,
             @PathVariable Long userId,
             HttpServletRequest request
     ) throws AccessDeniedException {
 
-        User loggedInUser = userRepository.findByEmail(principal.getName())
-                .orElseThrow(() -> new RuntimeException("User not found"));
 
         User targetUser = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Target user not found"));
 
-        Set<Message> receivedMessagesList = targetUser.getReceivedMessagesList();
-
-        receivedMessagesList = receivedMessagesList.stream()
-                .filter(message -> !message.getUser().equals(loggedInUser))
-                .collect(Collectors.toSet());
+        Set<ReceivedMessage> receivedMessagesList = targetUser.getReceivedMessagesList();
 
         return ResponseEntity.ok(receivedMessagesList);
     }

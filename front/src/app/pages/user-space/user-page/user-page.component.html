@@ -74,6 +74,7 @@ class="container-card-list"
 *ngIf="isGetDataOpen"
 class="container-user-search"
 [user]="user"
+[role]="role"
 ></app-feat-get-user-datas> 
 
 
@@ -95,6 +96,8 @@ class="edit-card-form"
 class="contact-form"
 *ngIf="isContactPopupFormOpen"
 (onCloseContactPopupFormEmit)="onForCloseContactForm($event)"
+[user]="user"
+[role]="role"
 ></app-feat-contact-popup>
 
 

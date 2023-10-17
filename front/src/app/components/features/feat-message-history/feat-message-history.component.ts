@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { Message } from 'src/app/models/message.model';
+import { HistoricMessage } from 'src/app/models/historic-message.model';
 import { User } from 'src/app/models/user.model';
 import { DbUserService } from 'src/app/shared/services/db-user.service';
-import { MessageService } from 'src/app/shared/services/message.service';
+import { HistoricMessageService } from 'src/app/shared/services/historic-message.service';
+
 
 @Component({
   selector: 'app-feat-message-history',
@@ -13,27 +14,26 @@ export class FeatMessageHistoryComponent {
 
   @Input() user!: User
 
-  message: Message = new Message(
+  historicMessage: HistoricMessage = new HistoricMessage(
     '', 
     new Date(), 
-    new User('', '', '', '', false, [], [], [], "ROLE_USER" || "ROLE_ADMIN"), 
-    new User('', '', '', '', false, [], [], [], "ROLE_USER" || "ROLE_ADMIN")
+    new User('', '', '', '', false, [], [], [], [], "ROLE_USER" || "ROLE_ADMIN")
     );
 
-  messageListCreatedByUser: Message[] = [];
+  messageListCreatedByUser: HistoricMessage[] = [];
 
   isConfirmDeleteMessagePopupOpen: boolean = false;
 
 
   constructor(
-    private dbUser: DbUserService,
-    private messageService: MessageService
+    private dbUser: DbUserService, 
+    private historicMessageService: HistoricMessageService
     ) {}
 
 
   ngOnInit() {
     if (this.user.id) {
-    this.dbUser.getUserHistoricMessagesList().subscribe((messageListFromDatabase: Message[]) => {
+    this.dbUser.getUserHistoricMessagesList().subscribe((messageListFromDatabase: HistoricMessage[]) => {
       this.messageListCreatedByUser = messageListFromDatabase
       .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
       console.log(this.messageListCreatedByUser);
@@ -41,13 +41,13 @@ export class FeatMessageHistoryComponent {
   }
   } 
 
-  onExpandMessage(message: Message) {
-    message.isExpanded = !message.isExpanded;
+  onExpandMessage(historicMessage: HistoricMessage) {
+    historicMessage.isExpanded = !historicMessage.isExpanded;
   }
 
-  onCancelBtn(message: Message) {
-    this.messageService.deleteMessage(message.id as number).subscribe(() => {
-      const index = this.messageListCreatedByUser.findIndex(p => p.id === message.id);
+  onCancelBtn(historicMessage: HistoricMessage) {
+    this.historicMessageService.deleteMessage(historicMessage.id as number).subscribe(() => {
+      const index = this.messageListCreatedByUser.findIndex(p => p.id === historicMessage.id);
           if (index !== -1) {
             this.messageListCreatedByUser.splice(index, 1);
           }

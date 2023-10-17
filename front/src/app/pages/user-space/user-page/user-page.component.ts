@@ -4,7 +4,7 @@ import { catchError, map, of } from 'rxjs';
 import { Card } from 'src/app/models/card.model';
 import { Favorite } from 'src/app/models/favorite.model';
 import { Menu } from 'src/app/models/menu.model';
-import { Message } from 'src/app/models/message.model';
+import { ReceivedMessage } from 'src/app/models/received-message.model';
 import { User } from 'src/app/models/user.model';
 import { DbUserService } from 'src/app/shared/services/db-user.service';
 import { FavoriteService } from 'src/app/shared/services/favorite.service';
@@ -20,14 +20,15 @@ import { TokenService } from 'src/app/shared/services/token.service';
 })
 export class UserPageComponent {
 
-  user: User = new User('', '', '', '', false, [], [], [], 'ROLE_USER' || 'ROLE_ADMIN');
- 
-  favoriteCardList: Card[] = [];
-  
-  messageListCreatedByUser: Message[] = [];
-  filteredMessageListCreatedByUser: Message[] = [];
+  user: User = new User('', '', '', '', false, [], [], [], [], 'ROLE_USER' || 'ROLE_ADMIN');
   
   role!: "ROLE_USER" | "ROLE_ADMIN";
+  
+  favoriteCardList: Card[] = [];
+  
+  messageListCreatedByUser: ReceivedMessage[] = [];
+  filteredMessageListCreatedByUser: ReceivedMessage[] = [];
+  
 
   isFavoriteListOpen: boolean = false;
   isUserCardListOpen: boolean = false;

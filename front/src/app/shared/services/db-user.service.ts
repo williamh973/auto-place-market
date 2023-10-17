@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable, catchError, map } from 'rxjs';
 import { User } from '../../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Card } from 'src/app/models/card.model';
-import { Message } from 'src/app/models/message.model';
+import { ReceivedMessage } from 'src/app/models/received-message.model';
 
 
 @Injectable({
@@ -40,12 +40,12 @@ export class DbUserService {
     return this.http.get<Card[]>(`${this._BASE_URL}/current/cardList`);
   }
 
-  getUserHistoricMessagesList(): Observable<Message[]> {
-    return this.http.get<Message[]>(`${this._BASE_URL}/current/historicMessagesList`);
+  getUserHistoricMessagesList(): Observable<ReceivedMessage[]> {
+    return this.http.get<ReceivedMessage[]>(`${this._BASE_URL}/current/historicMessagesList`);
   }
 
-  getUserReceivedMessagesList(userId: number): Observable<Message[]> {
-    return this.http.get<Message[]>(`${this._BASE_URL}/current/receivedMessagesList/${userId}`);
+  getUserReceivedMessagesList(userId: number): Observable<ReceivedMessage[]> {
+    return this.http.get<ReceivedMessage[]>(`${this._BASE_URL}/current/receivedMessagesList/${userId}`);
   }
 
  

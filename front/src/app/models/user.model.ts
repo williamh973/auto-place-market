@@ -1,6 +1,6 @@
 import { Card } from "./card.model";
 import { Favorite } from "./favorite.model";
-import { Message } from "./message.model";
+import { ReceivedMessage } from "./received-message.model";
 
 export class User {
     constructor(
@@ -11,8 +11,9 @@ export class User {
         public blocked: boolean,
         public cardList: Card[],
         public favoriteList: Favorite[],
-        public messageList: Message[],
+        public historicMessagesList: ReceivedMessage[],
+        public receivedMessagesList: ReceivedMessage[],
         public role: "ROLE_USER" | "ROLE_ADMIN",
         public id?: number
     ) {}  
-} 
+}  
