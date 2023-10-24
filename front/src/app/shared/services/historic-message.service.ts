@@ -27,33 +27,19 @@ export class HistoricMessageService {
   constructor(private http: HttpClient) { }
 
 
-
-  getAllMessages(): Observable<HistoricMessage[]> {
-    return this.http.get<HistoricMessage[]>(`${this._BASE_URL_MESSAGE}/all`);
-  }
-
   getMessageById(id: number): Observable<HistoricMessage> {
     return this.http.get<HistoricMessage>(`${this._BASE_URL_MESSAGE}/${id}`);
   }
 
-  createUserMessage(historicMessage: HistoricMessage): Observable<HistoricMessage> {
+  createMessageDuplicata(historicMessage: HistoricMessage, user: User): Observable<HistoricMessage> {
+    
     historicMessage.timestamp = new Date();
-    return this.http.post<HistoricMessage>(`${this._BASE_URL_MESSAGE}/add`, historicMessage);
-  }
+    historicMessage.receiver = user;
 
-  createAdminMessageCopy(receivedMessage: HistoricMessage, user: User): Observable<HistoricMessage> {
+    const selectedUserId = historicMessage.receiver.id;
     
-    receivedMessage.timestamp = new Date();
-    receivedMessage.receiver = user;
-
-    const selectedUserId = receivedMessage.receiver.id;
-    
-    return this.http.post<HistoricMessage>(`${this._BASE_URL_MESSAGE}/admin/add?selectedUserId=${selectedUserId}`, receivedMessage);
+    return this.http.post<HistoricMessage>(`${this._BASE_URL_MESSAGE}/admin/add?selectedUserId=${selectedUserId}`, historicMessage);
   }
-
-  updateMessage(historicMessage: HistoricMessage): Observable<HistoricMessage> {
-    return this.http.put<HistoricMessage>(`${this._BASE_URL_MESSAGE}/update/${historicMessage.id}`, historicMessage);
-  } 
 
   deleteMessage(id: number): Observable<void> {
     return this.http.delete<void>(`${this._BASE_URL_MESSAGE}/delete/${id}`);

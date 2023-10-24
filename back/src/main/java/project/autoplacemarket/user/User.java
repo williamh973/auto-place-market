@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import project.autoplacemarket.card.Card;
 import project.autoplacemarket.favorite.Favorite;
 import project.autoplacemarket.historicMessage.HistoricMessage;
+import project.autoplacemarket.notification.Notification;
 import project.autoplacemarket.receivedMessage.ReceivedMessage;
 
 
@@ -55,9 +56,13 @@ public class User implements UserDetails {
     @JsonIgnoreProperties("user")
     private Set<HistoricMessage> historicMessagesList = new HashSet<>();
 
+    @OneToMany(mappedBy = "receiver", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JsonIgnoreProperties("receiver")
+    private Set<ReceivedMessage> receivedMessagesList = new HashSet<>();
+
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIgnoreProperties("user")
-    private Set<ReceivedMessage> receivedMessagesList = new HashSet<>();
+    private Set<Notification> notificationList = new HashSet<>();
 
 
     @JsonDeserialize(using = CustomGrantedAuthorityDeserializer.class)

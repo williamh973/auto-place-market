@@ -31,7 +31,7 @@ export class FeatCardListComponent {
     private dbUser: DbUserService) { }
   
 
-  ngOnInit(): void {
+  ngOnInit() {
 
     this.cardService.getCardList().subscribe((cardListFromDatabase: Card[]) => {
     this.cardList = cardListFromDatabase;

@@ -17,8 +17,8 @@ export class FeatMessageHistoryComponent {
   historicMessage: HistoricMessage = new HistoricMessage(
     '', 
     new Date(), 
-    new User('', '', '', '', false, [], [], [], [], "ROLE_USER" || "ROLE_ADMIN")
-    );
+    new User('', '', '', '', false, [], [], [], [], [], "ROLE_USER" || "ROLE_ADMIN")
+  );
 
   messageListCreatedByUser: HistoricMessage[] = [];
 
@@ -33,12 +33,12 @@ export class FeatMessageHistoryComponent {
 
   ngOnInit() {
     if (this.user.id) {
-    this.dbUser.getUserHistoricMessagesList().subscribe((messageListFromDatabase: HistoricMessage[]) => {
-      this.messageListCreatedByUser = messageListFromDatabase
-      .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-      console.log(this.messageListCreatedByUser);
-    });  
-  }
+      this.dbUser.getUserHistoricMessagesList().subscribe((messageListFromDatabase: HistoricMessage[]) => {
+        this.messageListCreatedByUser = messageListFromDatabase
+        .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+        console.log(this.messageListCreatedByUser);
+      });  
+    }
   } 
 
   onExpandMessage(historicMessage: HistoricMessage) {
@@ -47,20 +47,15 @@ export class FeatMessageHistoryComponent {
 
   onCancelBtn(historicMessage: HistoricMessage) {
     this.historicMessageService.deleteMessage(historicMessage.id as number).subscribe(() => {
-      const index = this.messageListCreatedByUser.findIndex(p => p.id === historicMessage.id);
-          if (index !== -1) {
-            this.messageListCreatedByUser.splice(index, 1);
-          }
-        })
-      };
-  // onCancelBtn() {
-  //   this.isConfirmDeleteMessagePopupOpen = !this.isConfirmDeleteMessagePopupOpen
-  // }
+     const index = this.messageListCreatedByUser.findIndex(p => p.id === historicMessage.id);
+      if (index !== -1) {
+        this.messageListCreatedByUser.splice(index, 1);
+      }
+    })
+  };
 
   onForCloseConfirmDeletePopup(isConfirmDeleteMessagePopupOpen: boolean) {
    this.isConfirmDeleteMessagePopupOpen = !this.isConfirmDeleteMessagePopupOpen
   }
-
-  
 
 }

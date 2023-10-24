@@ -14,7 +14,6 @@ import project.autoplacemarket.receivedMessage.ReceivedMessage;
 import java.security.Principal;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -25,7 +24,11 @@ public class UserController {
 
 
     @GetMapping("/email/{email}")
-    public ResponseEntity<User> getUserByEmail(@PathVariable String email, HttpServletRequest request) throws AccessDeniedException {
+    public ResponseEntity<User> getUserByEmail(
+            @PathVariable String email,
+            HttpServletRequest request
+    ) throws AccessDeniedException {
+
         String username  = SecurityContextHolder.getContext().getAuthentication().getName();
         String role  = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
 
@@ -37,7 +40,6 @@ public class UserController {
             request.setAttribute("access_denied", "You do not have suffisant rights to access to this resource");
             throw new AccessDeniedException("User does not have the correct rights to access to this resource");
         }
-
     }
 
     @GetMapping("/all")
@@ -87,7 +89,11 @@ public class UserController {
     }
 
     @GetMapping("current/historicMessagesList")
-    public ResponseEntity<Set<HistoricMessage>> getUserHistoricMessagesList(Principal principal, HttpServletRequest request) throws AccessDeniedException {
+    public ResponseEntity<Set<HistoricMessage>> getUserHistoricMessagesList(
+            Principal principal,
+            HttpServletRequest request
+    ) throws AccessDeniedException {
+
         User user = userRepository.findByEmail(principal.getName())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -103,11 +109,10 @@ public class UserController {
             HttpServletRequest request
     ) throws AccessDeniedException {
 
-
-        User targetUser = userRepository.findById(userId)
+        User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Target user not found"));
 
-        Set<ReceivedMessage> receivedMessagesList = targetUser.getReceivedMessagesList();
+        Set<ReceivedMessage> receivedMessagesList = user.getReceivedMessagesList();
 
         return ResponseEntity.ok(receivedMessagesList);
     }

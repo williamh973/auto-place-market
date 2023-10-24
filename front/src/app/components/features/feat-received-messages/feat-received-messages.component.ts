@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ReceivedMessage } from 'src/app/models/received-message.model';
 import { User } from 'src/app/models/user.model';
+import { Notification } from 'src/app/models/notification.model';
 import { DbUserService } from 'src/app/shared/services/db-user.service';
 import { ReceivedMessageService } from 'src/app/shared/services/received-message.service';
 
@@ -12,19 +13,18 @@ import { ReceivedMessageService } from 'src/app/shared/services/received-message
 export class FeatReceivedMessagesComponent {
 
   @Input() user!: User
+  @Input() role!: "ROLE_USER" | "ROLE_ADMIN";
 
-  receivedMessage: ReceivedMessage = new ReceivedMessage(
-    '', 
-    new Date(), 
-    new User('', '', '', '', false, [], [], [], [], "ROLE_USER" || "ROLE_ADMIN"),
-    new User('', '', '', '', false, [], [], [], [], "ROLE_USER" || "ROLE_ADMIN")
-    );
-
+ 
+  userDataForReplyTo!: User
 
   messageListReceived: ReceivedMessage[] = [];
+  notificationListReceived: Notification[] = [];
 
   isConfirmDeleteMessagePopupOpen: boolean = false;
   isContactPopupFormOpen: boolean = false;
+  isReplyMode: boolean = false;
+
 
   constructor(
     private receivedMessageService: ReceivedMessageService,
@@ -32,17 +32,14 @@ export class FeatReceivedMessagesComponent {
     ) {}
 
 
-  ngOnInit() {
-    
+  ngOnInit() {  
     if (this.user.id) {
       this.dbUser.getUserReceivedMessagesList(this.user.id).subscribe((messageListReceivedFromDataBase: ReceivedMessage[]) => {
         this.messageListReceived = messageListReceivedFromDataBase
         .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-        console.log(this.messageListReceived); 
       });
-         
-    } 
-
+    }
+    
   } 
   
 
@@ -50,14 +47,18 @@ export class FeatReceivedMessagesComponent {
     receivedMessage.isExpanded = !receivedMessage.isExpanded;
   }
 
+
+
   onCancelBtn(receivedMessage: ReceivedMessage) {
     this.receivedMessageService.deleteMessage(receivedMessage.id as number).subscribe(() => {
-      const index = this.messageListReceived.findIndex(p => p.id === receivedMessage.id);
-          if (index !== -1) {
-            this.messageListReceived.splice(index, 1);
-          }
-        })
-      };
+    const index = this.messageListReceived.findIndex(p => p.id === receivedMessage.id);
+       if (index !== -1) {
+         this.messageListReceived.splice(index, 1);
+       }
+    })
+  };
+
+  
 
   onForCloseConfirmDeletePopup(isConfirmDeleteMessagePopupOpen: boolean) {
    this.isConfirmDeleteMessagePopupOpen = !this.isConfirmDeleteMessagePopupOpen
@@ -70,4 +71,14 @@ export class FeatReceivedMessagesComponent {
   onRecevedMethodForCloseContactForm(isContactPopupFormOpen: boolean) {
     this.isContactPopupFormOpen = isContactPopupFormOpen;
   }
+
+  onReplyToMessage(receivedMessage: ReceivedMessage) {
+    const userForReply = receivedMessage.user;
+    this.userDataForReplyTo = userForReply
+    this.isReplyMode = true; 
+    this.isContactPopupFormOpen = !this.isContactPopupFormOpen;
+  }
+
+
+  
 }

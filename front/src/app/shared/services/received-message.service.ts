@@ -27,36 +27,18 @@ export class ReceivedMessageService {
   constructor(private http: HttpClient) { }
 
 
-
-  getAllMessages(): Observable<ReceivedMessage[]> {
-    return this.http.get<ReceivedMessage[]>(`${this._BASE_URL_MESSAGE}/all`);
-  }
-
-  getMessageById(id: number): Observable<ReceivedMessage> {
-    return this.http.get<ReceivedMessage>(`${this._BASE_URL_MESSAGE}/${id}`);
-  }
-
-  createUserMessage(message: ReceivedMessage): Observable<ReceivedMessage> {
-    message.timestamp = new Date();
-    return this.http.post<ReceivedMessage>(`${this._BASE_URL_MESSAGE}/add`, message);
-  }
-
-  createAdminMessage(receivedMessage: ReceivedMessage, user: User, receiver: User): Observable<ReceivedMessage> {
+  createMessage(receivedMessage: ReceivedMessage, user: User, receiver: User): Observable<ReceivedMessage> {
     
     receivedMessage.timestamp = new Date();
+    receivedMessage.user = user;
     receivedMessage.receiver = receiver;
-    receivedMessage.sender = user;
     
-    const senderUserId = receivedMessage.sender.id;
+    const senderUserId = receivedMessage.user.id;
     const selectedUserId = receivedMessage.receiver.id;
     
 
     return this.http.post<ReceivedMessage>(`${this._BASE_URL_MESSAGE}/admin/add?senderUserId=${senderUserId}&selectedUserId=${selectedUserId}`, receivedMessage);
   }
-
-  updateMessage(message: ReceivedMessage): Observable<ReceivedMessage> {
-    return this.http.put<ReceivedMessage>(`${this._BASE_URL_MESSAGE}/update/${message.id}`, message);
-  } 
 
   deleteMessage(id: number): Observable<void> {
     return this.http.delete<void>(`${this._BASE_URL_MESSAGE}/delete/${id}`);

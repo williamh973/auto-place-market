@@ -1,0 +1,58 @@
+<div class="full-page">
+
+<div 
+class="container-message" 
+*ngFor="let notification of notificationListReceived"
+>
+
+<div class="message">
+    <p class="email"
+    >Edité par Car Place Market
+
+    <p class="timestamp">
+       le <span class="italic">{{ notification.timestamp | date:'dd/MM/yyyy à HH:mm' }}</span>
+    </p>
+
+    <p *ngIf="notification.isExpanded || 
+        notification.resume.length <= 70"
+    >{{ notification.resume }}
+    </p>
+
+    <p 
+    *ngIf="!notification.isExpanded &&
+     notification.resume.length > 70"
+    >
+    {{ notification.resume.substring(0, 70) }}...
+    </p>
+</div>
+
+<div class="container-btn">
+    <button 
+    *ngIf="notification.resume.length > 70" 
+    class="read-more-btn" 
+    (click)="onExpandNotification(notification)"
+    >
+    {{ notification.isExpanded ? 'Lire moins' : (notification.resume.length > 70 ? 'Lire plus' : '') }}
+    </button>
+
+    <svg 
+    (click)="onCancelNotification(notification)"
+    xmlns="http://www.w3.org/2000/svg" 
+    width="25" 
+    height="25" 
+    viewBox="0 0 25 25"
+    class="btn-cancel"
+    >
+        <path 
+        fill="none" 
+        d="M0 0h24v24H0z"
+        />
+        <path 
+        d="M18 6L6 18M6 6l12 12" 
+        stroke="currentColor" 
+        stroke-width="1" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        />
+    </svg>
+</div>

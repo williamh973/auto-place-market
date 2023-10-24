@@ -1,4 +1,4 @@
-package project.autoplacemarket.receivedMessage;
+package project.autoplacemarket.notification;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
@@ -15,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ReceivedMessage {
+public class Notification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,6 @@ public class ReceivedMessage {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date timestamp;
-
 
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -45,23 +44,5 @@ public class ReceivedMessage {
                     "notificationList"
             })
     private User user;
-
-
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "receiver_id", referencedColumnName = "id")
-    @JsonIgnoreProperties(
-            {
-                    "favoriteList",
-                    "authorities",
-                    "cardList",
-                    "enabled",
-                    "credentialsNonExpired",
-                    "accountNonExpired",
-                    "accountNonLocked",
-                    "historicMessagesList",
-                    "receivedMessagesList"
-            })
-    private User receiver;
-
-
 }
+

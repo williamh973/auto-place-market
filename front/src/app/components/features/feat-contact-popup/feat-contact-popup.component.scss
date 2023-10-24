@@ -120,3 +120,36 @@ button:hover {
       scale: 1.05;
 } 
 
+.container-card-operation-status {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+
+}
+
+.message-operation-status {
+  position: fixed;
+  top: 600px;
+  right: -380px;
+  z-index: 1;
+}
+
+.message-operation-status-animate{
+  animation: slideInAndOut 2.5s forwards;
+  }
+
+
+  @keyframes slideInAndOut {
+    0%, 100% {
+      right: -380; 
+    }
+    15% {
+      right: calc(1%);
+    }
+    85% {
+      right: calc(1%);
+    }
+  } 

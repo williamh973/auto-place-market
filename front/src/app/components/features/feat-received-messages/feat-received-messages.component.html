@@ -1,18 +1,24 @@
 <div class="full-page">
 
     <p 
-    *ngIf="messageListReceived.length === 0" 
+    *ngIf="
+    messageListReceived.length === 0 &&
+    notificationListReceived.length === 0
+    " 
     class="message-list-title"
     >
     Boite de réception vide
     </p>
+    
     <p 
-    *ngIf="messageListReceived.length > 0" 
+    *ngIf="
+    messageListReceived.length > 0 ||
+    notificationListReceived.length > 0 
+    " 
     class="message-list-title"
     >
     Messages reçus
     </p>
-
 
 
 
@@ -21,19 +27,26 @@
     *ngFor="let message of messageListReceived"
     >
 
-    
     <div class="message">
-        <p class="user-email">Edité par l'admin</p>
+        <p class="email"
+        >Edité par : <span>{{ message.user.email }}</span>
+
+
 
         <p class="timestamp">
-           le {{ message.timestamp | date:'dd/MM/yyyy à HH:mm' }}
+           le <span class="italic">{{ message.timestamp | date:'dd/MM/yyyy à HH:mm' }}</span>
         </p>
+
+
+        <p>Contenu : </p>
         <p *ngIf="message.isExpanded || 
-                  message.resume.length <= 70"
+            message.resume.length <= 70"
         >{{ message.resume }}
         </p>
+
         <p 
-        *ngIf="!message.isExpanded && message.resume.length > 70"
+        *ngIf="!message.isExpanded &&
+         message.resume.length > 70"
         >
         {{ message.resume.substring(0, 70) }}...
         </p>
@@ -51,9 +64,10 @@
             </button>
 
             <button 
-                class="btn-submit" 
-                (click)="onContactFormOpenForSendMessage()"
-                >Répondre
+            type="submit" 
+            class="no-reply-btn"  
+            (click)="onReplyToMessage(message)"
+            >Répondre
             </button>
 
             <svg 
@@ -86,6 +100,9 @@
 <app-feat-contact-popup
 class="contact-form"
 *ngIf="isContactPopupFormOpen"
-(onCloseContactPopupFormEmit)="onRecevedMethodForCloseContactForm($event)"
 [user]="user"
+[role]="role"
+[userDataForReplyTo]="userDataForReplyTo"
+[isReplyMode]="true"
 ></app-feat-contact-popup>
+

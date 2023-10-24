@@ -64,7 +64,12 @@ export class NavbarResponsiveTabletComponent {
       }
 
       onContactPopupFormOpen() {
-        this.isContactPopupFormOpen = !this.isContactPopupFormOpen;
+        if (this.checkToken()) {
+          this.isContactPopupFormOpen = !this.isContactPopupFormOpen;
+          this.accountPopupService.closePopup();
+        } else {
+          this.accountPopupService.openPopup();
+        }
       }
     
       onRecevedMethodForCloseEditCardForm(isEditCardFormOpen: boolean) {

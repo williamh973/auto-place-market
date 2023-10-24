@@ -13,7 +13,7 @@ export class FeatDropDownMenuComponent {
   @Output() isConfirmDeleteCurrentUserPopupOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isContactPopupFormOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isUserReceivedMessageListOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() isUserMessageListOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() isHistoricMessageListOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isGetDataOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isUserDisabledListOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isPersonnalInformationPopupOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -26,7 +26,7 @@ export class FeatDropDownMenuComponent {
 
   dropDownMessageMenuItems: Menu[] = [
     new Menu('Envoyer une notification', ''),
-    new Menu('Boite de reception', ''),
+    new Menu('boîte de réception', ''),
     new Menu('Historique des notifications', ''),
   ];
 
@@ -52,39 +52,45 @@ export class FeatDropDownMenuComponent {
   }
 
 
-  onDropdownAccountMenuItemClick(menuItem: Menu) {
-    if (menuItem.label === 'Supprimer mon compte') {
-      this.deleteAccount();
-    } else if (menuItem.label === 'Modifier mes informations') {
-      this.updatePersonnalInformation();
+  onDropdownAccountMenuItem(menuItem: Menu) {  
+   
+    switch (menuItem.label) {
+      case 'Supprimer mon compte':
+        this.deleteAccount()
+        break;
+      case 'Modifier mes informations':
+        this.updatePersonnalInformation()
+      break;
     }
   }
-
-  onDropdownMessageMenuItemClick(menuItem: Menu) {
-    if (menuItem.label === 'Envoyer une notification') {
-      this.onContactFormOpen();
-    } else if (menuItem.label === 'Boite de reception') {  
-      this.onLoadUserReceivedMessageList();
-    } else if (menuItem.label === 'Historique des notifications') {
-      this.onLoadUserMessageList();
+  
+  onDropdownMessageMenuItem(menuItem: Menu) {
+    
+    switch (menuItem.label) {
+      case 'Envoyer une notification':
+        this.onContactFormOpen()
+      break;
+      case 'boîte de réception':
+        this.onLoadUserReceivedMessageList()
+      break;
+      case 'Historique des notifications':
+        this.onLoadHistoricMessageList()
+      break;
     }
   }
 
   onDropdownUserMenuItemClick(menuItem: Menu) {
-    if (menuItem.label === 'Rechercher un utilisateur') {
-       this.showGetData();
-    }  else if (menuItem.label === 'Utilisateur bloqué') {  
-      this.onLoadUserDisabledList();
+
+    switch (menuItem.label) {
+      case 'Rechercher un utilisateur':
+        this.showGetData()
+      break;
+      case 'Utilisateur bloqué':
+        this.onLoadUserDisabledList()
+      break;
     }
   }
 
-  showGetData() {
-    this.isGetDataOpen.emit(true);
-  }
-
-  onLoadUserDisabledList() {
-    this.isUserDisabledListOpen.emit(true);
-  }
 
   deleteAccount(): void {
     this.isConfirmDeleteCurrentUserPopupOpen.emit(true);
@@ -99,11 +105,19 @@ export class FeatDropDownMenuComponent {
   }
 
   onLoadUserReceivedMessageList() {
-    this.isUserReceivedMessageListOpen.emit(true);
+    this.isUserReceivedMessageListOpen.emit(true); 
   }
 
-  onLoadUserMessageList() {
-    this.isUserMessageListOpen.emit(true);
+  onLoadHistoricMessageList() {
+    this.isHistoricMessageListOpen.emit(true);
+  }
+
+  showGetData() {
+    this.isGetDataOpen.emit(true);
+  }
+
+  onLoadUserDisabledList() {
+    this.isUserDisabledListOpen.emit(true);
   }
 
 }

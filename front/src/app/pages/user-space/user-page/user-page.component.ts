@@ -20,16 +20,14 @@ import { TokenService } from 'src/app/shared/services/token.service';
 })
 export class UserPageComponent {
 
-  user: User = new User('', '', '', '', false, [], [], [], [], 'ROLE_USER' || 'ROLE_ADMIN');
+  user: User = new User('', '', '', '', false, [], [], [], [], [], 'ROLE_USER' || 'ROLE_ADMIN');
   
   role!: "ROLE_USER" | "ROLE_ADMIN";
   
   favoriteCardList: Card[] = [];
-  
   messageListCreatedByUser: ReceivedMessage[] = [];
   filteredMessageListCreatedByUser: ReceivedMessage[] = [];
   
-
   isFavoriteListOpen: boolean = false;
   isUserCardListOpen: boolean = false;
   isEditCardFormOpen: boolean = false;
@@ -42,8 +40,8 @@ export class UserPageComponent {
   isUserReceivedMessageListOpen: boolean = false;
   isUserDisabledListOpen: boolean = false;
   isPersonnalInformationPopupOpen: boolean = false;
-
-
+  // isReplyMode: boolean = false;
+  
   adminMainMenuItems: Menu[] = [
     new Menu('Voir les annonces', ''),
     new Menu('Déconnexion', '')

@@ -32,14 +32,16 @@ public class HistoricMessage {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @JsonIgnoreProperties(
             {
-                    "messagesList",
                     "favoriteList",
                     "authorities",
                     "cardList",
                     "enabled",
                     "credentialsNonExpired",
                     "accountNonExpired",
-                    "accountNonLocked"
+                    "accountNonLocked",
+                    "historicMessagesList",
+                    "receivedMessagesList",
+                    "notificationList"
             })
     private User user;
 }

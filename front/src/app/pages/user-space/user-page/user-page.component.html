@@ -22,7 +22,7 @@
         (isConfirmDeleteCurrentUserPopupOpen)="onForOpenConfirmDeleteCurrentUserPopup()"
         (isContactPopupFormOpen)="onForOpenContactFormPopup($event)"
         (isUserReceivedMessageListOpen)="onForLoadUserReceivedMessageList()"
-        (isUserMessageListOpen)="onForLoadUserMessageList()"
+        (isHistoricMessageListOpen)="onForLoadUserMessageList()"
         (isGetDataOpen)="onForOpenGetData()"
         (isUserDisabledListOpen)="onForLoadUserDisabledList()"
         (isPersonnalInformationPopupOpen)="onForLoadPersonnalInformation()"
@@ -111,6 +111,7 @@ class="personnal-info-popup"
 <app-feat-received-messages
 *ngIf="isUserReceivedMessageListOpen"
 [user]="user"
+[role]="role"
 ></app-feat-received-messages>
 
 

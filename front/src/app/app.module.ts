@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { TokenInterceptorInterceptor } from './core/token-interceptor.interceptor';
 import { FormsModule } from '@angular/forms';
 import { FeatRegisterFormComponent } from './components/features/feat-register-form/feat-register-form.component';
-import { TrackHttpStatusComponent } from './components/features/track-http-status/track-http-status.component';
+import { TrackHttpStatusComponent } from './components/features/feat-track-http-status/track-http-status.component';
 import { GetUserDatasComponent } from './components/features/feat-get-user-datas/feat-get-user-datas.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -52,6 +52,9 @@ import { FeatDropDownMenuComponent } from './pages/user-space/feat-drop-down-men
 import { FeatDisabledUsersListComponent } from './components/features/feat-disabled-users-list/feat-disabled-users-list.component';
 import { FeatUserPersonnalInformationComponent } from './components/features/feat-user-personnal-information/feat-user-personnal-information.component';
 import { FeatUpdateInformationFormComponent } from './components/features/feat-user-personnal-information/feat-update-information-form/feat-update-information-form.component';
+import { FeatNotificationComponent } from './components/features/feat-notification/feat-notification.component';
+import { FeatMessageOperationStatusComponent } from './components/features/feat-message-operation-status/feat-message-operation-status.component';
+
 
 
 
@@ -95,8 +98,10 @@ import { FeatUpdateInformationFormComponent } from './components/features/feat-u
     FeatDropDownMenuComponent,
     FeatDisabledUsersListComponent,
     FeatUserPersonnalInformationComponent,
-    FeatUpdateInformationFormComponent
-  ],
+    FeatUpdateInformationFormComponent,
+    FeatNotificationComponent,
+    FeatMessageOperationStatusComponent
+  ],  
   imports: [
     BrowserModule,
     AppRoutingModule,

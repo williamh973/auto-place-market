@@ -1,11 +1,10 @@
 import { User } from "./user.model";
 
-export class ReceivedMessage {
+export class Notification {
     constructor(
         public resume: string,
         public timestamp: Date,
         public user: User,
-        public receiver: User,
         public id?: number,
         public isExpanded?: boolean,
     ) { }
