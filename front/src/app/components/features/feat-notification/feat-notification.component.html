@@ -1,5 +1,24 @@
 <div class="full-page">
 
+    <p 
+    *ngIf="
+    notificationListReceived.length === 0
+    " 
+    class="message-list-title"
+    >
+    Boite de réception vide
+    </p>
+    
+    <p 
+    *ngIf="
+    notificationListReceived.length > 0
+    " 
+    class="message-list-title"
+    >
+    Notifications reçus
+    </p>
+
+
 <div 
 class="container-message" 
 *ngFor="let notification of notificationListReceived"
@@ -7,7 +26,7 @@ class="container-message"
 
 <div class="message">
     <p class="email"
-    >Edité par Car Place Market
+    >{{ notification.user.email }}
 
     <p class="timestamp">
        le <span class="italic">{{ notification.timestamp | date:'dd/MM/yyyy à HH:mm' }}</span>

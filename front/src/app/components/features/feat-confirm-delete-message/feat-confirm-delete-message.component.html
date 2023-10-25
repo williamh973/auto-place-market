@@ -1,12 +1,17 @@
-<!-- <div class="full-page">
+<div class="full-page">
 
- <div class="full-popup">
-  <p>Souhaitez-vous vraiment supprimer ce message envoyé ?</p>
-   <div class="container-button">
-    <button (click)="onDeleteMessage(message)">Oui</button>
-    <button (click)="onCancelConfirmPopup()">Non</button>
-   </div>
- </div>
+  <div class="full-popup">
+      <p>Supprimer ce message ?</p>
+      <p>(la suppression d'un message est irréversible)</p>
+          <div 
+          class="container-button"
+          *ngFor="let message of messageListReceived"
+          >
+              <button (click)="onDeleteMessage(message)">Oui</button>
+              <button (click)="onCancelConfirmation()">Non</button>
+          </div>
 
-</div> -->
+  </div>
+
+</div>
 

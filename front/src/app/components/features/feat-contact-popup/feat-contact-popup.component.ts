@@ -65,7 +65,7 @@ export class FeatContactPopupComponent {
       this.isNotificationSended = false;
       this.isAnimationPopupMessageOperationStatusActive = false;
       this.onCloseContactPopupFormEmit.emit(this.isContactPopupFormOpen);
-    }, 6000);
+    }, 3500);
   }
 
   private onAnimateForNotificationSendedError() {
@@ -74,7 +74,7 @@ export class FeatContactPopupComponent {
     setTimeout(() => { 
       this.isNotificationSendedError = false;
       this.isAnimationPopupMessageOperationStatusActive = false;
-    }, 6000);
+    }, 3500);
   }
 
   private onCreateMessageDuplicata() {

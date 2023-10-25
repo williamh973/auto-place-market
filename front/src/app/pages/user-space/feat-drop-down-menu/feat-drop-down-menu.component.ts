@@ -12,12 +12,12 @@ export class FeatDropDownMenuComponent {
 
   @Output() isConfirmDeleteCurrentUserPopupOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isContactPopupFormOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() isUserDashboardMessageOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isUserReceivedMessageListOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isHistoricMessageListOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isGetDataOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isUserDisabledListOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isPersonnalInformationPopupOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
-  
 
   dropDownAccountMenuItems: Menu[] = [
     new Menu('Supprimer mon compte', ''),
@@ -70,8 +70,9 @@ export class FeatDropDownMenuComponent {
       case 'Envoyer une notification':
         this.onContactFormOpen()
       break;
-      case 'boîte de réception':
-        this.onLoadUserReceivedMessageList()
+      case 'boîte de réception': 
+        this.onLoadUserDashboardMessage()
+        // this.onLoadUserReceivedMessageList()
       break;
       case 'Historique des notifications':
         this.onLoadHistoricMessageList()
@@ -102,6 +103,10 @@ export class FeatDropDownMenuComponent {
 
   onContactFormOpen() {
     this.isContactPopupFormOpen.emit(true);
+  }
+
+  onLoadUserDashboardMessage() {
+    this.isUserDashboardMessageOpen.emit(true); 
   }
 
   onLoadUserReceivedMessageList() {

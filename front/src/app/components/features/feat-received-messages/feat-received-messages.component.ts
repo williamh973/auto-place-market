@@ -22,14 +22,12 @@ export class FeatReceivedMessagesComponent {
   notificationListReceived: Notification[] = [];
 
   isConfirmDeleteMessagePopupOpen: boolean = false;
+  isMessageDeleted: boolean = false;
   isContactPopupFormOpen: boolean = false;
   isReplyMode: boolean = false;
 
 
-  constructor(
-    private receivedMessageService: ReceivedMessageService,
-    private dbUser: DbUserService,
-    ) {}
+  constructor(private dbUser: DbUserService) {}
 
 
   ngOnInit() {  
@@ -39,7 +37,6 @@ export class FeatReceivedMessagesComponent {
         .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
       });
     }
-    
   } 
   
 
@@ -48,20 +45,13 @@ export class FeatReceivedMessagesComponent {
   }
 
 
-
-  onCancelBtn(receivedMessage: ReceivedMessage) {
-    this.receivedMessageService.deleteMessage(receivedMessage.id as number).subscribe(() => {
-    const index = this.messageListReceived.findIndex(p => p.id === receivedMessage.id);
-       if (index !== -1) {
-         this.messageListReceived.splice(index, 1);
-       }
-    })
+  onDeleteMessage() {
+    this.isConfirmDeleteMessagePopupOpen = !this.isConfirmDeleteMessagePopupOpen
   };
 
-  
 
   onForCloseConfirmDeletePopup(isConfirmDeleteMessagePopupOpen: boolean) {
-   this.isConfirmDeleteMessagePopupOpen = !this.isConfirmDeleteMessagePopupOpen
+   this.isConfirmDeleteMessagePopupOpen = isConfirmDeleteMessagePopupOpen
   }
 
   onContactFormOpenForSendMessage() {
@@ -79,6 +69,8 @@ export class FeatReceivedMessagesComponent {
     this.isContactPopupFormOpen = !this.isContactPopupFormOpen;
   }
 
-
+  onForDeleteMessageAfterConfirmation() {
+    this.isMessageDeleted = true;
+  }
   
 }

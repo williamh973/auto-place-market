@@ -1,0 +1,27 @@
+<div class="full-popup">
+
+<div class="message-selection-buttons">
+    <p>Sélectionnez ce que vous désirez :</p>
+
+    <button class="btn" [class.btn-selected]="isMessageButtonSelected" (click)="onOpenReceivedMessageList()">Messages</button>
+    <button class="btn" [class.btn-selected]="isNotificationButtonSelected" (click)="onOpenReceivedNotificationList()">Notifications</button>
+</div>
+
+<div class="message-or-notification-container">
+
+<app-feat-received-messages
+class="message-component"
+*ngIf="isReceivedMessageListOpen"
+[user]="user"
+></app-feat-received-messages>
+
+<app-feat-notification
+class="notification-component"
+*ngIf="isReceivedNotificationListOpen"
+[user]="user"
+></app-feat-notification>
+
+</div>
+
+</div>
+

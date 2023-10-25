@@ -54,6 +54,8 @@ import { FeatUserPersonnalInformationComponent } from './components/features/fea
 import { FeatUpdateInformationFormComponent } from './components/features/feat-user-personnal-information/feat-update-information-form/feat-update-information-form.component';
 import { FeatNotificationComponent } from './components/features/feat-notification/feat-notification.component';
 import { FeatMessageOperationStatusComponent } from './components/features/feat-message-operation-status/feat-message-operation-status.component';
+import { FeatMessageDashboardComponent } from './components/features/feat-message-dashboard/feat-message-dashboard.component';
+import { FeatConfirmDeleteMessageComponent } from './components/features/feat-confirm-delete-message/feat-confirm-delete-message.component';
 
 
 
@@ -100,7 +102,9 @@ import { FeatMessageOperationStatusComponent } from './components/features/feat-
     FeatUserPersonnalInformationComponent,
     FeatUpdateInformationFormComponent,
     FeatNotificationComponent,
-    FeatMessageOperationStatusComponent
+    FeatMessageOperationStatusComponent,
+    FeatMessageDashboardComponent,
+    FeatConfirmDeleteMessageComponent
   ],  
   imports: [
     BrowserModule,

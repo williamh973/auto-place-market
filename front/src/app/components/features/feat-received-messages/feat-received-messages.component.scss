@@ -1,20 +1,21 @@
 .full-page {
-    width: 90%;
-    margin: 30px auto;
+    width: 100%;
+    margin: 30px 0;
 }
 
 .message-list-title {
+    min-width: 1000px;
     font-size: 25px;
     cursor: default;
     text-align: center;
-    padding: 20px 0;
+    padding: 15px 0;
     background-color:  rgba(81, 81, 81, 0.492);
     margin: 30px 0;
     color: whitesmoke;
   }
 
 .container-message {
-    width: 100%;
+    width: 1000px;
     display: flex;
     align-items: center;
     border: 1px solid rgba(75, 75, 75, 0.686);
@@ -26,61 +27,77 @@
 }
 
 .message {
-    width: 70%;
+    width: 100%;
     text-align: center;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 20px;
-    padding: 10px 50px;
-    margin: 15px;
+    justify-content: center;
+    padding: 10px 0;
     color: whitesmoke;
     cursor: default;
 }
 
-.read-more-btn, .no-reply-btn {
-    width: 100px;
-    min-width: 100px;
+.email, .timestamp {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+.resume-expanded, .resume-no-expanded {
+  width: 500px;
+  max-width: 500px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.container-reply-cancel {
+  width: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.read-more-btn, .reply-btn {
+    width: 30px;
+    min-width: 30px;
     height: 30px;
+    min-height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: whitesmoke;
     background-color:  rgba(0, 0, 0, 0.866);
-    border: 1px solid whitesmoke;
+    border: 1px solid rgba(245, 245, 245, 0.218);
     border-radius: 10px;
-    margin: auto;
 }
 
-.read-more-btn:hover, .no-reply-btn:hover {
-    border: 2px solid rgb(0, 177, 0);
+.read-more-btn:hover, .reply-btn:hover {
+    border: 1px solid rgb(0, 177, 0);
     transition: all 100ms;
     cursor: pointer;
     scale: 1.05;
 }
 
-  .container-btn {
-    width: 20%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  
   .btn-cancel {
     width: 25px;
     min-width: 25px;
     height: 25px;
     min-height: 25px;
+    border: none;
     display: flex;
     justify-content: center;
     align-items: center;
     color: rgb(165, 165, 165);
+    background-color:  rgba(0, 0, 0, 0.866);
   }
 
   .btn-cancel:hover {
     transition: 100ms;
     color: rgb(255, 0, 0);
     scale: 1.1;
+    border: 1px solid rgb(255, 0, 0);
+    border-radius: 50%;
     cursor: pointer;
   }
 
@@ -88,22 +105,4 @@
     position: fixed;
     top: 0;
     left: 0;
-  }
-
-  button {
-    width: 150px;
-    padding: 10px;
-    margin: auto;
-    margin-bottom: 20px;
-    border: 2px solid whitesmoke;
-    border-radius: 10px;
-    background-color:  rgba(0, 0, 0, 0.866);
-    color: whitesmoke;
-    font-size: 15px;
-  }
-  button:hover {
-    border: 2px solid rgb(0, 177, 0);
-    transition: all 100ms;
-    cursor: pointer;
-    scale: 1.05;
   }

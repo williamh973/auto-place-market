@@ -28,69 +28,64 @@
     >
 
     <div class="message">
-        <p class="email"
-        >Edité par : <span>{{ message.user.email }}</span>
 
+        <div class="email">
+           <p>Edité par :</p>
+           <span>{{ message.user.email }}</span>
+        </div>
 
+        <div class="timestamp">
+            <p>Date :</p> 
+            <span class="italic">{{ message.timestamp | date:'dd/MM/yyyy à HH:mm' }}</span>
+        </div>
 
-        <p class="timestamp">
-           le <span class="italic">{{ message.timestamp | date:'dd/MM/yyyy à HH:mm' }}</span>
-        </p>
-
-
-        <p>Contenu : </p>
-        <p *ngIf="message.isExpanded || 
-            message.resume.length <= 70"
-        >{{ message.resume }}
-        </p>
-
-        <p 
-        *ngIf="!message.isExpanded &&
-         message.resume.length > 70"
-        >
-        {{ message.resume.substring(0, 70) }}...
-        </p>
-    </div>
-
-
-
-        <div class="container-btn">
+        <div class="resume-expanded" *ngIf="message.isExpanded || message.resume.length <= 60">
+            <p>{{ message.resume }}</p>
+            
             <button 
-            *ngIf="message.resume.length > 70" 
+            *ngIf="message.resume.length > 60" 
             class="read-more-btn" 
             (click)="onExpandMessage(message)"
+            title="Lire moins"
             >
-            {{ message.isExpanded ? 'Lire moins' : (message.resume.length > 70 ? 'Lire plus' : '') }}
+            {{ message.isExpanded ? '▲' : (message.resume.length > 40 ? '▼' : '') }}
             </button>
 
+        </div>
+
+        <div class="resume-no-expanded" *ngIf="!message.isExpanded && message.resume.length > 60">
+            <p>{{ message.resume.substring(0, 60) }}...</p>
+            
+            <button 
+            *ngIf="message.resume.length > 60" 
+            class="read-more-btn" 
+            (click)="onExpandMessage(message)"
+            title="Lire plus"
+            >
+            {{ message.isExpanded ? '▲' : (message.resume.length > 40 ? '▼' : '') }}
+            </button>
+
+        </div>
+
+        <div class="container-reply-cancel">
             <button 
             type="submit" 
-            class="no-reply-btn"  
+            class="reply-btn"  
             (click)="onReplyToMessage(message)"
-            >Répondre
+            title="Répondre"
+            >↩
             </button>
-
-            <svg 
-            (click)="onCancelBtn(message)"
-            xmlns="http://www.w3.org/2000/svg" 
-            width="25" 
-            height="25" 
-            viewBox="0 0 25 25"
+            
+            <button 
+            (click)="onDeleteMessage()"
             class="btn-cancel"
+            title="Supprimer le message"
             >
-                <path 
-                fill="none" 
-                d="M0 0h24v24H0z"
-                />
-                <path 
-                d="M18 6L6 18M6 6l12 12" 
-                stroke="currentColor" 
-                stroke-width="1" 
-                stroke-linecap="round" 
-                stroke-linejoin="round"
-                />
-            </svg>
+            ✖
+            </button>
         </div>
+
+    </div>
 
     </div>
  
@@ -104,5 +99,11 @@ class="contact-form"
 [role]="role"
 [userDataForReplyTo]="userDataForReplyTo"
 [isReplyMode]="true"
+(onCloseContactPopupFormEmit)="onRecevedMethodForCloseContactForm($event)"
 ></app-feat-contact-popup>
 
+<app-feat-confirm-delete-message
+*ngIf="isConfirmDeleteMessagePopupOpen"
+[messageListReceived]="messageListReceived"
+(onForCloseConfirmDeleteMessagePopup)="onForCloseConfirmDeletePopup($event)"
+></app-feat-confirm-delete-message>

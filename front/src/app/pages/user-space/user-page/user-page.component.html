@@ -21,6 +21,7 @@
         <app-feat-drop-down-menu
         (isConfirmDeleteCurrentUserPopupOpen)="onForOpenConfirmDeleteCurrentUserPopup()"
         (isContactPopupFormOpen)="onForOpenContactFormPopup($event)"
+        (isUserDashboardMessageOpen)="onForLoadUserDashboardMessage()"
         (isUserReceivedMessageListOpen)="onForLoadUserReceivedMessageList()"
         (isHistoricMessageListOpen)="onForLoadUserMessageList()"
         (isGetDataOpen)="onForOpenGetData()"
@@ -107,6 +108,10 @@ class="personnal-info-popup"
 [user]="user"
 ></app-feat-user-personnal-information>
 
+<app-feat-message-dashboard
+*ngIf="isUserMessageDashboardOpen"
+[user]="user"
+></app-feat-message-dashboard>
 
 <app-feat-received-messages
 *ngIf="isUserReceivedMessageListOpen"

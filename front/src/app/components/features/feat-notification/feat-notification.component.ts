@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { Notification } from 'src/app/models/notification.model';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-feat-notification',
@@ -8,6 +9,8 @@ import { Notification } from 'src/app/models/notification.model';
   styleUrls: ['./feat-notification.component.scss']
 })
 export class FeatNotificationComponent {
+
+  @Input() user!: User
 
   notificationListReceived: Notification[] = [];
 

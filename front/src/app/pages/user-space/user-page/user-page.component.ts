@@ -40,7 +40,7 @@ export class UserPageComponent {
   isUserReceivedMessageListOpen: boolean = false;
   isUserDisabledListOpen: boolean = false;
   isPersonnalInformationPopupOpen: boolean = false;
-  // isReplyMode: boolean = false;
+  isUserMessageDashboardOpen: boolean = false;
   
   adminMainMenuItems: Menu[] = [
     new Menu('Voir les annonces', ''),
@@ -182,6 +182,10 @@ export class UserPageComponent {
 
     onForCloseContactForm(isContactPopupFormOpen: boolean) {
       this.isContactPopupFormOpen = isContactPopupFormOpen;
+    }
+
+    onForLoadUserDashboardMessage() {
+      this.isUserMessageDashboardOpen = !this.isUserMessageDashboardOpen
     }
 
     onForLoadUserReceivedMessageList() {
