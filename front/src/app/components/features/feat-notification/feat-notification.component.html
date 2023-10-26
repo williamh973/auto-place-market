@@ -4,7 +4,7 @@
     *ngIf="
     notificationListReceived.length === 0
     " 
-    class="message-list-title"
+    class="notification-list-title"
     >
     Boite de réception vide
     </p>
@@ -13,65 +13,78 @@
     *ngIf="
     notificationListReceived.length > 0
     " 
-    class="message-list-title"
+    class="notification-list-title"
     >
     Notifications reçus
     </p>
 
 
-<div 
-class="container-message" 
-*ngFor="let notification of notificationListReceived"
->
-
-<div class="message">
-    <p class="email"
-    >{{ notification.user.email }}
-
-    <p class="timestamp">
-       le <span class="italic">{{ notification.timestamp | date:'dd/MM/yyyy à HH:mm' }}</span>
-    </p>
-
-    <p *ngIf="notification.isExpanded || 
-        notification.resume.length <= 70"
-    >{{ notification.resume }}
-    </p>
-
-    <p 
-    *ngIf="!notification.isExpanded &&
-     notification.resume.length > 70"
+    <div 
+    class="container-notification" 
+    *ngFor="let notification of notificationListReceived"
     >
-    {{ notification.resume.substring(0, 70) }}...
-    </p>
+
+        <div class="notification">
+
+            <div class="email">
+                <p>Edité par :</p>
+                <span>{{ notification.user.email }}</span>
+             </div>
+        
+            <div class="timestamp">
+                <p>Date :</p> 
+                <span class="italic">{{ notification.timestamp | date:'dd/MM/yyyy à HH:mm' }}</span>
+            </div>
+        
+            <div class="resume-expanded" *ngIf="notification.isExpanded || notification.resume.length <= 60">
+            
+                <p>{{ notification.resume }}</p>
+        
+                <button 
+                *ngIf="notification.resume.length > 60" 
+                class="read-more-btn" 
+                (click)="onExpandNotification(notification)"
+                title="Lire moins"
+                >
+                {{ notification.isExpanded ? '▲' : (notification.resume.length > 40 ? '▼' : '') }}
+                </button>
+        
+            </div>
+        
+            <div class="resume-no-expanded" *ngIf="!notification.isExpanded && notification.resume.length > 60">
+                
+                <p>{{ notification.resume.substring(0, 60) }}...</p>
+        
+                <button 
+                *ngIf="notification.resume.length > 60" 
+                class="read-more-btn" 
+                (click)="onExpandNotification(notification)"
+                title="Lire plus"
+                >
+                {{ notification.isExpanded ? '▲' : (notification.resume.length > 40 ? '▼' : '') }}
+                </button>
+        
+            </div>
+
+            <button 
+            (click)="onDeleteNotification(notification)"
+            class="btn-cancel"
+            title="Supprimer le message"
+            >
+            ✖
+            </button>
+            
+        </div>
+
+
+    </div>
+
 </div>
 
-<div class="container-btn">
-    <button 
-    *ngIf="notification.resume.length > 70" 
-    class="read-more-btn" 
-    (click)="onExpandNotification(notification)"
-    >
-    {{ notification.isExpanded ? 'Lire moins' : (notification.resume.length > 70 ? 'Lire plus' : '') }}
-    </button>
 
-    <svg 
-    (click)="onCancelNotification(notification)"
-    xmlns="http://www.w3.org/2000/svg" 
-    width="25" 
-    height="25" 
-    viewBox="0 0 25 25"
-    class="btn-cancel"
-    >
-        <path 
-        fill="none" 
-        d="M0 0h24v24H0z"
-        />
-        <path 
-        d="M18 6L6 18M6 6l12 12" 
-        stroke="currentColor" 
-        stroke-width="1" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"
-        />
-    </svg>
-</div>
+<app-feat-confirm-delete-notification
+*ngIf="isConfirmDeleteNotificationPopupOpen"
+[notificationListReceived]="notificationListReceived"
+[selectedNotification]="selectedNotification"
+(onForCloseConfirmDeleteNotificationPopup)="onForCloseConfirmDeletePopup($event)"
+></app-feat-confirm-delete-notification>

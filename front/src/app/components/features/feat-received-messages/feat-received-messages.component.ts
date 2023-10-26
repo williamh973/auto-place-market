@@ -1,9 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ReceivedMessage } from 'src/app/models/received-message.model';
 import { User } from 'src/app/models/user.model';
-import { Notification } from 'src/app/models/notification.model';
 import { DbUserService } from 'src/app/shared/services/db-user.service';
-import { ReceivedMessageService } from 'src/app/shared/services/received-message.service';
 
 @Component({
   selector: 'app-feat-received-messages',
@@ -15,12 +13,11 @@ export class FeatReceivedMessagesComponent {
   @Input() user!: User
   @Input() role!: "ROLE_USER" | "ROLE_ADMIN";
 
- 
   userDataForReplyTo!: User
-
+  selectedMessage!: ReceivedMessage
+  
   messageListReceived: ReceivedMessage[] = [];
-  notificationListReceived: Notification[] = [];
-
+  
   isConfirmDeleteMessagePopupOpen: boolean = false;
   isMessageDeleted: boolean = false;
   isContactPopupFormOpen: boolean = false;
@@ -45,8 +42,9 @@ export class FeatReceivedMessagesComponent {
   }
 
 
-  onDeleteMessage() {
+  onDeleteMessage(receivedMessage: ReceivedMessage) {
     this.isConfirmDeleteMessagePopupOpen = !this.isConfirmDeleteMessagePopupOpen
+    this.selectedMessage = receivedMessage
   };
 
 
@@ -67,10 +65,6 @@ export class FeatReceivedMessagesComponent {
     this.userDataForReplyTo = userForReply
     this.isReplyMode = true; 
     this.isContactPopupFormOpen = !this.isContactPopupFormOpen;
-  }
-
-  onForDeleteMessageAfterConfirmation() {
-    this.isMessageDeleted = true;
   }
   
 }

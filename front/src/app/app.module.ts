@@ -56,6 +56,7 @@ import { FeatNotificationComponent } from './components/features/feat-notificati
 import { FeatMessageOperationStatusComponent } from './components/features/feat-message-operation-status/feat-message-operation-status.component';
 import { FeatMessageDashboardComponent } from './components/features/feat-message-dashboard/feat-message-dashboard.component';
 import { FeatConfirmDeleteMessageComponent } from './components/features/feat-confirm-delete-message/feat-confirm-delete-message.component';
+import { FeatConfirmDeleteNotificationComponent } from './components/features/feat-confirm-delete-notification/feat-confirm-delete-notification.component';
 
 
 
@@ -104,7 +105,8 @@ import { FeatConfirmDeleteMessageComponent } from './components/features/feat-co
     FeatNotificationComponent,
     FeatMessageOperationStatusComponent,
     FeatMessageDashboardComponent,
-    FeatConfirmDeleteMessageComponent
+    FeatConfirmDeleteMessageComponent,
+    FeatConfirmDeleteNotificationComponent
   ],  
   imports: [
     BrowserModule,

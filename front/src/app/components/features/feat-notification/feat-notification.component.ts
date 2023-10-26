@@ -14,10 +14,12 @@ export class FeatNotificationComponent {
 
   notificationListReceived: Notification[] = [];
 
+  isConfirmDeleteNotificationPopupOpen: boolean = false;
 
-  constructor(
-    private notificationService: NotificationService,
-    ) {}
+  selectedNotification!: Notification
+
+
+  constructor(private notificationService: NotificationService) {}
 
 
   ngOnInit() {  
@@ -31,13 +33,13 @@ export class FeatNotificationComponent {
     notification.isExpanded = !notification.isExpanded;
   }
 
-  onCancelNotification(notification: Notification) {
-    this.notificationService.deleteNotification(notification.id as number).subscribe(() => {
-    const index = this.notificationListReceived.findIndex(p => p.id === notification.id);
-       if (index !== -1) {
-         this.notificationListReceived.splice(index, 1);
-       }
-    })
+  onForCloseConfirmDeletePopup(isConfirmDeleteNotificationPopupOpen: boolean) {
+    this.isConfirmDeleteNotificationPopupOpen = isConfirmDeleteNotificationPopupOpen
+   }
+
+   onDeleteNotification(notification: Notification) {
+    this.isConfirmDeleteNotificationPopupOpen = !this.isConfirmDeleteNotificationPopupOpen
+    this.selectedNotification = notification
   };
 
 }

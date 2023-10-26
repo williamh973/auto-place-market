@@ -2,8 +2,7 @@
 
     <p 
     *ngIf="
-    messageListReceived.length === 0 &&
-    notificationListReceived.length === 0
+    messageListReceived.length === 0
     " 
     class="message-list-title"
     >
@@ -12,8 +11,7 @@
     
     <p 
     *ngIf="
-    messageListReceived.length > 0 ||
-    notificationListReceived.length > 0 
+    messageListReceived.length > 0
     " 
     class="message-list-title"
     >
@@ -77,7 +75,7 @@
             </button>
             
             <button 
-            (click)="onDeleteMessage()"
+            (click)="onDeleteMessage(message)"
             class="btn-cancel"
             title="Supprimer le message"
             >
@@ -105,5 +103,6 @@ class="contact-form"
 <app-feat-confirm-delete-message
 *ngIf="isConfirmDeleteMessagePopupOpen"
 [messageListReceived]="messageListReceived"
+[selectedMessage]="selectedMessage"
 (onForCloseConfirmDeleteMessagePopup)="onForCloseConfirmDeletePopup($event)"
 ></app-feat-confirm-delete-message>

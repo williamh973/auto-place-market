@@ -11,6 +11,7 @@ import { ReceivedMessageService } from 'src/app/shared/services/received-message
 export class FeatConfirmDeleteMessageComponent {
 
   @Input() messageListReceived!: ReceivedMessage[];
+  @Input() selectedMessage!: ReceivedMessage
   
   @Output() onForCloseConfirmDeleteMessagePopup: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -20,16 +21,20 @@ export class FeatConfirmDeleteMessageComponent {
   constructor(private receivedMessageService: ReceivedMessageService) {}
     
 
-    onDeleteMessage(receivedMessage: ReceivedMessage) {
-      this.receivedMessageService.deleteMessage(receivedMessage.id as number).subscribe(() => {
-        const index = this.messageListReceived.findIndex(p => p.id === receivedMessage.id);
-           if (index !== -1) {
-             this.messageListReceived.splice(index, 1);
-           }
-        })
+    onDeleteMessage() {
+      if (this.selectedMessage) {
+        this.receivedMessageService.deleteMessage(this.selectedMessage.id as number).subscribe(() => {
+          const index = this.messageListReceived.findIndex(p => p.id === this.selectedMessage.id);
+             if (index !== -1) {
+               this.messageListReceived.splice(index, 1);
+             }
+                this.isConfirmDeleteMessagePopupOpen = false;
+                this.onForCloseConfirmDeleteMessagePopup.emit(this.isConfirmDeleteMessagePopupOpen);
+          })    
+      }
     }
 
-    onCancelConfirmation() {
+    onCancelConfirmationPopup() {
      this.isConfirmDeleteMessagePopupOpen = false;
      this.onForCloseConfirmDeleteMessagePopup.emit(this.isConfirmDeleteMessagePopupOpen);
     }
