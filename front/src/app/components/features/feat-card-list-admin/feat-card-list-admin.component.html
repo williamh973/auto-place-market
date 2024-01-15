@@ -1,0 +1,14 @@
+<div class="container-admin-card-list">
+  <p *ngIf="cardList.length === 0" class="admin-card-list-title">Pas de voiture</p>
+  <p *ngIf="cardList.length === 1" class="admin-card-list-title">La voiture mise en ligne</p>
+  <p *ngIf="cardList.length > 1" class="admin-card-list-title">Les voitures mises en ligne</p>
+
+<div class="card-list">
+  <div *ngFor="let card of (filteredCardList.length > 0 ? filteredCardList : cardList); let i = index">
+    <app-feat-card-admin
+    [card]="card"
+    ></app-feat-card-admin>
+  </div>
+</div>
+
+</div>

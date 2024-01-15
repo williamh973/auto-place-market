@@ -21,23 +21,23 @@ export class FeatConfirmDeleteMessageComponent {
   constructor(private receivedMessageService: ReceivedMessageService) {}
     
 
-    onDeleteMessage() {
-      if (this.selectedMessage) {
-        this.receivedMessageService.deleteMessage(this.selectedMessage.id as number).subscribe(() => {
-          const index = this.messageListReceived.findIndex(p => p.id === this.selectedMessage.id);
-             if (index !== -1) {
-               this.messageListReceived.splice(index, 1);
-             }
-                this.isConfirmDeleteMessagePopupOpen = false;
-                this.onForCloseConfirmDeleteMessagePopup.emit(this.isConfirmDeleteMessagePopupOpen);
-          })    
-      }
+  onDeleteMessage() {
+    if (this.selectedMessage) {
+      this.receivedMessageService.deleteMessage(this.selectedMessage.id as number).subscribe(() => {
+        const index = this.messageListReceived.findIndex(p => p.id === this.selectedMessage.id);
+           if (index !== -1) {
+             this.messageListReceived.splice(index, 1);
+           }
+              this.isConfirmDeleteMessagePopupOpen = false;
+              this.onForCloseConfirmDeleteMessagePopup.emit(this.isConfirmDeleteMessagePopupOpen);
+        })    
     }
-
-    onCancelConfirmationPopup() {
-     this.isConfirmDeleteMessagePopupOpen = false;
-     this.onForCloseConfirmDeleteMessagePopup.emit(this.isConfirmDeleteMessagePopupOpen);
-    }
+  }
+  
+  onCancelConfirmationPopup() {
+   this.isConfirmDeleteMessagePopupOpen = false;
+   this.onForCloseConfirmDeleteMessagePopup.emit(this.isConfirmDeleteMessagePopupOpen);
+  }
 
     
   

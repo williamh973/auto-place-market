@@ -58,17 +58,24 @@ class="container-search"
 ></app-feat-search>
 
 
-<app-feat-card-list
-*ngIf="isAdminCardListOpen || 
-isUserCardListOpen || 
-isFavoriteListOpen" 
+<app-feat-card-list-user
+*ngIf="isUserCardListOpen" 
 class="container-card-list"
+[cardListCreatedByUser]="cardListCreatedByUser"
+[user]="user"
+></app-feat-card-list-user>
 
-[isAdminCardListOpen]="isAdminCardListOpen"
-[isUserCardListOpen]="isUserCardListOpen"
-[isFavoriteListOpen]="isFavoriteListOpen"
+<app-feat-card-list-favorite
+*ngIf="isFavoriteListOpen" 
+class="container-card-list"
 [favoriteCardList]="favoriteCardList"
-></app-feat-card-list>
+[user]="user"
+></app-feat-card-list-favorite>
+
+<app-feat-card-list-admin
+*ngIf="isAdminCardListOpen" 
+class="container-card-list"
+></app-feat-card-list-admin>
 
 
 <app-feat-get-user-datas

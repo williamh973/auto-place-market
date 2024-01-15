@@ -14,13 +14,9 @@ export class HomePageComponent {
   
   isComputerResolution: boolean = false;
   isTabletResolution: boolean = false;
-  isHomePageCardListOpen: boolean = true;
-  isFavorite: boolean = false;
   isAnimationTrackHttpStatusActive: boolean = false; 
 
-  constructor(
-    private tokenValidityService : TokenValidityService
-    ) {}
+  constructor(private tokenValidityService : TokenValidityService) {}
   
   
   ngOnInit() {
@@ -34,10 +30,12 @@ export class HomePageComponent {
           return of(false); 
         }
         this.isAnimationTrackHttpStatusActive = true; 
-        setTimeout(() => {
-        this.isAnimationTrackHttpStatusActive = false; 
-        }, 8000);
-        throw error;
+          
+          setTimeout(() => {
+            
+            this.isAnimationTrackHttpStatusActive = false; 
+          }, 8000);
+      throw error;
       })
     ).subscribe();
     

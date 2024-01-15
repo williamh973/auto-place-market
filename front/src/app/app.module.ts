@@ -22,8 +22,8 @@ import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { FeatNavbarComponent } from './components/features/feat-navbar/feat-navbar.component';
 import { FeatFooterComponent } from './components/features/feat-footer/feat-footer.component';
 import { FeatSearchComponent } from './components/features/feat-search/feat-search.component';
-import { FeatCardComponent } from './components/features/feat-card/feat-card.component';
-import { FeatCardListComponent } from './components/features/feat-card-list/feat-card-list.component';
+import { FeatCardHomeComponent } from './components/features/feat-card-home/feat-card-home.component';
+import { FeatCardListHomeComponent } from './components/features/feat-card-list-home/feat-card-list-home.component';
 import { FeatEditCardFormComponent } from './components/features/feat-edit-card-form/feat-edit-card-form.component';
 import { FeatSignInFormComponent } from './components/features/feat-sign-in-form/feat-sign-in-form.component';
 import { FeatAccountPopupComponent } from './components/features/feat-account-popup/feat-account-popup.component';
@@ -57,6 +57,9 @@ import { FeatMessageOperationStatusComponent } from './components/features/feat-
 import { FeatMessageDashboardComponent } from './components/features/feat-message-dashboard/feat-message-dashboard.component';
 import { FeatConfirmDeleteMessageComponent } from './components/features/feat-confirm-delete-message/feat-confirm-delete-message.component';
 import { FeatConfirmDeleteNotificationComponent } from './components/features/feat-confirm-delete-notification/feat-confirm-delete-notification.component';
+import { FeatCardListUserComponent } from './components/features/feat-card-list-user/feat-card-list-user.component';
+import { FeatCardListFavoriteComponent } from './components/features/feat-card-list-favorite/feat-card-list-favorite.component';
+import { FeatCardListAdminComponent } from './components/features/feat-card-list-admin/feat-card-list-admin.component';
 
 
 
@@ -70,8 +73,8 @@ import { FeatConfirmDeleteNotificationComponent } from './components/features/fe
     FeatNavbarComponent,
     FeatFooterComponent,
     FeatSearchComponent,
-    FeatCardComponent,
-    FeatCardListComponent,
+    FeatCardHomeComponent,
+    FeatCardListHomeComponent,
     FeatEditCardFormComponent,
     FeatRegisterFormComponent,
     FeatSignInFormComponent,
@@ -106,7 +109,10 @@ import { FeatConfirmDeleteNotificationComponent } from './components/features/fe
     FeatMessageOperationStatusComponent,
     FeatMessageDashboardComponent,
     FeatConfirmDeleteMessageComponent,
-    FeatConfirmDeleteNotificationComponent
+    FeatConfirmDeleteNotificationComponent,
+    FeatCardListUserComponent,
+    FeatCardListFavoriteComponent,
+    FeatCardListAdminComponent
   ],  
   imports: [
     BrowserModule,

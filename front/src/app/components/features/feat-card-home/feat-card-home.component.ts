@@ -9,11 +9,11 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 
 
 @Component({
-  selector: 'app-feat-card',
-  templateUrl: './feat-card.component.html',
-  styleUrls: ['./feat-card.component.scss']
+  selector: 'app-feat-card-home',
+  templateUrl: './feat-card-home.component.html',
+  styleUrls: ['./feat-card-home.component.scss']
 })
-export class FeatCardComponent {
+export class FeatCardHomeComponent {
   
   
   @Input() card!: Card;

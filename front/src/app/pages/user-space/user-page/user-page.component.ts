@@ -25,6 +25,7 @@ export class UserPageComponent {
   role!: "ROLE_USER" | "ROLE_ADMIN";
   
   favoriteCardList: Card[] = [];
+  cardListCreatedByUser: Card[] = [];
   messageListCreatedByUser: ReceivedMessage[] = [];
   filteredMessageListCreatedByUser: ReceivedMessage[] = [];
   
@@ -59,32 +60,13 @@ export class UserPageComponent {
     private dbUser: DbUserService,
     private tokenS: TokenService,
     private lsService: LocalStorageService,
-    private favoriteService: FavoriteService,
     private tokenValidityService : TokenValidityService,
-    private router: Router
+    private router: Router,
     ) {}
 
 
     ngOnInit() {
 
-      this.tokenS._getTokenDetailsSubject$()
-       .pipe(
-        map((decodedToken: any) => ({
-          role: decodedToken.role
-        }))
-      ).subscribe((tokenDetails: any) => {
-        this.role = tokenDetails.role;
-      });
-
-      this.dbUser.getCurrentUserData().subscribe(
-        (user: User) => {
-          this.user = user;          
-        },
-        (error: any) => {
-          console.error("Erreur lors de la récupération des données de l'utilisateur :", error);
-        }
-      );
-    
       this.tokenValidityService.getTokenValidity().pipe(
         catchError(error => {
           if (error.status === 401) {
@@ -96,11 +78,38 @@ export class UserPageComponent {
           this.router.navigate(["/home"]);
           throw error;
         })
-      ).subscribe();
-      
+      ).subscribe(
+        () => {
+          this.onGetCurrentUserDatas();
+          this.onGetCurrentUserRole();
+        }
+      );
+
     }
 
+
+    private onGetCurrentUserRole() {
+        this.tokenS._getTokenDetailsSubject$().pipe(
+          map((decodedToken: any) => ({
+            role: decodedToken.role
+          }))
+        ).subscribe((tokenDetails: any) => {
+          this.role = tokenDetails.role;
+        });
+    }
+
+    private onGetCurrentUserDatas() {
+        this.dbUser.getCurrentUserData().subscribe(
+          (user: User) => {
+            this.user = user;          
+          },
+          (error: any) => {
+            console.error("Erreur lors de la récupération des données de l'utilisateur :", error);
+          }
+        );
+    }
     
+
     onAdminMainMenuItemClick(menuItem: Menu) {
       if (menuItem.label === 'Voir les annonces') {
         this.showCardList();
@@ -145,23 +154,6 @@ export class UserPageComponent {
     
     loadFavoriteCardList() {
       this.isFavoriteListOpen = !this.isFavoriteListOpen;
-      if (this.isFavoriteListOpen) {
-        const userEmailInLocalStorage = localStorage.getItem('userEmail');
-        if (userEmailInLocalStorage) {
-          this.favoriteService.getFavoriteList(userEmailInLocalStorage).subscribe(
-            (favoriteList: Favorite[]) => { 
-              this.favoriteCardList = favoriteList.map(favorite => favorite.card);
-            },
-            (error: any) => {
-              console.log("Erreur lors de la récupération des favoris :", error);
-            }
-          );
-        } else {
-          console.log("L'utilisateur n'est pas connecté.");
-        }
-      } else {
-        this.isFavoriteListOpen = false; 
-      }
     }
     
     onForCloseEditCardForm(isEditCardFormOpen: boolean) {

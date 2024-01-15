@@ -15,12 +15,6 @@ export class TokenValidityService {
   constructor(private http: HttpClient) { }
 
 
-  //  private onLogout(): void {
-  //     this.lsService.clearTokenAndUserEmail();
-  //     this.tokenS.resetToken();
-  //   }
-
-
   getTokenValidity(): Observable<boolean> {
     return this.http.get<boolean>(`${this._BASE_URL_TOKEN}/check-token-validity`)
   }

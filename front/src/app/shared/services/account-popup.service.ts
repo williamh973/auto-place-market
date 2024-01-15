@@ -15,6 +15,8 @@ export class AccountPopupService {
 
     openPopup() {
       this.isAccountPopupOpenSubject$.next(true);
+      console.log(this.isAccountPopupOpenSubject$);
+      
     }
   
     closePopup() {

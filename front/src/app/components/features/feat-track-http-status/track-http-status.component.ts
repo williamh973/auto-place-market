@@ -18,9 +18,7 @@ export class TrackHttpStatusComponent {
   showSuccessMessage: boolean = false;
   
 
-  constructor(
-    public httpS: AuthService
-  ) { }
+  constructor(public httpS: AuthService) { }
 
 
   ngOnInit(): void {
@@ -29,10 +27,18 @@ export class TrackHttpStatusComponent {
   
     this.httpError$.subscribe((error: HttpErrorResponse) => {
       this.showErrorMessage = true;
+      
+      setTimeout(() => {
+        this.showErrorMessage = false;
+      }, 8000);
     });
 
     this.httpSuccess$.subscribe((response: HttpResponse<any>) => {
       this.showSuccessMessage = true;
+
+      setTimeout(() => {
+        this.showSuccessMessage = false;
+      }, 8000);
 
     });
   }

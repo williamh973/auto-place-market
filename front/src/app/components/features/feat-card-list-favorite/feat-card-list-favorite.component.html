@@ -1,0 +1,12 @@
+<div class="container-favorite-user-card-list">
+  <p *ngIf="favoriteCardList.length === 0" class="favorite-card-list-title">Pas de voiture dans les favoris</p>
+  <p *ngIf="favoriteCardList.length === 1" class="favorite-card-list-title">Mon coup de coeur</p>
+  <p *ngIf="favoriteCardList.length > 1" class="favorite-card-list-title">Mes coups de coeur</p>
+
+  <div class="card-list" *ngFor="let card of favoriteCardList">
+    <app-feat-card-favorite 
+    [card]="card"
+    ></app-feat-card-favorite>
+  </div>
+
+</div>

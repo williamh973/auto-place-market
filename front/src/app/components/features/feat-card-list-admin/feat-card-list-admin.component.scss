@@ -7,26 +7,13 @@
     background-color:  transparent;
 }
 
-button {
-    padding: 10px;
-    border-radius: 20px;
-    border: none;
-    background-color: rgba(128, 128, 128, 0.438);
-}
-button:hover {
-    cursor: pointer;
-    transition: all 300ms;
-    scale: 1.1;
-}
-
-
-.container-user-card-list, .container-admin-card-list, .container-favorite-user-card-list {
+.container-admin-card-list {
     width: 90%;
     margin: auto;
     padding: 50px 0;
   }
-  
-  .user-card-list-title, .admin-card-list-title, .favorite-card-list-title {
+
+  .admin-card-list-title {
     font-size: 25px;
     color: whitesmoke;
     cursor: default;
@@ -35,8 +22,3 @@ button:hover {
     background-color:  rgba(81, 81, 81, 0.492);
     margin-bottom: 50px;
   }
-  
-  
-
-
-

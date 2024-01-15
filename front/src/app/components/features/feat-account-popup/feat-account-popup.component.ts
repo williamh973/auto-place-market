@@ -9,7 +9,6 @@ import { AccountPopupService } from '../../../shared/services/account-popup.serv
 export class FeatAccountPopupComponent {
 
  
-  isAccountPopupOpen: boolean = false;
   isSignInFormOpen: boolean = false;
   isRegisterFormOpen: boolean = false;
 
