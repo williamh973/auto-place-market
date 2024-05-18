@@ -1,22 +1,24 @@
-<div class="full-page">
-    
-    <app-feat-navbar *ngIf="isComputerResolution"></app-feat-navbar>
-    <app-navbar-responsive-tablet *ngIf="isTabletResolution"></app-navbar-responsive-tablet>
+<div class="full-page">    
+  <app-feat-navbar 
+  *ngIf="isComputerResolution"
+  ></app-feat-navbar>
 
-    <div class="container-background-img"></div> 
+  <app-navbar-responsive-tablet 
+  *ngIf="isTabletResolution"
+  ></app-navbar-responsive-tablet>
 
-    <div class="container-cardList">
-       <app-feat-card-list
-       *ngIf="isHomePageCardListOpen"
-       [isHomePageCardListOpen]="isHomePageCardListOpen"
-       ></app-feat-card-list>
-    </div>
+  <div class="container-background-img"></div> 
 
+  <div class="container-cardList">
+    <app-feat-card-list
+    *ngIf="isHomePageCardListOpen"
+    [isHomePageCardListOpen]="isHomePageCardListOpen"
+    ></app-feat-card-list>
+  </div>
 
-    <app-track-http-status
-    class="track-http-status"
-    [class.track-http-status-animate]="isAnimationTrackHttpStatusActive"
-    ></app-track-http-status>
-
+  <app-track-http-status
+  class="track-http-status"
+  [class.track-http-status-animate]="isAnimationTrackHttpStatusActive"
+  ></app-track-http-status>
 </div>
 

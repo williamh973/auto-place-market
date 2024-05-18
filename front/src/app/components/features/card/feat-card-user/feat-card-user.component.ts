@@ -10,17 +10,13 @@ import { Card } from 'src/app/models/card.model';
 export class FeatCardUserComponent {
 
   @Input() card!: Card;
-
-  @Input() 
-  createMode: boolean = false;
+  @Input() createMode: boolean = false;
 
   isEditCardFormOpen: boolean = false;
   isFavorite: boolean = false;
   isConfirmDeletePopup: boolean = false;
   isConfirmUpdatePopupOpen: boolean = false;
-
   firstPictureSrc: string = '';
-
 
 
   ngOnInit(): void {
@@ -32,27 +28,27 @@ export class FeatCardUserComponent {
   }
 
 
-openConfirmDeletePopup() {
-  this.isConfirmDeletePopup = true;
-}
-
-openConfirmeUpdateFormPopup() {
-  this.isConfirmUpdatePopupOpen = true;
-}
-
- 
-
-toggleFavorite() {
-  this.isFavorite = !this.isFavorite;
-}
-
-onRecevedMethodForCloseConfirmDeletePopup(isConfirmDeletePopup: boolean) {
-  this.isConfirmDeletePopup = isConfirmDeletePopup;
-}
-
-onRecevedMethodForCloseConfirmUpdateCardFormPopup(isConfirmUpdatePopupOpen: boolean) {
-this.isConfirmUpdatePopupOpen = isConfirmUpdatePopupOpen;
-}
-
-
+  openConfirmDeletePopup() {
+    this.isConfirmDeletePopup = true;
+  }
+  
+  openConfirmeUpdateFormPopup() {
+    this.isConfirmUpdatePopupOpen = true;
+  }
+  
+   
+  
+  toggleFavorite() {
+    this.isFavorite = !this.isFavorite;
+  }
+  
+  onRecevedMethodForCloseConfirmDeletePopup(isConfirmDeletePopup: boolean) {
+    this.isConfirmDeletePopup = isConfirmDeletePopup;
+  }
+  
+  onRecevedMethodForCloseConfirmUpdateCardFormPopup(isConfirmUpdatePopupOpen: boolean) {
+  this.isConfirmUpdatePopupOpen = isConfirmUpdatePopupOpen;
+  }
+  
+  
 }

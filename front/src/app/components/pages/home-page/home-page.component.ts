@@ -11,16 +11,13 @@ import { TokenValidityService } from 'src/app/shared/services/token-validity.ser
 export class HomePageComponent {
   
   favoriteCards: number[] = [];
-  
   isComputerResolution: boolean = false;
   isTabletResolution: boolean = false;
   isHomePageCardListOpen: boolean = true;
   isFavorite: boolean = false;
   isAnimationTrackHttpStatusActive: boolean = false; 
 
-  constructor(
-    private tokenValidityService : TokenValidityService
-    ) {}
+  constructor(private tokenValidityService : TokenValidityService) {}
   
   
   ngOnInit() {
@@ -43,13 +40,10 @@ export class HomePageComponent {
     
   }
   
-
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     const screenWidth = window.innerWidth;
     this.isTabletResolution = screenWidth > 767 && screenWidth <= 1299; 
     this.isComputerResolution = screenWidth >= 1300; 
   }
-
-
 }

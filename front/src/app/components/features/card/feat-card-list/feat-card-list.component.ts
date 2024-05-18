@@ -18,21 +18,19 @@ export class FeatCardListComponent {
   @Input() isAdminCardListOpen!: boolean;
   @Input() favoriteCardList!: Card[];
 
- 
   cardList: Card[] = [];
   filteredCardList: Card[] = [];
-
   cardListCreatedByUser: Card[] = [];
   filteredCardListCreatedByUser: Card[] = [];
 
 
   constructor(
     private cardService: CardService,
-    private dbUser: DbUserService) { }
+    private dbUser: DbUserService
+    ) { }
   
 
   ngOnInit(): void {
-
     this.cardService.getCardList().subscribe((cardListFromDatabase: Card[]) => {
     this.cardList = cardListFromDatabase;
     }) 
@@ -46,8 +44,5 @@ export class FeatCardListComponent {
       this.dbUser.getFilteredCardListCreatedByUser$().subscribe((newFileteredUserCardList: Card[]) => {
         this.filteredCardListCreatedByUser = newFileteredUserCardList;
         });   
-
   }
-
-
 }

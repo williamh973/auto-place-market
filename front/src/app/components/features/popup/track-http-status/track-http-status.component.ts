@@ -20,7 +20,7 @@ export class TrackHttpStatusComponent {
 
   constructor(
     public httpS: AuthService
-  ) { }
+    ) { }
 
  
   ngOnInit(): void {
@@ -37,7 +37,7 @@ export class TrackHttpStatusComponent {
     });
   }
 
-  }
+}
 
   
 

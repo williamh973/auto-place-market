@@ -12,12 +12,10 @@ import { TokenService } from 'src/app/shared/services/token.service';
 export class FeatUpdateInformationFormComponent {
 
   @Output() onUpdateinformationFormOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
-
   @Input() user!: User; 
   @Input() dataToUpdate!: string;
   
   isUpdateinformationFormOpen: boolean = false;
-
   newFirstname: string = '';
   newLastname: string = '';
 
@@ -25,15 +23,8 @@ export class FeatUpdateInformationFormComponent {
   constructor(private dbUser: DbUserService,  private tokenS: TokenService,) {}
 
 
-
-  ngOnInit() {
-  
-  }
-
-
   submit() {
-     if(this.user.id && this.dataToUpdate === 'firstname') {
-
+    if(this.user.id && this.dataToUpdate === 'firstname') {
       this.dbUser.updateUserFirstname(this.user.id, this.newFirstname).subscribe(
         () => {
           this.user.firstname = this.newFirstname;
@@ -44,7 +35,6 @@ export class FeatUpdateInformationFormComponent {
         }
       );
     } else if (this.user.id && this.dataToUpdate === 'lastname') {
-
       this.dbUser.updateUserLastname(this.user.id, this.newLastname).subscribe(
         () => {
           this.user.lastname = this.newLastname;
@@ -60,4 +50,5 @@ export class FeatUpdateInformationFormComponent {
   onCancelPopup() {
     this.onUpdateinformationFormOpen.emit(this.isUpdateinformationFormOpen);
   }
+  
 }

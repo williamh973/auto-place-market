@@ -12,7 +12,7 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 import { TokenValidityService } from 'src/app/shared/services/token-validity.service';
 import { TokenService } from 'src/app/shared/services/token.service';
 
-
+ 
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',

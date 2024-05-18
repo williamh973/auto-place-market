@@ -2,11 +2,9 @@
 *ngIf="isConfirmDeletePopup"
 (onisConfirmDeletePopupEmit)="onRecevedMethodForCloseConfirmDeletePopup($event)"
 [card]="card"
->
-</app-feat-confirm-delete-popup>
+></app-feat-confirm-delete-popup>
 
-
-<div class="card">
+<main class="card">
 
   <div class="container-btn">
     <button
@@ -16,17 +14,17 @@
     </button>
   </div>
 
-  <div 
-  class="container-user"
-  >Mis en ligne par : 
-   <span id="user">
-     {{ card.user.firstname }}
-   </span> 
+  <div class="container-user">
+    Mis en ligne par : 
+    <span id="user">
+      {{ card.user.firstname }}
+    </span> 
   </div>
   
-  <p class="timestamp">Posté le 
-  {{ card.timestamp | date:'dd/MM/yyyy' }} à 
-  {{ card.timestamp | date:'HH:mm' }}
+  <p class="timestamp">
+    Posté le 
+    {{ card.timestamp | date:'dd/MM/yyyy' }} à 
+    {{ card.timestamp | date:'HH:mm' }}
   </p>
 
   <div *ngIf="card.picturesList.length > 0">
@@ -35,49 +33,51 @@
     </div>
   </div>
 
-    <div
-    id="title"
-    class="cardChild-elements"
-    >{{ card.title }}
+  <div
+  id="title"
+  class="cardChild-elements"
+  >{{ card.title }}
   </div>
 
   <div class="container-door-fuel-transmission-year">
     <li
     id="door"
     class="cardChild-elements"
-    >{{ card.door }} Portes
-  </li>
-  <li 
+    >
+{{ card.door }} Portes
+    </li>
+    <li 
     id="fuel"
     class="cardChild-elements"
     >{{ card.fuel }}
-  </li>
-  <li 
+    </li>
+    <li 
     id="transmission"
     class="cardChild-elements"
     >{{ card.transmission }}
-  </li>
-  <li 
-  id="year"
-  class="cardChild-elements"
-  >{{ card.year }}
-</li>
-</div>
-
-<div class="container-kilometer-price">
-  <div
-    id="kilometer"
+    </li>
+    <li 
+    id="year"
     class="cardChild-elements"
-    >{{ card.kilometer.toLocaleString() }} 
-    <span>Km</span>
+    >{{ card.year }}
+    </li>
   </div>
-  <div
-   id="price"
-   class="cardChild-elements"
-   >{{ card.price.toLocaleString() }}
-   <span>€</span>
+
+  <div class="container-kilometer-price">
+    <div
+      id="kilometer"
+      class="cardChild-elements"
+      >{{ card.kilometer.toLocaleString() }} 
+      <span>Km</span>
+    </div>
+    
+    <div
+     id="price"
+     class="cardChild-elements"
+     >{{ card.price.toLocaleString() }}
+     <span>€</span>
+    </div>
   </div>
-</div>
 
 
 
@@ -88,8 +88,7 @@
     >{{ isEditCardFormOpen ? 'Fermer' : 'Modifier'}}
    </button>
   </div>
-
-</div>
+</main>
 
 <app-feat-edit-card-form 
 *ngIf="isEditCardFormOpen"

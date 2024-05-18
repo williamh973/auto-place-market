@@ -10,21 +10,13 @@ import { CardService } from 'src/app/shared/services/card.service';
 export class FeatConfirmUpdateCardPopupComponent {
 
   @Input() card!: Card;
-
-  @Output() 
-  onConfirmUpdatePopupEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() onConfirmUpdatePopupEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
   isConfirmUpdatePopupOpen: boolean = false;
   isCardEditFormToggle: boolean = false;
   isEditCardFormOpen: boolean = false;
- 
 
-  constructor(private cardService: CardService) {}
-
-  ngOnInit() {  
-  }
-  
 
   onCloseConfirmeUpdatePopup() {
     this.onConfirmUpdatePopupEmit.emit(this.isConfirmUpdatePopupOpen);

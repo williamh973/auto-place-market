@@ -1,0 +1,175 @@
+     <div 
+     class="full-page"
+     *ngIf="currentStep === 1" 
+     >
+
+        <svg 
+        (click)="onCancelAllStepsForms()" 
+        xmlns="http://www.w3.org/2000/svg" 
+        width="30" 
+        height="30" 
+        viewBox="0 0 24 24"
+        class="btn-cancel"
+        >
+            <path 
+            fill="none" 
+            d="M0 0h24v24H0z"
+            />
+            <path 
+            d="M18 6L6 18M6 6l12 12" 
+            stroke="currentColor" 
+            stroke-width="1" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"
+            />
+           </svg>
+           
+           <h2>
+            {{ createMode ? 'Mettre mon véhicule en ligne (Etape 1)' : 'Modifier mon véhicule (Etape 1)' }}
+           </h2>
+           <h3 class="create-mode-sub-title" *ngIf="createMode">
+              Les caracthéristiques techniques
+           </h3>
+           
+           <div class="all-elements">
+
+           <div 
+           *ngIf="!createMode" 
+           class="preview-and-card">
+             <h4 *ngIf="!createMode">Prévisualisation</h4>
+                     
+             <app-feat-card-preview
+             *ngIf="!createMode"
+             [card]="card"
+             >
+             </app-feat-card-preview>
+           </div>
+           
+      <form (ngSubmit)="onGoStep2()">
+
+    <h3 class="update-mode-sub-title" *ngIf="!createMode">
+      Modifier les caracthéristiques techniques
+   </h3>
+
+   <div class="container-first-part-second-part">
+   <div class="first-part">        
+       <label for="title">Titre</label>
+       <input 
+       type="text" 
+       name="title" 
+       id="title" 
+       [(ngModel)]="card.title"
+       maxlength="33"
+       minlength="5"
+       placeholder="Le model du véhicule *"
+       required
+       >
+       <label for="resume">Description</label>
+       <input 
+       type="text" 
+       name="resume" 
+       id="resume" 
+       [(ngModel)]="card.resume"
+       maxlength="1000"
+       minlength="5"
+       placeholder="Descriptif détaillé * "
+       required
+       >
+
+    <div class="container-transmission">
+        <label for="transmission">Transmission</label>
+       <select name="transmission" id="transmission" [(ngModel)]="card.transmission" required>
+         <option value="" disabled selected hidden class="select-your-choise">Saisissez votre choix</option>
+         <option value="Automatique">Automatique</option>
+         <option value="Manuelle">Manuelle</option>
+       </select>
+    </div>
+    <div class="container-fuel">
+      <label for="fuel">Carburant</label>
+        <select name="fuel" id="fuel" [(ngModel)]="card.fuel" required>
+          <option value="" disabled selected hidden>Saisissez votre choix</option>
+          <option value="Essence">Essence</option>
+          <option value="Diesel">Diesel</option>
+        </select>
+    </div>
+  </div>
+    
+   <div class="second-part">
+       <label for="price">Kilomètrage</label>
+       <input 
+       type="number" 
+       name="kilometer" 
+       id="kilometer" 
+       [(ngModel)]="card.kilometer"
+       placeholder="Kilomètres parcourus * "
+       maxlength="6"
+       minlength="1"
+       required
+       >
+       <label for="price">Portes</label>
+       <input 
+       type="number" 
+       name="door" 
+       id="door" 
+       [(ngModel)]="card.door"
+       placeholder="Nombre de portes * "
+       required
+       maxlength="1"
+       minlength="1" 
+       >
+       <label for="price">Prix</label>
+       <input 
+       type="number" 
+       name="price" 
+       id="price" 
+       [(ngModel)]="card.price"
+       placeholder="Prix d\'achat souhaité *"
+       required
+       maxlength="7"
+       minlength="1" 
+       >
+   
+       <label for="year">Année</label>
+       <input 
+       type="number" 
+       name="year" 
+       id="year" 
+       [(ngModel)]="card.year"
+       placeholder="Année de fabrication* "
+       required
+       maxlength="4"
+       minlength="4" 
+       >
+   </div>
+
+  </div>
+
+<div class="btn-next-step">
+   <button 
+   type="submit" 
+   >Etape suivante
+   
+   <svg
+   xmlns="http://www.w3.org/2000/svg"
+   width="25"
+   height="25"
+   viewBox="0 0 24 24"
+   fill="none"
+   stroke="whitesmoke"
+   stroke-width="2"
+   stroke-linecap="round"
+   stroke-linejoin="round"
+   class="arrow-right"
+   >
+    <polyline points="9 18 15 12 9 6"></polyline>
+   </svg>
+
+</button>
+  </div>
+  </form>
+  </div>
+   
+   </div>
+
+   
+   

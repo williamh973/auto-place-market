@@ -1,33 +1,23 @@
-
-<div class="card-list"
-*ngIf="isHomePageCardListOpen" 
->
-
+<div class="card-list" *ngIf="isHomePageCardListOpen">
   <div *ngFor="let card of (filteredCardList.length > 0 ? filteredCardList : cardList); let i = index">
     <app-feat-card
     [card]="card"
     ></app-feat-card>
   </div>
-
 </div>
 
-
-
-
-<div class="container-user-card-list"
-*ngIf="isUserCardListOpen" 
->
+<div class="container-user-card-list" *ngIf="isUserCardListOpen">
   <p *ngIf="cardListCreatedByUser.length === 0" class="user-card-list-title">Pas de voiture</p>
   <p *ngIf="cardListCreatedByUser.length === 1" class="user-card-list-title">Ma voiture mise en ligne</p>
   <p *ngIf="cardListCreatedByUser.length > 1" class="user-card-list-title">Mes voitures mises en ligne</p>
 
-<div class="card-list">
-  <div *ngFor="let card of (filteredCardListCreatedByUser.length > 0 ? filteredCardListCreatedByUser : cardListCreatedByUser); let i = index">
-    <app-feat-card-user
-    [card]="card"
-    ></app-feat-card-user>
+  <div class="card-list">
+    <div *ngFor="let card of (filteredCardListCreatedByUser.length > 0 ? filteredCardListCreatedByUser : cardListCreatedByUser); let i = index">
+      <app-feat-card-user
+      [card]="card"
+      ></app-feat-card-user>
+    </div>
   </div>
-</div>
 
 </div>
 

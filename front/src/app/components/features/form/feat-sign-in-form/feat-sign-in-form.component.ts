@@ -15,8 +15,7 @@ export class FeatSignInFormComponent {
   
   isSignInFormOpen: boolean = false;
   isAnimationPopupSignInStatusActive: boolean = false;   
-
-   userAuth: UserAuth = new UserAuth("", "");  
+  userAuth: UserAuth = new UserAuth("", "");  
 
 
   constructor(
@@ -26,15 +25,13 @@ export class FeatSignInFormComponent {
 
 
   onCancelSignInForm() {
-  this.onSignInFormOpenEmit.emit(this.isSignInFormOpen);
+    this.onSignInFormOpenEmit.emit(this.isSignInFormOpen);
   }
 
   onSubmitAuth(): void {
     this.LsService.clearTokenAndUserEmail();
     this.httpS.signIn(this.userAuth);
     this.isAnimationPopupSignInStatusActive = true;
-    
   }
-
-
+  
 }

@@ -17,33 +17,33 @@ export class FeatCardAdminComponent implements OnInit {
 
   firstPictureSrc: string = '';
 
+
+  ngOnInit() {
+    this.card.picturesList.sort((pictureA, pictureB) => (pictureA.id ?? 0) - (pictureB.id ?? 0));     
+  
+    if (this.card.picturesList.length > 0) {
+      this.firstPictureSrc = this.card.picturesList[0].src;
+    }
+  }
+
   openEditDialogue() {
     this.isEditCardFormOpen = !this.isEditCardFormOpen;
   }
 
-ngOnInit() {
-  this.card.picturesList.sort((pictureA, pictureB) => (pictureA.id ?? 0) - (pictureB.id ?? 0));     
-
-  if (this.card.picturesList.length > 0) {
-    this.firstPictureSrc = this.card.picturesList[0].src;
+  openConfirmDeletePopup() {
+    this.isConfirmDeletePopup = true;
   }
-}
-
-openConfirmDeletePopup() {
-  this.isConfirmDeletePopup = true;
-}
  
+  toggleFavorite() {
+    this.isFavorite = !this.isFavorite;
+  }
 
-toggleFavorite() {
-  this.isFavorite = !this.isFavorite;
-}
-
-onRecevedMethodForCloseConfirmDeletePopup(isConfirmDeletePopup: boolean) {
-  this.isConfirmDeletePopup = isConfirmDeletePopup;
-}
-
-onRecevedMethodForCloseEditCardForm(isEditCardFormOpen: boolean) {
-  this.isEditCardFormOpen = isEditCardFormOpen;
-}
+  onRecevedMethodForCloseConfirmDeletePopup(isConfirmDeletePopup: boolean) {
+    this.isConfirmDeletePopup = isConfirmDeletePopup;
+  }
+  
+  onRecevedMethodForCloseEditCardForm(isEditCardFormOpen: boolean) {
+    this.isEditCardFormOpen = isEditCardFormOpen;
+  }
 
 }
