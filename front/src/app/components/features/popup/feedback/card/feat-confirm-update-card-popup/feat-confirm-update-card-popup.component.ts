@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
-import { User } from 'src/app/models/user.model';
 import { CardService } from 'src/app/shared/services/card.service';
 
 @Component({
@@ -10,8 +9,7 @@ import { CardService } from 'src/app/shared/services/card.service';
 })
 export class FeatConfirmUpdateCardPopupComponent {
 
-  @Input() 
-  card!: Card;
+  @Input() card!: Card;
 
   @Output() 
   onConfirmUpdatePopupEmit: EventEmitter<boolean> = new EventEmitter<boolean>();

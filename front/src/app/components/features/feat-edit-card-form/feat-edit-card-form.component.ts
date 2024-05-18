@@ -11,8 +11,7 @@ import { User } from 'src/app/models/user.model';
 export class FeatEditCardFormComponent {
 
 
-@Input() 
-card:  Card = new Card(
+@Input() card:  Card = new Card(
   '',
   '', 
   '', 
@@ -37,18 +36,11 @@ card:  Card = new Card(
     )
 );
 
-@Input() 
-createMode: boolean = false;
-
-@Output() 
-onCloseEditCardFormEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
-
+@Input() createMode: boolean = false;
+@Output() onCloseEditCardFormEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 currentStep: number = 1;
-
 isStepsFormsOpen: boolean = true;
-
-
 
 
   onRecevedMethodForGoToStep2() {

@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
 import { CardService } from 'src/app/shared/services/card.service';
 

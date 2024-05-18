@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Card } from 'src/app/models/card.model';
-import { User } from 'src/app/models/user.model';
-
 
 @Component({
   selector: 'app-feat-card-admin',

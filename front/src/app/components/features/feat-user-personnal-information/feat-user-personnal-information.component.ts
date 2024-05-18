@@ -1,7 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { UserRegister } from 'src/app/models/user-register.model';
+import { Component, Input } from '@angular/core';
 import { User } from 'src/app/models/user.model';
-import { DbUserService } from 'src/app/shared/services/db-user.service';
 
 
 @Component({
@@ -19,11 +17,6 @@ export class FeatUserPersonnalInformationComponent {
   isUpdateinformationFormOpen: boolean = false;
   
   dataToUpdate: string = "firstname" || "lastname";
-
-
-  ngOnInit() {
-
-  }
   
  
   onUpdateFirstname() {

@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
 
 import { Card } from 'src/app/models/card.model';
-import { Favorite } from 'src/app/models/favorite.model';
-import { User } from 'src/app/models/user.model';
 import { FavoriteStatusService } from 'src/app/shared/services/favorite-status.service';
 import { FavoriteService } from 'src/app/shared/services/favorite.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';

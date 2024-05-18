@@ -22,7 +22,7 @@ export class TrackHttpStatusComponent {
     public httpS: AuthService
   ) { }
 
-
+ 
   ngOnInit(): void {
     this.httpError$ = this.httpS.getHttpErrorSubject$();
     this.httpSuccess$ = this.httpS.getHttpSuccessSubject$();
