@@ -115,7 +115,7 @@ export class FeatCardComponent {
       }
     } else {
       this.isUserNotConnected();
-      return;
+      this.isFavorite = false;
     }
   }
 
