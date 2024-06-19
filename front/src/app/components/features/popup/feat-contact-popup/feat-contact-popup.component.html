@@ -1,68 +1,54 @@
 <div class="full-page">
-
-    <div class="full-popup">
-       <div class="container-btn">
-        <svg 
-        (click)="onCancelContactPopupForm()" 
-        xmlns="http://www.w3.org/2000/svg" 
-        width="30" 
-        height="30" 
-        viewBox="0 0 24 24"
-        class="btn-cancel"
-        >
-            <path 
-            fill="none" 
-            d="M0 0h24v24H0z"
-            />
-            <path 
-            d="M18 6L6 18M6 6l12 12" 
-            stroke="currentColor" 
-            stroke-width="1" 
-            stroke-linecap="round" 
-            stroke-linejoin="round"
-            />
-           </svg>
-        </div>
-
-        <div *ngIf="!isAdminMode">
-          <h1>Contactez-nous!</h1>
-            <p>Nous sommes là pour vous aider et comprendre tout problème que vous pourriez rencontrer lors de l'utilisation de notre application. N'hésitez pas à nous faire part de vos préoccupations et de vos suggestions. Votre retour est essentiel pour nous améliorer et vous offrir la meilleure expérience possible.</p>
-        </div>
-
-        <div *ngIf="isAdminMode" class="container-user-datas">
-          <h2>Vous souhaitez envoyer un message à l'utilisateur :</h2>
-            <ul>
-              <li>{{ selectedUser.firstname }}</li>
-              <li>{{ selectedUser.lastname }}</li>
-              <li>{{ selectedUser.email }}</li>
-            </ul>
-        </div>
-
-  
-          <form>
-            <textarea 
-            name="textarea" 
-            id="textarea" 
-            cols="30" 
-            rows="10" 
-            placeholder="Exprimez vos questions, préoccupations ou suggestions ici..." 
-            maxlength="1000" 
-            minlength="1"
-            [(ngModel)]="message.resume"
-            ></textarea>
-             <button 
-             type="submit"
-             (click)="onSubmitMessage()"
-             >
-             Envoyer
-             </button>
-          </form>
+  <div class="full-popup">
+    <div class="container-btn">
+      <app-ui-close-icon
+        class="close-icon"
+        (click)="onCancelContactPopupForm()"
+      ></app-ui-close-icon>
     </div>
 
+    <div *ngIf="!isAdminMod">
+      <h1>Contactez-nous!</h1>
+      <p>
+        Nous sommes là pour vous aider et comprendre tout problème que vous
+        pourriez rencontrer lors de l'utilisation de notre application.
+        N'hésitez pas à nous faire part de vos préoccupations et de vos
+        suggestions. Votre retour est essentiel pour nous améliorer et vous
+        offrir la meilleure expérience possible.
+      </p>
+    </div>
+
+    <div *ngIf="isAdminMod" class="container-user-datas">
+      <h2>Vous souhaitez envoyer un message à l'utilisateur :</h2>
+      <ul>
+        <li>{{ selectedUser.firstname }}</li>
+        <li>{{ selectedUser.lastname }}</li>
+        <li>{{ selectedUser.email }}</li>
+      </ul>
+    </div>
+
+    <form>
+      <textarea
+        name="textarea"
+        id="textarea"
+        cols="30"
+        rows="10"
+        placeholder="Exprimez vos questions, préoccupations ou suggestions ici..."
+        maxlength="1000"
+        minlength="1"
+        [(ngModel)]="message.resume"
+      ></textarea>
+      <app-ui-button
+        class="button"
+        type="submit"
+        buttonName="Envoyer"
+        [isButtonEnabled]="true"
+        (click)="onSubmitMessage()"
+      ></app-ui-button>
+    </form>
+  </div>
 </div>
 
-<div 
-class="container-loader" 
-*ngIf="isLoadingComposantActive">
+<div class="container-loader" *ngIf="isLoadingComposantActive">
   <app-feat-loader></app-feat-loader>
 </div>

@@ -17,9 +17,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @Component
 public class AccessDeniedHandler implements org.springframework.security.web.access.AccessDeniedHandler {
 
-    // Cette class permet de renvoyer au FRONT les erreurs liées aux problèmes d'accès à une ressource
-    // Elle est déclenchée automatiquement par Spring lorsqu'une requête authentifiée essaie d'accéder à une ressource mais que le rôle de l'utilisateur n'est pas le bon
-
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
 

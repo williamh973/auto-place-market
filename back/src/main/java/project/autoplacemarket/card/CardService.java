@@ -19,30 +19,11 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class CardService {
-
     private final CardRepository cardRepository;
     private final UserRepository userRepository;
     private final FavoriteRepository favoriteRepository;
 
-
-    public List<Card> getAll() {
-        return cardRepository.findAll();
-    }
-
-
-
-@Transactional
-public Card addCard(Card card) {
-
-    User user = getCurrentUser();
-    card.setUser(user);
-    card.setTimestamp(new Date());
-
-    return cardRepository.save(card);
-}
-
-
-        private User getCurrentUser() {
+    private User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
 
@@ -53,7 +34,19 @@ public Card addCard(Card card) {
             throw new RuntimeException("Current user not found");
         }
     }
-    
+
+    public List<Card> getAll() {
+        return cardRepository.findAll();
+    }
+
+   @Transactional
+   public Card addCard(Card card) {
+      User user = getCurrentUser();
+      card.setUser(user);
+      card.setTimestamp(new Date());
+
+      return cardRepository.save(card);
+   }
 
     public Card getCardById(Long id) {
         return cardRepository.findById(id)
@@ -77,14 +70,13 @@ public Card addCard(Card card) {
 
     }
 
-@Transactional
-public void deleteCard(Long id) {
-    Card card = cardRepository.findById(id)
+   @Transactional
+   public void deleteCard(Long id) {
+      Card card = cardRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Card not found"));
 
-    favoriteRepository.deleteByCard(card);
-    cardRepository.deleteById(id);
-}
-
+      favoriteRepository.deleteByCard(card);
+      cardRepository.deleteById(id);
+  }
 
 }

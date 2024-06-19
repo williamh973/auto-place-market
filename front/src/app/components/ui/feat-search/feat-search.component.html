@@ -1,105 +1,58 @@
 <div class="full-container">
-
- <div class="filter">
-  
-  <div>
-    <input
-    type="text"
-    name="input-search"
-    id="input-search"
-    placeholder="Rechercher par titre" 
-    [(ngModel)]="titleValueInSearchInput"
-    title="Rechercher par titre"
-    />
-
-
-      <svg (click)="filterCardsByTitle()"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      >
-      <path d="M12 2C6.48 2 2 6.48 
-        2 12c0 2.68 1.05 5.2 2.93 7.07s4.39 
-        2.93 7.07 2.93 5.2-1.05 7.07-2.93S22
-         14.68 22 12c0-5.52-4.48-10-10-10zm8
-          10c0 4.41-3.59 8-8 8s-8-3.59-8-8
-           3.59-8 8-8 8 3.59 8 8zm-7.5-1.5h-1l-2-2v1.5l2
-            2h1v-1zm2.5 0h-1v1h1v-1zm1.5 3a4.5 4.5 0 1
-             1 0-9 4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1
-              0 0 5 2.5 2.5 0 0 0 0-5z" 
-      fill="#bdbdbd"
+  <div class="filter">
+    <div>
+      <input
+        type="text"
+        name="input-search"
+        id="input-search"
+        placeholder="Rechercher par titre"
+        [(ngModel)]="titleValueInSearchInput"
+        title="Rechercher par titre"
       />
-      </svg>
-  </div>
 
-  <div>
-    <input
-    type="number"
-    name="input-price"
-    id="input-price"
-    placeholder="Par prix" 
-    [ngModel]="valueInPriceInput !== 0 ? valueInPriceInput : null"
-    (ngModelChange)="valueInPriceInput = $event"
-    />
+      <app-ui-search-icon
+        class="search-icon"
+        (click)="filterCardsByTitle()"
+      ></app-ui-search-icon>
+    </div>
 
-    <svg (click)="filterCardsByPrice()"
-    xmlns="http://www.w3.org/2000/svg"
-    width="24" 
-    height="24" 
-    viewBox="0 0 24 24"
-    >
-      <path d="M12 2C6.48 2 2 6.48 
-          2 12c0 2.68 1.05 5.2 2.93 7.07s4.39 
-          2.93 7.07 2.93 5.2-1.05 7.07-2.93S22
-           14.68 22 12c0-5.52-4.48-10-10-10zm8
-            10c0 4.41-3.59 8-8 8s-8-3.59-8-8
-             3.59-8 8-8 8 3.59 8 8zm-7.5-1.5h-1l-2-2v1.5l2
-              2h1v-1zm2.5 0h-1v1h1v-1zm1.5 3a4.5 4.5 0 1
-               1 0-9 4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1
-                0 0 5 2.5 2.5 0 0 0 0-5z" 
-      fill="#bdbdbd"
+    <div>
+      <input
+        type="number"
+        name="input-price"
+        id="input-price"
+        placeholder="Par prix"
+        [ngModel]="valueInPriceInput !== 0 ? valueInPriceInput : null"
+        (ngModelChange)="valueInPriceInput = $event"
       />
-    </svg>
+
+      <app-ui-search-icon
+        class="search-icon"
+        (click)="filterCardsByPrice()"
+      ></app-ui-search-icon>
+    </div>
+
+    <div>
+      <input
+        type="number"
+        name="input-kilometric"
+        id="input-kilometric"
+        placeholder="Kilomètrage"
+        [ngModel]="valueInKilometricInput !== 0 ? valueInKilometricInput : null"
+        (ngModelChange)="valueInKilometricInput = $event"
+      />
+
+      <app-ui-search-icon
+        class="search-icon"
+        (click)="filterCardsByKilometric()"
+      ></app-ui-search-icon>
+    </div>
   </div>
-
-  <div>
-    <input
-    type="number"
-    name="input-kilometric"
-    id="input-kilometric"
-    placeholder="Kilomètrage" 
-    [ngModel]="valueInKilometricInput !== 0 ? valueInKilometricInput : null"
-    (ngModelChange)="valueInKilometricInput = $event"
-    />
-
-
-  <svg (click)="filterCardsByKilometric()"
-   xmlns="http://www.w3.org/2000/svg" 
-   width="24" 
-   height="24" 
-   viewBox="0 0 24 24"
-   >
-    <path d="M12 2C6.48 2 2 6.48 
-    2 12c0 2.68 1.05 5.2 2.93 7.07s4.39 
-    2.93 7.07 2.93 5.2-1.05 7.07-2.93S22
-     14.68 22 12c0-5.52-4.48-10-10-10zm8
-      10c0 4.41-3.59 8-8 8s-8-3.59-8-8
-       3.59-8 8-8 8 3.59 8 8zm-7.5-1.5h-1l-2-2v1.5l2
-        2h1v-1zm2.5 0h-1v1h1v-1zm1.5 3a4.5 4.5 0 1
-         1 0-9 4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1
-          0 0 5 2.5 2.5 0 0 0 0-5z" 
-          fill="#bdbdbd"
-          />
-  </svg>
-</div>
-
-</div>
 </div>
 
 <div class="full-no-cards-found-popup">
-  <app-feat-no-cards-found-popup 
-  *ngIf="isNoCardFoundPopupDisplay"
-  [notFoundMessage]="notFoundMessage"
+  <app-feat-no-cards-found-popup
+    *ngIf="isNoCardFoundPopupDisplay"
+    [notFoundMessage]="notFoundMessage"
   ></app-feat-no-cards-found-popup>
-</div> 
+</div>

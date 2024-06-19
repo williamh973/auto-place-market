@@ -6,45 +6,49 @@ import { MessageService } from 'src/app/shared/services/message.service';
 @Component({
   selector: 'app-feat-contact-popup',
   templateUrl: './feat-contact-popup.component.html',
-  styleUrls: ['./feat-contact-popup.component.scss']
+  styleUrls: ['./feat-contact-popup.component.scss'],
 })
 export class FeatContactPopupComponent {
-  
-  @Input() isAdminMode!: boolean;
-  @Input() selectedUser!: User; 
-  @Input() user!: User; 
+  @Input() isAdminMod!: boolean;
+  @Input() selectedUser!: User;
+  @Input() user!: User;
 
-  @Output() onCloseContactPopupFormEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() onCloseContactPopupFormEmit: EventEmitter<boolean> =
+    new EventEmitter<boolean>();
 
   message: Message = new Message('', new Date(), this.user, this.selectedUser);
 
   isContactPopupFormOpen: boolean = false;
   isLoadingComposantActive: boolean = false;
 
-
   constructor(private messageService: MessageService) {}
 
-
   ngOnInit() {
-    console.log("Expéditeur", this.user);
-    console.log("Destinataire", this.selectedUser);
+    console.log('Expéditeur', this.user);
+    console.log('Destinataire', this.selectedUser);
   }
 
   onCancelContactPopupForm() {
-    this.onCloseContactPopupFormEmit.emit(this.isContactPopupFormOpen); 
+    this.onCloseContactPopupFormEmit.emit(this.isContactPopupFormOpen);
   }
 
-
   onSubmitMessage() {
-    if (this.isAdminMode) {
+    if (this.isAdminMod) {
       this.isLoadingComposantActive = true;
 
-      const createMessageObservable = this.messageService.createAdminMessage(this.message, this.user, this.selectedUser);
+      const createMessageObservable = this.messageService.createAdminMessage(
+        this.message,
+        this.user,
+        this.selectedUser
+      );
       createMessageObservable.subscribe(
         (createdMessage) => {
-          console.log(`Message de ${this.user.firstname} envoyé avec succès à ${this.selectedUser.firstname}`, createdMessage);
+          console.log(
+            `Message de ${this.user.firstname} envoyé avec succès à ${this.selectedUser.firstname}`,
+            createdMessage
+          );
           this.isLoadingComposantActive = false;
-    
+
           this.onCloseContactPopupFormEmit.emit(false);
         },
         (error) => {
@@ -55,13 +59,15 @@ export class FeatContactPopupComponent {
     } else {
       this.isLoadingComposantActive = true;
       this.message.receiver = this.selectedUser;
-      
-      const createMessageObservable = this.messageService.createUserMessage(this.message);
+
+      const createMessageObservable = this.messageService.createUserMessage(
+        this.message
+      );
       createMessageObservable.subscribe(
         (createdMessage) => {
           console.log('Message créé avec succès', createdMessage);
           this.isLoadingComposantActive = false;
-      
+
           this.onCloseContactPopupFormEmit.emit(false);
         },
         (error) => {
@@ -71,5 +77,4 @@ export class FeatContactPopupComponent {
       );
     }
   }
-
 }

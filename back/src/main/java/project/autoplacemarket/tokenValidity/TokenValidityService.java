@@ -11,7 +11,6 @@ import project.autoplacemarket.user.UserRepository;
 @Service
 @RequiredArgsConstructor
 public class TokenValidityService {
-
     private final UserRepository userRepository;
 
     public static String getTokenFromRequest(HttpServletRequest request) {
@@ -19,10 +18,8 @@ public class TokenValidityService {
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             return authorizationHeader.substring(7);
         }
-
         return null;
     }
-
 
     public static UserDetails getCurrentUserDetails(HttpServletRequest request) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

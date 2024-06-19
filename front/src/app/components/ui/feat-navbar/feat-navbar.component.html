@@ -1,64 +1,55 @@
 <div class="full-header">
-
- <div class="container-title-and-nav">
-
-      <h1><span class="a">A</span>uto <span class="p">P</span>lace <span class="m">M</span>arket</h1>
+  <div class="container-title-and-nav">
+    <app-ui-title></app-ui-title>
 
     <nav>
       <ul>
         <li *ngFor="let menuItem of menuItems">
-          <a (click)="onMenuItemClick(menuItem)">{{ menuItem.label }}</a>
+          <app-ui-button
+            class="button"
+            [buttonName]="menuItem.label"
+            [isButtonEnabled]="true"
+            (click)="onMenuItemClick(menuItem)"
+            >{{ menuItem.label }}</app-ui-button
+          >
         </li>
       </ul>
     </nav>
-    
- </div>
-
+  </div>
 </div>
 
-
-<app-feat-edit-card-form 
-class="edit-card-form"
-*ngIf="isEditCardFormOpen"
-[createMode]="true"
-(onCloseEditCardFormEmit)="onRecevedMethodForCloseEditCardForm($event)"
+<app-feat-edit-card-form
+  class="edit-card-form"
+  *ngIf="isEditCardFormOpen"
+  [isCreateMod]="true"
+  (onCloseEditCardFormEmit)="onRecevedMethodForCloseEditCardForm($event)"
 ></app-feat-edit-card-form>
 
 <app-feat-contact-popup
-class="contact-form-popup"
-*ngIf="isContactPopupFormOpen"
-(onCloseContactPopupFormEmit)="onRecevedMethodForCloseContactForm($event)"
+  class="contact-form-popup"
+  *ngIf="isContactPopupFormOpen"
+  (onCloseContactPopupFormEmit)="onRecevedMethodForCloseContactForm($event)"
 >
-</app-feat-contact-popup> 
+</app-feat-contact-popup>
 
 <div class="full-popup-account">
-  <app-feat-account-popup 
+  <app-feat-account-popup
     class="popup-account"
     *ngIf="accountPopupService.isAccountPopupOpen$ | async"
-    ></app-feat-account-popup>
+  ></app-feat-account-popup>
 </div>
 
-<div 
-class="container-search-bar"
->
+<div class="container-search-bar">
   <div
-  class="search-bar"
-  [ngStyle]="{ 
-    'animation-delay': delaySecondsForAnimationSearchBar + 's' }"
+    class="search-bar"
+    [ngStyle]="{
+      'animation-delay': delaySecondsForAnimationSearchBar + 's'
+    }"
   >
-    <app-feat-search 
-    *ngIf="isComputerResolution"
-    ></app-feat-search>
+    <app-feat-search *ngIf="isComputerResolution"></app-feat-search>
 
-    <app-search-responsive-tablet 
-    *ngIf="isTabletResolution"
+    <app-search-responsive-tablet
+      *ngIf="isTabletResolution"
     ></app-search-responsive-tablet>
-    
   </div>
-
 </div>
-
-
-
-
-

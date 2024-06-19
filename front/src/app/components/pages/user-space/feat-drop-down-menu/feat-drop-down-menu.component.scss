@@ -1,60 +1,56 @@
-* {
-    font-family: Helvetica, sans-serif;
-    color: whitesmoke;
-  }
-
-  li {
-    list-style-type: none;
-  }  
+li {
+  list-style-type: none;
+}
 
 .dropdown {
-    width: 250px;
-    position: relative;
-    display: inline-block;
-    background-color:  rgba(0, 0, 0, 0.866);
-    border: 2px solid whitesmoke;
-    border-radius: 10px;
-    text-align: center;
-  }
-  
-  .dropdown:hover {
-    border: 2px solid rgb(0, 177, 0);
-    transition: all 100ms;
-    cursor: pointer;
-    scale: 1.05;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-  .dropdown-button {
-    background-color:  rgba(0, 0, 0, 0.866);
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .dropdown-content {
-    width: 100%;
-    min-width: 100%;
-    display: none;
-    position: absolute;
-    background-color:  rgba(0, 0, 0, 0.866);
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .dropdown-content a {
-    padding: 12px 0;
-    text-decoration: none;
-    display: block;
-    border-radius: 10px;
-  }
-  
-  .dropdown-content a:hover {
-    background-color:  rgba(81, 81, 81, 0.866);
-    cursor: pointer;
-  }
+  color: whitesmoke;
+  width: 250px;
+  position: relative;
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.866);
+  border: 2px solid whitesmoke;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.dropdown:hover {
+  border: 2px solid rgb(0, 177, 0);
+  transition: all 100ms;
+  cursor: pointer;
+  scale: 1.05;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-button {
+  background-color: rgba(0, 0, 0, 0.866);
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  width: 100%;
+  min-width: 100%;
+  display: none;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.866);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  padding: 12px 0;
+  text-decoration: none;
+  display: block;
+  border-radius: 10px;
+}
+
+.dropdown-content a:hover {
+  background-color: rgba(81, 81, 81, 0.866);
+  cursor: pointer;
+}

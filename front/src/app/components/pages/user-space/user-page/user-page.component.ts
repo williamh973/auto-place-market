@@ -12,27 +12,35 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 import { TokenValidityService } from 'src/app/shared/services/token-validity.service';
 import { TokenService } from 'src/app/shared/services/token.service';
 
- 
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
-  styleUrls: ['./user-page.component.scss']
+  styleUrls: ['./user-page.component.scss'],
 })
 export class UserPageComponent {
+  user: User = new User(
+    '',
+    '',
+    '',
+    '',
+    false,
+    [],
+    [],
+    [],
+    'ROLE_USER' || 'ROLE_ADMIN'
+  );
 
-  user: User = new User('', '', '', '', false, [], [], [], 'ROLE_USER' || 'ROLE_ADMIN');
- 
   favoriteCardList: Card[] = [];
-  
+
   messageListCreatedByUser: Message[] = [];
   filteredMessageListCreatedByUser: Message[] = [];
-  
-  role!: "ROLE_USER" | "ROLE_ADMIN";
+
+  role!: 'ROLE_USER' | 'ROLE_ADMIN';
 
   isFavoriteListOpen: boolean = false;
   isUserCardListOpen: boolean = false;
   isEditCardFormOpen: boolean = false;
-  isAnimationTrackHttpStatusActive: boolean = false; 
+  isAnimationTrackHttpStatusActive: boolean = false;
   isGetDataOpen: boolean = false;
   isAdminCardListOpen: boolean = false;
   isConfirmDeleteCurrentUserPopupOpen: boolean = false;
@@ -42,171 +50,173 @@ export class UserPageComponent {
   isUserDisabledListOpen: boolean = false;
   isPersonnalInformationPopupOpen: boolean = false;
 
-
   adminMainMenuItems: Menu[] = [
     new Menu('Voir les annonces', ''),
-    new Menu('Déconnexion', '')
+    new Menu('Déconnexion', ''),
   ];
 
   userMainMenuItems: Menu[] = [
     new Menu('Poster une annonce', ''),
     new Menu('Mes voitures', ''),
     new Menu('Mes favoris', ''),
-    new Menu('Déconnexion', '')
+    new Menu('Déconnexion', ''),
   ];
 
-
-  constructor( 
+  constructor(
     private dbUser: DbUserService,
     private tokenS: TokenService,
     private lsService: LocalStorageService,
     private favoriteService: FavoriteService,
-    private tokenValidityService : TokenValidityService,
+    private tokenValidityService: TokenValidityService,
     private router: Router
-    ) {}
+  ) {}
 
-
-    ngOnInit() {
-
-      this.tokenS._getTokenDetailsSubject$()
-       .pipe(
+  ngOnInit() {
+    this.tokenS
+      ._getTokenDetailsSubject$()
+      .pipe(
         map((decodedToken: any) => ({
-          role: decodedToken.role
+          role: decodedToken.role,
         }))
-      ).subscribe((tokenDetails: any) => {
+      )
+      .subscribe((tokenDetails: any) => {
         this.role = tokenDetails.role;
       });
 
-      this.dbUser.getCurrentUserData().subscribe(
-        (user: User) => {
-          this.user = user;          
-        },
-        (error: any) => {
-          console.error("Erreur lors de la récupération des données de l'utilisateur :", error);
-        }
-      );
-    
-      this.tokenValidityService.getTokenValidity().pipe(
-        catchError(error => {
+    this.dbUser.getCurrentUserData().subscribe(
+      (user: User) => {
+        this.user = user;
+      },
+      (error: any) => {
+        console.error(
+          "Erreur lors de la récupération des données de l'utilisateur :",
+          error
+        );
+      }
+    );
+
+    this.tokenValidityService
+      .getTokenValidity()
+      .pipe(
+        catchError((error) => {
           if (error.status === 401) {
-            return of(false); 
+            return of(false);
           }
           this.onLogout();
           this.lsService.clearTokenAndUserEmail();
           this.tokenS.resetToken();
-          this.router.navigate(["/home"]);
+          this.router.navigate(['/home']);
           throw error;
         })
-      ).subscribe();
-        
+      )
+      .subscribe();
+  }
+
+  onAdminMainMenuItemClick(menuItem: Menu) {
+    if (menuItem.label === 'Voir les annonces') {
+      this.showCardList();
+    } else if (menuItem.label === 'Déconnexion') {
+      this.onLogout();
     }
+  }
 
-    
-    onAdminMainMenuItemClick(menuItem: Menu) {
-      if (menuItem.label === 'Voir les annonces') {
-        this.showCardList();
-
-      }  else if (menuItem.label === 'Déconnexion') {
-        this.onLogout();
-      } 
+  onUserMainMenuItemClick(menuItem: Menu) {
+    if (menuItem.label === 'Poster une annonce') {
+      this.onEditCardFormOpen();
+    } else if (menuItem.label === 'Mes voitures') {
+      this.loadUserCardList();
+    } else if (menuItem.label === 'Mes favoris') {
+      this.loadFavoriteCardList();
+    } else if (menuItem.label === 'Déconnexion') {
+      this.onLogout();
     }
+  }
 
-    onUserMainMenuItemClick(menuItem: Menu) {
-      if (menuItem.label === 'Poster une annonce') {
-        this.onEditCardFormOpen();
+  showCardList() {
+    this.isAdminCardListOpen = !this.isAdminCardListOpen;
+  }
 
-      }  else if (menuItem.label === 'Mes voitures') {
-        this.loadUserCardList();
+  onLogout(): void {
+    this.lsService.clearTokenAndUserEmail();
+    this.tokenS.resetToken();
+    this.router.navigate(['/home']);
+  }
 
-      } else if (menuItem.label === 'Mes favoris') {
-        this.loadFavoriteCardList();
+  onEditCardFormOpen() {
+    this.isEditCardFormOpen = !this.isEditCardFormOpen;
+  }
 
-      } else if (menuItem.label === 'Déconnexion') {
-        this.onLogout();
-      } 
-    }
+  loadUserCardList() {
+    this.isUserCardListOpen = !this.isUserCardListOpen;
+  }
 
-    showCardList() {
-      this.isAdminCardListOpen = !this.isAdminCardListOpen
-    }
+  loadFavoriteCardList() {
+    this.isFavoriteListOpen = !this.isFavoriteListOpen;
+    if (this.isFavoriteListOpen) {
+      const userEmailInLocalStorage = localStorage.getItem('userEmail');
 
-    onLogout(): void {
-      this.lsService.clearTokenAndUserEmail();
-      this.tokenS.resetToken();
-      this.router.navigate(["/home"]);
-    }
-
-    onEditCardFormOpen() {
-      this.isEditCardFormOpen = !this.isEditCardFormOpen;
-    }
-
-    loadUserCardList() {
-      this.isUserCardListOpen = !this.isUserCardListOpen
-    }
-    
-    loadFavoriteCardList() {
-      this.isFavoriteListOpen = !this.isFavoriteListOpen;
-      if (this.isFavoriteListOpen) {
-        const userEmailInLocalStorage = localStorage.getItem('userEmail');
-        if (userEmailInLocalStorage) {
-          this.favoriteService.getFavoriteList(userEmailInLocalStorage).subscribe(
-            (favoriteList: Favorite[]) => { 
-              this.favoriteCardList = favoriteList.map(favorite => favorite.card);
-            },
-            (error: any) => {
-              console.log("Erreur lors de la récupération des favoris :", error);
-            }
-          );
-        } else {
-          console.log("L'utilisateur n'est pas connecté.");
+      this.favoriteService.getCurrentUserFavoriteList().subscribe(
+        (favoriteList: Favorite[]) => {
+          this.favoriteCardList = favoriteList.map((favorite) => favorite.card);
+        },
+        (error: any) => {
+          console.log('Erreur lors de la récupération des favoris :', error);
         }
-      } else {
-        this.isFavoriteListOpen = false; 
-      }
-    }
-    
-    onForCloseEditCardForm(isEditCardFormOpen: boolean) {
-      this.isEditCardFormOpen = isEditCardFormOpen;
-    }
+      );
 
-    onForOpenConfirmDeleteCurrentUserPopup() {
-      this.isConfirmDeleteCurrentUserPopupOpen = !this.isConfirmDeleteCurrentUserPopupOpen
+      console.log("L'utilisateur n'est pas connecté.");
+    } else {
+      this.isFavoriteListOpen = false;
     }
+  }
 
-    onForCloseConfirmDeleteUserPopup(isConfirmDeleteCurrentUserPopupOpen: boolean) {
-      this.isConfirmDeleteCurrentUserPopupOpen = isConfirmDeleteCurrentUserPopupOpen;
-    }
+  onForCloseEditCardForm(isEditCardFormOpen: boolean) {
+    this.isEditCardFormOpen = isEditCardFormOpen;
+  }
 
-    onForOpenContactFormPopup(isContactPopupFormOpen: boolean) {
-      this.isContactPopupFormOpen = isContactPopupFormOpen;
-    }
+  onForOpenConfirmDeleteCurrentUserPopup() {
+    this.isConfirmDeleteCurrentUserPopupOpen =
+      !this.isConfirmDeleteCurrentUserPopupOpen;
+  }
 
-    onForCloseContactForm(isContactPopupFormOpen: boolean) {
-      this.isContactPopupFormOpen = isContactPopupFormOpen;
-    }
+  onForCloseConfirmDeleteUserPopup(
+    isConfirmDeleteCurrentUserPopupOpen: boolean
+  ) {
+    this.isConfirmDeleteCurrentUserPopupOpen =
+      isConfirmDeleteCurrentUserPopupOpen;
+  }
 
-    onForLoadUserReceivedMessageList() {
-      this.isUserReceivedMessageListOpen = !this.isUserReceivedMessageListOpen
-    }
+  onForOpenContactFormPopup(isContactPopupFormOpen: boolean) {
+    this.isContactPopupFormOpen = isContactPopupFormOpen;
+  }
 
-    onForLoadUserMessageList() {
-      this.isUserMessageListOpen = !this.isUserMessageListOpen
-    }
+  onForCloseContactForm(isContactPopupFormOpen: boolean) {
+    this.isContactPopupFormOpen = isContactPopupFormOpen;
+  }
 
-    onForOpenGetData() {
-      this.isGetDataOpen = !this.isGetDataOpen
-    }
+  onForLoadUserReceivedMessageList() {
+    this.isUserReceivedMessageListOpen = !this.isUserReceivedMessageListOpen;
+  }
 
-    onForLoadUserDisabledList() {
-      this.isUserDisabledListOpen = !this.isUserDisabledListOpen
-    }
+  onForLoadUserMessageList() {
+    this.isUserMessageListOpen = !this.isUserMessageListOpen;
+  }
 
-    onForLoadPersonnalInformation() {
-      this.isPersonnalInformationPopupOpen = !this.isPersonnalInformationPopupOpen
-    }
+  onForOpenGetData() {
+    this.isGetDataOpen = !this.isGetDataOpen;
+  }
 
-    onForClosePersonnalInformation() {
-      this.isPersonnalInformationPopupOpen = !this.isPersonnalInformationPopupOpen;
-    }
+  onForLoadUserDisabledList() {
+    this.isUserDisabledListOpen = !this.isUserDisabledListOpen;
+  }
 
+  onForLoadPersonnalInformation() {
+    this.isPersonnalInformationPopupOpen =
+      !this.isPersonnalInformationPopupOpen;
+  }
+
+  onForClosePersonnalInformation() {
+    this.isPersonnalInformationPopupOpen =
+      !this.isPersonnalInformationPopupOpen;
+  }
 }

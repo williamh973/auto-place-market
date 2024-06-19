@@ -17,9 +17,7 @@ import java.util.Set;
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
 public class UserController {
-
     private final UserRepository userRepository;
-
 
     @GetMapping("/email/{email}")
     public ResponseEntity<User> getUserByEmail(@PathVariable String email, HttpServletRequest request) throws AccessDeniedException {
@@ -117,7 +115,6 @@ public class UserController {
                     .orElseThrow(() -> new RuntimeException("User not found"));
 
             user.setBlocked(true);
-
             userRepository.save(user);
 
             return ResponseEntity.noContent().build();
@@ -137,7 +134,6 @@ public class UserController {
                     .orElseThrow(() -> new RuntimeException("User not found"));
 
             user.setBlocked(false);
-
             userRepository.save(user);
 
             return ResponseEntity.noContent().build();
@@ -156,7 +152,6 @@ public class UserController {
                     .orElseThrow(() -> new RuntimeException("User not found"));
 
             user.setFirstname(newFirstname);
-
             userRepository.save(user);
 
             return ResponseEntity.noContent().build();
@@ -207,8 +202,5 @@ public class UserController {
 
         userRepository.delete(user);
     }
-
-
-
 
 }

@@ -1,0 +1,18 @@
+svg {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: rgba(128, 128, 128, 0.344);
+}
+
+svg:hover {
+  cursor: pointer;
+  scale: 1.05;
+  transition: 100ms;
+  background-color: rgba(128, 128, 128, 0.344);
+}
+
+svg:active {
+  transform: scale(0.9);
+  transition: 100ms;
+  background-color: rgba(128, 128, 128, 0.344);
+}

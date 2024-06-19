@@ -31,13 +31,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             HttpServletResponse response,
             FilterChain filterChain
     ) throws ServletException, IOException {
-        /* Extraire la partie "authorization" du header de la requête entrante */
         final String authHeader = request.getHeader("Authorization");
-        /* Mon authHeader ressemble à : {"Authorization": "Bearer KAOJCZNCIZA192EN?.C_QCIENAC?QC"}*/
         final String jwt;
         final String userEmail;
 
-        /* On vérifie si authHeader n'est pas null ET si la valeur de la clé "Authorization" commence par "Bearer " */
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             request.setAttribute("no_jwt_provided", "No JWT provided");
             filterChain.doFilter(request, response);
@@ -47,32 +44,24 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         try {
-            /* J'implémente la logique du filtre JWT*/
-            jwt = authHeader.substring(7); /* j'extraie la valeur du token après "Bearer "*/
+            jwt = authHeader.substring(7);
             userEmail = jwtService.extractUsername(jwt);
 
-            /* Si le user n'est pas null & qu'il n'est pas déjà connecté */
             if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                /* Je récupère en BDD l'utilisateur dont l'email correspond à "userEmail" */
                 UserDetails userDetails = userDetailsService.loadUserByUsername(userEmail);
 
-                /* Si le token est valide */
                 if (jwtService.isTokenValid(jwt, userDetails)) {
-                    /* Crée un nouvel objet "Authentication" pour dialoguer avec SecurityContextHolder */
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                             userDetails,
-                            null, /* L'étape d'auth a déjà été faite, on utilise ici juste pour update le security context holder*/
-                            userDetails.getAuthorities() /* Permet de récupérer le rôle de notre User */
+                            null,
+                            userDetails.getAuthorities()
                     );
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
-                    /*Mettre à jour le SecurityContextHolder pour le notifier de cette nouvelle authentification */
                     SecurityContextHolder.getContext().setAuthentication(authToken);
                 }
             }
 
         } catch (Exception error) {
-            /* S'il y a eu une erreur durant le processus, "j'attrape l'erreur" pour la remonter au client */
             if (error instanceof ExpiredJwtException) {
                 request.setAttribute("expired_exception", error.getMessage());
             }
@@ -81,7 +70,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
         }
 
-        /* Une fois le traitement terminé, je passe au filtre suivant */
         filterChain.doFilter(request, response);
 
     }

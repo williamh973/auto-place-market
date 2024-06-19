@@ -1,25 +1,51 @@
 <div class="full-page">
+  <form>
+    <app-ui-close-icon
+      class="close-icon"
+      (click)="onCancelSignInForm()"
+    ></app-ui-close-icon>
 
-<form>
-    <svg (click)="onCancelSignInForm()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 22 22">
-        <path fill="none" d="M0 0h24v24H0z"/>
-        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
- 
-    <h2 name="connexion">Je me connecte</h2>
+    <h2 id="form-title">Je me connecte</h2>
 
-    <label for="user-email">Email</label>
-    <input type="email" name="user-email" id="user-email" [(ngModel)]="userAuth.email" placeholder="Taper votre email">
+    <div>
+      <label for="user-email">Email</label>
+      <input
+        type="email"
+        name="user-email"
+        id="user-email"
+        maxlength="100"
+        minlength="1"
+        [(ngModel)]="userAuth.email"
+        #inputEmail="ngModel"
+        placeholder="Taper votre email"
+      />
+    </div>
 
-    <label id="label-password" for="user-password">Mot de passe</label>
-    <input type="password" name="user-password" id="user-password"  autocomplete="on" [(ngModel)]="userAuth.password" placeholder="Taper votre mot de passe">    
-    
-    <button type="submit" (click)="onSubmitAuth()">Connexion</button>
-</form>
-
+    <div>
+      <label id="label-password" for="user-password">Mot de passe</label>
+      <input
+        type="password"
+        name="user-password"
+        id="user-password"
+        autocomplete="on"
+        maxlength="100"
+        minlength="1"
+        [(ngModel)]="userAuth.password"
+        #inputPassword="ngModel"
+        placeholder="Taper votre mot de passe"
+      />
+    </div>
+    <app-ui-button
+      class="button"
+      (click)="onSubmitAuth()"
+      type="submit"
+      buttonName="Connexion"
+      [isButtonEnabled]="isSubmitButtonEnabled"
+    ></app-ui-button>
+  </form>
 </div>
 
 <app-track-http-status
-class="track-http-status"
-[class.track-http-status-animate]="isAnimationPopupSignInStatusActive"
+  class="track-http-status"
+  [class.track-http-status-animate]="isAnimationPopupSignInStatusActive"
 ></app-track-http-status>

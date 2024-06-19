@@ -17,12 +17,8 @@ import project.autoplacemarket.util.JwtService;
 @RestController
 @RequestMapping("/token")
 public class TokenValidityController {
-
     private final JwtService jwtService;
     private final AuthService authService;
-
-
-
 
     @GetMapping("/check-token-validity")
     public ResponseEntity<?> checkTokenValidity(HttpServletRequest request) {

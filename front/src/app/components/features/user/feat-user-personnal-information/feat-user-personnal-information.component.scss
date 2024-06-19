@@ -1,98 +1,95 @@
-* {
-    font-family: Helvetica, sans-serif;
-  }
-
-  .full-page {
-    width: 90%;
-    margin: 60px auto;
+.full-page {
+  width: 90%;
+  margin: 60px auto;
 }
 
 .container-title {
-    font-size: 25px;
-    cursor: default;
-    text-align: center;
-    padding: 20px 0;
-    background-color:  rgba(81, 81, 81, 0.492);
-    margin: 30px 0;
-    color: whitesmoke;
+  font-size: 25px;
+  cursor: default;
+  text-align: center;
+  padding: 20px 0;
+  background-color: rgba(81, 81, 81, 0.492);
+  margin: 30px 0;
+  color: whitesmoke;
 }
 
 .container-description-text {
-    text-align: center;
-    padding: 40px 0;
-    margin: auto;
-    color: whitesmoke;
+  text-align: center;
+  padding: 40px 0;
+  margin: auto;
+  color: whitesmoke;
 }
 
 .container-user-datas {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: default;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
 }
 
 .container-user-datas table {
-    width: 50%;
-    padding: 20px;
-    border-collapse: collapse;
+  width: 50%;
+  padding: 20px;
+  border-collapse: collapse;
 }
 
-.container-user-datas tr, .container-user-datas th, .container-user-datas td {
-    padding: 10px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+.container-user-datas tr,
+.container-user-datas th,
+.container-user-datas td {
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .container-user-datas tr:hover {
-    transition: all 100ms;
-    scale: 1.05;
-    background-color: rgb(35, 35, 35);
+  transition: all 100ms;
+  scale: 1.05;
+  background-color: rgb(35, 35, 35);
 }
 
-
 .edit-button {
-    width: 150px;
-    height: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: whitesmoke;
-    background-color:  rgba(0, 0, 0, 0.866);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: auto;
+  width: 150px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: whitesmoke;
+  background-color: rgba(0, 0, 0, 0.866);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: auto;
 }
 
 .edit-button:hover {
-    border: 2px solid rgb(0, 177, 0);
-    transition: all 100ms;
-    cursor: pointer;
-    scale: 1.05;
+  border: 2px solid rgb(0, 177, 0);
+  transition: all 100ms;
+  cursor: pointer;
+  scale: 1.05;
 }
 
 .container-btn-password {
-    width: 100%;
-    height: 100px;
-    display: flex;
+  width: 100%;
+  height: 100px;
+  display: flex;
 }
 
 .btn-update-password {
-    width: 250px;
-    padding: 10px;
-    margin: auto;
-    margin-bottom: 20px;
-    border: 2px solid whitesmoke;
-    border-radius: 10px;
-    background-color:  rgba(0, 0, 0, 0.866);
-    color: whitesmoke;
-    font-size: 15px;
-  }
+  width: 250px;
+  padding: 10px;
+  margin: auto;
+  margin-bottom: 20px;
+  border: 2px solid whitesmoke;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.866);
+  color: whitesmoke;
+  font-size: 15px;
+}
 
-  .btn-update-password:hover {
-    border: 2px solid rgb(0, 177, 0);
-    transition: all 100ms;
-    cursor: pointer;
-  }
+.btn-update-password:hover {
+  border: 2px solid rgb(0, 177, 0);
+  transition: all 100ms;
+  cursor: pointer;
+}

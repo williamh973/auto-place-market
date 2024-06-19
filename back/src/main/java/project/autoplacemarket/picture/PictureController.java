@@ -10,16 +10,12 @@ import java.util.List;
 @RequestMapping("/pictures")
 @RequiredArgsConstructor
 public class PictureController {
-
     private final PictureService pictureService;
-
-
 
     @GetMapping("/all")
     public List<Picture> getAll() {
         return pictureService.getAll();
     }
-
 
     @GetMapping("/{id}")
     public Picture getPictureById(@PathVariable("id") Long id) {
@@ -31,8 +27,6 @@ public class PictureController {
     return pictureService.addPicture(picture);
     }
 
-
-
     @PutMapping("/update/{id}")
     public Picture updatePicture(@RequestBody Picture picture, @PathVariable("id") Long id) {
         return pictureService.updatePicture(picture, id);
@@ -42,6 +36,5 @@ public class PictureController {
     public void deletePicture(@PathVariable("id") Long id) {
         pictureService.deletePicture(id);
     }
-
 
 }

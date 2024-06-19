@@ -48,13 +48,11 @@ public class MessageService {
         User user = getCurrentUser();
         message.setUser(user);
         message.setTimestamp(new Date());
-
         return messageRepository.save(message);
 
     }
 
     public Message addAdminMessage(Message message) {
-
             message.setTimestamp(new Date());
             return messageRepository.save(message);
     }

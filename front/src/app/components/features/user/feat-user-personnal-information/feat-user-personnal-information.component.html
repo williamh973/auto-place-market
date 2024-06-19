@@ -1,44 +1,67 @@
 <div class="full-page">
-        <div class="container-title">
-            <p>Vos informations personnelles</p>
-        </div>
+  <div class="container-title">
+    <p>Vos informations personnelles</p>
+  </div>
 
-        <div class="container-description-text">
-            <p>Si vous le souhaitez, vous pouvez modifier vos données insérées lors de votre inscription sur le site</p>
-        </div>
-        
-        <div class="container-user-datas">
-            <table>
-                <tr>
-                  <th>Prénom</th>
-                  <td>{{ user.firstname }}</td>
-                  <td><button title="modifier le prénom ?" class="edit-button" (click)="onUpdateFirstname()">Modifier le prénom</button></td>
-                </tr>
-                <tr>
-                  <th>Nom</th>
-                  <td>{{ user.lastname }}</td>
-                  <td><button title="modifier le nom ?" class="edit-button" (click)="onUpdateLastname()">Modifier le nom</button></td>
-                </tr>
-            </table>
-        </div>
+  <div class="container-description-text">
+    <p>
+      Si vous le souhaitez, vous pouvez modifier vos données insérées lors de
+      votre inscription sur le site
+    </p>
+  </div>
 
-        <div class="container-btn-password">
-           <button class="btn-update-password">Changer mon mot de passe</button>
-        </div>
+  <div class="container-user-datas">
+    <table>
+      <tr>
+        <th>Prénom</th>
+        <td>{{ user.firstname }}</td>
+        <td>
+          <app-ui-button
+            title="modifier le prénom ?"
+            class="button"
+            type="button"
+            buttonName="Modifier le prénom"
+            [isButtonEnabled]="true"
+            (click)="onUpdateFirstname()"
+          ></app-ui-button>
+        </td>
+      </tr>
+      <tr>
+        <th>Nom</th>
+        <td>{{ user.lastname }}</td>
+        <td>
+          <app-ui-button
+            title="modifier le nom ?"
+            class="button"
+            type="button"
+            buttonName="Modifier le prénom"
+            [isButtonEnabled]="true"
+            (click)="onUpdateLastname()"
+          ></app-ui-button>
+        </td>
+      </tr>
+    </table>
+  </div>
 
-    </div>
-
-
+  <div class="container-btn-password">
+    <app-ui-button
+      title="modifier le nom ?"
+      class="button"
+      type="button"
+      buttonName="Changer mon mot de passe"
+      [isButtonEnabled]="false"
+      (click)="onUpdateLastname()"
+    ></app-ui-button>
+  </div>
+</div>
 
 <app-feat-update-information-form
-*ngIf="isUpdateinformationFormOpen"
-(onUpdateinformationFormOpen)="onForCloseUpdateinformationForm($event)"
-[user]="user"
-[dataToUpdate]="dataToUpdate"
+  *ngIf="isUpdateinformationFormOpen"
+  (onUpdateinformationFormOpen)="onForCloseUpdateinformationForm($event)"
+  [user]="user"
+  [dataToUpdate]="dataToUpdate"
 ></app-feat-update-information-form>
 
-<div 
-class="container-loader" 
-*ngIf="isLoadingComposantActive">
-  <app-feat-loader></app-feat-loader> 
-</div>  
+<div class="container-loader" *ngIf="isLoadingComposantActive">
+  <app-feat-loader></app-feat-loader>
+</div>

@@ -8,8 +8,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class PictureService {
-
-
     private final PictureRepository pictureRepository;
 
 
@@ -22,24 +20,18 @@ public class PictureService {
                 .orElseThrow(() -> new RuntimeException(id + "not found"));
     }
 
-public Picture addPicture(Picture picture) {
+    public Picture addPicture(Picture picture) {
     return pictureRepository.save(picture);
 }
 
     public Picture updatePicture(Picture picture, Long id) {
-
         Picture foundPicture = getPictureById(id);
         foundPicture.setSrc(picture.getSrc());
-
-
         return pictureRepository.save(foundPicture);
-
     }
 
     public void deletePicture(Long id) {
         pictureRepository.deleteById(id);
     }
-
-
 
 }

@@ -1,28 +1,28 @@
 .full-page {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .background-image {
-    background-image: url("../../../../assets/img/background-01_2.png");
-    background-repeat: no-repeat;
-    background-size:cover;
-    width: 500px;
-    height: 100vh;
-    color: whitesmoke;
+  background-image: url("../../../../assets/img/background-01_2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 500px;
+  height: 100vh;
+  color: whitesmoke;
 }
 
 .background-image::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.484);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.484);
 }
 
 .container-text {
@@ -42,14 +42,12 @@
   height: 100vh;
   background-color: transparent;
   color: whitesmoke;
-  font-family: Helvetica, sans-serif;
   font-size: 25px;
   text-shadow: 5px 5px 5px black;
   text-align: justify;
   transform: translateX(100%);
   animation: slide-from-down-to-up 60s linear infinite;
 }
-
 
 @keyframes slide-from-down-to-up {
   from {

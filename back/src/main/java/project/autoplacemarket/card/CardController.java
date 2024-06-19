@@ -30,7 +30,6 @@ public class  CardController {
 
     @PostMapping("/add")
     public Card addCard(@RequestBody Card card) {
-        card.setTimestamp(new Date());
     return cardService.addCard(card);
 }
 

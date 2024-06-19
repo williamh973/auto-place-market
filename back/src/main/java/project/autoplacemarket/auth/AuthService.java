@@ -49,13 +49,6 @@ public class AuthService {
 
     public AuthResponse authenticate(AuthRequest request, HttpServletRequest httpRequest) {
 
-
-        /* Permet de comparer le pwd reçu de la request reçue avec le pwd haché de la BDD.
-         * La méthode authenticate() permet surtout de garantir que les informations d'identification sont exactes
-         * Permet de transmettre au contexte de Spring l'utilisateur qui a été trouvé.
-         *  Cela permet de l'utiliser pour autoriser/refuser l'accès aux ressources protégées
-         * S'il n'est pas trouvé, une erreur est levée et la méthode s'arrête.
-         */
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -64,14 +57,11 @@ public class AuthService {
                     )
             );
 
-            /* Si tout va bien et que les informations sont OK, on peut récupérer l'utilisateur */
             User user = repository.findByEmail(request.getEmail()).orElseThrow();
 
-            /* On extrait le rôle de l'utilisateur */
             Map<String, Object> extraClaims = new HashMap<>();
             extraClaims.put("role", user.getRole().toString());
 
-            /* On génère le token avec le rôle */
             String jwtToken = jwtService.generateToken(new HashMap<>(extraClaims), user);
             return AuthResponse.builder()
                     .token(jwtToken)

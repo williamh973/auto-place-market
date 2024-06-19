@@ -35,7 +35,7 @@ public class ApplicationConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService()); /* Which UserDetailsService to user to fetch user from DB, because there are many of them */
+        authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
@@ -45,10 +45,9 @@ public class ApplicationConfig {
         return new BCryptPasswordEncoder();
     }
 
-    /* Authentication Manager : responsible to manage the authentication. It has a method to help us to authenticate the user with Username and Password */
     @Bean
     public AuthenticationManager customAuthenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager(); /* Owns already all the logic */
+        return config.getAuthenticationManager();
     }
 
 

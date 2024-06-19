@@ -1,55 +1,75 @@
-<div class="container-succes" 
-    *ngIf="
-    isCardCreated || 
-    isCardUpdated || 
-    isCardDeleted || 
-    isCardFavoriteAdded || 
-    isCardFavoriteDelete">
-    
-    <p *ngIf="isCardCreated" class="succes">Annonce créée avec succès !</p>
-    <p *ngIf="isCardUpdated" class="succes">Annonce modifiée avec succès !</p>
-    <p *ngIf="isCardDeleted" class="succes">Annonce supprimée avec succès !</p>
-    <p *ngIf="isCardFavoriteAdded" class="succes">Annonce ajoutée aux favoris</p>
-    <p *ngIf="isCardFavoriteDelete" class="succes">Annonce supprimée des favoris</p>
+<div
+  class="container-succes"
+  *ngIf="
+    isCardCreated ||
+    isCardUpdated ||
+    isCardDeleted ||
+    isCardFavoriteAdded ||
+    isCardFavoriteDelete
+  "
+>
+  <p *ngIf="isCardCreated" class="succes">Annonce créée avec succès !</p>
+  <p *ngIf="isCardUpdated" class="succes">Annonce modifiée avec succès !</p>
+  <p *ngIf="isCardDeleted" class="succes">Annonce supprimée avec succès !</p>
+  <p *ngIf="isCardFavoriteAdded" class="succes">Annonce ajoutée aux favoris</p>
+  <p *ngIf="isCardFavoriteDelete" class="succes">
+    Annonce supprimée des favoris
+  </p>
 
-    <svg 
-        *ngIf="isCardCreated || 
-        isCardUpdated || 
-        isCardDeleted || 
-        isCardFavoriteAdded || 
-        isCardFavoriteDelete"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 64 64"
-        width="30"
-        height="30"
-        fill="#4CAF50">
-        
-        <g id="Checkmark">
-          <path
-            fill="#4CAF50"
-            d="M45.924,12.159c-1.562-1.562-4.094-1.562-5.656,0L24.007,30.649L19.732,26.38 c-1.562-1.562-4.094-1.562-5.656,0s-1.562,4.094,0,5.656l6.364,6.364c0.78,0.78,1.805,1.171,2.828,1.171 c1.021,0,2.046-0.391,2.828-1.171l18-18C47.487,16.252,47.487,13.721,45.924,12.159z"/>
-          <path
-            fill="#4CAF50"
-            d="M57,2H7C4.794,2,3,3.794,3,6v52c0,2.206,1.794,4,4,4h50c2.206,0,4-1.794,4-4V6C61,3.794,59.206,2,57,2z M58,58 c0,1.104-0.896,2-2,2H7c-1.104,0-2-0.896-2-2V6c0-1.104,0.896-2,2-2h50c1.104,0,2,0.896,2,2V58z"/>
-        </g>
-    </svg>
+  <app-ui-feedback-success-icon
+    *ngIf="
+      isCardCreated ||
+      isCardUpdated ||
+      isCardDeleted ||
+      isCardFavoriteAdded ||
+      isCardFavoriteDelete
+    "
+  ></app-ui-feedback-success-icon>
 </div>
 
-<div class="container-error"
-    *ngIf="
+<div
+  class="container-error"
+  *ngIf="
     isCardCreatedError ||
     isCardUpdatedError ||
     isCardDeletedError ||
     isCardFavoriteAddedError ||
     isCardFavoritedDeleteError ||
     isUserLoggedInForCreateCard ||
-    isUserLoggedInForAddFavorite">
-    
-    <p *ngIf="isCardCreatedError" class="error">Erreur survenue lors de la création de l'annonce</p>
-    <p *ngIf="isCardUpdatedError" class="error">Erreur survenue lors de la modification de l'annonce</p>
-    <p *ngIf="isCardDeletedError" class="error">Erreur survenue lors de la suppression de l'annonce</p>
-    <p *ngIf="isCardFavoriteAddedError" class="error">Erreur survenue lors de l'ajout du favori</p>
-    <p *ngIf="isCardFavoritedDeleteError" class="error">Erreur survenue lors de la suppression du favori</p>
-    <p *ngIf="isUserLoggedInForCreateCard" class="error">Vous devez être connecté pour créer une annonce</p>
-    <p *ngIf="isUserLoggedInForAddFavorite" class="error">Vous devez être connecté pour ajouter ce favori</p>
+    isUserLoggedInForAddFavorite
+  "
+>
+  <app-ui-feedback-error-icon
+    *ngIf="
+      isCardCreatedError ||
+      isCardUpdatedError ||
+      isCardDeletedError ||
+      isCardFavoriteAddedError ||
+      isCardFavoritedDeleteError ||
+      isUserLoggedInForCreateCard ||
+      isUserLoggedInForAddFavorite
+    "
+  ></app-ui-feedback-error-icon>
+
+  <p *ngIf="isCardCreatedError" class="error">
+    Erreur survenue lors de la création de l'annonce
+  </p>
+  <p *ngIf="isCardUpdatedError" class="error">
+    Erreur survenue lors de la modification de l'annonce
+  </p>
+  <p *ngIf="isCardDeletedError" class="error">
+    Erreur survenue lors de la suppression de l'annonce
+  </p>
+  <p *ngIf="isCardFavoriteAddedError" class="error">
+    Erreur survenue lors de l'ajout du favori
+  </p>
+  <p *ngIf="isCardFavoritedDeleteError" class="error">
+    Erreur survenue lors de la suppression du favori
+  </p>
+  <p *ngIf="isUserLoggedInForCreateCard" class="error">
+    Vous devez être connecté pour créer une annonce
+  </p>
+  <p *ngIf="isUserLoggedInForAddFavorite" class="error">
+    Vous devez être connecté pour ajouter ce favori
+  </p>
 </div>

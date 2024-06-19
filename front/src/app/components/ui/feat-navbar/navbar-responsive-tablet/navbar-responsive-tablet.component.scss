@@ -1,28 +1,28 @@
 * {
-    color: whitesmoke;
+  color: whitesmoke;
 }
-   
+
 .full-header {
-    position: relative;
-    width: 100vw;
-    height: 500px;
-    display: flex;
-    justify-content: space-around;
-    background-image: url("../../../../../assets/img/image_entete.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    opacity: 0; 
-    animation: fadeIn 3s forwards;
+  position: relative;
+  width: 100vw;
+  height: 500px;
+  display: flex;
+  justify-content: space-around;
+  background-image: url("../../../../../assets/img/image_entete.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0;
+  animation: fadeIn 3s forwards;
 }
 .full-header::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 500px;
-    background-color: rgba(0, 0, 0, 0.2);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 500px;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .container-title-and-nav {
@@ -35,7 +35,9 @@
   z-index: 2;
 }
 
-.a, .p, .m {
+.a,
+.p,
+.m {
   font-size: 4vw;
   min-width: 4vw;
 }
@@ -46,7 +48,6 @@ h1 {
   height: 10vh;
   max-height: 10vh;
   font-size: 19px;
-  font-family: cursive, sans-serif;
   letter-spacing: 2px;
   font-style: italic;
   text-align: center;
@@ -73,7 +74,7 @@ h1 {
   cursor: pointer;
   transition: all 200ms;
   border: 2px solid rgb(0, 177, 0);
- }
+}
 
 .dropdown {
   position: relative;
@@ -101,15 +102,14 @@ h1 {
   text-decoration: none;
   display: block;
   font-size: 16px;
-  background-color:  transparent;
+  background-color: transparent;
   border-radius: 10px;
   text-align: center;
-  font-family: sans-serif,Helvetica, Arial;
   cursor: pointer;
 }
 
 .dropdown a:hover {
-  background-color:  rgba(81, 81, 81, 0.866);
+  background-color: rgba(81, 81, 81, 0.866);
   transition: all 200ms;
   cursor: pointer;
 }
@@ -154,14 +154,12 @@ h1 {
   z-index: 1;
 }
 
-
-
 @keyframes fadeIn {
   from {
-      opacity: 0;
+    opacity: 0;
   }
   to {
-      opacity: 1;
+    opacity: 1;
   }
 }
 @keyframes slide-from-right {
@@ -172,6 +170,3 @@ h1 {
     transform: translateX(0%);
   }
 }
-
-
-

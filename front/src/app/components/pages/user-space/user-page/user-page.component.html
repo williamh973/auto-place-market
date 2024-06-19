@@ -1,124 +1,104 @@
 <div class="full-page">
+  <div class="container-head">
+    <div class="container-title">
+      <h1>Bienvenue dans ton espace</h1>
+      <h1 *ngIf="role === 'ROLE_ADMIN'">Administrateur</h1>
 
-<div class="container-head">
-
-  <div class="container-title">
-
-    <h1>Bienvenue dans ton espace</h1>
-    <h1 *ngIf="role === 'ROLE_ADMIN'">Administrateur</h1>
-
-    <div class="lastname-firstname">
-      <ul>
-         <li>{{ user.lastname }}</li>
-         <li>{{ user.firstname }}</li>
-      </ul>
+      <div class="lastname-firstname">
+        <ul>
+          <li>{{ user.lastname }}</li>
+          <li>{{ user.firstname }}</li>
+        </ul>
+      </div>
     </div>
-  </div>
 
-  
     <nav>
       <ul>
         <app-feat-drop-down-menu
-        (isConfirmDeleteCurrentUserPopupOpen)="onForOpenConfirmDeleteCurrentUserPopup()"
-        (isContactPopupFormOpen)="onForOpenContactFormPopup($event)"
-        (isUserReceivedMessageListOpen)="onForLoadUserReceivedMessageList()"
-        (isUserMessageListOpen)="onForLoadUserMessageList()"
-        (isGetDataOpen)="onForOpenGetData()"
-        (isUserDisabledListOpen)="onForLoadUserDisabledList()"
-        (isPersonnalInformationPopupOpen)="onForLoadPersonnalInformation()"
+          (isConfirmDeleteCurrentUserPopupOpen)="
+            onForOpenConfirmDeleteCurrentUserPopup()
+          "
+          (isContactPopupFormOpen)="onForOpenContactFormPopup($event)"
+          (isUserReceivedMessageListOpen)="onForLoadUserReceivedMessageList()"
+          (isUserMessageListOpen)="onForLoadUserMessageList()"
+          (isGetDataOpen)="onForOpenGetData()"
+          (isUserDisabledListOpen)="onForLoadUserDisabledList()"
+          (isPersonnalInformationPopupOpen)="onForLoadPersonnalInformation()"
         >
         </app-feat-drop-down-menu>
 
-        <div 
-        *ngIf="role === 'ROLE_ADMIN'" 
-        class="menu-container">
-           <li *ngFor="let menuItem of adminMainMenuItems">
-             <a class="btn-nav" (click)="onAdminMainMenuItemClick(menuItem)">{{ menuItem.label }}</a>
-           </li> 
+        <div *ngIf="role === 'ROLE_ADMIN'" class="menu-container">
+          <li *ngFor="let menuItem of adminMainMenuItems">
+            <a class="btn-nav" (click)="onAdminMainMenuItemClick(menuItem)">{{
+              menuItem.label
+            }}</a>
+          </li>
         </div>
-        <div 
-        *ngIf="role === 'ROLE_USER'" 
-        class="menu-container">
+        <div *ngIf="role === 'ROLE_USER'" class="menu-container">
           <li *ngFor="let menuItem of userMainMenuItems">
-            <a class="btn-nav" (click)="onUserMainMenuItemClick(menuItem)">{{ menuItem.label }}</a>
-          </li> 
-       </div>
-
+            <a class="btn-nav" (click)="onUserMainMenuItemClick(menuItem)">{{
+              menuItem.label
+            }}</a>
+          </li>
+        </div>
       </ul>
     </nav>
+  </div>
 
+  <app-feat-search
+    *ngIf="isUserCardListOpen || isAdminCardListOpen"
+    class="container-search"
+  ></app-feat-search>
+
+  <app-feat-card-list
+    *ngIf="isAdminCardListOpen || isUserCardListOpen || isFavoriteListOpen"
+    class="container-card-list"
+    [isAdminCardListOpen]="isAdminCardListOpen"
+    [isUserCardListOpen]="isUserCardListOpen"
+    [isFavoriteListOpen]="isFavoriteListOpen"
+    [favoriteCardList]="favoriteCardList"
+  ></app-feat-card-list>
+
+  <app-feat-get-user-datas
+    *ngIf="isGetDataOpen"
+    class="container-user-search"
+    [user]="user"
+  ></app-feat-get-user-datas>
+
+  <app-feat-confirm-delete-current-user-popup
+    *ngIf="isConfirmDeleteCurrentUserPopupOpen"
+    (onisConfirmDeletePopupEmit)="onForCloseConfirmDeleteUserPopup($event)"
+  ></app-feat-confirm-delete-current-user-popup>
+
+  <app-feat-edit-card-form
+    class="edit-card-form"
+    *ngIf="isEditCardFormOpen"
+    [isCreateMod]="true"
+    (onCloseEditCardFormEmit)="onForCloseEditCardForm($event)"
+  ></app-feat-edit-card-form>
+
+  <app-feat-contact-popup
+    class="contact-form"
+    *ngIf="isContactPopupFormOpen"
+    (onCloseContactPopupFormEmit)="onForCloseContactForm($event)"
+  ></app-feat-contact-popup>
+
+  <app-feat-user-personnal-information
+    class="personnal-info-popup"
+    *ngIf="isPersonnalInformationPopupOpen"
+    [user]="user"
+  ></app-feat-user-personnal-information>
+
+  <app-feat-received-messages
+    *ngIf="isUserReceivedMessageListOpen"
+    [user]="user"
+  ></app-feat-received-messages>
+
+  <app-feat-message-history
+    *ngIf="isUserMessageListOpen"
+  ></app-feat-message-history>
+
+  <app-feat-disabled-users-list
+    *ngIf="isUserDisabledListOpen"
+  ></app-feat-disabled-users-list>
 </div>
-
-
-<app-feat-search 
-*ngIf="isUserCardListOpen || 
-isAdminCardListOpen" 
-class="container-search"
-></app-feat-search>
-
-
-<app-feat-card-list
-*ngIf="isAdminCardListOpen || 
-isUserCardListOpen || 
-isFavoriteListOpen" 
-class="container-card-list"
-
-[isAdminCardListOpen]="isAdminCardListOpen"
-[isUserCardListOpen]="isUserCardListOpen"
-[isFavoriteListOpen]="isFavoriteListOpen"
-[favoriteCardList]="favoriteCardList"
-></app-feat-card-list>
-
-
-<app-feat-get-user-datas
-*ngIf="isGetDataOpen"
-class="container-user-search"
-[user]="user"
-></app-feat-get-user-datas> 
-
-
-<app-feat-confirm-delete-current-user-popup
-*ngIf="isConfirmDeleteCurrentUserPopupOpen"
-(onisConfirmDeletePopupEmit)="onForCloseConfirmDeleteUserPopup($event)"
-></app-feat-confirm-delete-current-user-popup>
-
-
-<app-feat-edit-card-form 
-class="edit-card-form"
-*ngIf="isEditCardFormOpen"
-[createMode]="true"
-(onCloseEditCardFormEmit)="onForCloseEditCardForm($event)"
-></app-feat-edit-card-form>
-
-
-<app-feat-contact-popup
-class="contact-form"
-*ngIf="isContactPopupFormOpen"
-(onCloseContactPopupFormEmit)="onForCloseContactForm($event)"
-></app-feat-contact-popup>
-
-
-<app-feat-user-personnal-information
-class="personnal-info-popup"
-*ngIf="isPersonnalInformationPopupOpen"
-[user]="user"
-></app-feat-user-personnal-information>
-
-
-<app-feat-received-messages
-*ngIf="isUserReceivedMessageListOpen"
-[user]="user"
-></app-feat-received-messages>
-
-
-<app-feat-message-history
-*ngIf="isUserMessageListOpen"
-></app-feat-message-history>
-
-
-<app-feat-disabled-users-list
-*ngIf="isUserDisabledListOpen"
-></app-feat-disabled-users-list>
-
-</div>
-

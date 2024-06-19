@@ -1,62 +1,74 @@
 <div class="card-list" *ngIf="isHomePageCardListOpen">
-  <div *ngFor="let card of (filteredCardList.length > 0 ? filteredCardList : cardList); let i = index">
-    <app-feat-card
-    [card]="card"
-    ></app-feat-card>
+  <div
+    *ngFor="
+      let card of filteredCardList.length > 0 ? filteredCardList : cardList;
+      let i = index
+    "
+  >
+    <app-feat-card [card]="card"></app-feat-card>
   </div>
 </div>
 
 <div class="container-user-card-list" *ngIf="isUserCardListOpen">
-  <p *ngIf="cardListCreatedByUser.length === 0" class="user-card-list-title">Pas de voiture</p>
-  <p *ngIf="cardListCreatedByUser.length === 1" class="user-card-list-title">Ma voiture mise en ligne</p>
-  <p *ngIf="cardListCreatedByUser.length > 1" class="user-card-list-title">Mes voitures mises en ligne</p>
+  <p *ngIf="cardListCreatedByUser.length === 0" class="user-card-list-title">
+    Pas de voiture
+  </p>
+  <p *ngIf="cardListCreatedByUser.length === 1" class="user-card-list-title">
+    Ma voiture mise en ligne
+  </p>
+  <p *ngIf="cardListCreatedByUser.length > 1" class="user-card-list-title">
+    Mes voitures mises en ligne
+  </p>
 
   <div class="card-list">
-    <div *ngFor="let card of (filteredCardListCreatedByUser.length > 0 ? filteredCardListCreatedByUser : cardListCreatedByUser); let i = index">
-      <app-feat-card-user
-      [card]="card"
-      ></app-feat-card-user>
+    <div
+      *ngFor="
+        let card of filteredCardListCreatedByUser.length > 0
+          ? filteredCardListCreatedByUser
+          : cardListCreatedByUser;
+        let i = index
+      "
+    >
+      <app-feat-card-user [card]="card"></app-feat-card-user>
     </div>
   </div>
-
 </div>
 
-
-
-
-<div class="container-favorite-user-card-list"
-*ngIf="isFavoriteListOpen" 
->
-  <p *ngIf="favoriteCardList.length === 0" class="favorite-card-list-title">Pas de voiture dans les favoris</p>
-  <p *ngIf="favoriteCardList.length === 1" class="favorite-card-list-title">Mon coup de coeur</p>
-  <p *ngIf="favoriteCardList.length > 1" class="favorite-card-list-title">Mes coups de coeur</p>
+<div class="container-favorite-user-card-list" *ngIf="isFavoriteListOpen">
+  <p *ngIf="favoriteCardList.length === 0" class="favorite-card-list-title">
+    Pas de voiture dans les favoris
+  </p>
+  <p *ngIf="favoriteCardList.length === 1" class="favorite-card-list-title">
+    Mon coup de coeur
+  </p>
+  <p *ngIf="favoriteCardList.length > 1" class="favorite-card-list-title">
+    Mes coups de coeur
+  </p>
 
   <div class="card-list" *ngFor="let card of favoriteCardList">
-    <app-feat-card-favorite 
-    [card]="card"
-    ></app-feat-card-favorite>
-  </div>
-
-</div>
-
-
-
-<div class="container-admin-card-list"
-*ngIf="isAdminCardListOpen" 
->
-  <p *ngIf="cardList.length === 0" class="admin-card-list-title">Pas de voiture</p>
-  <p *ngIf="cardList.length === 1" class="admin-card-list-title">La voiture mise en ligne</p>
-  <p *ngIf="cardList.length > 1" class="admin-card-list-title">Les voitures mises en ligne</p>
-
-<div class="card-list">
-  <div *ngFor="let card of (filteredCardList.length > 0 ? filteredCardList : cardList); let i = index">
-    <app-feat-card-admin
-    [card]="card"
-    ></app-feat-card-admin>
+    <app-feat-card-favorite [card]="card"></app-feat-card-favorite>
   </div>
 </div>
 
+<div class="container-admin-card-list" *ngIf="isAdminCardListOpen">
+  <p *ngIf="cardList.length === 0" class="admin-card-list-title">
+    Pas de voiture
+  </p>
+  <p *ngIf="cardList.length === 1" class="admin-card-list-title">
+    La voiture mise en ligne
+  </p>
+  <p *ngIf="cardList.length > 1" class="admin-card-list-title">
+    Les voitures mises en ligne
+  </p>
+
+  <div class="card-list">
+    <div
+      *ngFor="
+        let card of filteredCardList.length > 0 ? filteredCardList : cardList;
+        let i = index
+      "
+    >
+      <app-feat-card-admin [card]="card"></app-feat-card-admin>
+    </div>
+  </div>
 </div>
-
-
-

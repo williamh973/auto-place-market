@@ -6,39 +6,35 @@ import { User } from '../../../../models/user.model';
 @Component({
   selector: 'app-feat-get-user-datas',
   templateUrl: './feat-get-user-datas.component.html',
-  styleUrls: ['./feat-get-user-datas.component.scss']
+  styleUrls: ['./feat-get-user-datas.component.scss'],
 })
 export class GetUserDatasComponent {
- 
-  @Input() user!: User 
+  @Input() user!: User;
 
-  userEmailToGet: string = "";
+  userEmailToGet: string = '';
   userFechted$!: Observable<User>;
   allUsersFetched$!: Observable<User[]>;
   showSearchProfilForm: boolean = false;
   showSearchProfilResult: boolean = false;
   isContactPopupFormOpen: boolean = false;
-  isAdminMode: boolean = false;
+  isAdminMod: boolean = false;
   isUserDisabled!: boolean;
-  selectedUser!: User; 
-  
+  selectedUser!: User;
 
-  constructor(private dbUser: DbUserService) { }
-
+  constructor(private dbUser: DbUserService) {}
 
   onOpenSearchProfilForm() {
-    this.showSearchProfilForm = !this.showSearchProfilForm
+    this.showSearchProfilForm = !this.showSearchProfilForm;
     this.showSearchProfilResult = false;
-   }
- 
+  }
 
   onSubmit() {
     this.showSearchProfilResult = true;
     this.userFechted$ = this.dbUser.getUserByEmail(this.userEmailToGet);
-    
-    this.userFechted$.subscribe(user => {
-      this.isUserDisabled = user.blocked; 
-      this.userEmailToGet = user.email   
+
+    this.userFechted$.subscribe((user) => {
+      this.isUserDisabled = user.blocked;
+      this.userEmailToGet = user.email;
     });
   }
 
@@ -46,7 +42,7 @@ export class GetUserDatasComponent {
     this.allUsersFetched$ = this.dbUser.getAllUsers();
   }
 
-   onRecevedMethodForCloseContactForm(isContactPopupFormOpen: boolean) {
+  onRecevedMethodForCloseContactForm(isContactPopupFormOpen: boolean) {
     this.isContactPopupFormOpen = isContactPopupFormOpen;
   }
 
@@ -54,35 +50,40 @@ export class GetUserDatasComponent {
     this.selectedUser = selectedUser;
     this.isContactPopupFormOpen = !this.isContactPopupFormOpen;
   }
-  
+
   updateSelectedUserForSendMessage(selectedUser: User) {
     this.selectedUser = selectedUser;
   }
 
-
   toggleAccountDisabled(user: User) {
     if (user.id && !this.isUserDisabled) {
-     this.dbUser.disabledUser(user.id).subscribe(
-       () => {
-        this.isUserDisabled = !this.isUserDisabled
-        console.log(`"compte ${this.userEmailToGet}  suspendu" ${this.isUserDisabled}`);
-       },
-       (error) => {
-         console.log("erreur lors de la suspension du compte", this.isUserDisabled);
-       }
-     );
+      this.dbUser.disabledUser(user.id).subscribe(
+        () => {
+          this.isUserDisabled = !this.isUserDisabled;
+          console.log(
+            `"compte ${this.userEmailToGet}  suspendu" ${this.isUserDisabled}`
+          );
+        },
+        (error) => {
+          console.log(
+            'erreur lors de la suspension du compte',
+            this.isUserDisabled
+          );
+        }
+      );
     } else if (user.id && this.isUserDisabled) {
       this.dbUser.enabledUser(user.id).subscribe(
         () => {
-         this.isUserDisabled = !this.isUserDisabled
-         console.log("compte débloqué", this.isUserDisabled);
+          this.isUserDisabled = !this.isUserDisabled;
+          console.log('compte débloqué', this.isUserDisabled);
         },
         (error) => {
-          console.log("erreur lors du déblocage du compte", this.isUserDisabled);
+          console.log(
+            'erreur lors du déblocage du compte',
+            this.isUserDisabled
+          );
         }
       );
     }
   }
-
-
 }

@@ -38,7 +38,6 @@ public class MessageController {
 
     @PostMapping("/add")
     public Message addMessage(@RequestBody Message message) {
-        message.setTimestamp(new Date());
         return messageService.addMessage(message);
     }
 
@@ -58,7 +57,6 @@ public class MessageController {
             User selectedUser = userRepository.findById(selectedUserId)
                     .orElseThrow(() -> new RuntimeException("Selected user not found"));
 
-            message.setTimestamp(new Date());
             message.setUser(senderUser);
 
             return messageService.addAdminMessage(message);

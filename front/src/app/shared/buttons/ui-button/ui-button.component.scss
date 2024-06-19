@@ -1,0 +1,18 @@
+button {
+  width: 10vw;
+  padding: 10px 0;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.733);
+  border: 2px solid rgb(241, 241, 241);
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  color: whitesmoke;
+}
+button:hover {
+  border: 2px solid rgb(0, 177, 0);
+  transition: all 100ms;
+  cursor: pointer;
+  scale: 1.05;
+}

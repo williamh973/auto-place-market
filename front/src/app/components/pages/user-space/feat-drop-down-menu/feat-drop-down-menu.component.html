@@ -1,30 +1,47 @@
+<div class="dropdown">
+  <app-ui-button
+    class="dropdown-button"
+    type="button"
+    buttonName="Gestion de compte"
+    [isButtonEnabled]="true"
+  ></app-ui-button>
+  <div class="dropdown-content">
+    <li *ngFor="let dropDownAccountMenuItem of dropDownAccountMenuItems">
+      <a (click)="onDropdownAccountMenuItemClick(dropDownAccountMenuItem)">{{
+        dropDownAccountMenuItem.label
+      }}</a>
+    </li>
+  </div>
+</div>
 
-   <div class="dropdown">
-      <button class="dropdown-button">Gestion de compte</button>
-     <div class="dropdown-content">
-       <li *ngFor="let dropDownAccountMenuItem of dropDownAccountMenuItems">
-         <a (click)="onDropdownAccountMenuItemClick(dropDownAccountMenuItem)">{{ dropDownAccountMenuItem.label }}</a>
-       </li>
-    </div>
-  </div> 
+<div class="dropdown">
+  <app-ui-button
+    class="dropdown-button"
+    type="button"
+    buttonName="Notifications"
+    [isButtonEnabled]="true"
+  ></app-ui-button>
+  <div class="dropdown-content">
+    <li *ngFor="let dropDownMessageMenuItem of dropDownMessageMenuItems">
+      <a (click)="onDropdownMessageMenuItemClick(dropDownMessageMenuItem)">{{
+        dropDownMessageMenuItem.label
+      }}</a>
+    </li>
+  </div>
+</div>
 
-  <div class="dropdown">
-    <button class="dropdown-button">Notifications</button>
-    <div class="dropdown-content">
-      <li *ngFor="let dropDownMessageMenuItem of dropDownMessageMenuItems">
-        <a (click)="onDropdownMessageMenuItemClick(dropDownMessageMenuItem)">{{ dropDownMessageMenuItem.label }}</a>
-      </li>
-    </div>
-   </div>
-
-   <div class="dropdown" *ngIf="role === 'ROLE_ADMIN'" >
-    <button class="dropdown-button">Utilisateurs</button>
-    <div class="dropdown-content">
-      <li *ngFor="let dropDownUserMenuItem of dropDownUserMenuItems">
-        <a (click)="onDropdownUserMenuItemClick(dropDownUserMenuItem)">{{ dropDownUserMenuItem.label }}</a>
-      </li>
-    </div>
-   </div>
-
-
-   
+<div class="dropdown" *ngIf="role === 'ROLE_ADMIN'">
+  <app-ui-button
+    class="button"
+    type="button"
+    buttonName="Utilisateurs"
+    [isButtonEnabled]="true"
+  ></app-ui-button>
+  <div class="dropdown-content">
+    <li *ngFor="let dropDownUserMenuItem of dropDownUserMenuItems">
+      <a (click)="onDropdownUserMenuItemClick(dropDownUserMenuItem)">{{
+        dropDownUserMenuItem.label
+      }}</a>
+    </li>
+  </div>
+</div>

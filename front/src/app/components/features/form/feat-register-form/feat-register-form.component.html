@@ -1,55 +1,115 @@
 <div class="full-form">
+  <form>
+    <svg
+      (click)="onCancelRegisterForm()"
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 22 22"
+    >
+      <path fill="none" d="M0 0h24v24H0z" />
+      <path
+        d="M18 6L6 18M6 6l12 12"
+        stroke="currentColor"
+        stroke-width="1"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
 
-    <form>
-    
-        <svg (click)="onCancelRegisterForm()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 22 22">
-            <path fill="none" d="M0 0h24v24H0z"/>
-            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        
-        <h2>Inscription</h2> 
-        
-        <p>Les champs suivis d'un astérisque ( * ) sont obligatoire.</p>
-        
-        <label for="user-firstname">Prénom</label>
-        <input type="text" name="user-firstname" id="user-firstname" [(ngModel)]="userRegister.firstname" placeholder="Taper votre prénom*">
-        
-        <label for="user-lastname">Nom</label>
-        <input type="text" name="user-lastname" id="user-lastname" [(ngModel)]="userRegister.lastname" placeholder="Taper votre nom*">
-        
-        <label for="user-register-phone">Numéro de téléphone</label>
-        <input type="number" name="user-register-phone" id="user-register-phone" placeholder="Taper votre numéro de téléphone*">
+    <h2>Inscription</h2>
 
-        <label for="user-register-email">Email</label>
-        <input type="email" name="user-register-email" id="user-register-email" [(ngModel)]="userRegister.email" placeholder="Taper votre email*">
+    <p>Les champs suivis d'un astérisque ( * ) sont obligatoire.</p>
 
-        <label id="label-password" for="user-register-password">Mot de passe</label>
-         <div class="container-password-and-checkbox">
-          <input  type="{{ isPasswordVisible ? 'text' : 'password' }}" name="user-register-password" id="user-register-password" autocomplete="on"  [(ngModel)]="userRegister.password" placeholder="Taper votre mot de passe*">    
-            <input  title="{{ isPasswordVisible ? 'Cacher le mot de passe' : 'Voir le mot de passe' }}" type="checkbox" class="checkbox" (click)="togglePasswordVisibility()" [ngClass]="isPasswordVisible ? 'fa-eye-slash' : 'fa-eye'">
-        </div>
+    <label for="user-firstname">Prénom</label>
+    <input
+      type="text"
+      name="user-firstname"
+      id="user-firstname"
+      [(ngModel)]="userRegister.firstname"
+      placeholder="Taper votre prénom*"
+    />
 
-        <fieldset>
-            <div class="container-role">
-               <input type="radio" name="user-role" id="user-role-user" value="ROLE_USER" [(ngModel)]="userRegister.requiredRole">
-               <label for="user-role-user">User</label>
-            </div>
-            <div class="container-role">
-               <input type="radio" name="user-role" id="user-role-admin"value="ROLE_ADMIN" [(ngModel)]="userRegister.requiredRole">
-               <label for="user-role-admin">Admin</label>
-            </div>
-        </fieldset>
-          
-        <button type="submit" (click)="onSubmitRegister()">Je m'inscris</button>
-    
-    </form>
-    
+    <label for="user-lastname">Nom</label>
+    <input
+      type="text"
+      name="user-lastname"
+      id="user-lastname"
+      [(ngModel)]="userRegister.lastname"
+      placeholder="Taper votre nom*"
+    />
+
+    <label for="user-register-phone">Numéro de téléphone</label>
+    <input
+      type="number"
+      name="user-register-phone"
+      id="user-register-phone"
+      placeholder="Taper votre numéro de téléphone*"
+    />
+
+    <label for="user-register-email">Email</label>
+    <input
+      type="email"
+      name="user-register-email"
+      id="user-register-email"
+      [(ngModel)]="userRegister.email"
+      placeholder="Taper votre email*"
+    />
+
+    <label id="label-password" for="user-register-password">Mot de passe</label>
+    <div class="container-password-and-checkbox">
+      <input
+        type="{{ isPasswordVisible ? 'text' : 'password' }}"
+        name="user-register-password"
+        id="user-register-password"
+        autocomplete="on"
+        [(ngModel)]="userRegister.password"
+        placeholder="Taper votre mot de passe*"
+      />
+      <input
+        title="{{
+          isPasswordVisible ? 'Cacher le mot de passe' : 'Voir le mot de passe'
+        }}"
+        type="checkbox"
+        class="checkbox"
+        (click)="togglePasswordVisibility()"
+        [ngClass]="isPasswordVisible ? 'fa-eye-slash' : 'fa-eye'"
+      />
+    </div>
+
+    <fieldset>
+      <div class="container-role">
+        <input
+          type="radio"
+          name="user-role"
+          id="user-role-user"
+          value="ROLE_USER"
+          [(ngModel)]="userRegister.requiredRole"
+        />
+        <label for="user-role-user">User</label>
+      </div>
+      <div class="container-role">
+        <input
+          type="radio"
+          name="user-role"
+          id="user-role-admin"
+          value="ROLE_ADMIN"
+          [(ngModel)]="userRegister.requiredRole"
+        />
+        <label for="user-role-admin">Admin</label>
+      </div>
+    </fieldset>
+    <app-ui-button
+      class="button"
+      type="submit"
+      buttonName="Je m'inscris"
+      [isButtonEnabled]="true"
+      (click)="onSubmitRegister()"
+    ></app-ui-button>
+  </form>
 </div>
 
-
 <app-track-http-status
-class="track-http-status"
-[class.track-http-status-animate]="isAnimationPopupSignInStatusActive"
+  class="track-http-status"
+  [class.track-http-status-animate]="isAnimationPopupSignInStatusActive"
 ></app-track-http-status>
-    
-

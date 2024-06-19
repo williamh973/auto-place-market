@@ -1,88 +1,68 @@
 <app-feat-confirm-delete-popup
-*ngIf="isConfirmDeletePopup"
-(onisConfirmDeletePopupEmit)="onRecevedMethodForCloseConfirmDeletePopup($event)"
-[card]="card"
+  *ngIf="isConfirmDeletePopup"
+  (onisConfirmDeletePopupEmit)="
+    onRecevedMethodForCloseConfirmDeletePopup($event)
+  "
+  [card]="card"
 >
 </app-feat-confirm-delete-popup>
 
- 
 <div class="card">
-
   <div class="container-btn">
-    <button
-    (click)="openConfirmDeletePopup()" 
-    class="btn"
-    >Supprimer cette carte
-    </button>
+    <app-ui-button
+      class="button"
+      (click)="openConfirmDeletePopup()"
+      type="button"
+      buttonName="Supprimer"
+      [isButtonEnabled]="true"
+    ></app-ui-button>
   </div>
 
   <div *ngIf="card.picturesList.length > 0">
     <div>
-      <img [src]="firstPictureSrc" alt="Image">
+      <img [src]="firstPictureSrc" alt="Image" />
     </div>
   </div>
 
-    <div
-    id="title"
-    class="cardChild-elements"
-    >{{ card.title }}
-  </div>
+  <div id="title" class="cardChild-elements">{{ card.title }}</div>
 
   <div class="container-door-fuel-transmission-year">
-    <li
-    id="door"
-    class="cardChild-elements"
-    >{{ card.door }} Portes
-  </li>
-  <li 
-    id="fuel"
-    class="cardChild-elements"
-    >{{ card.fuel }}
-  </li>
-  <li 
-    id="transmission"
-    class="cardChild-elements"
-    >{{ card.transmission }}
-  </li>
-  <li 
-  id="year"
-  class="cardChild-elements"
-  >{{ card.year }}
-</li>
-</div>
-
-<div class="container-kilometer-price">
-  <div
-    id="kilometer"
-    class="cardChild-elements"
-    >{{ card.kilometer.toLocaleString() }} 
-    <span>Km</span>
+    <li id="door" class="cardChild-elements">{{ card.door }} Portes</li>
+    <li id="fuel" class="cardChild-elements">{{ card.fuel }}</li>
+    <li id="transmission" class="cardChild-elements">
+      {{ card.transmission }}
+    </li>
+    <li id="year" class="cardChild-elements">{{ card.year }}</li>
   </div>
-  <div
-   id="price"
-   class="cardChild-elements"
-   >{{ card.price.toLocaleString() }}
-   <span>€</span>
-  </div>
-</div>
 
+  <div class="container-kilometer-price">
+    <div id="kilometer" class="cardChild-elements">
+      {{ card.kilometer.toLocaleString() }}
+      <span>Km</span>
+    </div>
+    <div id="price" class="cardChild-elements">
+      {{ card.price.toLocaleString() }}
+      <span>€</span>
+    </div>
+  </div>
 
   <div class="container-btn">
-    <button 
-    class="btn"
-    (click)="openConfirmeUpdateFormPopup()"
-    >Modifier
-   </button>
+    <app-ui-button
+      class="button"
+      (click)="openConfirmeUpdateFormPopup()"
+      type="button"
+      buttonName="Modifier"
+      [isButtonEnabled]="true"
+    ></app-ui-button>
   </div>
-
 </div>
 
-
 <app-feat-confirm-update-card-popup
-class="confirm-update-card-popup"
-*ngIf="isConfirmUpdatePopupOpen"
-(onConfirmUpdatePopupEmit)="onRecevedMethodForCloseConfirmUpdateCardFormPopup($event)"
-[card]="card"
+  class="confirm-update-card-popup"
+  *ngIf="isConfirmUpdatePopupOpen"
+  (onConfirmUpdatePopupEmit)="
+    onRecevedMethodForCloseConfirmUpdateCardFormPopup($event)
+  "
+  [card]="card"
 >
 </app-feat-confirm-update-card-popup>
-

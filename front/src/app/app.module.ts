@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { FeatRegisterFormComponent } from './components/features/form/feat-register-form/feat-register-form.component';
 import { TrackHttpStatusComponent } from './components/features/popup/track-http-status/track-http-status.component';
 import { GetUserDatasComponent } from './components/features/user/feat-get-user-datas/feat-get-user-datas.component';
-   
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailsPageComponent } from './components/pages/details-page/details-page.component';
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
@@ -26,7 +26,7 @@ import { FeatCardComponent } from './components/features/card/feat-card/feat-car
 import { FeatCardListComponent } from './components/features/card/feat-card-list/feat-card-list.component';
 import { FeatEditCardFormComponent } from './components/features/form/feat-edit-card-form/feat-edit-card-form.component';
 import { FeatSignInFormComponent } from './components/features/form/feat-sign-in-form/feat-sign-in-form.component';
-import { FeatAccountPopupComponent } from './components/features/popup/feat-account-popup/feat-account-popup.component';
+import { FeatAccountPopupComponent } from './components/features/popup/feat-login-or-register-popup/feat-account-popup.component';
 import { FeatConfirmDeletePopupComponent } from './components/features/popup/confirmation/feat-confirm-delete-popup/feat-confirm-delete-popup.component';
 import { FeatNoCardsFoundComponent } from './components/features/popup/feat-no-cards-found-popup/feat-no-cards-found-popup.component';
 import { FeatCardAdminComponent } from './components/features/card/feat-card-admin/feat-card-admin.component';
@@ -38,11 +38,10 @@ import { FeatCardFavoriteComponent } from './components/features/card/feat-card-
 import { FeatConfirmUpdateCardPopupComponent } from './components/features/popup/feedback/card/feat-confirm-update-card-popup/feat-confirm-update-card-popup.component';
 import { FeatConfirmDeleteCurrentUserPopupComponent } from './components/features/popup/confirmation/feat-confirm-delete-current-user-popup/feat-confirm-delete-current-user-popup.component';
 import { ConceptPageComponent } from './components/pages/concept-page/concept-page.component';
-import { FavoriteStatusService } from './shared/services/favorite-status.service';
 import { FeatCardPreviewComponent } from './components/features/card/feat-card-preview/feat-card-preview.component';
 import { FeatLoaderComponent } from './components/features/popup/feat-loader/feat-loader.component';
 import { FeatCardOperationStatusComponent } from './components/features/popup/feedback/feat-card-operation-status/feat-card-operation-status.component';
-import { NavbarResponsiveTabletComponent } from "./components/ui/feat-navbar/navbar-responsive-tablet/navbar-responsive-tablet.component";
+import { NavbarResponsiveTabletComponent } from './components/ui/feat-navbar/navbar-responsive-tablet/navbar-responsive-tablet.component';
 import { FeatContactPopupComponent } from './components/features/popup/feat-contact-popup/feat-contact-popup.component';
 import { SearchResponsiveTabletComponent } from './components/ui/feat-search/search-responsive-tablet/search-responsive-tablet.component';
 import { SearchResponsiveSmartphoneComponent } from './components/ui/feat-search/search-responsive-smartphone/search-responsive-smartphone.component';
@@ -52,9 +51,20 @@ import { FeatDropDownMenuComponent } from './components/pages/user-space/feat-dr
 import { FeatDisabledUsersListComponent } from './components/features/user/feat-disabled-users-list/feat-disabled-users-list.component';
 import { FeatUserPersonnalInformationComponent } from './components/features/user/feat-user-personnal-information/feat-user-personnal-information.component';
 import { FeatUpdateInformationFormComponent } from './components/features/form/feat-update-information-form/feat-update-information-form.component';
-    
-  
-   
+import { UiButtonComponent } from './shared/buttons/ui-button/ui-button.component';
+import { UiCloseIconComponent } from './shared/icons/ui-close-icon/ui-close-icon.component';
+import { UiFavoriteIconComponent } from './shared/icons/ui-favorite-icon/ui-favorite-icon.component';
+import { UiArrowLeftIconComponent } from './shared/icons/ui-arrow-left-icon/ui-arrow-left-icon.component';
+import { UiArrowRightIconComponent } from './shared/icons/ui-arrow-right-icon/ui-arrow-right-icon.component';
+import { UiDoorIconComponent } from './shared/icons/ui-door-icon/ui-door-icon.component';
+import { UiFuelIconComponent } from './shared/icons/ui-fuel-icon/ui-fuel-icon.component';
+import { UiTransmissionIconComponent } from './shared/icons/ui-transmission-icon/ui-transmission-icon.component';
+import { UiKilometerIconComponent } from './shared/icons/ui-kilometer-icon/ui-kilometer-icon.component';
+import { UiTitleComponent } from './components/ui/ui-title/ui-title.component';
+import { UiSearchIconComponent } from './shared/icons/ui-search-icon/ui-search-icon.component';
+import { UiFeedbackSuccessIconComponent } from './shared/icons/ui-feedback-success-icon/ui-feedback-success-icon.component';
+import { UiFeedbackErrorIconComponent } from './shared/icons/ui-feedback-error-icon/ui-feedback-error-icon.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +105,20 @@ import { FeatUpdateInformationFormComponent } from './components/features/form/f
     FeatDropDownMenuComponent,
     FeatDisabledUsersListComponent,
     FeatUserPersonnalInformationComponent,
-    FeatUpdateInformationFormComponent
+    FeatUpdateInformationFormComponent,
+    UiButtonComponent,
+    UiCloseIconComponent,
+    UiFavoriteIconComponent,
+    UiArrowLeftIconComponent,
+    UiArrowRightIconComponent,
+    UiDoorIconComponent,
+    UiFuelIconComponent,
+    UiTransmissionIconComponent,
+    UiKilometerIconComponent,
+    UiTitleComponent,
+    UiSearchIconComponent,
+    UiFeedbackSuccessIconComponent,
+    UiFeedbackErrorIconComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,7 +128,7 @@ import { FeatUpdateInformationFormComponent } from './components/features/form/f
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
   ],
   providers: [
     {
@@ -113,8 +136,7 @@ import { FeatUpdateInformationFormComponent } from './components/features/form/f
       useClass: TokenInterceptorInterceptor,
       multi: true,
     },
-    FavoriteStatusService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

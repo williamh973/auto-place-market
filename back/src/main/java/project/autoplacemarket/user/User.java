@@ -39,8 +39,6 @@ public class User implements UserDetails {
 
     private boolean blocked;
 
-
-
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIgnoreProperties("user")
     private Set<Card> cardList = new HashSet<>();

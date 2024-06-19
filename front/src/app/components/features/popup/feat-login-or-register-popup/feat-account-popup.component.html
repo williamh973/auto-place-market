@@ -1,0 +1,37 @@
+<div class="full-page">
+  <main class="popup">
+    <app-ui-close-icon
+      class="close-icon"
+      (click)="onCancelPopupAccount()"
+    ></app-ui-close-icon>
+
+    <h4>Es-tu déjà inscris ?</h4>
+    <app-ui-button
+      class="button"
+      type="button"
+      buttonName="Connexion"
+      [isButtonEnabled]="true"
+      (click)="onOpenSignInForm()"
+    ></app-ui-button>
+
+    <h4>Sinon, c'est par ici</h4>
+    <app-ui-button
+      class="button"
+      type="button"
+      buttonName="Inscription"
+      [isButtonEnabled]="true"
+      (click)="onOpenRegisterForm()"
+    ></app-ui-button>
+  </main>
+</div>
+
+<app-feat-sign-in-form
+  *ngIf="isSignInFormOpen"
+  (onSignInFormOpenEmit)="onRecevedMethodForCloseSignInForm($event)"
+>
+</app-feat-sign-in-form>
+
+<app-feat-register-form
+  *ngIf="isRegisterFormOpen"
+  (onRegisterFormOpenEmit)="onRecevedMethodForCloseRegisterForm($event)"
+></app-feat-register-form>

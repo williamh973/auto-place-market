@@ -1,50 +1,43 @@
 <div *ngIf="isStepsFormsOpen">
+  <div *ngIf="isCreateMod">
+    <ng-container *ngIf="currentStep === 1">
+      <app-step1
+        [currentStep]="currentStep"
+        [isCreateMod]="true"
+        [card]="card"
+        (forGoToStep2)="onRecevedMethodForGoToStep2()"
+        (onCloseAllStepsFormEmit)="onRecevedMethodForCloseAllSteps($event)"
+      ></app-step1>
+    </ng-container>
 
-<div *ngIf="createMode">
-<ng-container *ngIf="currentStep === 1">
-  <app-step1
-  [currentStep]="currentStep"
-  [createMode]="true"
-  [card]="card"
-  (forGoToStep2)="onRecevedMethodForGoToStep2()"
-  (onCloseAllStepsFormEmit)="onRecevedMethodForCloseAllSteps($event)"
-  ></app-step1>
-</ng-container>
-
-<ng-container *ngIf="currentStep === 2">
-  <app-step2
-  [currentStep]="currentStep"
-  [createMode]="true"
-  [card]="card"
-  (forGoToStep1)="onRecevedMethodForGoToStep1()"
-  (onCloseAllStepsFormEmit)="onRecevedMethodForCloseAllSteps($event)"
-  ></app-step2>
-</ng-container>
-</div>
-
-
-
-
-
-
-<div *ngIf="!createMode">
-  <ng-container *ngIf="currentStep === 1">
-    <app-step1
-    [currentStep]="currentStep"
-    [card]="card"
-    (forGoToStep2)="onRecevedMethodForGoToStep2()"
-    (onCloseAllStepsFormEmit)="onRecevedMethodForCloseAllSteps($event)"
-    ></app-step1>
-  </ng-container>
-  
-  <ng-container *ngIf="currentStep === 2">
-    <app-step2
-    [currentStep]="currentStep"
-    [card]="card"
-    (forGoToStep1)="onRecevedMethodForGoToStep1()"
-    (onCloseAllStepsFormEmit)="onRecevedMethodForCloseAllSteps($event)"
-    ></app-step2>
-  </ng-container>
+    <ng-container *ngIf="currentStep === 2">
+      <app-step2
+        [currentStep]="currentStep"
+        [isCreateMod]="true"
+        [card]="card"
+        (forGoToStep1)="onRecevedMethodForGoToStep1()"
+        (onCloseAllStepsFormEmit)="onRecevedMethodForCloseAllSteps($event)"
+      ></app-step2>
+    </ng-container>
   </div>
 
+  <div *ngIf="!isCreateMod">
+    <ng-container *ngIf="currentStep === 1">
+      <app-step1
+        [currentStep]="currentStep"
+        [card]="card"
+        (forGoToStep2)="onRecevedMethodForGoToStep2()"
+        (onCloseAllStepsFormEmit)="onRecevedMethodForCloseAllSteps($event)"
+      ></app-step1>
+    </ng-container>
+
+    <ng-container *ngIf="currentStep === 2">
+      <app-step2
+        [currentStep]="currentStep"
+        [card]="card"
+        (forGoToStep1)="onRecevedMethodForGoToStep1()"
+        (onCloseAllStepsFormEmit)="onRecevedMethodForCloseAllSteps($event)"
+      ></app-step2>
+    </ng-container>
+  </div>
 </div>

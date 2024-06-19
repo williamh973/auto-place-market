@@ -1,99 +1,63 @@
 <main class="card">
-
   <div class="container-favoris-and-user">
+    <div class="container-favorite" title="Mettre en favoris ?">
+      <app-ui-favorite-icon
+        id="favorite-icon"
+        [isFavorite]="isFavorite"
+        (click)="toggleFavorite()"
+      ></app-ui-favorite-icon>
+    </div>
 
-  <div 
-  class="container-favorite" 
-  title="Mettre en favoris ?"
-  >
-
-    <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    width="20" 
-    height="20" 
-    viewBox="0 0 22 22" 
-    fill="none" 
-    stroke="currentColor" 
-    stroke-width="2" 
-    stroke-linecap="round" 
-    stroke-linejoin="round"
-    [ngClass]="{ 'svg-favorite': isFavorite }"
-    (click)="toggleFavorite()"
-    >
-      <path d="M12 2L9 9H2l6 4.5L5 21l7-5 7 5-3.5-7L22 9h-7l-3-7z" />
-    </svg>
+    <p class="timestamp">Posté le {{ card.timestamp | date : "dd/MM/yyyy" }}</p>
   </div>
 
-<p class="timestamp">Posté le {{ card.timestamp | date:'dd/MM/yyyy' }}</p>
-
-</div>
-
-<div *ngIf="card.picturesList.length > 0">
-  <div>
-    <img [src]="firstPictureSrc" alt="Image">
+  <div *ngIf="card.picturesList.length > 0">
+    <div>
+      <img [src]="firstPictureSrc" alt="Image" />
+    </div>
   </div>
-</div>
 
-    <div
-    id="title"
-    class="cardChild-elements" 
-    >{{ card.title }}
-  </div> 
-  <div 
-  class="container-door-fuel-transmission-year"
-  >
-  <li
-    id="door"
-    class="cardChild-elements"
-    >{{ card.door }} Portes
-  </li>
-  <li 
-    id="fuel"
-    class="cardChild-elements"
-    >{{ card.fuel }}
-  </li>
-  <li 
-    id="transmission"
-    class="cardChild-elements"
-    >{{ card.transmission }}
-  </li>
-  <li 
-  id="year"
-  class="cardChild-elements"
-  >{{ card.year }}
-</li>
-</div>
+  <div id="title" class="cardChild-elements">{{ card.title }}</div>
+  <div class="container-door-fuel-transmission-year">
+    <li id="door" class="cardChild-elements">{{ card.door }} Portes</li>
+    <li id="fuel" class="cardChild-elements">{{ card.fuel }}</li>
+    <li id="transmission" class="cardChild-elements">
+      {{ card.transmission }}
+    </li>
+    <li id="year" class="cardChild-elements">{{ card.year }}</li>
+  </div>
 
- <div class="container-kilometer-price">
-    <div
-      id="kilometer"
-      class="cardChild-elements"
-      >{{ card.kilometer.toLocaleString() }} 
+  <div class="container-kilometer-price">
+    <div id="kilometer" class="cardChild-elements">
+      {{ card.kilometer.toLocaleString() }}
       <span id="km">Km</span>
     </div>
-    <div
-     id="price"
-     class="cardChild-elements"
-     >{{ card.price.toLocaleString() }}
-     <span>€</span>
-     <span id="ttc">TTC</span>
+    <div id="price" class="cardChild-elements">
+      {{ card.price.toLocaleString() }}
+      <span>€</span>
+      <span id="ttc">TTC</span>
     </div>
-</div>
+  </div>
 
   <div class="container-btn" title="Voir en détail ?">
-    <a [routerLink]="['/car-detail', card.id]">En savoir plus</a>
+    <app-ui-button
+      id="button"
+      [routerLink]="['/car-detail', card.id]"
+      buttonName="En savoir plus"
+      [isButtonEnabled]="true"
+    ></app-ui-button>
   </div>
 </main>
 
-
 <div
-class="container-card-operation-status"
-*ngIf="
-isCardFavoriteAdded || 
-isCardFavoriteAddedError || 
-isCardFavoriteDelete || 
-isCardFavoritedDeleteError ||
-isUserLoggedInForAddFavorite"
+  class="container-card-operation-status"
+  *ngIf="
+    isCardFavoriteAdded ||
+    isCardFavoriteAddedError ||
+    isCardFavoriteDelete ||
+    isCardFavoritedDeleteError ||
+    isUserLoggedInForAddFavorite
+  "
 >
   <app-feat-card-operation-status
     class="card-operation-status"
@@ -102,8 +66,9 @@ isUserLoggedInForAddFavorite"
     [isCardFavoriteDelete]="isCardFavoriteDelete"
     [isCardFavoritedDeleteError]="isCardFavoritedDeleteError"
     [isUserLoggedInForAddFavorite]="isUserLoggedInForAddFavorite"
-    [class.card-operation-status-animate]="isAnimationPopupCardOperationStatusActive"
-   >
+    [class.card-operation-status-animate]="
+      isAnimationPopupCardOperationStatusActive
+    "
+  >
   </app-feat-card-operation-status>
 </div>
-
