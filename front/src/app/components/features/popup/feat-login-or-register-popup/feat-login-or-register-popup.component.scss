@@ -1,17 +1,20 @@
 .full-page {
-  width: 100%;
-  height: 500px;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .popup {
-  right: 300px;
   width: 230px;
   min-width: 230px;
+  min-height: auto;
+  height: 230px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.712);
   backdrop-filter: blur(10px);

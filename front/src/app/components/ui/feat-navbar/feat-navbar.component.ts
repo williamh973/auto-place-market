@@ -1,7 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { Menu } from 'src/app/models/menu.model';
-import { AccountPopupService } from 'src/app/shared/services/account-popup.service';
+import { loginOrRegisterPopupService } from 'src/app/shared/services/account-popup.service';
 import { TokenService } from 'src/app/shared/services/token.service';
 
 @Component({
@@ -19,11 +19,11 @@ export class FeatNavbarComponent {
 
   constructor(
     private tokenService: TokenService,
-    public accountPopupService: AccountPopupService,
+    public loginOrRegisterPopupService: loginOrRegisterPopupService,
     private router: Router
   ) {}
 
-  isAccountPopupOpen: boolean = false;
+  isLoginOrRegisterPopupOpen: boolean = false;
   isEditCardFormOpen: boolean = false;
   isContactPopupFormOpen: boolean = false;
   isMenuOpen: boolean = false;
@@ -48,9 +48,9 @@ export class FeatNavbarComponent {
   onEditCardFormOpen() {
     if (this.tokenService.isCheckTokenInLocalStorage()) {
       this.isEditCardFormOpen = !this.isEditCardFormOpen;
-      this.accountPopupService.closePopup();
+      this.loginOrRegisterPopupService.closePopup();
     } else {
-      this.accountPopupService.openPopup();
+      this.loginOrRegisterPopupService.openPopup();
     }
   }
 
@@ -58,7 +58,7 @@ export class FeatNavbarComponent {
     if (this.tokenService.isCheckTokenInLocalStorage()) {
       this.isContactPopupFormOpen = !this.isContactPopupFormOpen;
     } else {
-      this.accountPopupService.openPopup();
+      this.loginOrRegisterPopupService.openPopup();
     }
   }
 

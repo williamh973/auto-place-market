@@ -33,10 +33,10 @@
 </app-feat-contact-popup>
 
 <div class="full-popup-account">
-  <app-feat-account-popup
+  <app-feat-login-or-register-popup
     class="popup-account"
-    *ngIf="accountPopupService.isAccountPopupOpen$ | async"
-  ></app-feat-account-popup>
+    *ngIf="loginOrRegisterPopupService.isLoginOrRegisterPopupOpen$ | async"
+  ></app-feat-login-or-register-popup>
 </div>
 
 <div class="container-search-bar">

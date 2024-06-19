@@ -26,7 +26,7 @@ import { FeatCardComponent } from './components/features/card/feat-card/feat-car
 import { FeatCardListComponent } from './components/features/card/feat-card-list/feat-card-list.component';
 import { FeatEditCardFormComponent } from './components/features/form/feat-edit-card-form/feat-edit-card-form.component';
 import { FeatSignInFormComponent } from './components/features/form/feat-sign-in-form/feat-sign-in-form.component';
-import { FeatAccountPopupComponent } from './components/features/popup/feat-login-or-register-popup/feat-account-popup.component';
+import { FeatLoginOrRegisterPopupComponent } from './components/features/popup/feat-login-or-register-popup/feat-login-or-register-popup.component';
 import { FeatConfirmDeletePopupComponent } from './components/features/popup/confirmation/feat-confirm-delete-popup/feat-confirm-delete-popup.component';
 import { FeatNoCardsFoundComponent } from './components/features/popup/feat-no-cards-found-popup/feat-no-cards-found-popup.component';
 import { FeatCardAdminComponent } from './components/features/card/feat-card-admin/feat-card-admin.component';
@@ -79,7 +79,7 @@ import { UiFeedbackErrorIconComponent } from './shared/icons/ui-feedback-error-i
     FeatEditCardFormComponent,
     FeatRegisterFormComponent,
     FeatSignInFormComponent,
-    FeatAccountPopupComponent,
+    FeatLoginOrRegisterPopupComponent,
     FeatConfirmDeletePopupComponent,
     FeatNoCardsFoundComponent,
     TrackHttpStatusComponent,

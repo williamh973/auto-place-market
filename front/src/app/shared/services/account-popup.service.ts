@@ -2,26 +2,20 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
+export class loginOrRegisterPopupService {
+  private isLoginOrRegisterPopupOpenSubject$: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
 
+  isLoginOrRegisterPopupOpen$ =
+    this.isLoginOrRegisterPopupOpenSubject$.asObservable();
 
-export class AccountPopupService {
-
-    private isAccountPopupOpenSubject$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  
-    isAccountPopupOpen$ = this.isAccountPopupOpenSubject$.asObservable();
-  
-
-    openPopup() {
-      this.isAccountPopupOpenSubject$.next(true);
-    }
-  
-    closePopup() {
-      this.isAccountPopupOpenSubject$.next(false);
-    }
-
-  
-
-
+  openPopup() {
+    this.isLoginOrRegisterPopupOpenSubject$.next(true);
   }
+
+  closePopup() {
+    this.isLoginOrRegisterPopupOpenSubject$.next(false);
+  }
+}
